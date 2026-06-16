@@ -36,7 +36,7 @@ class ErrorType(str, Enum):
 
 
 class AuditResult(BaseModel):
-    """Structured output the Stage-2 auditor (gpt-5.4-mini) must return."""
+    """Structured output the Stage-2 auditor (gpt-5.5) must return."""
 
     status: AuditStatus
     error_type: ErrorType = ErrorType.NONE

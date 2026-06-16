@@ -187,7 +187,7 @@ def annotator_user_prompt(raw_review_text: str) -> str:
 
 
 # --------------------------------------------------------------------------- #
-# Stage 2 — Independent Cross-Family Guard Auditor (gpt-5.4-mini)
+# Stage 2 — Independent Cross-Family Guard Auditor (gpt-5.5)
 # --------------------------------------------------------------------------- #
 
 AUDITOR_SYSTEM_PROMPT = f"""\

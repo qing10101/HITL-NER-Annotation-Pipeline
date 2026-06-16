@@ -40,7 +40,7 @@ class LLMProvider(ABC):
         self.model = model
         self.api_key = api_key
 
-    def __str__(self) -> str:  # e.g. "openai:gpt-5.4-mini"
+    def __str__(self) -> str:  # e.g. "openai:gpt-5.5"
         return f"{self.provider_name}:{self.model}"
 
     @abstractmethod
@@ -195,7 +195,7 @@ def parse_spec(spec: str) -> tuple[str, str]:
     if not sep or not provider or not model:
         raise ValueError(
             f"Invalid model spec {spec!r}; expected '<provider>:<model>' "
-            f"(e.g. 'openai:gpt-5.4-mini'). Known providers: {known_providers()}"
+            f"(e.g. 'openai:gpt-5.5'). Known providers: {known_providers()}"
         )
     if provider not in _REGISTRY:
         raise ValueError(

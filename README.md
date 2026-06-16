@@ -12,7 +12,7 @@ See [PRD.md](PRD.md) for the full spec. The design is taken from `Proposed Pipel
 reviews.jsonl/csv
    │  Step 1  stream row-by-row + strip leading/trailing whitespace
    ▼
-Stage 1  ANNOTATOR  (openai:gpt-5.4-mini)    → verbatim text + inline XML tags
+Stage 1  ANNOTATOR  (openai:gpt-5.5)         → verbatim text + inline XML tags
    ▼
 Stage 2  AUDITOR    (gemini:gemini-3.5-flash) → JSON {status, error_type, auditor_reason}
    │
@@ -43,7 +43,7 @@ Models are chosen per role as `"<provider>:<model>"` specs. Defaults (current
 setup — GPT annotates, Gemini judges):
 
 ```
-ANNOTATOR_MODEL=openai:gpt-5.4-mini
+ANNOTATOR_MODEL=openai:gpt-5.5
 AUDITOR_MODEL=gemini:gemini-3.5-flash
 ```
 

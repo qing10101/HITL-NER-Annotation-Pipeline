@@ -3,7 +3,7 @@
 Sends the raw review to the configured annotator model, which returns the text
 verbatim with inline XML tags injected around target entities. The model never
 emits coordinates. The backing model is provider-agnostic — configure it via
-``ANNOTATOR_MODEL`` (e.g. ``openai:gpt-5.4-mini``); see providers.py.
+``ANNOTATOR_MODEL`` (e.g. ``openai:gpt-5.5``); see providers.py.
 """
 from __future__ import annotations
 

@@ -6,7 +6,7 @@
 - **Status:** Draft → Implementation
 - **Owner:** zhirong@aiecd.com
 - **Date:** 2026-06-04
-- **Models:** provider-agnostic, configured per role as `"<provider>:<model>"`. Current default — Stage 1 annotator = `openai:gpt-5.4-mini`, Stage 2 auditor/judge = `gemini:gemini-3.5-flash`. Either stage can use any provider (`openai`, `gemini`, extensible); cross-family auditing = different provider per stage. Override via `.env` (`ANNOTATOR_MODEL`/`AUDITOR_MODEL`) or CLI.
+- **Models:** provider-agnostic, configured per role as `"<provider>:<model>"`. Current default — Stage 1 annotator = `openai:gpt-5.5`, Stage 2 auditor/judge = `gemini:gemini-3.5-flash`. Either stage can use any provider (`openai`, `gemini`, extensible); cross-family auditing = different provider per stage. Override via `.env` (`ANNOTATOR_MODEL`/`AUDITOR_MODEL`) or CLI.
 
 ---
 
@@ -72,7 +72,7 @@ XML tags. A non-AI regex parser derives exact `start`/`end` offsets afterward. A
         │  raw_text ──────────────────────────┐ (forwarded ground-truth)
         ▼                                      ▼
  ┌─────────────────────────────────────────────────────────┐
- │ Step 3: AUDITOR  (gpt-5.4-mini, cross-family)             │
+ │ Step 3: AUDITOR  (gpt-5.5, cross-family)                  │
  │   input = RAW_TEXT + ANNOTATED_TEXT                       │
  │   → JSON { status, error_type, auditor_reason }           │
  └─────────────────────────────────────────────────────────┘
@@ -185,7 +185,7 @@ review text isolated in the user message). Error-type taxonomy is fixed by the S
 ## 9. Open questions / assumptions
 
 - Assumes input reviews are English and reasonably short (single-row reviews).
-- `gemini-3.5-flash` / `gpt-5.4-mini` are treated as available model IDs; if the deployed
+- `gemini-3.5-flash` / `gpt-5.5` are treated as available model IDs; if the deployed
   IDs differ, override via `.env` (`GEMINI_MODEL`, `OPENAI_MODEL`).
 - Human override step (Step 5) consumes `review_queue.csv` and produces a corrected
   `gold_spans.csv` append; the editing tool itself is a manual/CSV process in v1.

@@ -31,7 +31,7 @@ class Config:
     openai_api_key: str = os.getenv("OPENAI_API_KEY", "")
 
     # Role -> "<provider>:<model>". Swap models/providers here or via CLI flags.
-    annotator_model: str = os.getenv("ANNOTATOR_MODEL", "openai:gpt-5.4-mini")
+    annotator_model: str = os.getenv("ANNOTATOR_MODEL", "openai:gpt-5.5")
     auditor_model: str = os.getenv("AUDITOR_MODEL", "gemini:gemini-3.5-flash")
 
     annotator_temperature: float = _get_float("ANNOTATOR_TEMPERATURE", 0.0)
