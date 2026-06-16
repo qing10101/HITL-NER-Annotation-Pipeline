@@ -12,9 +12,9 @@ See [PRD.md](PRD.md) for the full spec. The design is taken from `Proposed Pipel
 reviews.jsonl/csv
    │  Step 1  stream row-by-row + strip leading/trailing whitespace
    ▼
-Stage 1  ANNOTATOR  (gemini-3.5-flash)   → verbatim text + inline XML tags
+Stage 1  ANNOTATOR  (openai:gpt-5.4-mini)    → verbatim text + inline XML tags
    ▼
-Stage 2  AUDITOR    (gpt-5.4-mini)        → JSON {status, error_type, auditor_reason}
+Stage 2  AUDITOR    (gemini:gemini-3.5-flash) → JSON {status, error_type, auditor_reason}
    │
    ├─ PASS → Step 4A deterministic regex parser → char offsets → gold CSVs
    └─ FAIL → Step 4B review_queue.csv (human-in-the-loop)
@@ -25,8 +25,12 @@ sweep, so PASS rows are mathematically free of off-by-one / sub-token drift. A
 `strip_tags(tagged) == raw` invariant check re-routes any mismatch to humans even
 if the auditor passed it.
 
+Either stage can use any provider — the models above are config, not hard-wired
+(see [providers.py](pipeline/providers.py)). "Cross-family" auditing just means
+the auditor uses a different provider than the annotator.
+
 **Tagset:** `MINOR_AGE`, `MINOR_EDU`, `GEN_NOUN`, `GEN_PHYS`, `FAM_KIN`
-**Error types:** `TEXT_MUTATION`, `INCORRECT_TAG`, `OVER_ANNOTATION`, `MISSING_TAG`, `WRONG_LABEL`, `WRONG_SPAN`
+**Error types:** `RAW_TEXT_MUTATION`, `NON_HUMAN_TAGGING`, `UNANCHORED_TAGGING`, `OMITTED_VALID_TAG`, `MISALLOCATED_LABEL`, `INVALID_SPAN_BOUNDARY`
 
 ## Setup
 
@@ -35,8 +39,18 @@ pip install -r requirements.txt
 copy .env.example .env   # then fill in GEMINI_API_KEY and OPENAI_API_KEY
 ```
 
-Model IDs default to `gemini-3.5-flash` / `gpt-5.4-mini` (from the doc) and are
-overridable in `.env` via `GEMINI_MODEL` / `OPENAI_MODEL`.
+Models are chosen per role as `"<provider>:<model>"` specs. Defaults (current
+setup — GPT annotates, Gemini judges):
+
+```
+ANNOTATOR_MODEL=openai:gpt-5.4-mini
+AUDITOR_MODEL=gemini:gemini-3.5-flash
+```
+
+Override in `.env` or per-run with `--annotator-model` / `--auditor-model`.
+Known providers: `openai`, `gemini`. To swap roles back, flip the two values; to
+add a new backend, subclass `LLMProvider` in [providers.py](pipeline/providers.py)
+and register it — no other code changes.
 
 ## Run
 
@@ -84,8 +98,9 @@ run.py                 CLI entrypoint
 pipeline/
   ingestion.py         Step 1 — streaming + whitespace normalization
   prompts.py           verbatim Stage 1 + Stage 2 prompts
-  annotator.py         Step 2 — gemini-3.5-flash
-  auditor.py           Step 3 — gpt-5.4-mini (structured output)
+  providers.py         model-agnostic LLM layer (openai/gemini + factory)
+  annotator.py         Step 2 — inline tagging (any provider)
+  auditor.py           Step 3 — structured audit/judge (any provider)
   parser.py            Step 4A — deterministic regex index parser
   writers.py           Step 4 — CSV sinks
   orchestrator.py      decision fork + batch driver

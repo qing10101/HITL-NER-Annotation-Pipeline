@@ -13,8 +13,11 @@ import sys
 import time
 
 from config import CONFIG
-from pipeline.ingestion import stream_rows
+from pipeline.annotator import Annotator
+from pipeline.auditor import Auditor
+from pipeline.ingestion import count_rows, stream_rows
 from pipeline.orchestrator import Orchestrator
+from pipeline.providers import build_provider
 from pipeline.writers import OutputWriter
 
 
@@ -30,6 +33,16 @@ def build_arg_parser() -> argparse.ArgumentParser:
         help="Input format (default: inferred from extension)",
     )
     p.add_argument("--out-dir", default=CONFIG.output_dir, help="Output directory")
+    p.add_argument(
+        "--annotator-model",
+        default=None,
+        help='Override annotator model, "<provider>:<model>" (default: $ANNOTATOR_MODEL)',
+    )
+    p.add_argument(
+        "--auditor-model",
+        default=None,
+        help='Override auditor/judge model, "<provider>:<model>" (default: $AUDITOR_MODEL)',
+    )
     p.add_argument("--limit", type=int, default=None, help="Max rows to process")
     p.add_argument(
         "--delay",
@@ -48,20 +61,27 @@ def build_arg_parser() -> argparse.ArgumentParser:
 def main(argv=None) -> int:
     args = build_arg_parser().parse_args(argv)
 
+    ann_spec = args.annotator_model or CONFIG.annotator_model
+    aud_spec = args.auditor_model or CONFIG.auditor_model
+
     try:
-        CONFIG.require_keys()
-    except RuntimeError as exc:
+        CONFIG.require_keys([ann_spec, aud_spec])
+        annotator = Annotator(provider=build_provider(ann_spec))
+        auditor = Auditor(provider=build_provider(aud_spec))
+    except (RuntimeError, ValueError) as exc:
         print(f"[config error] {exc}", file=sys.stderr)
         return 2
 
-    print(
-        f"Models: annotator={CONFIG.gemini_model} | auditor={CONFIG.openai_model}",
-        flush=True,
-    )
+    print(f"Models: annotator={ann_spec} | auditor={aud_spec}", flush=True)
     print(f"Input:  {args.input}  ->  Output: {args.out_dir}", flush=True)
 
     writer = OutputWriter(args.out_dir)
-    orchestrator = Orchestrator(writer=writer, resume=not args.no_resume)
+    orchestrator = Orchestrator(
+        writer=writer,
+        annotator=annotator,
+        auditor=auditor,
+        resume=not args.no_resume,
+    )
 
     rows = stream_rows(
         args.input,
@@ -70,8 +90,16 @@ def main(argv=None) -> int:
         fmt=args.format,
     )
 
+    # Pre-count for an accurate progress-bar total (best-effort).
+    try:
+        total = count_rows(args.input, fmt=args.format)
+        if args.limit is not None:
+            total = min(total, args.limit)
+    except Exception:
+        total = args.limit  # may be None -> indeterminate bar
+
     started = time.time()
-    stats = orchestrator.run(rows, limit=args.limit, delay=args.delay)
+    stats = orchestrator.run(rows, limit=args.limit, delay=args.delay, total=total)
     elapsed = time.time() - started
 
     print("\n=== Run complete ===")

@@ -61,6 +61,22 @@ def stream_rows(
         yield from _stream_csv(path, text_field, id_field)
 
 
+def count_rows(path: str | Path, fmt: str = "auto") -> int:
+    """Cheaply count records in the input (for a progress-bar total).
+
+    Reads the file once without normalization; for JSONL counts non-empty
+    lines, for CSV counts data rows (header excluded).
+    """
+    path = Path(path)
+    if not path.exists():
+        raise FileNotFoundError(f"Input file not found: {path}")
+    if _detect_format(path, fmt) == "jsonl":
+        with path.open("r", encoding="utf-8") as fh:
+            return sum(1 for line in fh if line.strip())
+    with path.open("r", encoding="utf-8", newline="") as fh:
+        return sum(1 for _ in csv.DictReader(fh))
+
+
 def _make_id(raw_id, index: int) -> str:
     if raw_id is None or str(raw_id).strip() == "":
         return f"row_{index + 1:05d}"

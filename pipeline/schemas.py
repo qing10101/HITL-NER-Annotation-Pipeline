@@ -15,18 +15,23 @@ class AuditStatus(str, Enum):
 class ErrorType(str, Enum):
     """Error taxonomy fixed by the Stage-2 auditor prompt.
 
+    Names mirror the auditor system prompt's FAIL conditions exactly, because
+    the OpenAI structured-output schema is generated from this enum — any drift
+    between the prompt's category names and these members would make the model's
+    intended verdict unrepresentable.
+
     ``PIPELINE_ERROR`` is an internal addition for rows that fail with an
     exception (e.g. a transport error or malformed tag structure) rather than a
     semantic verdict; it is never emitted by the model.
     """
 
     NONE = "NONE"
-    TEXT_MUTATION = "TEXT_MUTATION"
-    INCORRECT_TAG = "INCORRECT_TAG"
-    OVER_ANNOTATION = "OVER_ANNOTATION"
-    MISSING_TAG = "MISSING_TAG"
-    WRONG_LABEL = "WRONG_LABEL"
-    WRONG_SPAN = "WRONG_SPAN"
+    RAW_TEXT_MUTATION = "RAW_TEXT_MUTATION"
+    NON_HUMAN_TAGGING = "NON_HUMAN_TAGGING"
+    UNANCHORED_TAGGING = "UNANCHORED_TAGGING"
+    OMITTED_VALID_TAG = "OMITTED_VALID_TAG"
+    MISALLOCATED_LABEL = "MISALLOCATED_LABEL"
+    INVALID_SPAN_BOUNDARY = "INVALID_SPAN_BOUNDARY"
     PIPELINE_ERROR = "PIPELINE_ERROR"
 
 

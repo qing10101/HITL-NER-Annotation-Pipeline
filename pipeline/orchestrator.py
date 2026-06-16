@@ -1,8 +1,8 @@
 """The orchestrator — drives the per-row decision fork across the full stream.
 
-Per row:
-  1. annotate (gemini-3.5-flash)  -> tagged_text
-  2. audit    (gpt-5.4-mini)      -> AuditResult
+Per row (models are provider-agnostic; see providers.py / config):
+  1. annotate (Annotator)  -> tagged_text
+  2. audit    (Auditor)    -> AuditResult
   3. PASS -> deterministic parse + invariant check -> gold output
      FAIL -> review queue
 Any hard exception (transport, malformed tags) routes the row to review with
@@ -13,6 +13,11 @@ from __future__ import annotations
 import time
 from dataclasses import dataclass
 from typing import Iterable, Optional, Tuple
+
+try:
+    from tqdm import tqdm
+except ImportError:  # progress bar is optional
+    tqdm = None
 
 from .annotator import Annotator
 from .auditor import Auditor
@@ -84,20 +89,36 @@ class Orchestrator:
 
         return result
 
+    @staticmethod
+    def _postfix(stats: "RunStats") -> dict:
+        return {
+            "pass": stats.passed,
+            "fail": stats.failed,
+            "err": stats.errored,
+            "skip": stats.skipped,
+        }
+
     def run(
         self,
         rows: Iterable[Tuple[str, str]],
         limit: Optional[int] = None,
         progress_every: int = 25,
         delay: float = 0.0,
+        total: Optional[int] = None,
     ) -> RunStats:
         stats = RunStats()
         processed_this_run = 0
+
+        bar = tqdm(total=total, unit="row", desc="labeling") if tqdm else None
+
         for row_id, raw_text in rows:
             if limit is not None and stats.total >= limit:
                 break
             if row_id in self._processed:
                 stats.skipped += 1
+                if bar is not None:
+                    bar.update(1)
+                    bar.set_postfix(self._postfix(stats))
                 continue
 
             # Pace requests to respect provider rate limits (e.g. free tier).
@@ -117,11 +138,16 @@ class Orchestrator:
             else:
                 stats.failed += 1
 
-            if stats.total % progress_every == 0:
+            if bar is not None:
+                bar.update(1)
+                bar.set_postfix(self._postfix(stats))
+            elif stats.total % progress_every == 0:
                 print(
                     f"  processed={stats.total} pass={stats.passed} "
                     f"fail={stats.failed} err={stats.errored}",
                     flush=True,
                 )
 
+        if bar is not None:
+            bar.close()
         return stats

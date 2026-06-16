@@ -6,7 +6,7 @@
 - **Status:** Draft → Implementation
 - **Owner:** zhirong@aiecd.com
 - **Date:** 2026-06-04
-- **Models:** Stage 1 annotator = `gemini-3.5-flash`; Stage 2 auditor = `gpt-5.4-mini` (configurable via `.env`, doc values are defaults)
+- **Models:** provider-agnostic, configured per role as `"<provider>:<model>"`. Current default — Stage 1 annotator = `openai:gpt-5.4-mini`, Stage 2 auditor/judge = `gemini:gemini-3.5-flash`. Either stage can use any provider (`openai`, `gemini`, extensible); cross-family auditing = different provider per stage. Override via `.env` (`ANNOTATOR_MODEL`/`AUDITOR_MODEL`) or CLI.
 
 ---
 

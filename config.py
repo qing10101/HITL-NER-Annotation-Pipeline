@@ -1,12 +1,14 @@
 """Environment-driven configuration for the labeling pipeline.
 
-Model IDs default to the values named in the proposal document
-(``gemini-3.5-flash`` / ``gpt-5.4-mini``) and can be overridden via ``.env``.
+Models are selected per-role as ``"<provider>:<model>"`` specs so either stage
+can use any provider and models can be swapped without code changes. Defaults
+reflect the current setup: GPT annotates, Gemini judges.
 """
 from __future__ import annotations
 
 import os
 from dataclasses import dataclass
+from typing import Iterable
 
 from dotenv import load_dotenv
 
@@ -28,20 +30,30 @@ class Config:
     gemini_api_key: str = os.getenv("GEMINI_API_KEY", "")
     openai_api_key: str = os.getenv("OPENAI_API_KEY", "")
 
-    gemini_model: str = os.getenv("GEMINI_MODEL", "gemini-3.5-flash")
-    openai_model: str = os.getenv("OPENAI_MODEL", "gpt-5.4-mini")
+    # Role -> "<provider>:<model>". Swap models/providers here or via CLI flags.
+    annotator_model: str = os.getenv("ANNOTATOR_MODEL", "openai:gpt-5.4-mini")
+    auditor_model: str = os.getenv("AUDITOR_MODEL", "gemini:gemini-3.5-flash")
 
     annotator_temperature: float = _get_float("ANNOTATOR_TEMPERATURE", 0.0)
     auditor_temperature: float = _get_float("AUDITOR_TEMPERATURE", 0.0)
 
     output_dir: str = os.getenv("OUTPUT_DIR", "output")
 
-    def require_keys(self) -> None:
-        """Fail fast with a clear message if API keys are missing."""
+    def require_keys(self, model_specs: Iterable[str]) -> None:
+        """Fail fast if an API key for an actually-used provider is missing.
+
+        ``model_specs`` are the ``"provider:model"`` strings in play this run;
+        only the providers they reference are required.
+        """
+        needed = {
+            spec.split(":", 1)[0].strip().lower()
+            for spec in model_specs
+            if spec
+        }
         missing = []
-        if not self.gemini_api_key:
+        if "gemini" in needed and not self.gemini_api_key:
             missing.append("GEMINI_API_KEY")
-        if not self.openai_api_key:
+        if "openai" in needed and not self.openai_api_key:
             missing.append("OPENAI_API_KEY")
         if missing:
             raise RuntimeError(

@@ -1,18 +1,17 @@
-"""Step 2 — Context-aware in-line tagging engine (gemini-3.5-flash).
+"""Step 2 — Context-aware in-line tagging engine (the annotator).
 
-Forwards the raw review to Gemini, which returns the text verbatim with inline
-XML tags injected around target entities. The model never emits coordinates.
+Sends the raw review to the configured annotator model, which returns the text
+verbatim with inline XML tags injected around target entities. The model never
+emits coordinates. The backing model is provider-agnostic — configure it via
+``ANNOTATOR_MODEL`` (e.g. ``openai:gpt-5.4-mini``); see providers.py.
 """
 from __future__ import annotations
 
 import re
 
-from google import genai
-from google.genai import types
-from tenacity import retry, stop_after_attempt, wait_exponential
-
 from config import CONFIG
 from .prompts import ANNOTATOR_SYSTEM_PROMPT, annotator_user_prompt
+from .providers import LLMProvider, build_provider
 
 _FENCE_OPEN = re.compile(r"^```[a-zA-Z]*\n?")
 _FENCE_CLOSE = re.compile(r"\n?```$")
@@ -24,7 +23,7 @@ def _clean_output(text: str) -> str:
 
     Defensive only — the prompt instructs the model to emit the bare review.
     Removes markdown code fences, a leading ``Review Text:`` label, and a single
-    layer of wrapping triple quotes.
+    layer of wrapping triple quotes. Does NOT touch XML tags.
     """
     t = text.strip()
     if t.startswith("```"):
@@ -36,31 +35,23 @@ def _clean_output(text: str) -> str:
 
 
 class Annotator:
-    """Stage-1 inline tagging engine."""
+    """Stage-1 inline tagging engine (model-agnostic)."""
 
-    def __init__(self, model: str | None = None, temperature: float | None = None):
-        self.model = model or CONFIG.gemini_model
+    def __init__(
+        self,
+        provider: LLMProvider | None = None,
+        temperature: float | None = None,
+    ):
+        self.provider = provider or build_provider(CONFIG.annotator_model)
         self.temperature = (
             CONFIG.annotator_temperature if temperature is None else temperature
         )
-        self._client = genai.Client(api_key=CONFIG.gemini_api_key)
 
-    @retry(
-        stop=stop_after_attempt(6),
-        wait=wait_exponential(multiplier=2, min=4, max=70),
-        reraise=True,
-    )
     def tag(self, raw_text: str) -> str:
         """Return ``tagged_text`` for a single normalized review."""
-        response = self._client.models.generate_content(
-            model=self.model,
-            contents=annotator_user_prompt(raw_text),
-            config=types.GenerateContentConfig(
-                system_instruction=ANNOTATOR_SYSTEM_PROMPT,
-                temperature=self.temperature,
-            ),
+        text = self.provider.generate_text(
+            ANNOTATOR_SYSTEM_PROMPT,
+            annotator_user_prompt(raw_text),
+            self.temperature,
         )
-        text = response.text
-        if text is None:
-            raise RuntimeError("Annotator returned no text (possibly blocked/empty).")
         return _clean_output(text)
