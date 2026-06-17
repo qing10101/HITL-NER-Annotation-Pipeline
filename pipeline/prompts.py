@@ -80,11 +80,13 @@ representing a minor, do not split the span. Tag the entire noun phrase under MI
 minor status implies the highest privacy severity.
     Correct:   "I am a [16-year-old girl]MINOR_AGE"
     Incorrect: "I am a [16-year-old]MINOR_AGE [girl]GEN_NOUN"
-- SPAN PRIORITY RULE (FLAT NER): When a single word or compact phrase represents both a \
-kinship relationship and a minor attribute, prioritize the Minor Attribute over the Family Kinship \
-if they cannot be cleanly separated.
-    Right: "my [3yo]MINOR_AGE [son]FAM_KIN" (cleanly separated)
-    Right: "my [twins]MINOR_AGE" (if under 18, prioritize the minor vulnerability over the kinship)
+- AGE-CONTENT REQUIREMENT (MINOR_AGE): Tag MINOR_AGE only on spans that themselves carry age \
+or developmental content. A bare kinship/count noun is NOT MINOR_AGE even when context shows the \
+person is under 18 — tag it FAM_KIN; the minor signal is carried by the accompanying age span or \
+<MINOR_EDU> span.
+    Age content present:              "my [3yo]MINOR_AGE [son]FAM_KIN"
+    No age content, minor elsewhere:  "my [stepson]FAM_KIN is in [middle school]MINOR_EDU"
+    No age content, no other evidence: "my [twins]FAM_KIN"
 
 6. NEGATIVE EDGE CASES (WHAT NOT TO ANNOTATE)
 - Pets & Non-Humans (violates Minor Child Constraint): "Bought this shampoo for my 2-year-old \
@@ -134,7 +136,7 @@ Example 5
 Example 6
   INPUT:  My eldest son is 24 and out of college, but my stepson is still in middle school.
   OUTPUT: My eldest <FAM_KIN>son</FAM_KIN> is 24 and out of college, but my \
-<MINOR_AGE>stepson</MINOR_AGE> is still in <MINOR_EDU>middle school</MINOR_EDU>.\
+<FAM_KIN>stepson</FAM_KIN> is still in <MINOR_EDU>middle school</MINOR_EDU>.\
 """
 
 
@@ -239,9 +241,9 @@ education tier, gender noun, or gender-specific physiology is present in RAW_TEX
 ANNOTATED_TEXT. (Subject to the MANDATORY OMISSION CHECK above.)
 5. MISALLOCATED_LABEL: The inner span is a valid entity but carries the wrong category. Label \
 correctness is CONTEXT-DEPENDENT — judge by what the surrounding text proves:
-   - A kinship noun whose context fixes the person UNDER 18 must be MINOR_AGE (Flat-NER priority). \
-Example: in "my stepson is in middle school", "<MINOR_AGE>stepson</MINOR_AGE>" is CORRECT — do \
-NOT flag it as needing FAM_KIN.
+   - A kinship noun whose context fixes the person UNDER 18 must be FAM_KIN (AGE-CONTENT \
+REQUIREMENT). Example: in "my stepson is in middle school", "<FAM_KIN>stepson</FAM_KIN>" is \
+CORRECT — do NOT flag it as needing MINOR_AGE.
    - A kinship noun whose context proves the person is an ADULT must be FAM_KIN, never a minor tag \
 (e.g., an adult son tagged MINOR_AGE is a FAIL).
    - A reviewer/partner gender noun mislabeled (e.g., "wife" tagged FAM_KIN instead of GEN_NOUN), \
@@ -252,8 +254,6 @@ This includes:
 <MINOR_EDU>5th</MINOR_EDU> grade" instead of "<MINOR_EDU>5th grade</MINOR_EDU>").
    (b) A Demographic Compound split into separate tags (e.g., "<MINOR_AGE>16-year-old</MINOR_AGE> \
 <GEN_NOUN>girl</GEN_NOUN>" instead of one "<MINOR_AGE>16-year-old girl</MINOR_AGE>").
-   (c) A kinship noun denoting a minor that was tagged FAM_KIN instead of MINOR_AGE (e.g., \
-"stepson" or "twins" under 18 tagged FAM_KIN).
 
 DOMINANT ERROR SELECTION:
 If multiple conditions trigger, select ONE error_type by this strict precedence:
