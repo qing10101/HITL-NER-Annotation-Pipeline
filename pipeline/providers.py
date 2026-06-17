@@ -18,15 +18,21 @@ from abc import ABC, abstractmethod
 from typing import Optional, Type
 
 from pydantic import BaseModel
-from tenacity import retry, stop_after_attempt, wait_exponential
+from tenacity import before_sleep_log, retry, stop_after_attempt, wait_exponential
+import logging
 
 from config import CONFIG
+
+logging.basicConfig(format="%(message)s", level=logging.WARNING)
+_retry_logger = logging.getLogger("pipeline.retry")
+_retry_logger.setLevel(logging.INFO)
 
 # Shared retry policy: survives transient errors and rate-limit backoffs
 # (waits 4,8,16,32,64s — covers provider "retry in ~Ns" hints).
 _RETRY = retry(
     stop=stop_after_attempt(6),
     wait=wait_exponential(multiplier=2, min=4, max=70),
+    before_sleep=before_sleep_log(_retry_logger, logging.INFO),
     reraise=True,
 )
 
@@ -82,9 +88,13 @@ class OpenAIProvider(LLMProvider):
 
     def __init__(self, model: str, api_key: str):
         super().__init__(model, api_key)
+        import httpx
         from openai import OpenAI
 
-        self._client = OpenAI(api_key=api_key)
+        self._client = OpenAI(
+            api_key=api_key,
+            timeout=httpx.Timeout(connect=30.0, read=120.0, write=30.0, pool=10.0),
+        )
         # Some models reject a non-default temperature; flip off after the first
         # 400 so the rest of the run omits the param entirely.
         self._send_temperature = True
@@ -139,8 +149,12 @@ class GeminiProvider(LLMProvider):
     def __init__(self, model: str, api_key: str):
         super().__init__(model, api_key)
         from google import genai
+        from google.genai import types
 
-        self._client = genai.Client(api_key=api_key)
+        self._client = genai.Client(
+            api_key=api_key,
+            http_options=types.HttpOptions(timeout=120_000),  # milliseconds
+        )
 
     def _config(self, system_prompt: str, temperature: float, **extra):
         from google.genai import types

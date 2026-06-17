@@ -2,7 +2,7 @@
 
 Models are selected per-role as ``"<provider>:<model>"`` specs so either stage
 can use any provider and models can be swapped without code changes. Defaults
-reflect the current setup: GPT annotates, Gemini judges.
+follow the design: Gemini annotates (Stage 1), GPT-5.5 audits (Stage 2).
 """
 from __future__ import annotations
 
@@ -31,8 +31,8 @@ class Config:
     openai_api_key: str = os.getenv("OPENAI_API_KEY", "")
 
     # Role -> "<provider>:<model>". Swap models/providers here or via CLI flags.
-    annotator_model: str = os.getenv("ANNOTATOR_MODEL", "openai:gpt-5.5")
-    auditor_model: str = os.getenv("AUDITOR_MODEL", "gemini:gemini-3.5-flash")
+    annotator_model: str = os.getenv("ANNOTATOR_MODEL", "gemini:gemini-3.5-flash")
+    auditor_model: str = os.getenv("AUDITOR_MODEL", "openai:gpt-5.5")
 
     annotator_temperature: float = _get_float("ANNOTATOR_TEMPERATURE", 0.0)
     auditor_temperature: float = _get_float("AUDITOR_TEMPERATURE", 0.0)

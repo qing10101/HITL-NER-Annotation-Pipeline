@@ -47,12 +47,22 @@ class Orchestrator:
         self.annotator = annotator or Annotator()
         self.auditor = auditor or Auditor()
         self._processed = writer.processed_ids() if resume else set()
+        self._annotator_cache: dict[str, str] = (
+            writer.load_annotator_cache() if resume else {}
+        )
 
     def process_row(self, row_id: str, raw_text: str) -> RowResult:
         result = RowResult(row_id=row_id, raw_text=raw_text)
         try:
-            # Step 2: inline tagging.
-            result.tagged_text = self.annotator.tag(raw_text)
+            # Step 2: inline tagging — use cached result if available so a
+            # retry after an auditor failure skips the annotator API call.
+            if row_id in self._annotator_cache:
+                result.tagged_text = self._annotator_cache[row_id]
+                result.note = "annotator_cache_hit"
+            else:
+                result.tagged_text = self.annotator.tag(raw_text)
+                self._annotator_cache[row_id] = result.tagged_text
+                self.writer.save_annotator_result(row_id, result.tagged_text)
             # Step 3: cross-family audit.
             audit = self.auditor.audit(raw_text, result.tagged_text)
             result.audit = audit

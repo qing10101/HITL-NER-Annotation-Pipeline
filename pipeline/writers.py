@@ -1,12 +1,15 @@
 """Step 4 — CSV output writers (replaces the Postgres target DB).
 
-Three append-mode CSV files, all keyed by ``row_id`` so every output row maps
+Four append-mode CSV files, all keyed by ``row_id`` so every output row maps
 back to its source row number:
 
-  - gold_standard.csv : one row per PASS record (committed gold data)
-  - gold_spans.csv    : exploded, one row per labeled entity span
-  - review_queue.csv  : one row per FAIL record (Human-in-the-Loop queue)
-  - run_log.csv       : one row per processed record (audit trail)
+  - gold_standard.csv    : one row per PASS record (committed gold data)
+  - gold_spans.csv       : exploded, one row per labeled entity span
+  - review_queue.csv     : one row per FAIL record (Human-in-the-Loop queue)
+  - run_log.csv          : one row per processed record (audit trail)
+  - annotator_cache.csv  : tagged_text saved immediately after annotation,
+                           before the auditor runs — allows auditor-only retries
+                           without re-spending the annotator API call.
 
 Each writer creates its header on first open and supports resumability by
 exposing the set of already-processed row_ids.
@@ -24,10 +27,12 @@ GOLD_FILE = "gold_standard.csv"
 SPANS_FILE = "gold_spans.csv"
 REVIEW_FILE = "review_queue.csv"
 LOG_FILE = "run_log.csv"
+ANNOTATOR_CACHE_FILE = "annotator_cache.csv"
 
 _GOLD_HEADER = ["row_id", "raw_text", "tagged_text", "num_entities", "entities_json"]
 _SPANS_HEADER = ["row_id", "entity_index", "label", "text", "start", "end"]
 _REVIEW_HEADER = ["row_id", "raw_text", "tagged_text", "error_type", "auditor_reason"]
+_CACHE_HEADER = ["row_id", "tagged_text"]
 _LOG_HEADER = ["row_id", "status", "error_type", "num_entities", "note"]
 
 
@@ -45,6 +50,7 @@ class OutputWriter:
         self._spans = self.dir / SPANS_FILE
         self._review = self.dir / REVIEW_FILE
         self._log = self.dir / LOG_FILE
+        self._cache = self.dir / ANNOTATOR_CACHE_FILE
         self._ensure_headers()
 
     def _ensure_headers(self) -> None:
@@ -53,10 +59,26 @@ class OutputWriter:
             (self._spans, _SPANS_HEADER),
             (self._review, _REVIEW_HEADER),
             (self._log, _LOG_HEADER),
+            (self._cache, _CACHE_HEADER),
         ):
             if not path.exists():
                 with path.open("w", encoding="utf-8", newline="") as fh:
                     csv.writer(fh).writerow(header)
+
+    def load_annotator_cache(self) -> dict[str, str]:
+        """Return {row_id: tagged_text} for every row already annotated."""
+        if not self._cache.exists():
+            return {}
+        cache: dict[str, str] = {}
+        with self._cache.open("r", encoding="utf-8", newline="") as fh:
+            for row in csv.DictReader(fh):
+                if row.get("row_id"):
+                    cache[row["row_id"]] = row["tagged_text"]
+        return cache
+
+    def save_annotator_result(self, row_id: str, tagged_text: str) -> None:
+        """Persist a single annotator result immediately after it is produced."""
+        self._append(self._cache, [row_id, tagged_text])
 
     def processed_ids(self) -> Set[str]:
         """Row ids already present in run_log.csv (for resumable re-runs)."""
