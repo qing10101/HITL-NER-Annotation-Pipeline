@@ -70,11 +70,17 @@ FAM_KIN
   Inclusions: Immediate, extended, and step/in-law relationships ("mother-in-law", "stepson", \
 "twin sister", "nephew"). Note: Adult children DO get tagged here as FAM_KIN (e.g., "my adult \
 son"), but they do NOT receive minor tags.
-  Exclusions: Figurative kinship ("hey brother") or generic plurals ("good for families").
+  Exclusions: Figurative kinship ("hey brother"); collective or non-specific family terms that \
+name no exact relationship ("family", "relatives", "family members", "older/younger members"), \
+even when they refer to the reviewer's real family.
 
 4. STRICT GOLD RULES FOR ANNOTATORS
 - THE "REVIEWER ANCHOR" RULE: Do not annotate abstract entities. An entity is only a privacy \
-risk if it links back to the reviewer's actual life.
+risk if it links back to the reviewer's actual life. Judge anchoring across the WHOLE review, \
+not clause by clause: once the text establishes a real child or relative, tag every later mention \
+that refers back to that same person, even in a generic-sounding clause (e.g., 'makes traveling \
+with baby easier'); but do NOT tag a noun that introduces a new hypothetical or product-category \
+referent (e.g., 'baby items', 'a little one' in 'I could see this helping with a little one').
     Annotate:        "Bought this for my [sister-in-law]FAM_KIN."
     Do Not Annotate: "This would make a great gift for a sister-in-law."
 - THE SPAN STRATEGY: Annotate the entire noun phrase that carries the specific implicit meaning, \
@@ -208,7 +214,7 @@ guidelines or contains processing anomalies. Execute a side-by-side structural a
 comparison and issue a FAIL if ANY rule below is triggered.
 
 ABSOLUTE LOGICAL INVARIANTS:
-- TAG-PRESENCE SCOPING: Error types 1, 2, 3, 5, and 6 may ONLY be raised against text that is \
+- TAG-PRESENCE SCOPING: Error types 1, 2, 3, 5, 6, and 7 may ONLY be raised against text that is \
 actually enclosed in an XML tag in ANNOTATED_TEXT. Never raise these against untagged text, and \
 never reason counterfactually about what a tag "would" be — judge only the tags that are literally present.
 - MANDATORY OMISSION CHECK: Error type 4 (OMITTED_VALID_TAG) is the SOLE exception to the \
@@ -241,7 +247,9 @@ or HYPOTHETICAL personas are unanchored. This covers:
    (a) Hypothetical or gift recipients introduced with an indefinite/generic reference (e.g., tagging \
 "wife" in "Perfect gift for a wife", or "niece" in "great for any niece"); or a bra/cup size \
 describing product fit rather than the reviewer's body (e.g., "34G" in "runs small if you're \
-usually a 34G").
+usually a 34G"). A mention that corefers to a real child/relative established elsewhere in \
+RAW_TEXT is anchored and must stay tagged, even if its own clause reads generically; only \
+mentions introducing a new hypothetical/product-category referent are unanchored.
    (b) The reviewer's OWN past childhood in the past tense (e.g., tagging "teenager" in "When I was a \
 teenager 20 years ago").
 4. OMITTED_VALID_TAG: A genuine reviewer-anchored household relation, minor age/milestone, minor \
@@ -256,7 +264,6 @@ CORRECT — do NOT flag it as needing MINOR_AGE.
 (e.g., an adult son tagged MINOR_AGE is a FAIL).
    - A reviewer/partner gender noun mislabeled (e.g., "wife" tagged FAM_KIN instead of GEN_NOUN), \
 or a miscarriage tagged MINOR_AGE instead of GEN_PHYS.
-   - A non-gender-specific condition tagged GEN_PHYS (e.g., "<GEN_PHYS>chest pain</GEN_PHYS>").
 6. INVALID_SPAN_BOUNDARY: The category label is correct but the tag brackets are placed wrongly. \
 This includes:
    (a) Trailing punctuation inside the tag, or a missing anchoring modifier (e.g., "in \
@@ -264,16 +271,25 @@ This includes:
    (b) An age modifier and a gendered noun merged under a single tag (e.g., \
 "<MINOR_AGE>16-year-old girl</MINOR_AGE>") instead of two separate spans \
 ("<MINOR_AGE>16-year-old</MINOR_AGE> <GEN_NOUN>girl</GEN_NOUN>").
+7. OUT_OF_SCOPE_TAG: A tag was applied to a real, reviewer-anchored, human span that \
+nonetheless qualifies for NO category, because it fails that category's defining test. Unlike \
+MISALLOCATED_LABEL there is no correct alternative label — the span should not be tagged at all. \
+This covers:
+   (a) A condition tagged GEN_PHYS that is not sex-specific (e.g., "<GEN_PHYS>chest \
+pain</GEN_PHYS>", "<GEN_PHYS>hair loss</GEN_PHYS>").
+   (b) A collective or non-specific family term tagged FAM_KIN that names no exact relationship \
+(e.g., "<FAM_KIN>family</FAM_KIN>", "<FAM_KIN>relatives</FAM_KIN>", "<FAM_KIN>older \
+members</FAM_KIN>").
 
 DOMINANT ERROR SELECTION:
 If multiple conditions trigger, select ONE error_type by this strict precedence:
-RAW_TEXT_MUTATION > NON_HUMAN_TAGGING > UNANCHORED_TAGGING > MISALLOCATED_LABEL > \
-INVALID_SPAN_BOUNDARY > OMITTED_VALID_TAG.
+RAW_TEXT_MUTATION > NON_HUMAN_TAGGING > UNANCHORED_TAGGING > OUT_OF_SCOPE_TAG > \
+MISALLOCATED_LABEL > INVALID_SPAN_BOUNDARY > OMITTED_VALID_TAG.
 
 Output Requirement:
 Return your evaluation strictly through the requested JSON schema object. If status is FAIL, set \
 error_type to the single dominant category and write a concise, 1-sentence auditor_reason that \
-QUOTES the exact offending substring as it literally appears: for errors 1/2/3/5/6 quote the \
+QUOTES the exact offending substring as it literally appears: for errors 1/2/3/5/6/7 quote the \
 "<TAG>...</TAG>" span from ANNOTATED_TEXT; for error 4 quote the untagged span from RAW_TEXT. \
 Name the rule number violated. If status is PASS, set error_type to "NONE" and leave auditor_reason \
 empty.\
