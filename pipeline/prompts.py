@@ -75,11 +75,13 @@ risk if it links back to the reviewer's actual life.
 - THE SPAN STRATEGY: Annotate the entire noun phrase that carries the specific implicit meaning, \
 including modifiers that anchor the risk, but exclude trailing punctuation.
     Right: "[5th grade]MINOR_EDU"      Wrong: "in [5th]MINOR_EDU grade"
-- DEMOGRAPHIC COMPOUNDS: When an age modifier is directly attached to a gendered noun \
-representing a minor, do not split the span. Tag the entire noun phrase under MINOR_AGE, as the \
-minor status implies the highest privacy severity.
-    Correct:   "I am a [16-year-old girl]MINOR_AGE"
-    Incorrect: "I am a [16-year-old]MINOR_AGE [girl]GEN_NOUN"
+- DEMOGRAPHIC COMPOUNDS: When an age modifier is attached to a gendered noun, tag the two \
+signals as SEPARATE spans — the age/developmental portion as MINOR_AGE, and the gendered noun \
+by its own category (GEN_NOUN when it anchors the reviewer's or partner's gender; FAM_KIN when \
+it is a kinship term such as "daughter"). DO NOT merge them into one tag; each carries a distinct \
+privacy signal, and MINOR_AGE attaches only to spans that themselves contain age content.
+    Correct:   "I am a [16-year-old]MINOR_AGE [girl]GEN_NOUN"
+    Incorrect: "I am a [16-year-old girl]MINOR_AGE"
 - AGE-CONTENT REQUIREMENT (MINOR_AGE): Tag MINOR_AGE only on spans that themselves carry age \
 or developmental content. A bare kinship/count noun is NOT MINOR_AGE even when context shows the \
 person is under 18 — tag it FAM_KIN; the minor signal is carried by the accompanying age span or \
@@ -131,7 +133,7 @@ Example 4
 
 Example 5
   INPUT:  I am a 16-year-old girl and this fits perfectly.
-  OUTPUT: I am a <MINOR_AGE>16-year-old girl</MINOR_AGE> and this fits perfectly.
+  OUTPUT: I am a <MINOR_AGE>16-year-old</MINOR_AGE> <GEN_NOUN>girl</GEN_NOUN> and this fits perfectly.
 
 Example 6
   INPUT:  My eldest son is 24 and out of college, but my stepson is still in middle school.
@@ -252,8 +254,9 @@ or a miscarriage tagged MINOR_AGE instead of GEN_PHYS.
 This includes:
    (a) Trailing punctuation inside the tag, or a missing anchoring modifier (e.g., "in \
 <MINOR_EDU>5th</MINOR_EDU> grade" instead of "<MINOR_EDU>5th grade</MINOR_EDU>").
-   (b) A Demographic Compound split into separate tags (e.g., "<MINOR_AGE>16-year-old</MINOR_AGE> \
-<GEN_NOUN>girl</GEN_NOUN>" instead of one "<MINOR_AGE>16-year-old girl</MINOR_AGE>").
+   (b) An age modifier and a gendered noun merged under a single tag (e.g., \
+"<MINOR_AGE>16-year-old girl</MINOR_AGE>") instead of two separate spans \
+("<MINOR_AGE>16-year-old</MINOR_AGE> <GEN_NOUN>girl</GEN_NOUN>").
 
 DOMINANT ERROR SELECTION:
 If multiple conditions trigger, select ONE error_type by this strict precedence:
