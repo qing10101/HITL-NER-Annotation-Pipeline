@@ -235,7 +235,6 @@ or HYPOTHETICAL personas are unanchored. This covers:
 "wife" in "Perfect gift for a wife", or "niece" in "great for any niece").
    (b) The reviewer's OWN past childhood in the past tense (e.g., tagging "teenager" in "When I was a \
 teenager 20 years ago").
-   (c) A non-gender-specific condition tagged GEN_PHYS (e.g., "<GEN_PHYS>chest pain</GEN_PHYS>").
 4. OMITTED_VALID_TAG: A genuine reviewer-anchored household relation, minor age/milestone, minor \
 education tier, gender noun, or gender-specific physiology is present in RAW_TEXT but left untagged in \
 ANNOTATED_TEXT. (Subject to the MANDATORY OMISSION CHECK above.)
@@ -248,6 +247,7 @@ CORRECT — do NOT flag it as needing MINOR_AGE.
 (e.g., an adult son tagged MINOR_AGE is a FAIL).
    - A reviewer/partner gender noun mislabeled (e.g., "wife" tagged FAM_KIN instead of GEN_NOUN), \
 or a miscarriage tagged MINOR_AGE instead of GEN_PHYS.
+   - A non-gender-specific condition tagged GEN_PHYS (e.g., "<GEN_PHYS>chest pain</GEN_PHYS>").
 6. INVALID_SPAN_BOUNDARY: The category label is correct but the tag brackets are placed wrongly. \
 This includes:
    (a) Trailing punctuation inside the tag, or a missing anchoring modifier (e.g., "in \
