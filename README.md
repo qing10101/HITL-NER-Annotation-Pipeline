@@ -12,9 +12,9 @@ See [PRD.md](PRD.md) for the full spec. The design is taken from `Proposed Pipel
 reviews.jsonl/csv
    │  Step 1  stream row-by-row + strip leading/trailing whitespace
    ▼
-Stage 1  ANNOTATOR  (openai:gpt-5.5)         → verbatim text + inline XML tags
+Stage 1  ANNOTATOR  (gemini:gemini-3.5-flash) → verbatim text + inline XML tags
    ▼
-Stage 2  AUDITOR    (gemini:gemini-3.5-flash) → JSON {status, error_type, auditor_reason}
+Stage 2  AUDITOR    (openai:gpt-5.5)          → JSON {status, error_type, auditor_reason}
    │
    ├─ PASS → Step 4A deterministic regex parser → char offsets → gold CSVs
    └─ FAIL → Step 4B review_queue.csv (human-in-the-loop)
@@ -30,7 +30,7 @@ Either stage can use any provider — the models above are config, not hard-wire
 the auditor uses a different provider than the annotator.
 
 **Tagset:** `MINOR_AGE`, `MINOR_EDU`, `GEN_NOUN`, `GEN_PHYS`, `FAM_KIN`
-**Error types:** `RAW_TEXT_MUTATION`, `NON_HUMAN_TAGGING`, `UNANCHORED_TAGGING`, `OMITTED_VALID_TAG`, `MISALLOCATED_LABEL`, `INVALID_SPAN_BOUNDARY`
+**Error types:** `RAW_TEXT_MUTATION`, `NON_HUMAN_TAGGING`, `UNANCHORED_TAGGING`, `OMITTED_VALID_TAG`, `MISALLOCATED_LABEL`, `INVALID_SPAN_BOUNDARY`, `OUT_OF_SCOPE_TAG`
 
 ## Setup
 
@@ -40,11 +40,11 @@ copy .env.example .env   # then fill in GEMINI_API_KEY and OPENAI_API_KEY
 ```
 
 Models are chosen per role as `"<provider>:<model>"` specs. Defaults (current
-setup — GPT annotates, Gemini judges):
+setup — Gemini annotates, GPT-5.5 audits):
 
 ```
-ANNOTATOR_MODEL=openai:gpt-5.5
-AUDITOR_MODEL=gemini:gemini-3.5-flash
+ANNOTATOR_MODEL=gemini:gemini-3.5-flash
+AUDITOR_MODEL=openai:gpt-5.5
 ```
 
 Override in `.env` or per-run with `--annotator-model` / `--auditor-model`.
@@ -87,6 +87,7 @@ source row number.
 | `gold_spans.csv` | exploded spans: `row_id, entity_index, label, text, start, end` |
 | `review_queue.csv` | FAIL rows: `row_id, raw_text, tagged_text, error_type, auditor_reason` |
 | `run_log.csv` | every row: `row_id, status, error_type, num_entities, note` |
+| `annotator_cache.csv` | annotator results saved immediately after Stage 1 — lets auditor-only retries skip the annotator call |
 
 Offsets are 0-based, half-open: `raw_text[start:end] == text`.
 
@@ -102,9 +103,12 @@ pipeline/
   annotator.py         Step 2 — inline tagging (any provider)
   auditor.py           Step 3 — structured audit/judge (any provider)
   parser.py            Step 4A — deterministic regex index parser
-  writers.py           Step 4 — CSV sinks
+  writers.py           Step 4 — CSV sinks (including annotator cache)
   orchestrator.py      decision fork + batch driver
   schemas.py           pydantic data contracts
+scripts/
+  prepare_dataset.py   stream-sample 10k rows from Amazon Reviews 2023 (HuggingFace)
+  sample_from_dataset.py  randomly select N rows from the 10k dataset
 tests/test_parser.py   parser correctness (no API calls)
 data/sample_reviews.jsonl
 ```
@@ -120,7 +124,8 @@ The parser tests run entirely offline (no API keys needed).
 ## Notes
 
 - Each row costs exactly **2 LLM calls** (1 annotate + 1 audit). Semantic
-  disagreements are sent to humans, not retried.
+  disagreements are sent to humans, not retried. On retry after an auditor
+  failure, the cached annotator result is reused — only 1 call is charged.
 - Transient API errors retry with exponential backoff (`tenacity`); a hard failure
   on one row routes it to the review queue with `error_type=PIPELINE_ERROR` rather
   than aborting the batch.
