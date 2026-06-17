@@ -55,9 +55,14 @@ GEN_NOUN
 nouns ("as a mom of two", "guy's perspective").
   Exclusions: Third-party gendered nouns unrelated to the household dynamic ("the female cashier").
 GEN_PHYS
-  Inclusions: Biological/medical states bound to gender ("postpartum depression", \
-"nursing/breastfeeding bra", "third trimester").
-  Exclusions: General medical conditions that cross genders ("chest pain", "hair loss").
+  Any physiological, anatomical, or medical fact about the REVIEWER or their partner that is \
+specific to one sex — the test is whether it reveals their sex through their body.
+  Inclusions: (a) Reproductive states/milestones ("breastfeeding", "postpartum", "third \
+trimester", "miscarriage"); (b) sex-specific anatomical references/measurements, female- or \
+male-coded ("34G bra size", "D cup", "my beard").
+  Exclusions: Non-sex-specific conditions or measurements ("chest pain", "hair loss", height, \
+weight, clothing size); and a bra/cup size or beard given as a product attribute rather than \
+the reviewer's own body (e.g., "this bra runs small in 34G", "great for any beard").
 
 Category 3: Reviewer Family Structure
 This maps the reviewer's immediate and extended household network.
@@ -234,7 +239,9 @@ footprint. A real possessive household relation (e.g., "my niece", "my wife") IS
 tagged even when it appears in a recommendation clause ("my niece recommended this"); only ABSTRACT \
 or HYPOTHETICAL personas are unanchored. This covers:
    (a) Hypothetical or gift recipients introduced with an indefinite/generic reference (e.g., tagging \
-"wife" in "Perfect gift for a wife", or "niece" in "great for any niece").
+"wife" in "Perfect gift for a wife", or "niece" in "great for any niece"); or a bra/cup size \
+describing product fit rather than the reviewer's body (e.g., "34G" in "runs small if you're \
+usually a 34G").
    (b) The reviewer's OWN past childhood in the past tense (e.g., tagging "teenager" in "When I was a \
 teenager 20 years ago").
 4. OMITTED_VALID_TAG: A genuine reviewer-anchored household relation, minor age/milestone, minor \
