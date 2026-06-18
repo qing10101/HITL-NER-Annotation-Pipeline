@@ -40,8 +40,11 @@ retriever", "puppy school").
 
 Category 1: Minor Information
 MINOR_AGE
-  Inclusions: Exact ages under 18 ("my 14yo son"), specific developmental age brackets \
-("toddler size", "for preschoolers"), or explicit minor status ("as a minor myself").
+  Inclusions: Numerical ages, developmental milestones, or age brackets of a REAL, LIVING human \
+child under 18 ("my 14yo son", "toddler", "newborn", "as a minor myself"). A developmental \
+milestone is MINOR_AGE ONLY when asserted of a specific real child ("my baby is teething"); in a \
+product-function or benefit clause stating what the product is FOR ("great for teething", "perfect \
+for potty training"), it describes the product, not a child — do NOT tag it.
   Exclusions: Pets ("my 2yo cat"), objects, or vague terms like "kids" unless context fixes them under 18.
 MINOR_EDU
   Inclusions: Grade levels or schools exclusive to human minors ("in 5th grade", "starting \
@@ -177,6 +180,23 @@ INVIOLABLE OUTPUT CONSTRAINTS:
 characters, typos, punctuation, or spelling. The output must match the input character-for-character, \
 with the SOLE exception of injected opening/closing tags. Do NOT expand "12yo" into "12-year-old".
 - Apply the SPAN STRATEGY exactly: tag the full anchoring noun phrase, exclude trailing punctuation.
+- THE HUMAN CHILD CONSTRAINT: Disregard non-human entities. Never tag ages, milestones, or \
+schooling of pets, animals, inanimate objects, brands, or vintage items (e.g., "my 2yo puppy", \
+"dog training school", "my 5-year-old car").
+- THE REVIEWER ANCHOR RULE: Only tag an entity that establishes an ACTIVE, real-world privacy \
+footprint in the reviewer's current household. Never tag hypothetical consumer profiles, \
+recommendation targets, gift-recipient suggestions, or abstract examples (e.g., in "Perfect gift \
+for a wife", "wife" must NOT be tagged). Judge anchoring across the WHOLE review, not clause by \
+clause: once the text establishes a real child or relative, tag every later mention that refers \
+back to that same person, even in a generic-sounding clause (e.g., 'makes traveling with baby \
+easier'); but do NOT tag a noun that introduces a new hypothetical or product-category referent \
+(e.g., 'baby items', 'a little one' in 'I could see this helping with a little one').
+- THE HISTORICAL SELF-REFERENCE EXCLUSION: Never tag the reviewer's OWN childhood recalled in \
+the past tense, as it describes an adult's history and poses no live minor-privacy risk (e.g., \
+"When I was a teenager 20 years ago…" → tag nothing). Note this differs from a present-tense \
+"as a minor myself", which IS MINOR_AGE.
+- THE PREGNANCY-LOSS RULE: A miscarriage or pregnancy loss is tagged GEN_PHYS but NEVER \
+MINOR_AGE — do not emit a phantom minor tag for a child that was not born.
 
 Follow the annotation guideline below precisely. It is the single source of truth for what to tag,
 what to exclude, label selection, span boundaries, and priority rules.
@@ -245,16 +265,19 @@ footprint. A real possessive household relation (e.g., "my niece", "my wife") IS
 tagged even when it appears in a recommendation clause ("my niece recommended this"); only ABSTRACT \
 or HYPOTHETICAL personas are unanchored. This covers:
    (a) Hypothetical or gift recipients introduced with an indefinite/generic reference (e.g., tagging \
-"wife" in "Perfect gift for a wife", or "niece" in "great for any niece"); or a bra/cup size \
-describing product fit rather than the reviewer's body (e.g., "34G" in "runs small if you're \
-usually a 34G"). A mention that corefers to a real child/relative established elsewhere in \
-RAW_TEXT is anchored and must stay tagged, even if its own clause reads generically; only \
+"wife" in "Perfect gift for a wife", or "niece" in "great for any niece"); or a developmental \
+milestone in a product-function/benefit clause (e.g., "teething" in "great for teething"); or a \
+bra/cup size describing product fit rather than the reviewer's body (e.g., "34G" in "runs small \
+if you're usually a 34G"). A mention that corefers to a real child/relative established elsewhere \
+in RAW_TEXT is anchored and must stay tagged, even if its own clause reads generically; only \
 mentions introducing a new hypothetical/product-category referent are unanchored.
    (b) The reviewer's OWN past childhood in the past tense (e.g., tagging "teenager" in "When I was a \
 teenager 20 years ago").
 4. OMITTED_VALID_TAG: A genuine reviewer-anchored household relation, minor age/milestone, minor \
 education tier, gender noun, or gender-specific physiology is present in RAW_TEXT but left untagged in \
-ANNOTATED_TEXT. (Subject to the MANDATORY OMISSION CHECK above.)
+ANNOTATED_TEXT. (Subject to the MANDATORY OMISSION CHECK above.) A developmental milestone that \
+appears only in a product-function/benefit clause ("great for teething") is NOT anchored to a \
+specific child and is therefore NOT a valid omission — do not flag it.
 5. MISALLOCATED_LABEL: The inner span is a valid entity but carries the wrong category. Label \
 correctness is CONTEXT-DEPENDENT — judge by what the surrounding text proves:
    - A kinship noun whose context fixes the person UNDER 18 must be FAM_KIN (AGE-CONTENT \
