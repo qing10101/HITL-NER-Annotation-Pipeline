@@ -55,8 +55,8 @@ and register it — no other code changes.
 ## Run
 
 ```powershell
-# JSONL input (sample provided)
-python run.py --input data/sample_reviews.jsonl
+# JSONL input
+python run.py --input data/test_set_180k.jsonl
 
 # CSV input with a custom text column, capped at 500 rows
 python run.py --input data/reviews.csv --text-field review --limit 500
@@ -91,6 +91,71 @@ source row number.
 
 Offsets are 0-based, half-open: `raw_text[start:end] == text`.
 
+## Human review scripts
+
+Two utility scripts live in `scripts/` to support human annotation and HITL
+adjudication workflows. Neither makes any API calls.
+
+### `scripts/export_for_review.py` — JSONL / queue → annotation CSV
+
+Converts pipeline data to spreadsheet-ready CSV with blank annotation columns.
+
+**`source` mode** — blank annotation sheet from any source JSONL:
+```bash
+python scripts/export_for_review.py source data/test_set_180k.jsonl
+# filters
+python scripts/export_for_review.py source data/test_set_180k.jsonl \
+    --category Baby_Products --tier rich --limit 200 \
+    --out data/baby_sheet.csv
+```
+Columns: `row_num, id, category, source_tier, text, annotated_text (blank), reviewer_notes (blank)`
+
+**`queue` mode** — HITL correction sheet from a pipeline output directory:
+```bash
+python scripts/export_for_review.py queue output/my_run
+# filter to one error type
+python scripts/export_for_review.py queue output/my_run \
+    --error-type OMITTED_VALID_TAG --out output/my_run/omission_fixes.csv
+```
+Columns: `row_num, row_id, error_type, auditor_reason, raw_text, faulty_annotated_text, corrected_text (blank), reviewer_notes (blank)`
+
+---
+
+### `scripts/minor_edu_retrieval.py` — keyword screening for MINOR_EDU candidates
+
+Scans a source JSONL using a tiered lexicon of positive triggers (grade levels,
+school tiers, homeschool variants), anchor terms (kinship/age nouns, enrollment
+verbs), and exclusion terms (occupations, higher-ed, fiction markers, historical
+self-references, generic suitability phrases). Outputs a ranked CSV of candidates.
+
+**Scoring:** `+2` per trigger match · `+1` per anchor match · `−1` per exclusion match
+
+```bash
+# full scan, sorted by confidence
+python scripts/minor_edu_retrieval.py data/test_set_180k.jsonl
+
+# high-confidence rows only (drops product-suitability noise)
+python scripts/minor_edu_retrieval.py data/test_set_180k.jsonl --min-score 3
+
+# focus on a single tier
+python scripts/minor_edu_retrieval.py data/test_set_180k.jsonl \
+    --edu-tier high_school --min-score 1
+
+# combined tier sheet
+python scripts/minor_edu_retrieval.py data/test_set_180k.jsonl \
+    --edu-tier elementary --edu-tier middle \
+    --out data/elem_mid_candidates.csv
+```
+
+Output columns: `row_num, id, category, source_tier, net_score, edu_tiers, triggers, anchors, exclusions, text, annotated_text (blank), reviewer_notes (blank)`
+
+Tiers: `early_childhood`, `elementary`, `middle`, `high_school`, `homeschool`.
+High-score rows (≥ 3) are near-certain genuine child-education mentions;
+low/negative scores are typically teacher reviews, product-suitability language,
+or historical self-references and can be dropped with `--min-score`.
+
+---
+
 ## Project layout
 
 ```
@@ -98,7 +163,7 @@ config.py              env-driven config (keys, model IDs, paths)
 run.py                 CLI entrypoint
 pipeline/
   ingestion.py         Step 1 — streaming + whitespace normalization
-  prompts.py           verbatim Stage 1 + Stage 2 prompts
+  prompts.py           Stage 1 + Stage 2 system/user prompts
   providers.py         model-agnostic LLM layer (openai/gemini + factory)
   annotator.py         Step 2 — inline tagging (any provider)
   auditor.py           Step 3 — structured audit/judge (any provider)
@@ -107,10 +172,12 @@ pipeline/
   orchestrator.py      decision fork + batch driver
   schemas.py           pydantic data contracts
 scripts/
-  prepare_dataset.py   stream-sample 10k rows from Amazon Reviews 2023 (HuggingFace)
-  sample_from_dataset.py  randomly select N rows from the 10k dataset
+  prepare_dataset.py      stream-sample rows from Amazon Reviews 2023 (HuggingFace)
+  sample_from_dataset.py  randomly select N rows from a dataset
+  export_for_review.py    convert JSONL or review queue to annotation/HITL CSV
+  minor_edu_retrieval.py  keyword-screen a JSONL for MINOR_EDU candidates
 tests/test_parser.py   parser correctness (no API calls)
-data/sample_reviews.jsonl
+data/test_set_180k.jsonl
 ```
 
 ## Tests
