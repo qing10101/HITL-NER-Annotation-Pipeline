@@ -12,7 +12,7 @@ import json
 import random
 from pathlib import Path
 
-DEFAULT_SRC = "data/test_set_10k.jsonl"
+DEFAULT_SRC = "data/test_set_15k.jsonl"
 
 
 def main() -> int:

@@ -1,12 +1,14 @@
-"""Build the 10 000-row NER test set from Amazon Reviews 2023 (McAuley Lab).
+"""Build the 15 000-row NER test set from Amazon Reviews 2023 (McAuley Lab).
 
 Sampling design (Design Justification.pdf):
 
-  Rich tier  — 70 % (7 000 rows), 5 categories × 1 400 rows each:
+  Edu tier  — 4 000 rows, 1 category × 4000 rows each:
+
+  Rich tier  — 8 000 rows, 4 categories × 2000 rows each:
       Baby_Products, Toys_and_Games, Clothing_Shoes_and_Jewelry,
       Beauty_and_Personal_Care, Office_Products
 
-  Diversity tier — 30 % (3 000 rows), 4 categories × 750 rows each:
+  Diversity tier — 3 000 rows, 4 categories × 750 rows each:
       Pet_Supplies, Books, Automotive, Unknown
 
 Each category JSONL is streamed directly from HuggingFace without a full
@@ -51,7 +53,7 @@ HF_BASE = (
     "/resolve/main/raw/review_categories"
 )
 
-DEFAULT_OUT = "data/test_set_10k.jsonl"
+DEFAULT_OUT = "data/test_set_15k.jsonl"
 
 # Retry policy for transient connection errors
 _MAX_RETRIES = 3
@@ -66,21 +68,25 @@ class CategorySpec:
     tier: str
 
 
-# Scan window = 25× target for rich (dense, high yield expected) and
+# Scan window = 25× target for edu and rich (dense, high yield expected) and
 # 20× target for diversity (sparser signal, adversarial categories may
 # need more headroom).
 CATEGORIES: list[CategorySpec] = [
+    
+    # Tier for MINOR_EDU
+    CategorySpec("Office_Products",            target=4000, scan=100_000, tier="edu_rich"),
+
     # ── Rich tier ───────────────────────────────────────────────────────────
-    CategorySpec("Baby_Products",              target=1400, scan=35_000, tier="rich"),
-    CategorySpec("Toys_and_Games",             target=1400, scan=35_000, tier="rich"),
-    CategorySpec("Clothing_Shoes_and_Jewelry", target=1400, scan=35_000, tier="rich"),
-    CategorySpec("Beauty_and_Personal_Care",   target=1400, scan=35_000, tier="rich"),
-    CategorySpec("Office_Products",            target=1400, scan=35_000, tier="rich"),
+    CategorySpec("Baby_Products",              target=2000, scan=50_000, tier="rich"),
+    CategorySpec("Toys_and_Games",             target=2000, scan=50_000, tier="rich"),
+    CategorySpec("Clothing_Shoes_and_Jewelry", target=2000, scan=50_000, tier="rich"),
+    CategorySpec("Beauty_and_Personal_Care",   target=2000, scan=50_000, tier="rich"),
+
     # ── Diversity tier ──────────────────────────────────────────────────────
-    CategorySpec("Pet_Supplies", target=750, scan=15_000, tier="diversity-adversarial"),
-    CategorySpec("Books",        target=750, scan=15_000, tier="diversity-adversarial"),
-    CategorySpec("Automotive",   target=750, scan=15_000, tier="diversity-generic"),
-    CategorySpec("Unknown",      target=750, scan=15_000, tier="diversity-generic"),
+    CategorySpec("Pet_Supplies", target=750, scan=15000, tier="diversity-adversarial"),
+    CategorySpec("Books",        target=750, scan=15000, tier="diversity-adversarial"),
+    CategorySpec("Automotive",   target=750, scan=15000, tier="diversity-generic"),
+    CategorySpec("Unknown",      target=750, scan=15000, tier="diversity-generic"),
 ]
 
 
@@ -234,7 +240,7 @@ def _load_checkpoint(ckpt_dir: Path, spec: CategorySpec) -> list[dict] | None:
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="Build the 10 k-row NER test set.")
+    ap = argparse.ArgumentParser(description="Build the 15 k-row NER test set.")
     ap.add_argument("--out", default=DEFAULT_OUT, help="output JSONL path")
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument(
@@ -304,7 +310,7 @@ def main() -> int:
     print(header)
     print("-" * len(header))
     for spec in CATEGORIES:
-        tier_tag = "(rich)" if spec.tier == "rich" else "(diversity)"
+        tier_tag = "(" + spec.tier + ")"
         print(
             f"{spec.name:<35}  {counts[spec.name]:>9}  {spec.target:>7}"
             f"  {tier_tag}"
