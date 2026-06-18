@@ -47,9 +47,11 @@ product-function or benefit clause stating what the product is FOR ("great for t
 for potty training"), it describes the product, not a child — do NOT tag it.
   Exclusions: Pets ("my 2yo cat"), objects, or vague terms like "kids" unless context fixes them under 18.
 MINOR_EDU
-  Inclusions: Grade levels or schools exclusive to human minors ("in 5th grade", "starting \
-middle school", "high school sophomore").
-  Exclusions: "College", "University", "Trade school", or "Dog training school".
+  Inclusions: A SPECIFIC educational tier or classification exclusive to human minors ("in 5th \
+grade", "starting middle school", "high school sophomore", "kindergarten").
+  Exclusions: A bare generic "school" that names no tier ("after school", "in school", "likes \
+school", "school supplies") is NOT tagged. Never tag "College", "University", "Trade school", or \
+any pet/animal program.
 
 Category 2: Reviewer Gender Indication
 Only annotate these if they anchor the gender of the reviewer or the reviewer's romantic partner.
@@ -277,7 +279,10 @@ teenager 20 years ago").
 education tier, gender noun, or gender-specific physiology is present in RAW_TEXT but left untagged in \
 ANNOTATED_TEXT. (Subject to the MANDATORY OMISSION CHECK above.) A developmental milestone that \
 appears only in a product-function/benefit clause ("great for teething") is NOT anchored to a \
-specific child and is therefore NOT a valid omission — do not flag it.
+specific child and is therefore NOT a valid omission — do not flag it. A bare generic "school" that \
+names no specific tier ("after school", "in school", "school supplies") is NOT a valid MINOR_EDU \
+entity and must NOT be flagged as omitted — only a specific tier left untagged ("5th grade", \
+"middle school", "kindergarten") is a valid MINOR_EDU omission.
 5. MISALLOCATED_LABEL: The inner span is a valid entity but carries the wrong category. Label \
 correctness is CONTEXT-DEPENDENT — judge by what the surrounding text proves:
    - A kinship noun whose context fixes the person UNDER 18 must be FAM_KIN (AGE-CONTENT \
@@ -303,6 +308,11 @@ pain</GEN_PHYS>", "<GEN_PHYS>hair loss</GEN_PHYS>").
    (b) A collective or non-specific family term tagged FAM_KIN that names no exact relationship \
 (e.g., "<FAM_KIN>family</FAM_KIN>", "<FAM_KIN>relatives</FAM_KIN>", "<FAM_KIN>older \
 members</FAM_KIN>").
+   (c) A bare, generic "school" tagged MINOR_EDU that names no specific tier (e.g., \
+"<MINOR_EDU>school</MINOR_EDU>" in "after school" or "in school"). A specific tier ("middle \
+school", "5th grade") is valid; bare "school" is not. Exception: if a tier word is adjacent and \
+was clipped — e.g., "middle <MINOR_EDU>school</MINOR_EDU>" — that is INVALID_SPAN_BOUNDARY \
+(error 6), not OUT_OF_SCOPE.
 
 DOMINANT ERROR SELECTION:
 If multiple conditions trigger, select ONE error_type by this strict precedence:
