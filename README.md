@@ -156,6 +156,26 @@ or historical self-references and can be dropped with `--min-score`.
 
 ---
 
+### `scripts/filter_sample_by_test_set.py` — remove test-set rows from a sample CSV
+
+Filters out any rows whose `id` appears in `test_set_180k_minor_edu.csv`, preventing
+test-set leakage when building annotation batches from a sampled CSV.
+
+```bash
+# default paths (data/sample_2000.csv → data/sample_filtered.csv)
+python scripts/filter_sample_by_test_set.py
+
+# custom paths
+python scripts/filter_sample_by_test_set.py \
+    --sample data/my_sample.csv \
+    --test-set data/test_set_180k_minor_edu.csv \
+    --output data/my_sample_filtered.csv
+```
+
+Prints the number of test-set IDs loaded, rows removed, and rows kept.
+
+---
+
 ## Project layout
 
 ```
@@ -174,8 +194,9 @@ pipeline/
 scripts/
   prepare_dataset.py      stream-sample rows from Amazon Reviews 2023 (HuggingFace)
   sample_from_dataset.py  randomly select N rows from a dataset
-  export_for_review.py    convert JSONL or review queue to annotation/HITL CSV
-  minor_edu_retrieval.py  keyword-screen a JSONL for MINOR_EDU candidates
+  export_for_review.py         convert JSONL or review queue to annotation/HITL CSV
+  minor_edu_retrieval.py       keyword-screen a JSONL for MINOR_EDU candidates
+  filter_sample_by_test_set.py remove test-set rows from a sampled CSV
 tests/test_parser.py   parser correctness (no API calls)
 data/test_set_180k.jsonl
 ```

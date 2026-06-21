@@ -74,7 +74,11 @@ This maps the reviewer's immediate and extended household network.
 FAM_KIN
   Inclusions: Immediate, extended, and step/in-law relationships ("mother-in-law", "stepson", \
 "twin sister", "nephew"). Note: Adult children DO get tagged here as FAM_KIN (e.g., "my adult \
-son"), but they do NOT receive minor tags.
+son"), but they do NOT receive minor tags. Tag a specific kinship relation even when it is \
+expressed relative to another household member rather than the reviewer ("his brother", "her \
+mother") — transitive/indirect kinship is in scope because it still identifies a real \
+family-network node. Do NOT add a separate GEN_NOUN tag for a co-parent named only as a \
+parent: "his mother" → FAM_KIN, not GEN_NOUN.
   Exclusions: Figurative kinship ("hey brother"); collective or non-specific family terms that \
 name no exact relationship ("family", "relatives", "family members", "older/younger members"), \
 even when they refer to the reviewer's real family.
@@ -282,7 +286,8 @@ appears only in a product-function/benefit clause ("great for teething") is NOT 
 specific child and is therefore NOT a valid omission — do not flag it. A bare generic "school" that \
 names no specific tier ("after school", "in school", "school supplies") is NOT a valid MINOR_EDU \
 entity and must NOT be flagged as omitted — only a specific tier left untagged ("5th grade", \
-"middle school", "kindergarten") is a valid MINOR_EDU omission.
+"middle school", "kindergarten") is a valid MINOR_EDU omission. A specific transitive kinship \
+term left untagged is a valid FAM_KIN omission — e.g., "his brother", "his mother". Flag it.
 5. MISALLOCATED_LABEL: The inner span is a valid entity but carries the wrong category. Label \
 correctness is CONTEXT-DEPENDENT — judge by what the surrounding text proves:
    - A kinship noun whose context fixes the person UNDER 18 must be FAM_KIN (AGE-CONTENT \
@@ -313,6 +318,9 @@ members</FAM_KIN>").
 school", "5th grade") is valid; bare "school" is not. Exception: if a tier word is adjacent and \
 was clipped — e.g., "middle <MINOR_EDU>school</MINOR_EDU>" — that is INVALID_SPAN_BOUNDARY \
 (error 6), not OUT_OF_SCOPE.
+A sibling or co-parent named through another family member ("his brother", "his mother") is \
+valid FAM_KIN. Do NOT re-flag it as MISALLOCATED (e.g., demanding GEN_NOUN for "mother") or \
+as OUT_OF_SCOPE. The household-internal vantage does not disqualify it.
 
 DOMINANT ERROR SELECTION:
 If multiple conditions trigger, select ONE error_type by this strict precedence:
