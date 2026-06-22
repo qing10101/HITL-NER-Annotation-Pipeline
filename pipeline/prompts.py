@@ -44,7 +44,11 @@ MINOR_AGE
 child under 18 ("my 14yo son", "toddler", "newborn", "as a minor myself"). A developmental \
 milestone is MINOR_AGE ONLY when asserted of a specific real child ("my baby is teething"); in a \
 product-function or benefit clause stating what the product is FOR ("great for teething", "perfect \
-for potty training"), it describes the product, not a child — do NOT tag it.
+for potty training"), it describes the product, not a child — do NOT tag it. Also tag a vague \
+young-child term that carries no explicit age ("little one", "little girl", "little boy") as \
+MINOR_AGE when it is anchored to a real child in the reviewer's life ("My little one loves these" \
+→ tag). Leave it untagged when it is a new hypothetical or product-audience referent ("great for \
+camping with a little one" → do not tag), per the anchor rule.
   Exclusions: Pets ("my 2yo cat"), objects, or vague terms like "kids" unless context fixes them under 18.
 MINOR_EDU
   Inclusions: A SPECIFIC educational tier or classification exclusive to human minors ("in 5th \
@@ -287,7 +291,10 @@ specific child and is therefore NOT a valid omission — do not flag it. A bare 
 names no specific tier ("after school", "in school", "school supplies") is NOT a valid MINOR_EDU \
 entity and must NOT be flagged as omitted — only a specific tier left untagged ("5th grade", \
 "middle school", "kindergarten") is a valid MINOR_EDU omission. A specific transitive kinship \
-term left untagged is a valid FAM_KIN omission — e.g., "his brother", "his mother". Flag it.
+term left untagged is a valid FAM_KIN omission — e.g., "his brother", "his mother". Flag it. \
+An anchored vague young-child modifier left untagged (e.g., "My little one loves these") is a \
+valid MINOR_AGE omission — flag it. A hypothetical or product-audience "a little one" is NOT a \
+valid omission and must not be flagged.
 5. MISALLOCATED_LABEL: The inner span is a valid entity but carries the wrong category. Label \
 correctness is CONTEXT-DEPENDENT — judge by what the surrounding text proves:
    - A kinship noun whose context fixes the person UNDER 18 must be FAM_KIN (AGE-CONTENT \
