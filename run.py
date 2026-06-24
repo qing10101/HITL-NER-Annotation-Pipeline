@@ -9,6 +9,7 @@ Examples
 from __future__ import annotations
 
 import argparse
+import asyncio
 import sys
 import time
 
@@ -49,6 +50,12 @@ def build_arg_parser() -> argparse.ArgumentParser:
         type=float,
         default=0.0,
         help="Seconds to sleep between rows (throttle for rate-limited tiers)",
+    )
+    p.add_argument(
+        "--concurrency",
+        type=int,
+        default=8,
+        help="Max rows processed concurrently (default: 8; use 1 to match old sequential behaviour)",
     )
     p.add_argument(
         "--no-resume",
@@ -99,7 +106,15 @@ def main(argv=None) -> int:
         total = args.limit  # may be None -> indeterminate bar
 
     started = time.time()
-    stats = orchestrator.run(rows, limit=args.limit, delay=args.delay, total=total)
+    stats = asyncio.run(
+        orchestrator.run_async(
+            rows,
+            limit=args.limit,
+            concurrency=args.concurrency,
+            delay=args.delay,
+            total=total,
+        )
+    )
     elapsed = time.time() - started
 
     print("\n=== Run complete ===")

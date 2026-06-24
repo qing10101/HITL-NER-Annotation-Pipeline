@@ -10,6 +10,7 @@ error_type=PIPELINE_ERROR so a single bad row never aborts the batch.
 """
 from __future__ import annotations
 
+import asyncio
 import time
 from dataclasses import dataclass
 from typing import Iterable, Optional, Tuple
@@ -99,6 +100,47 @@ class Orchestrator:
 
         return result
 
+    async def process_row_async(self, row_id: str, raw_text: str) -> RowResult:
+        result = RowResult(row_id=row_id, raw_text=raw_text)
+        try:
+            if row_id in self._annotator_cache:
+                result.tagged_text = self._annotator_cache[row_id]
+                result.note = "annotator_cache_hit"
+            else:
+                result.tagged_text = await self.annotator.tag_async(raw_text)
+                self._annotator_cache[row_id] = result.tagged_text
+                self.writer.save_annotator_result(row_id, result.tagged_text)
+            audit = await self.auditor.audit_async(raw_text, result.tagged_text)
+            result.audit = audit
+
+            if audit.status == AuditStatus.PASS:
+                try:
+                    result.spans = parse_and_verify(result.tagged_text, raw_text)
+                    result.committed = True
+                    result.note = "committed"
+                except TagParseError as exc:
+                    result.committed = False
+                    result.audit = AuditResult(
+                        status=AuditStatus.FAIL,
+                        error_type=ErrorType.PIPELINE_ERROR,
+                        auditor_reason=f"Parser rejected PASS row: {exc}",
+                    )
+                    result.note = "pass_overridden_by_parser"
+            else:
+                result.committed = False
+                result.note = "audit_fail"
+
+        except Exception as exc:  # noqa: BLE001
+            result.committed = False
+            result.audit = AuditResult(
+                status=AuditStatus.FAIL,
+                error_type=ErrorType.PIPELINE_ERROR,
+                auditor_reason=f"{type(exc).__name__}: {exc}",
+            )
+            result.note = "pipeline_error"
+
+        return result
+
     @staticmethod
     def _postfix(stats: "RunStats") -> dict:
         return {
@@ -157,6 +199,70 @@ class Orchestrator:
                     f"fail={stats.failed} err={stats.errored}",
                     flush=True,
                 )
+
+        if bar is not None:
+            bar.close()
+        return stats
+
+    async def run_async(
+        self,
+        rows: Iterable[Tuple[str, str]],
+        limit: Optional[int] = None,
+        concurrency: int = 8,
+        progress_every: int = 25,
+        delay: float = 0.0,
+        total: Optional[int] = None,
+    ) -> RunStats:
+        """Process rows concurrently using up to ``concurrency`` parallel tasks.
+
+        Resume logic is identical to run(): rows already in run_log.csv are
+        skipped before any task is created, and annotator_cache.csv saves each
+        annotation immediately so auditor-only retries skip the annotator call.
+        """
+        stats = RunStats()
+        sem = asyncio.Semaphore(concurrency)
+        bar = tqdm(total=total, unit="row", desc="labeling") if tqdm else None
+
+        async def _process_and_write(row_id: str, raw_text: str) -> None:
+            async with sem:
+                if delay > 0:
+                    await asyncio.sleep(delay)
+                result = await self.process_row_async(row_id, raw_text)
+            # File writes and stat updates happen in the event loop — no locking needed.
+            self.writer.write(result)
+            self._processed.add(row_id)
+            stats.total += 1
+            if result.committed:
+                stats.passed += 1
+            elif result.audit and result.audit.error_type == ErrorType.PIPELINE_ERROR:
+                stats.errored += 1
+            else:
+                stats.failed += 1
+            if bar is not None:
+                bar.update(1)
+                bar.set_postfix(self._postfix(stats))
+            elif stats.total % progress_every == 0:
+                print(
+                    f"  processed={stats.total} pass={stats.passed} "
+                    f"fail={stats.failed} err={stats.errored}",
+                    flush=True,
+                )
+
+        tasks = []
+        dispatched = 0
+        for row_id, raw_text in rows:
+            if limit is not None and dispatched >= limit:
+                break
+            if row_id in self._processed:
+                stats.skipped += 1
+                if bar is not None:
+                    bar.update(1)
+                    bar.set_postfix(self._postfix(stats))
+                continue
+            tasks.append(asyncio.create_task(_process_and_write(row_id, raw_text)))
+            dispatched += 1
+
+        await asyncio.gather(*tasks)
 
         if bar is not None:
             bar.close()

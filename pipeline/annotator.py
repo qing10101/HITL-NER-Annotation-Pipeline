@@ -55,3 +55,12 @@ class Annotator:
             self.temperature,
         )
         return _clean_output(text)
+
+    async def tag_async(self, raw_text: str) -> str:
+        """Async version of tag() for concurrent batch processing."""
+        text = await self.provider.generate_text_async(
+            ANNOTATOR_SYSTEM_PROMPT,
+            annotator_user_prompt(raw_text),
+            self.temperature,
+        )
+        return _clean_output(text)

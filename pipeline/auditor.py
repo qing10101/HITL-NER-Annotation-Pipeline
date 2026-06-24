@@ -44,3 +44,19 @@ class Auditor:
                 auditor_reason="Auditor returned no parseable structured output.",
             )
         return result
+
+    async def audit_async(self, raw_text: str, tagged_text: str) -> AuditResult:
+        """Async version of audit() for concurrent batch processing."""
+        result = await self.provider.generate_structured_async(
+            AUDITOR_SYSTEM_PROMPT,
+            auditor_user_prompt(raw_text, tagged_text),
+            self.temperature,
+            AuditResult,
+        )
+        if not isinstance(result, AuditResult):
+            return AuditResult(
+                status=AuditStatus.FAIL,
+                error_type=ErrorType.PIPELINE_ERROR,
+                auditor_reason="Auditor returned no parseable structured output.",
+            )
+        return result

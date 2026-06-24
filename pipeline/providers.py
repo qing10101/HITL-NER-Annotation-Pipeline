@@ -14,6 +14,7 @@ SDK for the provider(s) you actually use installed.
 """
 from __future__ import annotations
 
+import asyncio
 from abc import ABC, abstractmethod
 from typing import Optional, Type
 
@@ -68,6 +69,26 @@ class LLMProvider(ABC):
         Returns a validated instance of ``schema``, or ``None`` if the model
         produced nothing parseable.
         """
+
+    async def generate_text_async(
+        self, system_prompt: str, user_prompt: str, temperature: float
+    ) -> str:
+        """Async wrapper — runs generate_text in the default thread-pool executor."""
+        return await asyncio.to_thread(
+            self.generate_text, system_prompt, user_prompt, temperature
+        )
+
+    async def generate_structured_async(
+        self,
+        system_prompt: str,
+        user_prompt: str,
+        temperature: float,
+        schema: Type[BaseModel],
+    ) -> Optional[BaseModel]:
+        """Async wrapper — runs generate_structured in the default thread-pool executor."""
+        return await asyncio.to_thread(
+            self.generate_structured, system_prompt, user_prompt, temperature, schema
+        )
 
 
 def _is_temperature_unsupported(exc: Exception) -> bool:
