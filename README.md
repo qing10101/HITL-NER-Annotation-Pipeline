@@ -67,7 +67,8 @@ python run.py --input data/reviews.jsonl --out-dir output/run1 --no-resume
 
 CLI flags: `--input` (required), `--text-field` (default `text`), `--id-field`
 (default `id`), `--format` (`auto`|`jsonl`|`csv`), `--out-dir`, `--limit`,
-`--no-resume`. Re-runs skip `row_id`s already present in `run_log.csv`.
+`--concurrency` (default `8`), `--delay`, `--no-resume`. Re-runs skip `row_id`s
+already present in `run_log.csv`.
 
 ## Input format
 
@@ -214,6 +215,9 @@ The parser tests run entirely offline (no API keys needed).
 - Each row costs exactly **2 LLM calls** (1 annotate + 1 audit). Semantic
   disagreements are sent to humans, not retried. On retry after an auditor
   failure, the cached annotator result is reused — only 1 call is charged.
+- Rows are processed concurrently (`--concurrency`, default 8). Both API calls
+  run in the thread pool via `asyncio.to_thread`, so the event loop is never
+  blocked. Use `--concurrency 1` to reproduce sequential behaviour.
 - Transient API errors retry with exponential backoff (`tenacity`); a hard failure
   on one row routes it to the review queue with `error_type=PIPELINE_ERROR` rather
   than aborting the batch.
