@@ -86,6 +86,12 @@ parent: "his mother" → FAM_KIN, not GEN_NOUN.
   Exclusions: Figurative kinship ("hey brother"); collective or non-specific family terms that \
 name no exact relationship ("family", "relatives", "family members", "older/younger members"), \
 even when they refer to the reviewer's real family.
+  Generic child nouns ("kid(s)", "child(ren)") are tagged FAM_KIN ONLY when a first-person \
+possessive binds them to the reviewer as their own offspring ("my kids", "our children") — a \
+parent-child node. The possessive must sit on the child noun itself: "my kids" tags, but \
+"my friend's kids" does NOT (third party). Do NOT tag generic/product-audience uses ("great \
+for kids", "for younger kids"), second-person ("your kids", "if you have kids"), or bare \
+floating mentions where it is not determinable that the children are the reviewer's own.
 
 4. STRICT GOLD RULES FOR ANNOTATORS
 - THE "REVIEWER ANCHOR" RULE: Do not annotate abstract entities. An entity is only a privacy \
@@ -325,6 +331,12 @@ members</FAM_KIN>").
 school", "5th grade") is valid; bare "school" is not. Exception: if a tier word is adjacent and \
 was clipped — e.g., "middle <MINOR_EDU>school</MINOR_EDU>" — that is INVALID_SPAN_BOUNDARY \
 (error 6), not OUT_OF_SCOPE.
+   (d) A generic child noun ("kid(s)", "child(ren)") tagged FAM_KIN that is NOT determinable as \
+the reviewer's own offspring — product-audience (e.g., "<FAM_KIN>kids</FAM_KIN>" in "great for \
+kids"), second-person ("your <FAM_KIN>kids</FAM_KIN>"), or a bare floating mention with no anchor. \
+A first-person-possessive own-offspring mention ("my <FAM_KIN>kids</FAM_KIN>", "our children") IS \
+valid FAM_KIN and must not be flagged. "my friend's <FAM_KIN>kids</FAM_KIN>" is third-party, not \
+the reviewer's own — that is out of scope here.
 A sibling or co-parent named through another family member ("his brother", "his mother") is \
 valid FAM_KIN. Do NOT re-flag it as MISALLOCATED (e.g., demanding GEN_NOUN for "mother") or \
 as OUT_OF_SCOPE. The household-internal vantage does not disqualify it.
