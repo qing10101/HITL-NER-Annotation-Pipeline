@@ -56,14 +56,8 @@ grade", "starting middle school", "high school sophomore", "kindergarten", "pres
   Exclusions: A bare generic "school" that names no tier ("after school", "in school", "likes \
 school", "school supplies") is NOT tagged. Never tag "College", "University", "Trade school", or \
 any pet/animal program.
-- A tier predicated of the PRODUCT rather than a real child is NOT tagged (the same
-    product-function exclusion as developmental milestones): "good for elementary school",
-    "great for preschoolers", "Nth grade books/curriculum/level", "simple enough for a 4th
-    grader" describe the product's target or difficulty, not a child's enrollment. Tag a tier
-    ONLY when predicated of a real, anchored child ("my son is in elementary school", "my 5yo
-    started kindergarten"). The temporal/qualifier wrapper is irrelevant: "after school" is
-    untagged (bare school) but "after elementary school" tags "elementary school"; a tier stated
-    as a future plan ("until he graduates high school") is not a current placement — do not tag.
+- A tier predicated of the PRODUCT rather than a real child is NOT tagged (the same product-function exclusion as developmental milestones): "good for elementary school", "great for preschoolers", "Nth grade books/curriculum/level", "simple enough for a 4th grader" describe the product's target or difficulty, not a child's enrollment. The temporal/qualifier wrapper is irrelevant to the bare-school test: "after school" is untagged (bare) but "after elementary school" tags "elementary school" (a specific tier).
+- TENSE-INDEPENDENCE: Tag an educational stage of a real, anchored minor REGARDLESS of tense — past, present, future, or milestone alike. "finished 1st grade", "in 2nd grade", "starts 2nd grade this fall", "goes to middle school in two years", and "until he graduates high school" all tag, each naming a school stage of a real child under 18. When several stages refer to the same child, tag each as its own span (coreferent: one minor, multiple spans); do not suppress "redundant" ones. The sole test is whether a real minor is anchored: a product-directed tier (above), or a stage with no real child behind it (pure hypothetical / audience), is NOT tagged. A plan for a real, established child ("we homeschool him") tags; a homeschool plan with no child established in the review ("we'll probably homeschool") does not — because no real minor is anchored, not because it is future.
 
 Category 2: Reviewer Gender Indication
 Only annotate these if they anchor the gender of the reviewer or the reviewer's romantic partner.
@@ -116,9 +110,7 @@ referent (e.g., 'baby items', 'a little one' in 'I could see this helping with a
 - THE SPAN STRATEGY: Annotate the entire noun phrase that carries the specific implicit meaning, \
 including modifiers that anchor the risk, but exclude trailing punctuation.
     Right: "[5th grade]MINOR_EDU"      Wrong: "in [5th]MINOR_EDU grade"
-  Exclude trailing punctuation, and exclude leading possessive determiners (my, our, your, his, her, their) \
-  and articles (the, a, an) — tag the entity noun itself, e.g. 'my son' → <FAM_KIN>son</FAM_KIN>'. \
-  Exception: a possessive 's suffixed to a tagged noun stays ('grandparent's' → <FAM_KIN>grandparent's</FAM_KIN>').
+  Also exclude leading possessive determiners (my, our, your, his, her, their) and articles (the, a, an) — tag the entity noun itself; the determiner anchors from OUTSIDE the tag, e.g. "my son" → my <FAM_KIN>son</FAM_KIN>. Exception: a possessive ’s suffixed to a tagged noun stays, since removing it would alter the text ("my grandparent’s dog" → my <FAM_KIN>grandparent’s</FAM_KIN> dog).
 - DEMOGRAPHIC COMPOUNDS: When an age modifier is attached to a gendered noun, tag the two \
 signals as SEPARATE spans — the age/developmental portion as MINOR_AGE, and the gendered noun \
 by its own category (GEN_NOUN when it anchors the reviewer's or partner's gender; FAM_KIN when \
@@ -199,6 +191,10 @@ Example 9
 Example 10
   INPUT:  Big enough for elementary school and easy to grab after school.
   OUTPUT: Big enough for elementary school and easy to grab after school.
+
+Example 11
+  INPUT:  My daughter finished 1st grade and will start 2nd grade this fall.
+  OUTPUT: My <FAM_KIN>daughter</FAM_KIN> finished <MINOR_EDU>1st grade</MINOR_EDU> and will start <MINOR_EDU>2nd grade</MINOR_EDU> this fall.
 """
 
 
@@ -315,7 +311,8 @@ or HYPOTHETICAL personas are unanchored. This covers:
 milestone in a product-function/benefit clause (e.g., "teething" in "great for teething"); \
 or an educational tier in a product-suitability clause (e.g., "elementary school" in "good for elementary school", "preschool" in "great for preschoolers"); \
 or a bra/cup size describing product fit rather than the reviewer's body (e.g., "34G" in "runs small \
-if you're usually a 34G"). A mention that corefers to a real child/relative established elsewhere \
+if you're usually a 34G"); or an educational tier that anchors no real child — a homeschool/other stage with no real minor established in the review (e.g., "homeschool" in "we'll probably homeschool" when no child is mentioned). A future or milestone tier of a REAL anchored minor ("until he graduates high school") is anchored and must stay tagged, so do NOT flag it as unanchored on tense grounds. \
+A mention that corefers to a real child/relative established elsewhere \
 in RAW_TEXT is anchored and must stay tagged, even if its own clause reads generically; only \
 mentions introducing a new hypothetical/product-category referent are unanchored.
    (b) The reviewer's OWN past childhood in the past tense (e.g., tagging "teenager" in "When I was a \
@@ -332,7 +329,7 @@ term left untagged is a valid FAM_KIN omission — e.g., "his brother", "his mot
 An anchored vague young-child modifier left untagged (e.g., "My little one loves these") is a \
 valid MINOR_AGE omission — flag it. A hypothetical or product-audience "a little one" is NOT a \
 valid omission and must not be flagged. A tier predicated of the product ("good for elementary school", "1st grade books") \
-is NOT anchored to a real child and is NOT a valid MINOR_EDU omission.
+is NOT anchored to a real child and is NOT a valid MINOR_EDU omission. A tier of a real, anchored minor left untagged is a valid MINOR_EDU omission REGARDLESS of tense — past, present, future, or milestone ("finished 1st grade", "starts 2nd grade this fall", "until he graduates high school"); do NOT treat a future/near-future tier as a non-omission on tense grounds. Only a product-directed tier or a stage with no real child behind it ("we'll probably homeschool" with no child established) is not a valid omission.
 5. MISALLOCATED_LABEL: The inner span is a valid entity but carries the wrong category. Label \
 correctness is CONTEXT-DEPENDENT — judge by what the surrounding text proves:
    - A kinship noun whose context fixes the person UNDER 18 must be FAM_KIN (AGE-CONTENT \
@@ -346,12 +343,8 @@ or a miscarriage tagged MINOR_AGE instead of GEN_PHYS.
 This includes:
    (a) Trailing punctuation inside the tag, or a missing anchoring modifier (e.g., "in \
 <MINOR_EDU>5th</MINOR_EDU> grade" instead of "<MINOR_EDU>5th grade</MINOR_EDU>").
-   (b) An age modifier and a gendered noun merged under a single tag (e.g., \
-"<MINOR_AGE>16-year-old girl</MINOR_AGE>") instead of two separate spans \
-   (c) A leading possessive determiner or article captured inside the span \
-(e.g., '<FAM_KIN>my son</FAM_KIN>' instead of 'my <FAM_KIN>son</FAM_KIN>') \
-is INVALID_SPAN_BOUNDARY.
-("<MINOR_AGE>16-year-old</MINOR_AGE> <GEN_NOUN>girl</GEN_NOUN>").
+   (b) An age modifier and a gendered noun merged under a single tag (e.g., "<MINOR_AGE>16-year-old girl</MINOR_AGE>") instead of two separate spans ("<MINOR_AGE>16-year-old</MINOR_AGE> <GEN_NOUN>girl</GEN_NOUN>").
+   (c) A leading possessive determiner or article captured inside the span (e.g., "<FAM_KIN>my son</FAM_KIN>" instead of "my <FAM_KIN>son</FAM_KIN>").
 7. OUT_OF_SCOPE_TAG: A tag was applied to a real, reviewer-anchored, human span that \
 nonetheless qualifies for NO category, because it fails that category's defining test. Unlike \
 MISALLOCATED_LABEL there is no correct alternative label — the span should not be tagged at all. \
