@@ -39,6 +39,7 @@ retriever", "puppy school").
 3. CATEGORY BREAKDOWN & BOUNDARY RULES
 
 Category 1: Minor Information
+SCOPE (whose minor): MINOR_AGE and MINOR_EDU apply to ANY real human minor under 18 — the reviewer's own child, a relative, or a third party (a friend's/neighbor's child, a student, a gift recipient), and to an individual OR a group of real minors alike ("my son", "my niece age 2", "the 3rd graders in my class", "his third grade friends" all qualify). These two categories are NOT limited to the reviewer's household; that household/partner scoping applies only to GEN_NOUN, GEN_PHYS, and FAM_KIN. Still excluded (no real minor behind the span): hypothetical/product-audience ("great for a toddler", "for any 2-year-old"), an age/tier predicated of the product ("toddler-sized", "good for elementary school"), a tier attached to the reviewer's own occupation/role with NO real student or minor disclosed ("I teach 3rd grade" with no students described) — but once real students/minors ARE named, their stage tags even if the reviewer teaches or runs the place ("we run a preschool ... the age range are two to three year olds" tags both the ages and "preschool"), and the reviewer's own past childhood.
 MINOR_AGE
   Inclusions: Numerical ages, developmental milestones, or age brackets of a REAL, LIVING human \
 child under 18 ("my 14yo son", "toddler", "newborn", "as a minor myself"). A developmental \
@@ -105,6 +106,7 @@ not clause by clause: once the text establishes a real child or relative, tag ev
 that refers back to that same person, even in a generic-sounding clause (e.g., 'makes traveling \
 with baby easier'); but do NOT tag a noun that introduces a new hypothetical or product-category \
 referent (e.g., 'baby items', 'a little one' in 'I could see this helping with a little one').
+MINOR-CATEGORY CARVE-OUT: the household/own-life restriction above applies to GEN_NOUN, GEN_PHYS, and FAM_KIN. MINOR_AGE and MINOR_EDU are NOT limited to the reviewer's own life — tag any REAL minor under 18 (own, relative, or third party; individual or group), excluding only hypothetical/product-audience, product-predicated, own-occupation-tier-with-no-students, and own-past-childhood spans (see the SCOPE note above).
     Annotate:        "Bought this for my [sister-in-law]FAM_KIN."
     Do Not Annotate: "This would make a great gift for a sister-in-law."
 - THE SPAN STRATEGY: Annotate the entire noun phrase that carries the specific implicit meaning, \
@@ -233,6 +235,7 @@ clause: once the text establishes a real child or relative, tag every later ment
 back to that same person, even in a generic-sounding clause (e.g., 'makes traveling with baby \
 easier'); but do NOT tag a noun that introduces a new hypothetical or product-category referent \
 (e.g., 'baby items', 'a little one' in 'I could see this helping with a little one').
+- MINOR-CATEGORY CARVE-OUT: the "current household" restriction above governs GEN_NOUN, GEN_PHYS, and FAM_KIN only. For MINOR_AGE and MINOR_EDU, tag ANY real minor under 18 regardless of whose child (own, relative, friend's/neighbor's, student, gift recipient) and whether an individual or a group; only hypothetical/product-audience, product-predicated, own-occupation-tier-with-no-students, and own-past-childhood spans are excluded.
 - THE HISTORICAL SELF-REFERENCE EXCLUSION: Never tag the reviewer's OWN childhood recalled in \
 the past tense, as it describes an adult's history and poses no live minor-privacy risk (e.g., \
 "When I was a teenager 20 years ago…" → tag nothing). Note this differs from a present-tense \
@@ -305,7 +308,7 @@ Constraint (e.g., "<MINOR_AGE>1yo</MINOR_AGE> cat", "<MINOR_EDU>puppy school</MI
 3. UNANCHORED_TAGGING: A tag was applied to text that carries no active reviewer-anchored privacy \
 footprint. A real possessive household relation (e.g., "my niece", "my wife") IS anchored and stays \
 tagged even when it appears in a recommendation clause ("my niece recommended this"); only ABSTRACT \
-or HYPOTHETICAL personas are unanchored. This covers:
+or HYPOTHETICAL personas are unanchored. For MINOR_AGE and MINOR_EDU specifically, a REAL minor is anchored even when a third party (a friend's/neighbor's child, a student, a gift recipient) or a group — do NOT flag such a tag as UNANCHORED; only hypothetical/product-audience/product-predicated minor spans are unanchored here. This covers:
    (a) Hypothetical or gift recipients introduced with an indefinite/generic reference (e.g., tagging \
 "wife" in "Perfect gift for a wife", or "niece" in "great for any niece"); or a developmental \
 milestone in a product-function/benefit clause (e.g., "teething" in "great for teething"); \
