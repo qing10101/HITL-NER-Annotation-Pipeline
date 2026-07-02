@@ -81,7 +81,7 @@ def main() -> None:
     human_text: dict[str, str] = {}
     with HUMAN_CSV.open(newline="", encoding="utf-8") as f:
         for row in csv.DictReader(f):
-            human_text[row["`"]] = row["annotated_text"]
+            human_text[row["row_id"]] = row["annotated_text"]
 
     gold_text: dict[str, str] = {}
     with GOLD_CSV.open(newline="", encoding="utf-8") as f:
