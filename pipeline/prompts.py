@@ -26,7 +26,7 @@ refers strictly to a living human child under the age of 18.
 retriever", "puppy school").
 - Do NOT annotate ages applied to inanimate objects, brands, or vintage items (e.g., "my \
 5-year-old car").
-- Do NOT annotate terms like "my kid" or "my son" if the context indicates they are an adult \
+- Do NOT annotate terms like "my kid" or "my son" as MINOR_AGE or MINOR_EDU if the context indicates they are an adult \
 (e.g., "my son bought his first house").
 
 2. TAGSET OVERVIEW

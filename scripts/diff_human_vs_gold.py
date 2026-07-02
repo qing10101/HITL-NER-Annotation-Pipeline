@@ -30,10 +30,10 @@ sys.path.insert(0, str(ROOT))
 
 from pipeline.parser import TagParseError, parse_tagged_text  # noqa: E402
 
-HUMAN_CSV      = ROOT / "output" / "sample_500_human.csv"
-GOLD_CSV       = ROOT / "output" / "gold_standard_merged.csv"
-ROW_DIFF_CSV   = ROOT / "output" / "diff_human_vs_gold.csv"
-SPAN_DIFF_CSV  = ROOT / "output" / "span_level_diff.csv"
+HUMAN_CSV      = ROOT / "validation" / "sample_500_human.csv"
+GOLD_CSV       = ROOT / "validation" / "gold_standard_merged.csv"
+ROW_DIFF_CSV   = ROOT / "validation" / "diff_human_vs_gold.csv"
+SPAN_DIFF_CSV  = ROOT / "validation" / "span_level_diff.csv"
 
 LABELS = ["MINOR_AGE", "MINOR_EDU", "GEN_NOUN", "GEN_PHYS", "FAM_KIN"]
 
