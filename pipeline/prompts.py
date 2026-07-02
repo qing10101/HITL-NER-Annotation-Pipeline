@@ -31,7 +31,7 @@ retriever", "puppy school").
 
 2. TAGSET OVERVIEW
 - MINOR_AGE  (Minor Info):      Direct or highly specific proxy indicators of a human child under 18.
-- MINOR_EDU  (Minor Info):      Educational institutions or grade levels exclusive to human minors.
+- MINOR_EDU  (Minor Info):      A specific educational tier or grade level exclusive to human minors (not bare 'school')
 - GEN_NOUN   (Gender):          Explicit gendered nouns referring to the reviewer or their romantic partner.
 - GEN_PHYS   (Gender):          Physiological conditions/milestones that explicitly reveal reviewer or partner gender.
 - FAM_KIN    (Family Structure): Kinship terms establishing the reviewer's family network.
@@ -52,10 +52,18 @@ camping with a little one" → do not tag), per the anchor rule.
   Exclusions: Pets ("my 2yo cat"), objects, or vague terms like "kids" unless context fixes them under 18.
 MINOR_EDU
   Inclusions: A SPECIFIC educational tier or classification exclusive to human minors ("in 5th \
-grade", "starting middle school", "high school sophomore", "kindergarten").
+grade", "starting middle school", "high school sophomore", "kindergarten", "preschool", "homeschool").
   Exclusions: A bare generic "school" that names no tier ("after school", "in school", "likes \
 school", "school supplies") is NOT tagged. Never tag "College", "University", "Trade school", or \
 any pet/animal program.
+- A tier predicated of the PRODUCT rather than a real child is NOT tagged (the same
+    product-function exclusion as developmental milestones): "good for elementary school",
+    "great for preschoolers", "Nth grade books/curriculum/level", "simple enough for a 4th
+    grader" describe the product's target or difficulty, not a child's enrollment. Tag a tier
+    ONLY when predicated of a real, anchored child ("my son is in elementary school", "my 5yo
+    started kindergarten"). The temporal/qualifier wrapper is irrelevant: "after school" is
+    untagged (bare school) but "after elementary school" tags "elementary school"; a tier stated
+    as a future plan ("until he graduates high school") is not a current placement — do not tag.
 
 Category 2: Reviewer Gender Indication
 Only annotate these if they anchor the gender of the reviewer or the reviewer's romantic partner.
@@ -82,7 +90,10 @@ son"), but they do NOT receive minor tags. Tag a specific kinship relation even 
 expressed relative to another household member rather than the reviewer ("his brother", "her \
 mother") — transitive/indirect kinship is in scope because it still identifies a real \
 family-network node. Do NOT add a separate GEN_NOUN tag for a co-parent named only as a \
-parent: "his mother" → FAM_KIN, not GEN_NOUN.
+parent: "his mother" → FAM_KIN, not GEN_NOUN. Relation terms encode the relationship in the word itself \
+and are tagged even when plural and non-individuated ("my sons", "my grandchildren", "grandkids"); \
+this is distinct from generic child nouns ("kids", "children"), which are tagged only under the first-person-possessive \
+own-offspring rule below.
   Exclusions: Figurative kinship ("hey brother"); collective or non-specific family terms that \
 name no exact relationship ("family", "relatives", "family members", "older/younger members"), \
 even when they refer to the reviewer's real family.
@@ -169,6 +180,22 @@ Example 6
   INPUT:  My eldest son is 24 and out of college, but my stepson is still in middle school.
   OUTPUT: My eldest <FAM_KIN>son</FAM_KIN> is 24 and out of college, but my \
 <FAM_KIN>stepson</FAM_KIN> is still in <MINOR_EDU>middle school</MINOR_EDU>.\
+
+Example 7
+  INPUT:  These are great for kids, and my kids love them.
+  OUTPUT: These are great for kids, and my <FAM_KIN>kids</FAM_KIN> love them.
+
+Example 8
+  INPUT:  My 5 year old and his 8 year old brother both play with it.
+  OUTPUT: My <MINOR_AGE>5 year old</MINOR_AGE> and his <MINOR_AGE>8 year old</MINOR_AGE> <FAM_KIN>brother</FAM_KIN> both play with it.
+
+Example 9
+  INPUT:  My little one won't put it down.
+  OUTPUT: My <MINOR_AGE>little one</MINOR_AGE> won't put it down.
+
+Example 10
+  INPUT:  Big enough for elementary school and easy to grab after school.
+  OUTPUT: Big enough for elementary school and easy to grab after school.
 """
 
 
@@ -282,8 +309,9 @@ tagged even when it appears in a recommendation clause ("my niece recommended th
 or HYPOTHETICAL personas are unanchored. This covers:
    (a) Hypothetical or gift recipients introduced with an indefinite/generic reference (e.g., tagging \
 "wife" in "Perfect gift for a wife", or "niece" in "great for any niece"); or a developmental \
-milestone in a product-function/benefit clause (e.g., "teething" in "great for teething"); or a \
-bra/cup size describing product fit rather than the reviewer's body (e.g., "34G" in "runs small \
+milestone in a product-function/benefit clause (e.g., "teething" in "great for teething"); \
+or an educational tier in a product-suitability clause (e.g., "elementary school" in "good for elementary school", "preschool" in "great for preschoolers"); \
+or a bra/cup size describing product fit rather than the reviewer's body (e.g., "34G" in "runs small \
 if you're usually a 34G"). A mention that corefers to a real child/relative established elsewhere \
 in RAW_TEXT is anchored and must stay tagged, even if its own clause reads generically; only \
 mentions introducing a new hypothetical/product-category referent are unanchored.
@@ -300,7 +328,8 @@ entity and must NOT be flagged as omitted — only a specific tier left untagged
 term left untagged is a valid FAM_KIN omission — e.g., "his brother", "his mother". Flag it. \
 An anchored vague young-child modifier left untagged (e.g., "My little one loves these") is a \
 valid MINOR_AGE omission — flag it. A hypothetical or product-audience "a little one" is NOT a \
-valid omission and must not be flagged.
+valid omission and must not be flagged. A tier predicated of the product ("good for elementary school", "1st grade books") \
+is NOT anchored to a real child and is NOT a valid MINOR_EDU omission.
 5. MISALLOCATED_LABEL: The inner span is a valid entity but carries the wrong category. Label \
 correctness is CONTEXT-DEPENDENT — judge by what the surrounding text proves:
    - A kinship noun whose context fixes the person UNDER 18 must be FAM_KIN (AGE-CONTENT \
