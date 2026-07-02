@@ -116,6 +116,9 @@ referent (e.g., 'baby items', 'a little one' in 'I could see this helping with a
 - THE SPAN STRATEGY: Annotate the entire noun phrase that carries the specific implicit meaning, \
 including modifiers that anchor the risk, but exclude trailing punctuation.
     Right: "[5th grade]MINOR_EDU"      Wrong: "in [5th]MINOR_EDU grade"
+  Exclude trailing punctuation, and exclude leading possessive determiners (my, our, your, his, her, their) \
+  and articles (the, a, an) — tag the entity noun itself, e.g. 'my son' → <FAM_KIN>son</FAM_KIN>'. \
+  Exception: a possessive 's suffixed to a tagged noun stays ('grandparent's' → <FAM_KIN>grandparent's</FAM_KIN>').
 - DEMOGRAPHIC COMPOUNDS: When an age modifier is attached to a gendered noun, tag the two \
 signals as SEPARATE spans — the age/developmental portion as MINOR_AGE, and the gendered noun \
 by its own category (GEN_NOUN when it anchors the reviewer's or partner's gender; FAM_KIN when \
@@ -345,6 +348,9 @@ This includes:
 <MINOR_EDU>5th</MINOR_EDU> grade" instead of "<MINOR_EDU>5th grade</MINOR_EDU>").
    (b) An age modifier and a gendered noun merged under a single tag (e.g., \
 "<MINOR_AGE>16-year-old girl</MINOR_AGE>") instead of two separate spans \
+   (c) A leading possessive determiner or article captured inside the span \
+(e.g., '<FAM_KIN>my son</FAM_KIN>' instead of 'my <FAM_KIN>son</FAM_KIN>') \
+is INVALID_SPAN_BOUNDARY.
 ("<MINOR_AGE>16-year-old</MINOR_AGE> <GEN_NOUN>girl</GEN_NOUN>").
 7. OUT_OF_SCOPE_TAG: A tag was applied to a real, reviewer-anchored, human span that \
 nonetheless qualifies for NO category, because it fails that category's defining test. Unlike \
