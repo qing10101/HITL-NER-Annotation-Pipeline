@@ -1,6 +1,7 @@
 """
 Filter out rows from sample_2000.csv that appear in test_set_180k_minor_edu.csv,
-matching on the `id` column. Writes the remaining rows to a new CSV.
+matching on the sample's `id` column against the test set's `row_id` (or legacy
+`id`) column. Writes the remaining rows to a new CSV.
 """
 
 import argparse
@@ -14,6 +15,12 @@ DEFAULT_TEST_SET = DATA_DIR / "test_set_180k_minor_edu.csv"
 DEFAULT_OUTPUT = DATA_DIR / "sample_filtered.csv"
 
 
+def _row_id(row: dict) -> str:
+    """Test-set rows key on `row_id` (current minor_edu_retrieval.py schema)
+    or `id` (legacy files generated before the row_id rename)."""
+    return row.get("row_id") or row.get("id") or ""
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--sample", default=DEFAULT_SAMPLE, type=Path)
@@ -22,7 +29,7 @@ def main():
     args = parser.parse_args()
 
     with open(args.test_set, newline="", encoding="utf-8") as f:
-        test_ids = {row["id"] for row in csv.DictReader(f)}
+        test_ids = {_row_id(row) for row in csv.DictReader(f)}
 
     kept, removed = 0, 0
     with open(args.sample, newline="", encoding="utf-8") as fin, \

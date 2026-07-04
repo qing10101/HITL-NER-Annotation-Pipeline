@@ -11,6 +11,7 @@ Duplicate row_ids already present in gold_standard.csv are also skipped.
 """
 from __future__ import annotations
 
+import argparse
 import csv
 import json
 import sys
@@ -28,11 +29,30 @@ OUTPUT = ROOT / "output" / "gold_standard_merged.csv"
 GOLD_FIELDNAMES = ["row_id", "raw_text", "tagged_text", "num_entities", "entities_json"]
 
 
+def parse_args() -> argparse.Namespace:
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument(
+        "--human-reviewed", type=Path, default=HUMAN_REVIEWED,
+        help=f"CSV of human-reviewed queue rows (default: {HUMAN_REVIEWED})",
+    )
+    p.add_argument(
+        "--gold-standard", type=Path, default=GOLD_STANDARD,
+        help=f"Existing gold standard CSV to merge into (default: {GOLD_STANDARD})",
+    )
+    p.add_argument(
+        "--output", type=Path, default=OUTPUT,
+        help=f"Path to write the merged gold standard CSV (default: {OUTPUT})",
+    )
+    return p.parse_args()
+
+
 def main() -> None:
+    args = parse_args()
+
     # Load existing gold standard rows and track which IDs are already present.
     gold_rows: list[dict] = []
     existing_ids: set[str] = set()
-    with GOLD_STANDARD.open(newline="", encoding="utf-8") as f:
+    with args.gold_standard.open(newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
             gold_rows.append(row)
@@ -40,7 +60,7 @@ def main() -> None:
 
     # Process human-reviewed rows.
     added = skipped_empty = skipped_duplicate = skipped_parse_error = 0
-    with HUMAN_REVIEWED.open(newline="", encoding="utf-8") as f:
+    with args.human_reviewed.open(newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         for row in reader:
             row_id = row["row_id"]
@@ -77,7 +97,7 @@ def main() -> None:
             added += 1
 
     # Write merged output.
-    with OUTPUT.open("w", newline="", encoding="utf-8") as f:
+    with args.output.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=GOLD_FIELDNAMES)
         writer.writeheader()
         writer.writerows(gold_rows)
@@ -86,7 +106,7 @@ def main() -> None:
         f"\nDone. {added} row(s) added, {skipped_empty} skipped (empty annotation), "
         f"{skipped_duplicate} skipped (duplicate), {skipped_parse_error} skipped (parse error)."
     )
-    print(f"Output: {OUTPUT}")
+    print(f"Output: {args.output}")
     print(f"Total rows in merged file: {len(gold_rows)}")
 
 

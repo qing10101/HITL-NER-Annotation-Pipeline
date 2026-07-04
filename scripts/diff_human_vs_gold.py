@@ -18,6 +18,7 @@ Span-level  (output/span_level_diff.csv)
 """
 from __future__ import annotations
 
+import argparse
 import csv
 import json
 import sys
@@ -30,10 +31,10 @@ sys.path.insert(0, str(ROOT))
 
 from pipeline.parser import TagParseError, parse_tagged_text  # noqa: E402
 
-HUMAN_CSV      = ROOT / "validation" / "sample_500_human.csv"
-GOLD_CSV       = ROOT / "validation" / "gold_standard_merged.csv"
-ROW_DIFF_CSV   = ROOT / "validation" / "diff_human_vs_gold.csv"
-SPAN_DIFF_CSV  = ROOT / "validation" / "span_level_diff.csv"
+HUMAN_CSV      = ROOT / "output" / "sample_500_human.csv"
+GOLD_CSV       = ROOT / "output" / "gold_standard_merged.csv"
+ROW_DIFF_CSV   = ROOT / "output" / "diff_human_vs_gold.csv"
+SPAN_DIFF_CSV  = ROOT / "output" / "span_level_diff.csv"
 
 LABELS = ["MINOR_AGE", "MINOR_EDU", "GEN_NOUN", "GEN_PHYS", "FAM_KIN"]
 
@@ -76,15 +77,38 @@ def _lt(spans: list[SpanTuple]) -> list[tuple[str, str]]:
     return sorted((lbl, txt) for lbl, txt, _, _ in spans)
 
 
+def parse_args() -> argparse.Namespace:
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument(
+        "--human-csv", type=Path, default=HUMAN_CSV,
+        help=f"Human-annotated CSV with row_id/annotated_text columns (default: {HUMAN_CSV})",
+    )
+    p.add_argument(
+        "--gold-csv", type=Path, default=GOLD_CSV,
+        help=f"Gold standard CSV with row_id/tagged_text columns (default: {GOLD_CSV})",
+    )
+    p.add_argument(
+        "--row-diff-out", type=Path, default=ROW_DIFF_CSV,
+        help=f"Path to write the row-level diff CSV (default: {ROW_DIFF_CSV})",
+    )
+    p.add_argument(
+        "--span-diff-out", type=Path, default=SPAN_DIFF_CSV,
+        help=f"Path to write the span-level diff CSV (default: {SPAN_DIFF_CSV})",
+    )
+    return p.parse_args()
+
+
 def main() -> None:
+    args = parse_args()
+
     # ── Load annotations ────────────────────────────────────────────────────
     human_text: dict[str, str] = {}
-    with HUMAN_CSV.open(newline="", encoding="utf-8") as f:
+    with args.human_csv.open(newline="", encoding="utf-8") as f:
         for row in csv.DictReader(f):
             human_text[row["row_id"]] = row["annotated_text"]
 
     gold_text: dict[str, str] = {}
-    with GOLD_CSV.open(newline="", encoding="utf-8") as f:
+    with args.gold_csv.open(newline="", encoding="utf-8") as f:
         for row in csv.DictReader(f):
             gold_text[row["row_id"]] = row["tagged_text"]
 
@@ -149,7 +173,7 @@ def main() -> None:
             "only_in_gold":   json.dumps(only_g),
         })
 
-    with ROW_DIFF_CSV.open("w", newline="", encoding="utf-8") as f:
+    with args.row_diff_out.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=ROW_FIELDS)
         writer.writeheader()
         writer.writerows(row_rows)
@@ -238,7 +262,7 @@ def main() -> None:
                 "human_offsets": "", "gold_offsets": f"{s}:{e}",
             })
 
-    with SPAN_DIFF_CSV.open("w", newline="", encoding="utf-8") as f:
+    with args.span_diff_out.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=SPAN_FIELDS)
         writer.writeheader()
         writer.writerows(span_rows)
@@ -271,7 +295,7 @@ def main() -> None:
                 print(f"    - human only  [{lbl}] \"{txt}\"")
             for lbl, txt in json.loads(r["only_in_gold"]):
                 print(f"    + gold only   [{lbl}] \"{txt}\"")
-    print(f"\nWritten: {ROW_DIFF_CSV}")
+    print(f"\nWritten: {args.row_diff_out}")
 
     print("\n=== SPAN-LEVEL DIFF ===\n")
     print(f"Shared rows compared    : {len(shared_ids)}  ({parse_errors} skipped — parse error)")
@@ -293,7 +317,7 @@ def main() -> None:
     for lbl in LABELS:
         print(f"{lbl:<14} {per_h[lbl]:>6} {per_g[lbl]:>6} {per_ex[lbl]:>6} "
               f"{per_bd[lbl]:>7} {per_ho[lbl]:>7} {per_go[lbl]:>7}")
-    print(f"\nWritten: {SPAN_DIFF_CSV}")
+    print(f"\nWritten: {args.span_diff_out}")
 
 
 if __name__ == "__main__":

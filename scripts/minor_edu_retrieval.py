@@ -236,7 +236,7 @@ def screen(text: str) -> dict | None:
 
 _HEADER = [
     "row_num",
-    "id",
+    "row_id",
     "category",
     "source_tier",
     "net_score",

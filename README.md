@@ -148,7 +148,7 @@ python scripts/minor_edu_retrieval.py data/test_set_180k.jsonl \
     --out data/elem_mid_candidates.csv
 ```
 
-Output columns: `row_num, id, category, source_tier, net_score, edu_tiers, triggers, anchors, exclusions, text, annotated_text (blank), reviewer_notes (blank)`
+Output columns: `row_num, row_id, category, source_tier, net_score, edu_tiers, triggers, anchors, exclusions, text, annotated_text (blank), reviewer_notes (blank)`
 
 Tiers: `early_childhood`, `elementary`, `middle`, `high_school`, `homeschool`.
 High-score rows (≥ 3) are near-certain genuine child-education mentions;
