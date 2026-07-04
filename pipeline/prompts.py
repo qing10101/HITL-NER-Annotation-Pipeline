@@ -50,7 +50,7 @@ young-child term that carries no explicit age ("little one", "little girl", "lit
 MINOR_AGE when it is anchored to a real child in the reviewer's life ("My little one loves these" \
 → tag). Leave it untagged when it is a new hypothetical or product-audience referent ("great for \
 camping with a little one" → do not tag), per the anchor rule.
-  Exclusions: Pets ("my 2yo cat"), objects, or vague terms like "kids" unless context fixes them under 18.
+  Exclusions: Pets ("my 2yo cat"), objects, or vague terms like "kids" unless context fixes them under 18. Also NOT MINOR_AGE: bare relative/scalar modifiers on a child ("young", "younger", "older", "small", "big", "tiny") — they fix no age band and scale into adulthood; tag only explicit ages and the developmental-stage terms (baby, newborn, infant, toddler, and the fixed forms "little one"/"little girl"/"little boy"). Bounded brackets like "teenage"/"teen" DO tag. Collision guard: the fixed forms "little one/girl/boy" tag (developmental stage), but "little" as a loose adjective ("little kids", "my little guys") is a bare modifier and does not. E.g. "cute toys for my young boys" → tag my <FAM_KIN>boys</FAM_KIN> (own offspring), leave "young" untagged.
 MINOR_EDU
   Inclusions: A SPECIFIC educational tier or classification exclusive to human minors ("in 5th \
 grade", "starting middle school", "high school sophomore", "kindergarten", "preschool", "homeschool").
