@@ -153,6 +153,7 @@ class Orchestrator:
     def run(
         self,
         rows: Iterable[Tuple[str, str]],
+        start: int = 0,
         limit: Optional[int] = None,
         progress_every: int = 25,
         delay: float = 0.0,
@@ -163,9 +164,12 @@ class Orchestrator:
 
         bar = tqdm(total=total, unit="row", desc="labeling") if tqdm else None
 
-        for row_id, raw_text in rows:
-            if limit is not None and stats.total >= limit:
-                break
+        stop = None if limit is None else start + limit
+        for index, (row_id, raw_text) in enumerate(rows):
+            if index < start:
+                continue  # before the window — skip entirely, not counted
+            if stop is not None and index >= stop:
+                break  # past the window
             if row_id in self._processed:
                 stats.skipped += 1
                 if bar is not None:
@@ -207,6 +211,7 @@ class Orchestrator:
     async def run_async(
         self,
         rows: Iterable[Tuple[str, str]],
+        start: int = 0,
         limit: Optional[int] = None,
         concurrency: int = 8,
         progress_every: int = 25,
@@ -214,6 +219,11 @@ class Orchestrator:
         total: Optional[int] = None,
     ) -> RunStats:
         """Process rows concurrently using up to ``concurrency`` parallel tasks.
+
+        ``start``/``limit`` select a positional window over the input:
+        rows ``[start, start+limit)``. The window is by input row position, so
+        rerunning the same window re-scans the same rows and resume skips the
+        ones already in run_log.csv (rather than sliding forward into new rows).
 
         Resume logic is identical to run(): rows already in run_log.csv are
         skipped before any task is created, and annotator_cache.csv saves each
@@ -249,10 +259,12 @@ class Orchestrator:
                 )
 
         tasks = []
-        dispatched = 0
-        for row_id, raw_text in rows:
-            if limit is not None and dispatched >= limit:
-                break
+        stop = None if limit is None else start + limit
+        for index, (row_id, raw_text) in enumerate(rows):
+            if index < start:
+                continue  # before the window — skip entirely, not counted
+            if stop is not None and index >= stop:
+                break  # past the window
             if row_id in self._processed:
                 stats.skipped += 1
                 if bar is not None:
@@ -260,7 +272,6 @@ class Orchestrator:
                     bar.set_postfix(self._postfix(stats))
                 continue
             tasks.append(asyncio.create_task(_process_and_write(row_id, raw_text)))
-            dispatched += 1
 
         await asyncio.gather(*tasks)
 

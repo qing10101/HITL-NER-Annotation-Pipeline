@@ -66,9 +66,26 @@ python run.py --input data/reviews.jsonl --out-dir output/run1 --no-resume
 ```
 
 CLI flags: `--input` (required), `--text-field` (default `text`), `--id-field`
-(default `id`), `--format` (`auto`|`jsonl`|`csv`), `--out-dir`, `--limit`,
-`--concurrency` (default `8`), `--delay`, `--no-resume`. Re-runs skip `row_id`s
-already present in `run_log.csv`.
+(default `id`), `--format` (`auto`|`jsonl`|`csv`), `--out-dir`, `--start`,
+`--limit`, `--concurrency` (default `8`), `--delay`, `--no-resume`. Re-runs skip
+`row_id`s already present in `run_log.csv`.
+
+`--start` / `--limit` select a **positional window** over the input — rows
+`[start, start+limit)` by input row number (0-based). Because the window is
+positional (not a count of newly-processed rows), rerunning the *same* window
+re-scans the same rows and resume skips the ones already done, rather than
+sliding forward into new rows.
+
+```powershell
+# First 5000 rows
+python run.py --input data/test_set_180k.jsonl --limit 5000
+
+# Rerun the SAME first-5000 window later: finishes only the rows not yet done
+python run.py --input data/test_set_180k.jsonl --limit 5000
+
+# Next 5000 rows (5000..9999)
+python run.py --input data/test_set_180k.jsonl --start 5000 --limit 5000
+```
 
 ## Input format
 

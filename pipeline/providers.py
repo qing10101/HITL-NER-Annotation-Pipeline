@@ -19,7 +19,13 @@ from abc import ABC, abstractmethod
 from typing import Optional, Type
 
 from pydantic import BaseModel
-from tenacity import before_sleep_log, retry, stop_after_attempt, wait_exponential
+from tenacity import (
+    before_sleep_log,
+    retry,
+    retry_if_exception,
+    stop_after_attempt,
+    wait_exponential,
+)
 import logging
 
 from config import CONFIG
@@ -28,10 +34,38 @@ logging.basicConfig(format="%(message)s", level=logging.WARNING)
 _retry_logger = logging.getLogger("pipeline.retry")
 _retry_logger.setLevel(logging.INFO)
 
+
+class ContentBlocked(RuntimeError):
+    """A model refused to produce output (safety/prohibited-content block).
+
+    Non-retryable: the same input will be blocked every time, so retrying only
+    wastes time and routes the row to human review more slowly.
+    """
+
+
+def _should_retry(exc: BaseException) -> bool:
+    """Retry only errors that a later attempt could plausibly fix.
+
+    NOT retried (fail fast -> row goes straight to the review queue):
+      - content refusals (Gemini PROHIBITED_CONTENT / empty text) — ``ContentBlocked``
+      - quota/credit exhaustion (HTTP 429 / RESOURCE_EXHAUSTED / insufficient_quota)
+    Everything else (timeouts, 500/503/504, transport errors) is transient and
+    still retried with backoff.
+    """
+    if isinstance(exc, ContentBlocked):
+        return False
+    msg = str(exc).lower()
+    if "429" in msg or "resource_exhausted" in msg or "insufficient_quota" in msg:
+        return False
+    return True
+
+
 # Shared retry policy: survives transient errors and rate-limit backoffs
-# (waits 4,8,16,32,64s — covers provider "retry in ~Ns" hints).
+# (3 attempts total = 1 initial + 2 retries; waits 4,8s). Content refusals and
+# quota-exhaustion errors bypass retry entirely (see _should_retry).
 _RETRY = retry(
-    stop=stop_after_attempt(6),
+    retry=retry_if_exception(_should_retry),
+    stop=stop_after_attempt(3),
     wait=wait_exponential(multiplier=2, min=4, max=70),
     before_sleep=before_sleep_log(_retry_logger, logging.INFO),
     reraise=True,
@@ -192,7 +226,12 @@ class GeminiProvider(LLMProvider):
             config=self._config(system_prompt, temperature),
         )
         if resp.text is None:
-            raise RuntimeError("Gemini returned no text (possibly blocked/empty).")
+            reason = getattr(
+                getattr(resp, "prompt_feedback", None), "block_reason", None
+            )
+            raise ContentBlocked(
+                f"Gemini returned no text (block_reason={reason})."
+            )
         return resp.text
 
     @_RETRY

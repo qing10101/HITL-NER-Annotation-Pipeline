@@ -44,7 +44,19 @@ def build_arg_parser() -> argparse.ArgumentParser:
         default=None,
         help='Override auditor/judge model, "<provider>:<model>" (default: $AUDITOR_MODEL)',
     )
-    p.add_argument("--limit", type=int, default=None, help="Max rows to process")
+    p.add_argument(
+        "--start",
+        type=int,
+        default=0,
+        help="0-based input row position to start at (rows before it are skipped entirely)",
+    )
+    p.add_argument(
+        "--limit",
+        type=int,
+        default=None,
+        help="Window length: process input rows [start, start+limit). "
+        "Rerunning the same window skips rows already in run_log.csv (resume).",
+    )
     p.add_argument(
         "--delay",
         type=float,
@@ -97,9 +109,10 @@ def main(argv=None) -> int:
         fmt=args.format,
     )
 
-    # Pre-count for an accurate progress-bar total (best-effort).
+    # Pre-count for an accurate progress-bar total (best-effort). The total is
+    # the window size: rows in [start, start+limit).
     try:
-        total = count_rows(args.input, fmt=args.format)
+        total = max(0, count_rows(args.input, fmt=args.format) - args.start)
         if args.limit is not None:
             total = min(total, args.limit)
     except Exception:
@@ -109,6 +122,7 @@ def main(argv=None) -> int:
     stats = asyncio.run(
         orchestrator.run_async(
             rows,
+            start=args.start,
             limit=args.limit,
             concurrency=args.concurrency,
             delay=args.delay,
