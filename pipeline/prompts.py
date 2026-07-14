@@ -48,9 +48,10 @@ only to GEN_NOUN, GEN_PHYS, and FAM_KIN. Still excluded (no real minor behind th
 a tier attached to the reviewer's own occupation/role with NO real student or minor disclosed \
 ("I teach 3rd grade" with no students described) — but once real students/minors ARE named, \
 their stage tags even if the reviewer teaches or runs the place ("we run a preschool ... the age range are two to three year olds" \
-tags both the ages and "preschool"), the reviewer's own past childhood, and an expected or unborn child — \
-a pregnancy or anticipated birth ("we're expecting", "due in March", "another on the way", "our future son") \
-names a not-yet-existent person and reconstructs no current node.
+tags both the ages and "preschool"), the reviewer's own past childhood, and an expected or unborn child — a pregnancy or anticipated \
+birth ("we're expecting", "due in March", "another on the way") is not a currently existing minor and carries no age content, \
+so it takes no MINOR_AGE or MINOR_EDU tag. (An explicit kinship term in a committed pregnancy — "our unborn daughter" — is tagged separately under FAM_KIN; \
+see Category 3. The exclusion here is only from the minor categories.)
 MINOR_AGE
   Inclusions: Numerical ages, developmental milestones, or age brackets of a REAL, LIVING human \
 child under 18 ("my 14yo son", "toddler", "newborn", "as a minor myself"). A developmental \
