@@ -39,7 +39,18 @@ retriever", "puppy school").
 3. CATEGORY BREAKDOWN & BOUNDARY RULES
 
 Category 1: Minor Information
-SCOPE (whose minor): MINOR_AGE and MINOR_EDU apply to ANY real human minor under 18 — the reviewer's own child, a relative, or a third party (a friend's/neighbor's child, a student, a gift recipient), and to an individual OR a group of real minors alike ("my son", "my niece age 2", "the 3rd graders in my class", "his third grade friends" all qualify). These two categories are NOT limited to the reviewer's household; that household/partner scoping applies only to GEN_NOUN, GEN_PHYS, and FAM_KIN. Still excluded (no real minor behind the span): hypothetical/product-audience ("great for a toddler", "for any 2-year-old"), an age/tier predicated of the product ("toddler-sized", "good for elementary school"), a tier attached to the reviewer's own occupation/role with NO real student or minor disclosed ("I teach 3rd grade" with no students described) — but once real students/minors ARE named, their stage tags even if the reviewer teaches or runs the place ("we run a preschool ... the age range are two to three year olds" tags both the ages and "preschool"), the reviewer's own past childhood, and an expected or unborn child — a pregnancy or anticipated birth ("we're expecting", "due in March", "another on the way", "our future son") names a not-yet-existent person and reconstructs no current node.
+SCOPE (whose minor): MINOR_AGE and MINOR_EDU apply to ANY real human minor under 18 — the reviewer's own child, \
+a relative, or a third party (a friend's/neighbor's child, a student, a gift recipient), and to an individual \
+OR a group of real minors alike ("my son", "my niece age 2", "the 3rd graders in my class", "his third grade friends" \
+all qualify). These two categories are NOT limited to the reviewer's household; that household/partner scoping applies \
+only to GEN_NOUN, GEN_PHYS, and FAM_KIN. Still excluded (no real minor behind the span): hypothetical/product-audience \
+("great for a toddler", "for any 2-year-old"), an age/tier predicated of the product ("toddler-sized", "good for elementary school"), \
+a tier attached to the reviewer's own occupation/role with NO real student or minor disclosed \
+("I teach 3rd grade" with no students described) — but once real students/minors ARE named, \
+their stage tags even if the reviewer teaches or runs the place ("we run a preschool ... the age range are two to three year olds" \
+tags both the ages and "preschool"), the reviewer's own past childhood, and an expected or unborn child — \
+a pregnancy or anticipated birth ("we're expecting", "due in March", "another on the way", "our future son") \
+names a not-yet-existent person and reconstructs no current node.
 MINOR_AGE
   Inclusions: Numerical ages, developmental milestones, or age brackets of a REAL, LIVING human \
 child under 18 ("my 14yo son", "toddler", "newborn", "as a minor myself"). A developmental \
@@ -94,12 +105,15 @@ this is distinct from generic child nouns ("kids", "children"), which are tagged
 own-offspring rule below.
   Exclusions: Figurative kinship ("hey brother"); collective or non-specific family terms that \
 name no exact relationship ("family", "relatives", "family members", "older/younger members"), \
-even when they refer to the reviewer's real family. A prospective relation to an expected/unborn \
-child ("our future son", "the baby we're expecting", "soon-to-be daughter") is NOT tagged — the \
-relation is to a person who does not yet exist and reconstructs no current family-network node. \
-This applies ONLY to the unborn child itself; real, existing people in the same pregnancy context \
-still tag normally: a pregnant relative ("my daughter is expecting" → FAM_KIN "daughter"), a \
-partner ("my wife is pregnant" → GEN_NOUN "wife"), or an already-born sibling.
+even when they refer to the reviewer's real family. A prospective relation to an expected child tags \
+as FAM_KIN WHEN the pregnancy is stated as a present, committed fact AND an explicit kinship term is used \
+("our unborn daughter", "the son we're expecting" → tag "daughter"/"son"). It does NOT tag when the child \
+is hypothetical, planned, or conditional ("if we have a girl", "we're trying for a baby", "someday when we \
+have kids" → no tag), nor when the pregnancy is committed but no explicit relation term is present \
+("the baby we're expecting", "once the baby arrives" → no FAM_KIN tag, since no kinship word appears). \
+Note the asymmetry with MINOR_AGE: "our unborn daughter" tags FAM_KIN ("daughter") but NOT MINOR_AGE — \
+"unborn" is not an age band and no existing minor is present. Real, existing people in the same pregnancy \
+context tag normally: a pregnant relative ("my daughter is expecting" → FAM_KIN "daughter"), a partner ("my wife is pregnant" → GEN_NOUN "wife").
   Generic child nouns ("kid(s)", "child(ren)") are tagged FAM_KIN ONLY when a first-person \
 possessive binds them to the reviewer as their own offspring ("my kids", "our children") — a \
 parent-child node. The possessive must sit on the child noun itself: "my kids" tags, but \
@@ -152,10 +166,12 @@ minor today.
 - Pregnancy Loss or Miscarriage: "I bought this item after my [miscarriage]GEN_PHYS." -> \
 Annotate GEN_PHYS but NEVER MINOR_AGE; this anchors reviewer gender biology safely without \
 triggering phantom minor tracking.
-- Expected / Unborn Child: "We're so excited — expecting another little one in March!" -> \
-Do NOT annotate the unborn child (MINOR_AGE) or a prospective relation to it (FAM_KIN); it is a \
-not-yet-existent person. A real pregnant person or partner in the same review still tags ("my wife \
-is pregnant" -> GEN_NOUN "wife").
+- Expected / Unborn Child: A committed pregnancy with an explicit kinship term tags FAM_KIN \
+but NOT MINOR_AGE: "We bought this for our unborn [daughter]FAM_KIN" -> tag "daughter" (FAM_KIN); \
+do NOT tag a MINOR_AGE span (no age band, no existing minor). A committed pregnancy with NO kinship \
+term tags nothing here: "expecting another little one in March" -> no tag. A hypothetical/planned \
+child tags nothing: "if we ever have a girl" -> no tag. A real pregnant person or partner still \
+tags ("my wife is pregnant" -> GEN_NOUN "wife").
 - Product-Audience / Suitability Frames: "Good fun for toddler to throw around", "too slow for \
 little ones to enjoy", "bought it for kids at church" -> Do NOT annotate; the child/developmental \
 term names who the product suits (a generic audience or group), not a specific real child. Tag \
@@ -331,11 +347,16 @@ or HYPOTHETICAL personas are unanchored. For MINOR_AGE and MINOR_EDU specificall
 milestone in a product-function/benefit clause (e.g., "teething" in "great for teething"); \
 or an educational tier in a product-suitability clause (e.g., "elementary school" in "good for elementary school", "preschool" in "great for preschoolers"); \
 or a bra/cup size describing product fit rather than the reviewer's body (e.g., "34G" in "runs small \
-if you're usually a 34G"); or an educational tier that anchors no real child — a homeschool/other stage with no real minor established in the review (e.g., "homeschool" in "we'll probably homeschool" when no child is mentioned). The same applies to a tier or institution named only as the reviewer's OWN setting/workplace alongside a bare group, with no specific tier or age of real students (e.g., flag "<MINOR_EDU>day care</MINOR_EDU>" in "bought for day care use ... the kids love them"); but a specific tier anchored to the setting's real students stays tagged (e.g., "<MINOR_EDU>1st grade</MINOR_EDU>" in "for my 1st grade classroom ... my students love it" is anchored — do NOT flag it). A future or milestone tier of a REAL anchored minor ("until he graduates high school") is anchored and must stay tagged, so do NOT flag it as unanchored on tense grounds. An expected or unborn child, however, IS \
-unanchored: a tag on a pregnancy/anticipated-birth referent ("expecting another little one", \
-"our future son", "the baby we're expecting") names a not-yet-existent person and must be flagged \
-(a MINOR_AGE span or a prospective FAM_KIN relation alike); a REAL pregnant person or partner in \
-the same review ("my wife is pregnant") stays tagged. \
+if you're usually a 34G"); or an educational tier that anchors no real child — a homeschool/other stage \
+with no real minor established in the review (e.g., "homeschool" in "we'll probably homeschool" when no child is mentioned). \
+The same applies to a tier or institution named only as the reviewer's OWN setting/workplace alongside a bare group, \
+with no specific tier or age of real students (e.g., flag "<MINOR_EDU>day care</MINOR_EDU>" in "bought for day care use ... the kids love them"); \
+but a specific tier anchored to the setting's real students stays tagged (e.g., "<MINOR_EDU>1st grade</MINOR_EDU>" in "for my 1st grade classroom ... my students love it" is anchored \
+— do NOT flag it). A future or milestone tier of a REAL anchored minor ("until he graduates high school") is anchored and must stay tagged, so do NOT flag it as unanchored on tense grounds. \
+An expected/unborn child is handled asymmetrically. A MINOR_AGE span on an unborn child IS unanchored and must be flagged ("expecting another <MINOR_AGE>little one</MINOR_AGE>"): \
+no age band, no existing minor. But a FAM_KIN relation on a COMMITTED pregnancy with an explicit kinship term is valid and must NOT be flagged ("our unborn <FAM_KIN>daughter</FAM_KIN>", \
+"the <FAM_KIN>son</FAM_KIN> we're expecting"). A kinship tag on a HYPOTHETICAL/planned child ("<FAM_KIN>daughter</FAM_KIN>" in "if we ever have a girl") remains unanchored — flag it. \
+A REAL pregnant person or partner ("my wife is pregnant") stays tagged. \
 A mention that corefers to a real child/relative established elsewhere \
 in RAW_TEXT is anchored and must stay tagged, even if its own clause reads generically; only \
 mentions introducing a new hypothetical/product-category referent are unanchored.
