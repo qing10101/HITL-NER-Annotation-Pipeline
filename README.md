@@ -5,6 +5,11 @@ large-scale (20,000+) privacy-NER dataset from noisy e-commerce reviews — with
 index-drift or over-annotation errors.
 
 See [PRD.md](PRD.md) for the full spec. The design is taken from `Proposed Pipeline.pdf`.
+The annotation rules themselves — what to tag, what to exclude, span boundaries, label
+selection — are sourced verbatim from `Final Guideline.docx` ("NER Annotation Guidelines:
+Implicit Privacy Risks in Reviews") and embedded as a single `GUIDELINE` block in
+[prompts.py](pipeline/prompts.py), shared by both the annotator and auditor system prompts
+so the two stages judge against the identical rulebook.
 
 ## How it works
 
@@ -29,8 +34,18 @@ Either stage can use any provider — the models above are config, not hard-wire
 (see [providers.py](pipeline/providers.py)). "Cross-family" auditing just means
 the auditor uses a different provider than the annotator.
 
-**Tagset:** `MINOR_AGE`, `MINOR_EDU`, `GEN_NOUN`, `GEN_PHYS`, `FAM_KIN`
-**Error types:** `RAW_TEXT_MUTATION`, `NON_HUMAN_TAGGING`, `UNANCHORED_TAGGING`, `OMITTED_VALID_TAG`, `MISALLOCATED_LABEL`, `INVALID_SPAN_BOUNDARY`, `OUT_OF_SCOPE_TAG`
+**Tagset:**
+| Label | Category | Meaning |
+|---|---|---|
+| `MINOR_AGE` | Minor Info | Age/developmental indicator of a real human child under 18 |
+| `MINOR_EDU` | Minor Info | A specific educational tier exclusive to human minors (not bare "school") |
+| `GEN_NOUN` | Gender | Explicit gendered noun for the reviewer or their romantic partner |
+| `GEN_PHYS` | Gender | Sex-specific physiological condition/milestone of the reviewer or partner |
+| `FAM_KIN` | Family Structure | Kinship term establishing the reviewer's family network |
+
+**Error types (dominant-selection precedence, first match wins when several apply):**
+`RAW_TEXT_MUTATION` > `NON_HUMAN_TAGGING` > `UNANCHORED_TAGGING` > `OUT_OF_SCOPE_TAG` >
+`MISALLOCATED_LABEL` > `INVALID_SPAN_BOUNDARY` > `OMITTED_VALID_TAG`
 
 ## Setup
 
