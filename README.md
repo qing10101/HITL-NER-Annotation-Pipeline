@@ -4,7 +4,7 @@ A **Cascading Multi-Agent Inline Boundary Tagging & Audit Engine** for building 
 large-scale (20,000+) privacy-NER dataset from noisy e-commerce reviews — without
 index-drift or over-annotation errors.
 
-See [PRD.md](PRD.md) for the full spec. The design is taken from `Proposed Pipeline.pdf`.
+The design is taken from `Proposed Pipeline.pdf`.
 The annotation rules themselves — what to tag, what to exclude, span boundaries, label
 selection — are sourced verbatim from `Final Guideline.docx` ("NER Annotation Guidelines:
 Implicit Privacy Risks in Reviews") and embedded as a single `GUIDELINE` block in
@@ -126,8 +126,8 @@ Offsets are 0-based, half-open: `raw_text[start:end] == text`.
 
 ## Human review scripts
 
-Two utility scripts live in `scripts/` to support human annotation and HITL
-adjudication workflows. Neither makes any API calls.
+Utility scripts live in `scripts/` to support human annotation and HITL
+adjudication workflows. None make any API calls.
 
 ### `scripts/export_for_review.py` — JSONL / queue → annotation CSV
 
@@ -209,6 +209,45 @@ Prints the number of test-set IDs loaded, rows removed, and rows kept.
 
 ---
 
+### `scripts/merge_human_reviewed.py` — merge adjudicated queue rows into gold
+
+Reads `output/human_reviewed.csv`, parses each row's `human_annotation` column
+through the deterministic regex parser to compute span offsets, then appends
+those rows to `output/gold_standard.csv` and writes the combined result to
+`output/gold_standard_merged.csv`. Rows with an empty `human_annotation`
+(not yet adjudicated), rows that fail tag parsing, and row_ids already present
+in gold are skipped and counted.
+
+```bash
+python scripts/merge_human_reviewed.py
+# custom paths
+python scripts/merge_human_reviewed.py \
+    --human-reviewed output/human_reviewed.csv \
+    --gold-standard output/gold_standard.csv \
+    --output output/gold_standard_merged.csv
+```
+
+---
+
+### `scripts/diff_human_vs_gold.py` — compare human annotations against gold
+
+Joins a human-annotated sample and the merged gold standard on `row_id`,
+parses each side's tagged text into spans, and writes two diff levels:
+row-level status (`MATCH | DIFF | PARSE_ERROR | ONLY_IN_HUMAN | ONLY_IN_GOLD`)
+to `output/diff_human_vs_gold.csv`, and span-level classification
+(`BOUNDARY_SHIFT | LABEL_CONFLICT | HUMAN_ONLY | GOLD_ONLY`) to
+`output/span_level_diff.csv`, plus a per-label summary printed to stdout.
+
+```bash
+python scripts/diff_human_vs_gold.py
+# custom paths
+python scripts/diff_human_vs_gold.py \
+    --human-csv output/sample_500_human.csv \
+    --gold-csv output/gold_standard_merged.csv
+```
+
+---
+
 ## Project layout
 
 ```
@@ -228,8 +267,11 @@ scripts/
   prepare_dataset.py      stream-sample rows from Amazon Reviews 2023 (HuggingFace)
   sample_from_dataset.py  randomly select N rows from a dataset
   export_for_review.py         convert JSONL or review queue to annotation/HITL CSV
-  minor_edu_retrieval.py       keyword-screen a JSONL for MINOR_EDU candidates
-  filter_sample_by_test_set.py remove test-set rows from a sampled CSV
+  minor_edu_retrieval.py        keyword-screen a JSONL for MINOR_EDU candidates
+  filter_sample_by_test_set.py  remove test-set rows from a sampled CSV
+  merge_human_reviewed.py       merge adjudicated queue rows into gold_standard
+  diff_human_vs_gold.py         row/span-level diff of human annotations vs gold
+  make_audit_chunks.py          split gold+queue rows into N reviewable audit chunks (paths hardcoded)
 tests/test_parser.py   parser correctness (no API calls)
 data/test_set_180k.jsonl
 ```
@@ -254,4 +296,4 @@ The parser tests run entirely offline (no API keys needed).
   on one row routes it to the review queue with `error_type=PIPELINE_ERROR` rather
   than aborting the batch.
 - Output store is CSV (per project decision); the schema is swap-compatible with
-  the Postgres target described in the doc.
+  a future Postgres store.
