@@ -269,7 +269,10 @@ clause: once the text establishes a real child or relative, tag every later ment
 back to that same person, even in a generic-sounding clause (e.g., 'makes traveling with baby \
 easier'); but do NOT tag a noun that introduces a new hypothetical or product-category referent \
 (e.g., 'baby items', 'a little one' in 'I could see this helping with a little one').
-- MINOR-CATEGORY CARVE-OUT: the "current household" restriction above governs GEN_NOUN, GEN_PHYS, and FAM_KIN only. For MINOR_AGE and MINOR_EDU, tag ANY real minor under 18 regardless of whose child (own, relative, friend's/neighbor's, student, gift recipient) and whether an individual or a group; only hypothetical/product-audience, product-predicated, own-occupation-tier-with-no-students, and own-past-childhood spans are excluded.
+- MINOR-CATEGORY CARVE-OUT: the "current household" restriction above governs GEN_NOUN, GEN_PHYS, \
+and FAM_KIN only. For MINOR_AGE and MINOR_EDU, tag ANY real minor under 18 regardless of whose child \
+(own, relative, friend's/neighbor's, student, gift recipient) and whether an individual or a group; \
+only hypothetical/product-audience, product-predicated, own-occupation-tier-with-no-students, and own-past-childhood spans are excluded.
 - THE HISTORICAL SELF-REFERENCE EXCLUSION: Never tag the reviewer's OWN childhood recalled in \
 the past tense, as it describes an adult's history and poses no live minor-privacy risk (e.g., \
 "When I was a teenager 20 years ago…" → tag nothing). Note this differs from a present-tense \
