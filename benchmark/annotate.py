@@ -2,11 +2,14 @@
 annotate.py
 
 Steps 2 and 3 of the GPT-NER-style pipeline (sentence-level retrieval variant):
-  - embed the query sentence with the same embedding model used to build the datastore
+  - embed the query sentences with the same SimCSE model used to build the datastore
   - kNN search (cosine similarity) over the datastore to pull the k most similar
     retrieved (raw_text -> tagged_text) pairs as few-shot demonstrations
   - build a prompt combining the annotation guideline + retrieved demonstrations + query
   - call a local Ollama generation model to produce the tagged output for the query
+
+Embeddings run locally via sentence-transformers/SimCSE (embeddings.py); Ollama is used
+only for the generation call.
 
 This is the "retriever-equipped" condition. To get the "zero-shot" condition for
 comparison, just run with --k 0 (no demonstrations retrieved/inserted).
@@ -15,7 +18,7 @@ Usage:
     python annotate.py \
         --datastore-dir ./datastore \
         --gen-model llama3.1:8b \
-        --embed-model nomic-embed-text \
+        --embed-model princeton-nlp/sup-simcse-bert-base-uncased \
         --k 8 \
         --input-csv test_reviews.csv \
         --text-col raw_text \
@@ -37,6 +40,8 @@ import numpy as np
 import pandas as pd
 import requests
 
+from embeddings import DEFAULT_SIMCSE_MODEL, embed, load_encoder
+
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from pipeline.prompts import ANNOTATOR_SYSTEM_PROMPT  # noqa: E402
 
@@ -57,36 +62,23 @@ Rules:
 
 
 # ---------------------------------------------------------------------------
-# Ollama calls
+# Ollama calls (generation only — embeddings run locally, see embeddings.py)
 # ---------------------------------------------------------------------------
 
-def get_embedding(text: str, model: str, ollama_url: str, max_retries: int = 3) -> np.ndarray:
-    url = f"{ollama_url.rstrip('/')}/api/embeddings"
-    last_err = None
-    for attempt in range(max_retries):
-        try:
-            resp = requests.post(url, json={"model": model, "prompt": text}, timeout=60)
-            resp.raise_for_status()
-            emb = np.array(resp.json()["embedding"], dtype=np.float32)
-            norm = np.linalg.norm(emb)
-            if norm > 0:
-                emb = emb / norm
-            return emb
-        except Exception as e:  # noqa: BLE001
-            last_err = e
-            time.sleep(1.5 * (attempt + 1))
-    raise RuntimeError(f"Embedding call failed after {max_retries} retries: {last_err}")
-
-
 def generate(prompt: str, model: str, ollama_url: str, temperature: float = 0.0,
-             max_retries: int = 3) -> str:
-    """Call Ollama's local generate endpoint. temperature=0.0 for deterministic tagging."""
+             num_ctx: int = 32768, max_retries: int = 3) -> str:
+    """Call Ollama's local generate endpoint. temperature=0.0 for deterministic tagging.
+
+    num_ctx must be passed explicitly: Ollama's runtime default context window is 4096
+    tokens regardless of what the model supports, and a guideline + demos + query prompt
+    routinely exceeds that, so omitting it silently truncates the prompt.
+    """
     url = f"{ollama_url.rstrip('/')}/api/generate"
     payload = {
         "model": model,
         "prompt": prompt,
         "stream": False,
-        "options": {"temperature": temperature},
+        "options": {"temperature": temperature, "num_ctx": num_ctx},
     }
     last_err = None
     for attempt in range(max_retries):
@@ -200,9 +192,17 @@ def main():
                          help="Path to a text file containing the annotation guideline. "
                               "Defaults to ANNOTATOR_SYSTEM_PROMPT from pipeline/prompts.py.")
     parser.add_argument("--gen-model", required=True, help="Ollama generation model, e.g. llama3.1:8b, qwen2.5:7b, etc.")
-    parser.add_argument("--embed-model", default="nomic-embed-text")
-    parser.add_argument("--ollama-url", default="http://localhost:11434")
+    parser.add_argument("--embed-model", default=DEFAULT_SIMCSE_MODEL,
+                         help="Hugging Face model id for a SimCSE checkpoint. Must match the model used "
+                              "in build_datastore.py, or retrieval similarity scores are meaningless.")
+    parser.add_argument("--device", default=None, help="torch device (cpu, cuda, mps). Auto-detected if omitted.")
+    parser.add_argument("--batch-size", type=int, default=64, help="Batch size for embedding query texts.")
+    parser.add_argument("--ollama-url", default="http://localhost:11434", help="Ollama server URL, used for the generation call.")
     parser.add_argument("--k", type=int, default=8, help="Number of retrieved demonstrations. Use 0 for zero-shot.")
+    parser.add_argument("--num-ctx", type=int, default=32768,
+                         help="Ollama context window (tokens) for generation. Ollama's runtime default "
+                              "is only 4096 regardless of what the model supports, which a guideline + "
+                              "demos + query prompt routinely exceeds, so this must be set explicitly.")
     parser.add_argument("--input-csv", required=True, help="CSV of new sentences to annotate.")
     parser.add_argument("--text-col", default="raw_text")
     parser.add_argument("--id-col", default="row_id")
@@ -220,16 +220,19 @@ def main():
     if args.limit:
         df = df.head(args.limit)
 
+    encoder = load_encoder(args.embed_model, args.device)
+    query_texts = df[args.text_col].astype(str).tolist()
+    query_embs = embed(encoder, query_texts, batch_size=args.batch_size)
+
     results = []
     for i, row in df.iterrows():
-        query_text = str(row[args.text_col])
+        query_text = query_texts[i]
         query_id = row[args.id_col]
 
-        query_emb = get_embedding(query_text, args.embed_model, args.ollama_url)
-        demos = ds.top_k(query_emb, args.k)
+        demos = ds.top_k(query_embs[i], args.k)
 
         prompt = build_prompt(guideline_text, demos, query_text)
-        raw_output = generate(prompt, args.gen_model, args.ollama_url)
+        raw_output = generate(prompt, args.gen_model, args.ollama_url, num_ctx=args.num_ctx)
         cleaned_output = strip_malformed_tags(raw_output)
         entities = extract_entities(cleaned_output)
 
