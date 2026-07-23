@@ -288,23 +288,44 @@ Embeddings run locally via sentence-transformers using a SimCSE checkpoint
 for the generation call. Install `requirements-benchmark.txt` first (see Setup).
 
 ```bash
-# 1. Build the embedding datastore once from a gold-standard CSV
+# 1. Build the embedding datastore once from a gold-standard CSV. When evaluating
+#    against a held-out validation set (e.g. validation/general), build the
+#    datastore from a CSV that excludes those rows, or the retriever can hand the
+#    model near-identical rows back as its own "demonstrations" (retrieval leakage).
+#    See output/gold_standard_merged_excl_general500.csv for the general-holdout case.
 python benchmark/build_datastore.py \
-    --csv output/gold_standard_merged.csv \
+    --csv output/gold_standard_merged_excl_general500.csv \
     --out-dir benchmark/datastore
 
-# 2. Annotate new sentences, retrieving k demonstrations per query
+# 2. Annotate the same held-out sentences under both conditions, same LLM:
+
+# Retriever-equipped: retrieves k demonstrations per query
 python benchmark/annotate.py \
     --datastore-dir benchmark/datastore \
     --gen-model llama3.1:8b \
     --k 8 \
-    --input-csv test_reviews.csv \
-    --out-csv predictions.csv
+    --input-csv validation/general/gold_standard_merged.csv \
+    --out-csv predictions_retriever.csv
 
-# Zero-shot condition for comparison: no demonstrations retrieved/inserted
-python benchmark/annotate.py --datastore-dir benchmark/datastore \
-    --gen-model llama3.1:8b --k 0 --input-csv test_reviews.csv --out-csv predictions_zeroshot.csv
+# Zero-shot: --k 0 means no demonstrations are retrieved/inserted, same LLM/guideline
+python benchmark/annotate.py \
+    --datastore-dir benchmark/datastore \
+    --gen-model llama3.1:8b \
+    --k 0 \
+    --input-csv validation/general/gold_standard_merged.csv \
+    --out-csv predictions_zeroshot.csv
+
+# 3. Score both conditions against gold and compare them side by side
+python benchmark/evaluate.py \
+    --gold validation/general/gold_standard_merged.csv \
+    --pred zero_shot=predictions_zeroshot.csv \
+    --pred retriever=predictions_retriever.csv
 ```
+
+`evaluate.py` reports per-label and micro-averaged precision/recall/F1 (exact
+span match: label + start + end offset) for each named `--pred` set, plus a
+final side-by-side comparison table — this is what actually establishes
+whether the retriever helps, rather than just running `--k 0` in isolation.
 
 By default `annotate.py` uses `ANNOTATOR_SYSTEM_PROMPT` from `pipeline/prompts.py`
 as the guideline text (`--guideline-file` overrides it), and both scripts share
@@ -333,6 +354,7 @@ benchmark/
   build_datastore.py   embed a gold CSV into a retrieval datastore (SimCSE)
   annotate.py          retrieve demonstrations + generate via local Ollama model
   embeddings.py         shared SimCSE/sentence-transformers encoder
+  evaluate.py           score prediction CSV(s) against gold; compares named conditions (e.g. zero-shot vs retriever)
 scripts/
   dataset_prep/
     prepare_dataset.py         stream-sample rows from Amazon Reviews 2023 (HuggingFace)

@@ -17,7 +17,7 @@ comparison, just run with --k 0 (no demonstrations retrieved/inserted).
 Usage:
     python annotate.py \
         --datastore-dir ./datastore \
-        --gen-model llama3.1:8b \
+        --gen-model gemma4:e4b \
         --embed-model princeton-nlp/sup-simcse-bert-base-uncased \
         --k 8 \
         --input-csv test_reviews.csv \
