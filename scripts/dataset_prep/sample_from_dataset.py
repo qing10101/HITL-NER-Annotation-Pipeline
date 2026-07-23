@@ -1,9 +1,9 @@
 """Randomly sample N rows from the 10 k test set.
 
 Usage:
-  python scripts/sample_from_dataset.py --n 500
-  python scripts/sample_from_dataset.py --n 200 --seed 99 --out data/my_sample.jsonl
-  python scripts/sample_from_dataset.py --n 100 --src data/my_set.jsonl
+  python scripts/dataset_prep/sample_from_dataset.py --n 500
+  python scripts/dataset_prep/sample_from_dataset.py --n 200 --seed 99 --out data/my_sample.jsonl
+  python scripts/dataset_prep/sample_from_dataset.py --n 100 --src data/my_set.jsonl
 """
 from __future__ import annotations
 

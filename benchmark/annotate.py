@@ -43,9 +43,11 @@ import requests
 from embeddings import DEFAULT_SIMCSE_MODEL, embed, load_encoder
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from pipeline import TAGSET  # noqa: E402
+from pipeline.parser import TagParseError, parse_tagged_text  # noqa: E402
 from pipeline.prompts import ANNOTATOR_SYSTEM_PROMPT  # noqa: E402
 
-LABELS = ["MINOR_AGE", "MINOR_EDU", "GEN_NOUN", "GEN_PHYS", "FAM_KIN"]
+LABELS = list(TAGSET)
 
 DEFAULT_TASK_INSTRUCTIONS = f"""You are an expert annotator. Tag spans in the input text that match one of
 the following entity categories: {', '.join(LABELS)}.
@@ -138,40 +140,26 @@ def build_prompt(guideline_text: str, demos: pd.DataFrame, query_text: str) -> s
 # Output parsing / validation
 # ---------------------------------------------------------------------------
 
-TAG_PATTERN = re.compile(
-    r"<(" + "|".join(LABELS) + r")>(.*?)</\1>", re.DOTALL
-)
-
-
 def extract_entities(tagged_text: str) -> list[dict]:
     """Recover an entities_json-style list of {label, text, start, end} from generated tagged text.
 
-    Offsets are computed against the de-tagged (raw) reconstruction of the string,
-    so they're comparable to the entities_json convention in the source CSV.
+    Delegates to the pipeline's deterministic tag parser (pipeline/parser.py) so the
+    benchmark uses the exact same offset-counting logic as the labeling pipeline itself.
+    Unlike pipeline callers, benchmark generations come from an unaudited local model and
+    aren't guaranteed well-formed, so malformed tag structure (unbalanced/mismatched) is
+    swallowed into zero entities rather than raised.
     """
-    entities = []
-    cursor = 0
-    raw_reconstruction = []
-    pos = 0
-    for m in TAG_PATTERN.finditer(tagged_text):
-        # text before this tag, unchanged
-        raw_reconstruction.append(tagged_text[pos:m.start()])
-        cursor += len(tagged_text[pos:m.start()])
-        label, span_text = m.group(1), m.group(2)
-        start = cursor
-        end = start + len(span_text)
-        entities.append({"label": label, "text": span_text, "start": start, "end": end})
-        raw_reconstruction.append(span_text)
-        cursor = end
-        pos = m.end()
-    raw_reconstruction.append(tagged_text[pos:])
-    return entities
+    try:
+        _, spans = parse_tagged_text(tagged_text)
+    except TagParseError:
+        return []
+    return [{"label": s.label, "text": s.text, "start": s.start, "end": s.end} for s in spans]
 
 
 def strip_malformed_tags(tagged_text: str) -> str:
     """Best-effort cleanup if the model emits a tag not in LABELS or an unclosed tag.
-    Leaves well-formed tags alone; strips anything that doesn't match TAG_PATTERN's
-    known labels by removing stray angle-bracket fragments.
+    Leaves well-formed tags alone; strips anything that doesn't match a known
+    label by removing stray angle-bracket fragments.
     """
     known_open = {f"<{lab}>" for lab in LABELS} | {f"</{lab}>" for lab in LABELS}
     # remove any tag-like token not in the known set

@@ -11,7 +11,7 @@ import json
 from collections import Counter
 from pathlib import Path
 
-ROOT = Path(__file__).parent.parent
+ROOT = Path(__file__).parent.parent.parent
 GOLD_CSV = ROOT / "output" / "gold_standard_merged.csv"
 
 

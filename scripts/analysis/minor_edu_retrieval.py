@@ -19,21 +19,21 @@ and can be dropped with --min-score.
 
 Usage:
   # Full scan, sorted by confidence
-  python scripts/minor_edu_retrieval.py data/sample_2000.jsonl
+  python scripts/analysis/minor_edu_retrieval.py data/sample_2000.jsonl
 
   # Only high-confidence rows
-  python scripts/minor_edu_retrieval.py data/sample_2000.jsonl --min-score 3
+  python scripts/analysis/minor_edu_retrieval.py data/sample_2000.jsonl --min-score 3
 
   # Filter to a single education tier
-  python scripts/minor_edu_retrieval.py data/sample_2000.jsonl --edu-tier high_school
+  python scripts/analysis/minor_edu_retrieval.py data/sample_2000.jsonl --edu-tier high_school
 
   # Multiple tier filters, custom output path
-  python scripts/minor_edu_retrieval.py data/sample_2000.jsonl \\
+  python scripts/analysis/minor_edu_retrieval.py data/sample_2000.jsonl \\
       --edu-tier elementary --edu-tier middle \\
       --out data/elem_mid_candidates.csv
 
   # Preserve original JSONL order instead of sorting by score
-  python scripts/minor_edu_retrieval.py data/sample_2000.jsonl --no-sort
+  python scripts/analysis/minor_edu_retrieval.py data/sample_2000.jsonl --no-sort
 """
 from __future__ import annotations
 

@@ -9,7 +9,7 @@ bias.
 """
 from __future__ import annotations
 
-from config import CONFIG
+from .config import CONFIG
 from .prompts import AUDITOR_SYSTEM_PROMPT, auditor_user_prompt
 from .providers import LLMProvider, build_provider
 from .schemas import AuditResult, AuditStatus, ErrorType

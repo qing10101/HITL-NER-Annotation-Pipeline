@@ -28,7 +28,7 @@ from tenacity import (
 )
 import logging
 
-from config import CONFIG
+from .config import CONFIG
 
 logging.basicConfig(format="%(message)s", level=logging.WARNING)
 _retry_logger = logging.getLogger("pipeline.retry")

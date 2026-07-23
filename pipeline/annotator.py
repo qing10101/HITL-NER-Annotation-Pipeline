@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import re
 
-from config import CONFIG
+from .config import CONFIG
 from .prompts import ANNOTATOR_SYSTEM_PROMPT, annotator_user_prompt
 from .providers import LLMProvider, build_provider
 

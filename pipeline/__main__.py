@@ -1,10 +1,13 @@
 """CLI entrypoint for the Cascading Multi-Agent Inline Tagging & Audit pipeline.
 
+Run as a module from the repo root (this is a package __main__, not a standalone
+script — relative imports below require it):
+
 Examples
 --------
-  python run.py --input data/sample_reviews.jsonl
-  python run.py --input data/reviews.csv --text-field review --limit 500
-  python run.py --input data/reviews.jsonl --out-dir output/run1 --no-resume
+  python -m pipeline --input data/sample_reviews.jsonl
+  python -m pipeline --input data/reviews.csv --text-field review --limit 500
+  python -m pipeline --input data/reviews.jsonl --out-dir output/run1 --no-resume
 """
 from __future__ import annotations
 
@@ -13,13 +16,13 @@ import asyncio
 import sys
 import time
 
-from config import CONFIG
-from pipeline.annotator import Annotator
-from pipeline.auditor import Auditor
-from pipeline.ingestion import count_rows, stream_rows
-from pipeline.orchestrator import Orchestrator
-from pipeline.providers import build_provider
-from pipeline.writers import OutputWriter
+from .annotator import Annotator
+from .auditor import Auditor
+from .config import CONFIG
+from .ingestion import count_rows, stream_rows
+from .orchestrator import Orchestrator
+from .providers import build_provider
+from .writers import OutputWriter
 
 
 def build_arg_parser() -> argparse.ArgumentParser:

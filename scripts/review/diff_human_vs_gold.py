@@ -26,7 +26,7 @@ from collections import Counter
 from pathlib import Path
 from typing import Optional
 
-ROOT = Path(__file__).parent.parent
+ROOT = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(ROOT))
 
 from pipeline.parser import TagParseError, parse_tagged_text  # noqa: E402

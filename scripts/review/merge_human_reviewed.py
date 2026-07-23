@@ -17,7 +17,7 @@ import json
 import sys
 from pathlib import Path
 
-ROOT = Path(__file__).parent.parent
+ROOT = Path(__file__).parent.parent.parent
 sys.path.insert(0, str(ROOT))
 
 from pipeline.parser import TagParseError, parse_tagged_text  # noqa: E402

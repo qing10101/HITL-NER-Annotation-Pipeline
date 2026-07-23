@@ -8,7 +8,7 @@ import argparse
 import csv
 from pathlib import Path
 
-DATA_DIR = Path(__file__).parent.parent / "data"
+DATA_DIR = Path(__file__).parent.parent.parent / "data"
 
 DEFAULT_SAMPLE = DATA_DIR / "sample_2000.csv"
 DEFAULT_TEST_SET = DATA_DIR / "test_set_180k_minor_edu.csv"

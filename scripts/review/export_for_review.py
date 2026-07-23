@@ -13,13 +13,13 @@ Two modes:
 
 Usage:
   # Blank annotation sheet from a source JSONL
-  python scripts/export_for_review.py source data/sample_2000.jsonl
+  python scripts/review/export_for_review.py source data/sample_2000.jsonl
 
   # HITL correction sheet from the pipeline review queue
-  python scripts/export_for_review.py queue output/my_sample
+  python scripts/review/export_for_review.py queue output/my_sample
 
   # Source with filters
-  python scripts/export_for_review.py source data/sample_2000.jsonl \\
+  python scripts/review/export_for_review.py source data/sample_2000.jsonl \\
       --category Baby_Products --tier rich --limit 200 \\
       --out data/baby_annotation_sheet.csv
 """

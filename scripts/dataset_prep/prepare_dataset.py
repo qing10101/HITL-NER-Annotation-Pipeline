@@ -29,10 +29,10 @@ Output JSONL schema:
   {"id": "<asin>_<seq>", "text": "...", "category": "...", "tier": "..."}
 
 Usage:
-  python scripts/prepare_dataset.py
-  python scripts/prepare_dataset.py --out data/my_set.jsonl --seed 99
-  python scripts/prepare_dataset.py --verified-only --min-len 50
-  python scripts/prepare_dataset.py --no-resume   # discard checkpoints, restart
+  python scripts/dataset_prep/prepare_dataset.py
+  python scripts/dataset_prep/prepare_dataset.py --out data/my_set.jsonl --seed 99
+  python scripts/dataset_prep/prepare_dataset.py --verified-only --min-len 50
+  python scripts/dataset_prep/prepare_dataset.py --no-resume   # discard checkpoints, restart
 """
 from __future__ import annotations
 
