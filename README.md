@@ -346,20 +346,72 @@ SimCSE encoder.
 ## Benchmark: classical/supervised NER comparison (`benchmark/supervised/`)
 
 A second, independent benchmark subsystem — trains and scores four supervised
-NER models (spaCy, BiLSTM-CRF, SpanMarker, GLiNER) on the gold-standard corpus,
-so the LLM approach above has a supervised baseline to compare against
-(scored with the same exact-span evaluator, `benchmark/llm/evaluate.py`).
-Install `requirements-supervised.txt` first (see `benchmark/supervised/README.md` for the full
-prepare → train → predict → score workflow; it has its own PyTorch-heavy
-dependency set installed separately from both `requirements-pipeline.txt` and
-`requirements-llm.txt`).
+NER models on the gold-standard corpus, so the LLM approach above has a
+supervised baseline to compare against (scored with the same exact-span
+evaluator, `benchmark/llm/evaluate.py`). Install `requirements-supervised.txt`
+first — it has its own PyTorch-heavy dependency set, installed separately from
+both `requirements-pipeline.txt` and `requirements-llm.txt`.
+
+| Trainer | Model | Approach |
+|---|---|---|
+| `train_spacy.py` | spaCy `ner` (tok2vec, or roberta-base with `--trf`) | transition-based token tagging |
+| `train_bilstm_crf.py` | word emb + char-CNN + BiLSTM + CRF (PyTorch, no pretraining) | BIO sequence labeling |
+| `train_spanmarker.py` | SpanMarker + `microsoft/deberta-v3-base` | span enumeration + classification |
+| `train_gliner.py` | fine-tuned `urchade/gliner_medium-v2.1` | span ↔ label-phrase matching |
+
+```bash
+conda activate ner-train
+pip install torch --index-url https://download.pytorch.org/whl/cu121
+pip install -r requirements-supervised.txt
+```
+
+```bash
+cd benchmark/supervised
+
+# 1. One shared grouped+stratified 80/10/10 split, plus per-model formats.
+#    --neg-ratio 2.0 caps train at 2 empty rows per entity-bearing row.
+python prepare_data.py --neg-ratio 2.0
+
+# 2. Train (any order; each early-stops/selects on dev F1)
+python train_spacy.py                 # add --trf --gpu 0 for the transformer variant
+python train_bilstm_crf.py
+python train_gliner.py
+python train_spanmarker.py
+
+# 3. Predict on the held-out test split
+python predict.py --model spacy
+python predict.py --model bilstm
+python predict.py --model spanmarker
+python predict.py --model gliner --threshold 0.5
+
+# 4. Score all four side by side
+python ../llm/evaluate.py --gold data/splits/test.csv \
+    --pred spacy=predictions/spacy.csv \
+    --pred bilstm=predictions/bilstm.csv \
+    --pred spanmarker=predictions/spanmarker.csv \
+    --pred gliner=predictions/gliner.csv
+```
+
+Design notes:
+- **Split integrity**: rows are grouped by the product-id prefix of `row_id`
+  (near-duplicate reviews of one product never straddle splits) and groups
+  are stratified by their rarest label, so MINOR_EDU (~97 mentions) and
+  GEN_PHYS (~164) appear in every split. Same split feeds all four models.
+- **Offsets are the contract**: every model's predictions are converted back
+  to character offsets on `raw_text` before scoring; tokenization lives in
+  `common.tokenize`, which records offsets so BIO round-trips are exact.
+- **GLiNER label phrases**: GLiNER learns to match spans against
+  natural-language label descriptions (`common.GLINER_LABEL_PHRASES`). Train
+  and predict must use identical phrases; predict.py maps them back to codes.
+- **Caveat**: per-label F1 for MINOR_EDU and GEN_PHYS will be noisy — the
+  10% test slice holds only ~10 and ~16 gold entities respectively.
 
 ## Project layout
 
 ```
 requirements-pipeline.txt    core pipeline deps (google-genai, openai, pydantic, tenacity, ...)
-requirements-llm.txt   benchmark/llm/ deps (numpy, pandas, sentence-transformers, ...)
-requirements-supervised.txt          benchmark/supervised/ deps (torch, spacy, gliner, span_marker, ...)
+requirements-llm.txt         benchmark/llm/ deps (numpy, pandas, sentence-transformers, ...)
+requirements-supervised.txt  benchmark/supervised/ deps (torch, spacy, gliner, span_marker, ...)
 pipeline/
   __main__.py          CLI entrypoint — run as `python -m pipeline`
   config.py            env-driven config (keys, model IDs, paths)
@@ -400,7 +452,9 @@ scripts/
   analysis/
     minor_edu_retrieval.py     keyword-screen a JSONL for MINOR_EDU candidates
     count_entities_by_type.py  tally entity spans per label in a gold CSV
-tests/test_parser.py   parser correctness (no API calls)
+tests/
+  test_parser.py            pipeline/parser.py correctness (no API calls)
+  test_supervised_common.py benchmark/supervised/common.py + prepare_data.py (stdlib-only)
 data/test_set_180k.jsonl
 ```
 
@@ -408,9 +462,10 @@ data/test_set_180k.jsonl
 
 ```powershell
 python -m unittest tests.test_parser -v
+python -m unittest tests.test_supervised_common -v
 ```
 
-The parser tests run entirely offline (no API keys needed).
+Both run entirely offline (no API keys, no torch/spacy/transformers needed).
 
 ## Notes
 
