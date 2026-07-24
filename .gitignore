@@ -8,3 +8,4 @@ data/*
 scripts/archives/*
 validation/*
 benchmark/datastore/*
+predictions_retriever500.csv
