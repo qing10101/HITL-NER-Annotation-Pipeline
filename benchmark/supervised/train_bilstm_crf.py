@@ -11,7 +11,7 @@ as the final evaluate.py scoring). The checkpoint bundles the vocabularies
 and hyperparameters so predict.py can restore it with load_model().
 
 Usage:
-    python benchmark/ML/train_bilstm_crf.py --epochs 30
+    python benchmark/supervised/train_bilstm_crf.py --epochs 30
 """
 from __future__ import annotations
 

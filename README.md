@@ -58,7 +58,7 @@ The benchmark subsystem (`benchmark/`, see below) has its own, heavier dependenc
 set (sentence-transformers/torch) and is installed separately:
 
 ```powershell
-pip install -r requirements-benchmark.txt
+pip install -r requirements-llm.txt
 ```
 
 Models are chosen per role as `"<provider>:<model>"` specs. Defaults (current
@@ -275,7 +275,7 @@ python scripts/analysis/count_entities_by_type.py output/gold_standard_merged.cs
 
 ---
 
-## Benchmark: retriever-equipped local-model comparison (`benchmark/`)
+## Benchmark: retriever-equipped local-model comparison (`benchmark/llm/`)
 
 A separate, standalone subsystem — not part of the `pipeline/` labeling path —
 for benchmarking a local Ollama generation model against the gold-standard
@@ -285,7 +285,7 @@ local model to tag a query sentence.
 
 Embeddings run locally via sentence-transformers using a SimCSE checkpoint
 (`princeton-nlp/sup-simcse-bert-base-uncased` by default); Ollama is used only
-for the generation call. Install `requirements-benchmark.txt` first (see Setup).
+for the generation call. Install `requirements-llm.txt` first (see Setup).
 
 ```bash
 # 1. Build the embedding datastore once from a gold-standard CSV. When evaluating
@@ -293,14 +293,14 @@ for the generation call. Install `requirements-benchmark.txt` first (see Setup).
 #    datastore from a CSV that excludes those rows, or the retriever can hand the
 #    model near-identical rows back as its own "demonstrations" (retrieval leakage).
 #    See output/gold_standard_merged_excl_general500.csv for the general-holdout case.
-python benchmark/build_datastore.py \
+python benchmark/llm/build_datastore.py \
     --csv output/gold_standard_merged_excl_general500.csv \
     --out-dir benchmark/datastore
 
 # 2. Annotate the same held-out sentences under both conditions, same LLM:
 
 # Retriever-equipped: retrieves k demonstrations per query
-python benchmark/annotate.py \
+python benchmark/llm/annotate.py \
     --datastore-dir benchmark/datastore \
     --gen-model llama3.1:8b \
     --k 8 \
@@ -312,7 +312,7 @@ python benchmark/annotate.py \
 # carries gold entities_json, this automatically prints a with-retriever-vs-
 # without-retriever P/R/F1 table when the run terminates -- step 3 below is only
 # needed to re-run or rescore a comparison after the fact.
-python benchmark/annotate.py \
+python benchmark/llm/annotate.py \
     --datastore-dir benchmark/datastore \
     --gen-model llama3.1:8b \
     --k 0 \
@@ -321,7 +321,7 @@ python benchmark/annotate.py \
     --compare-with predictions_retriever.csv
 
 # 3. (Optional/standalone) score both conditions against gold and compare them side by side
-python benchmark/evaluate.py \
+python benchmark/llm/evaluate.py \
     --gold validation/general/gold_standard_merged.csv \
     --pred zero_shot=predictions_zeroshot.csv \
     --pred retriever=predictions_retriever.csv
@@ -340,14 +340,26 @@ whether the retriever helps, rather than just running `--k 0` in isolation.
 By default `annotate.py` uses `ANNOTATOR_SYSTEM_PROMPT` from `pipeline/prompts.py`
 as the guideline text (`--guideline-file` overrides it), and both scripts share
 `pipeline`'s `TAGSET` and deterministic tag parser (`pipeline/parser.py`) rather
-than re-implementing tag parsing — see `benchmark/embeddings.py` for the shared
+than re-implementing tag parsing — see `benchmark/llm/embeddings.py` for the shared
 SimCSE encoder.
+
+## Benchmark: classical/supervised NER comparison (`benchmark/supervised/`)
+
+A second, independent benchmark subsystem — trains and scores four supervised
+NER models (spaCy, BiLSTM-CRF, SpanMarker, GLiNER) on the gold-standard corpus,
+so the LLM approach above has a supervised baseline to compare against
+(scored with the same exact-span evaluator, `benchmark/llm/evaluate.py`).
+Install `requirements-supervised.txt` first (see `benchmark/supervised/README.md` for the full
+prepare → train → predict → score workflow; it has its own PyTorch-heavy
+dependency set installed separately from both `requirements-pipeline.txt` and
+`requirements-llm.txt`).
 
 ## Project layout
 
 ```
 requirements-pipeline.txt    core pipeline deps (google-genai, openai, pydantic, tenacity, ...)
-requirements-benchmark.txt   benchmark-only deps (numpy, pandas, sentence-transformers, ...)
+requirements-llm.txt   benchmark/llm/ deps (numpy, pandas, sentence-transformers, ...)
+requirements-supervised.txt          benchmark/supervised/ deps (torch, spacy, gliner, span_marker, ...)
 pipeline/
   __main__.py          CLI entrypoint — run as `python -m pipeline`
   config.py            env-driven config (keys, model IDs, paths)
@@ -361,10 +373,20 @@ pipeline/
   orchestrator.py      decision fork + batch driver
   schemas.py           pydantic data contracts
 benchmark/
-  build_datastore.py   embed a gold CSV into a retrieval datastore (SimCSE)
-  annotate.py          retrieve demonstrations + generate via local Ollama model
-  embeddings.py         shared SimCSE/sentence-transformers encoder
-  evaluate.py           score prediction CSV(s) against gold; compares named conditions (e.g. zero-shot vs retriever)
+  datastore/           generated SimCSE embeddings + metadata (gitignored, built by build_datastore.py)
+  llm/
+    build_datastore.py   embed a gold CSV into a retrieval datastore (SimCSE)
+    annotate.py          retrieve demonstrations + generate via local Ollama model
+    embeddings.py        shared SimCSE/sentence-transformers encoder
+    evaluate.py          score prediction CSV(s) against gold; compares named conditions (e.g. zero-shot vs retriever)
+  supervised/
+    prepare_data.py      grouped+stratified 80/10/10 split + per-model formats
+    train_spacy.py       spaCy ner (tok2vec or roberta-base with --trf)
+    train_bilstm_crf.py  word emb + char-CNN + BiLSTM + CRF (no pretraining)
+    train_spanmarker.py  SpanMarker + microsoft/deberta-v3-base
+    train_gliner.py      fine-tuned urchade/gliner_medium-v2.1
+    predict.py           run a trained model over the held-out test split
+    common.py            shared tokenization/label-phrase utilities
 scripts/
   dataset_prep/
     prepare_dataset.py         stream-sample rows from Amazon Reviews 2023 (HuggingFace)

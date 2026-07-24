@@ -1,4 +1,4 @@
-"""Unit tests for the benchmark/ML data plumbing (common.py, prepare_data.py).
+"""Unit tests for the benchmark/supervised data plumbing (common.py, prepare_data.py).
 
 Run: python -m pytest tests/ -q   (or: python -m unittest)
 Stdlib-only — no torch/spacy/transformers needed; the offset math and split
@@ -13,7 +13,7 @@ import unittest
 from pathlib import Path
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-sys.path.insert(0, os.path.join(REPO_ROOT, "benchmark", "ML"))
+sys.path.insert(0, os.path.join(REPO_ROOT, "benchmark", "supervised"))
 
 import common  # noqa: E402
 import prepare_data  # noqa: E402

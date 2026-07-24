@@ -4,7 +4,7 @@ Builds the single shared train/dev/test split every trainer consumes, plus
 the per-model input formats. Stdlib-only — run it before installing any of
 the ML frameworks.
 
-Outputs under --out-dir (default: benchmark/ML/data):
+Outputs under --out-dir (default: benchmark/supervised/data):
     splits/{train,dev,test}.csv   gold-schema CSVs (source of truth per split)
     bio/{train,dev,test}.jsonl    tokens + BIO tags + char offsets
                                   (BiLSTM-CRF and SpanMarker)
@@ -12,7 +12,7 @@ Outputs under --out-dir (default: benchmark/ML/data):
                                   [start_tok, end_tok_inclusive, label_phrase]
 
 Usage:
-    python benchmark/ML/prepare_data.py \
+    python benchmark/supervised/prepare_data.py \
         --gold benchmark/gold_standard_merged.csv \
         --neg-ratio 2.0
 """

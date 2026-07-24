@@ -13,7 +13,7 @@ Input format (data/gliner/{train,dev}.json), per example:
 with token indices and an INCLUSIVE end index.
 
 Usage:
-    python benchmark/ML/train_gliner.py --epochs 3
+    python benchmark/supervised/train_gliner.py --epochs 3
 """
 from __future__ import annotations
 

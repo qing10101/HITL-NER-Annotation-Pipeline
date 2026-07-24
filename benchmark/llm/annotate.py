@@ -59,7 +59,7 @@ from tqdm import tqdm
 from embeddings import DEFAULT_SIMCSE_MODEL, embed, load_encoder
 from evaluate import load_gold, load_pred, print_report, score
 
-sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
 from pipeline import TAGSET  # noqa: E402
 from pipeline.parser import TagParseError, parse_tagged_text  # noqa: E402
 from pipeline.prompts import ANNOTATOR_SYSTEM_PROMPT  # noqa: E402

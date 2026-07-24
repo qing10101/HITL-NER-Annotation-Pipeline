@@ -5,16 +5,16 @@ CSV and writes a predictions CSV (row_id, predicted_entities_json) with
 char offsets on raw_text — the format benchmark/llm/evaluate.py scores.
 
 Usage:
-    python benchmark/ML/predict.py --model spacy \
-        --input benchmark/ML/data/splits/test.csv \
-        --output benchmark/ML/predictions/spacy.csv
+    python benchmark/supervised/predict.py --model spacy \
+        --input benchmark/supervised/data/splits/test.csv \
+        --output benchmark/supervised/predictions/spacy.csv
 
     python benchmark/llm/evaluate.py \
-        --gold benchmark/ML/data/splits/test.csv \
-        --pred spacy=benchmark/ML/predictions/spacy.csv \
-        --pred bilstm=benchmark/ML/predictions/bilstm.csv \
-        --pred spanmarker=benchmark/ML/predictions/spanmarker.csv \
-        --pred gliner=benchmark/ML/predictions/gliner.csv
+        --gold benchmark/supervised/data/splits/test.csv \
+        --pred spacy=benchmark/supervised/predictions/spacy.csv \
+        --pred bilstm=benchmark/supervised/predictions/bilstm.csv \
+        --pred spanmarker=benchmark/supervised/predictions/spanmarker.csv \
+        --pred gliner=benchmark/supervised/predictions/gliner.csv
 """
 from __future__ import annotations
 
@@ -108,10 +108,10 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="Run a trained model over a CSV.")
     ap.add_argument("--model", required=True, choices=sorted(PREDICTORS))
     ap.add_argument("--model-dir", default=None,
-                    help="Defaults to benchmark/ML/models/<model>/…")
+                    help="Defaults to benchmark/supervised/models/<model>/…")
     ap.add_argument("--input", default=str(HERE / "data" / "splits" / "test.csv"))
     ap.add_argument("--output", default=None,
-                    help="Defaults to benchmark/ML/predictions/<model>.csv")
+                    help="Defaults to benchmark/supervised/predictions/<model>.csv")
     ap.add_argument("--batch-size", type=int, default=32)
     ap.add_argument("--threshold", type=float, default=0.5,
                     help="Confidence threshold (gliner only).")

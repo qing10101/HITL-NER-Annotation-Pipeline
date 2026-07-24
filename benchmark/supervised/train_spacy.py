@@ -12,8 +12,8 @@ Two variants:
     --trf   : roberta-base transformer + ner (needs spacy-transformers)
 
 Usage:
-    python benchmark/ML/train_spacy.py                # tok2vec baseline
-    python benchmark/ML/train_spacy.py --trf --gpu 0  # transformer variant
+    python benchmark/supervised/train_spacy.py                # tok2vec baseline
+    python benchmark/supervised/train_spacy.py --trf --gpu 0  # transformer variant
 """
 from __future__ import annotations
 

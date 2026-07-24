@@ -11,7 +11,7 @@ prediction time.
 Defaults are sized for a 12 GB GPU (batch 8 x grad-accum 2, fp16).
 
 Usage:
-    python benchmark/ML/train_spanmarker.py --epochs 3
+    python benchmark/supervised/train_spanmarker.py --epochs 3
 """
 from __future__ import annotations
 

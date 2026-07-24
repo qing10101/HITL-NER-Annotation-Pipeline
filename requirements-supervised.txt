@@ -1,9 +1,9 @@
-# Dependencies for the classical-ML NER trainers (benchmark/ML/).
+# Dependencies for the supervised NER trainers (benchmark/supervised/).
 #
 # Install torch with CUDA FIRST so the other packages don't pull the CPU wheel:
 #   pip install torch --index-url https://download.pytorch.org/whl/cu121
 # then:
-#   pip install -r requirements-ml.txt
+#   pip install -r requirements-supervised.txt
 
 torch>=2.2.0
 spacy>=3.7.0,<4.0

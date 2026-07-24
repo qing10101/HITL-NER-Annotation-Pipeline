@@ -1,4 +1,4 @@
-"""Shared utilities for the classical-ML NER trainers (benchmark/ML).
+"""Shared utilities for the supervised NER trainers (benchmark/supervised).
 
 Everything in this module is stdlib-only so that data preparation and the
 unit tests run without torch / spacy / transformers installed. The heavy

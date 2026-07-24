@@ -1,9 +1,9 @@
-# ML NER Benchmark
+# Supervised NER Benchmark
 
 Trains four supervised NER models on `benchmark/gold_standard_merged.csv`
 (20k rows, 5 labels: FAM_KIN, MINOR_AGE, GEN_NOUN, GEN_PHYS, MINOR_EDU) and
 scores them with the same exact-span evaluator as the LLM benchmark
-(`benchmark/llm/evaluate.py`), so LLM and ML results are directly comparable.
+(`benchmark/llm/evaluate.py`), so the LLM and supervised results are directly comparable.
 
 | Trainer | Model | Approach |
 |---|---|---|
@@ -17,13 +17,13 @@ scores them with the same exact-span evaluator as the LLM benchmark
 ```bash
 conda activate ner-train
 pip install torch --index-url https://download.pytorch.org/whl/cu121
-pip install -r requirements-ml.txt
+pip install -r requirements-supervised.txt
 ```
 
 ## Workflow
 
 ```bash
-cd benchmark/ML
+cd benchmark/supervised
 
 # 1. One shared grouped+stratified 80/10/10 split, plus per-model formats.
 #    --neg-ratio 2.0 caps train at 2 empty rows per entity-bearing row.

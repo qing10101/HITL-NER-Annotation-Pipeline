@@ -8,8 +8,8 @@ data/*
 scripts/archives/*
 validation/*
 benchmark/datastore/*
-benchmark/ML/data/*
-benchmark/ML/models/*
-benchmark/ML/predictions/*
+benchmark/supervised/data/*
+benchmark/supervised/models/*
+benchmark/supervised/predictions/*
 predictions_retriever500.csv
 benchmark/gold_standard_merged.csv
