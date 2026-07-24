@@ -8,3 +8,6 @@ data/*
 scripts/archives/*
 validation/*
 benchmark/datastore/*
+benchmark/ML/data/*
+benchmark/ML/models/*
+benchmark/ML/predictions/*
