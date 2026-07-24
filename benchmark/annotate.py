@@ -14,6 +14,12 @@ only for the generation call.
 This is the "retriever-equipped" condition. To get the "zero-shot" condition for
 comparison, just run with --k 0 (no demonstrations retrieved/inserted).
 
+Progress is saved incrementally: each row is written to --out-csv (and flushed)
+as soon as it's annotated, rather than buffered until the end. If --out-csv
+already exists, re-running the same command resumes -- rows whose id already
+appears in it are skipped and new rows are appended. Pass --no-resume to
+ignore any existing --out-csv and start fresh instead.
+
 Usage:
     python annotate.py \
         --datastore-dir ./datastore \
@@ -30,6 +36,7 @@ Pass --guideline-file to override it with a different guideline text file.
 """
 
 import argparse
+import csv
 import json
 import re
 import sys
@@ -39,6 +46,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import requests
+from tqdm import tqdm
 
 from embeddings import DEFAULT_SIMCSE_MODEL, embed, load_encoder
 
@@ -170,6 +178,25 @@ def strip_malformed_tags(tagged_text: str) -> str:
 
 
 # ---------------------------------------------------------------------------
+# Resume support
+# ---------------------------------------------------------------------------
+
+def load_done_ids(out_path: Path, id_col: str) -> set[str]:
+    """Row ids already written to a prior (possibly interrupted) --out-csv run.
+
+    Tolerates a missing, empty, or header-only file (all -> no ids done yet)
+    so a half-written file from a crash mid-flush doesn't break resume.
+    """
+    if not out_path.exists() or out_path.stat().st_size == 0:
+        return set()
+    with out_path.open(newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        if reader.fieldnames is None or id_col not in reader.fieldnames:
+            return set()
+        return {row[id_col] for row in reader}
+
+
+# ---------------------------------------------------------------------------
 # Main driver
 # ---------------------------------------------------------------------------
 
@@ -196,6 +223,8 @@ def main():
     parser.add_argument("--id-col", default="row_id")
     parser.add_argument("--out-csv", required=True)
     parser.add_argument("--limit", type=int, default=None, help="Optional cap on number of rows to process (debugging).")
+    parser.add_argument("--no-resume", action="store_true",
+                         help="Ignore any existing --out-csv and start fresh instead of resuming/appending.")
     args = parser.parse_args()
 
     guideline_text = (
@@ -208,38 +237,59 @@ def main():
     if args.limit:
         df = df.head(args.limit)
 
+    out_path = Path(args.out_csv)
+    fieldnames = [args.id_col, "raw_text", "predicted_tagged_text", "predicted_entities_json",
+                  "num_predicted_entities", "retrieved_ids", "k_used"]
+
+    done_ids = load_done_ids(out_path, args.id_col) if not args.no_resume else set()
+    if done_ids:
+        print(f"Resuming: {len(done_ids)} row(s) already in {out_path}, skipping.")
+
+    todo_df = df[~df[args.id_col].astype(str).isin(done_ids)].reset_index(drop=True)
+    if todo_df.empty:
+        print(f"Nothing to do -- all {len(df)} row(s) already present in {out_path}.")
+        return
+
     encoder = load_encoder(args.embed_model, args.device)
-    query_texts = df[args.text_col].astype(str).tolist()
+    query_texts = todo_df[args.text_col].astype(str).tolist()
     query_embs = embed(encoder, query_texts, batch_size=args.batch_size)
 
-    results = []
-    for i, row in df.iterrows():
-        query_text = query_texts[i]
-        query_id = row[args.id_col]
+    # Append if resuming into an existing file; otherwise start the file fresh.
+    append = bool(done_ids)
+    with out_path.open("a" if append else "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        if not append or out_path.stat().st_size == 0:
+            writer.writeheader()
+            f.flush()
 
-        demos = ds.top_k(query_embs[i], args.k)
+        progress = tqdm(todo_df.iterrows(), total=len(df), initial=len(done_ids),
+                         desc=f"annotating (k={args.k})", unit="row")
+        for i, row in progress:
+            query_text = query_texts[i]
+            query_id = row[args.id_col]
 
-        prompt = build_prompt(guideline_text, demos, query_text)
-        raw_output = generate(prompt, args.gen_model, args.ollama_url, num_ctx=args.num_ctx)
-        cleaned_output = strip_malformed_tags(raw_output)
-        entities = extract_entities(cleaned_output)
+            demos = ds.top_k(query_embs[i], args.k)
 
-        results.append({
-            args.id_col: query_id,
-            "raw_text": query_text,
-            "predicted_tagged_text": cleaned_output,
-            "predicted_entities_json": json.dumps(entities, ensure_ascii=False),
-            "num_predicted_entities": len(entities),
-            "retrieved_ids": ",".join(demos["row_id"].astype(str).tolist()) if len(demos) else "",
-            "k_used": args.k,
-        })
+            prompt = build_prompt(guideline_text, demos, query_text)
+            raw_output = generate(prompt, args.gen_model, args.ollama_url, num_ctx=args.num_ctx)
+            cleaned_output = strip_malformed_tags(raw_output)
+            entities = extract_entities(cleaned_output)
 
-        if (i + 1) % 25 == 0 or (i + 1) == len(df):
-            print(f"  annotated {i + 1}/{len(df)}")
+            writer.writerow({
+                args.id_col: query_id,
+                "raw_text": query_text,
+                "predicted_tagged_text": cleaned_output,
+                "predicted_entities_json": json.dumps(entities, ensure_ascii=False),
+                "num_predicted_entities": len(entities),
+                "retrieved_ids": ",".join(demos["row_id"].astype(str).tolist()) if len(demos) else "",
+                "k_used": args.k,
+            })
+            f.flush()
+            progress.set_postfix(entities=len(entities))
 
-    out_df = pd.DataFrame(results)
-    out_df.to_csv(args.out_csv, index=False)
-    print(f"Wrote predictions for {len(out_df)} rows to {args.out_csv}")
+    total_done = len(done_ids) + len(todo_df)
+    print(f"Wrote predictions for {total_done} row(s) total to {args.out_csv} "
+          f"({len(todo_df)} newly annotated this run).")
 
 
 if __name__ == "__main__":
