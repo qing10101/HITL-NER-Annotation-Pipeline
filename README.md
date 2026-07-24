@@ -307,20 +307,30 @@ python benchmark/annotate.py \
     --input-csv validation/general/gold_standard_merged.csv \
     --out-csv predictions_retriever.csv
 
-# Zero-shot: --k 0 means no demonstrations are retrieved/inserted, same LLM/guideline
+# Zero-shot: --k 0 means no demonstrations are retrieved/inserted, same LLM/guideline.
+# --compare-with points at the counterpart run's --out-csv: since --input-csv here
+# carries gold entities_json, this automatically prints a with-retriever-vs-
+# without-retriever P/R/F1 table when the run terminates -- step 3 below is only
+# needed to re-run or rescore a comparison after the fact.
 python benchmark/annotate.py \
     --datastore-dir benchmark/datastore \
     --gen-model llama3.1:8b \
     --k 0 \
     --input-csv validation/general/gold_standard_merged.csv \
-    --out-csv predictions_zeroshot.csv
+    --out-csv predictions_zeroshot.csv \
+    --compare-with predictions_retriever.csv
 
-# 3. Score both conditions against gold and compare them side by side
+# 3. (Optional/standalone) score both conditions against gold and compare them side by side
 python benchmark/evaluate.py \
     --gold validation/general/gold_standard_merged.csv \
     --pred zero_shot=predictions_zeroshot.csv \
     --pred retriever=predictions_retriever.csv
 ```
+
+Both `annotate.py` runs are resumable: progress is written to `--out-csv`
+incrementally (flushed after every row), so re-running the same command after
+an interruption skips rows already done instead of starting over. Pass
+`--no-resume` to force a fresh run.
 
 `evaluate.py` reports per-label and micro-averaged precision/recall/F1 (exact
 span match: label + start + end offset) for each named `--pred` set, plus a

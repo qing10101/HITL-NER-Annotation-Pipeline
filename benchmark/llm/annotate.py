@@ -14,6 +14,20 @@ only for the generation call.
 This is the "retriever-equipped" condition. To get the "zero-shot" condition for
 comparison, just run with --k 0 (no demonstrations retrieved/inserted).
 
+Progress is saved incrementally: each row is written to --out-csv (and flushed)
+as soon as it's annotated, rather than buffered until the end. If --out-csv
+already exists, re-running the same command resumes -- rows whose id already
+appears in it are skipped and new rows are appended. Pass --no-resume to
+ignore any existing --out-csv and start fresh instead.
+
+If --input-csv carries a gold entities_json column, a "with retriever vs
+without retriever" comparison table is printed when the run terminates:
+this run's own (accumulated, post-resume) predictions in --out-csv are always
+scored against gold; passing --compare-with <path to the other condition's
+--out-csv> additionally scores that counterpart run and prints both side by
+side (reusing evaluate.py's scoring, so this is the same table evaluate.py
+would produce -- just automatic at the end of a run).
+
 Usage:
     python annotate.py \
         --datastore-dir ./datastore \
@@ -30,6 +44,7 @@ Pass --guideline-file to override it with a different guideline text file.
 """
 
 import argparse
+import csv
 import json
 import re
 import sys
@@ -39,8 +54,10 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import requests
+from tqdm import tqdm
 
 from embeddings import DEFAULT_SIMCSE_MODEL, embed, load_encoder
+from evaluate import load_gold, load_pred, print_report, score
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from pipeline import TAGSET  # noqa: E402
@@ -170,6 +187,64 @@ def strip_malformed_tags(tagged_text: str) -> str:
 
 
 # ---------------------------------------------------------------------------
+# Resume support
+# ---------------------------------------------------------------------------
+
+def condition_label(pred_csv_path: str, k_used: int | None = None) -> str:
+    """'zero-shot (k=0)' / 'retriever (k=N)', reading k_used from the CSV if not given directly."""
+    if k_used is None:
+        with open(pred_csv_path, newline="", encoding="utf-8") as f:
+            first = next(csv.DictReader(f), None)
+        k_used = int(first["k_used"]) if first and "k_used" in first else None
+    if k_used is None:
+        return Path(pred_csv_path).stem
+    return "zero-shot (k=0)" if k_used == 0 else f"retriever (k={k_used})"
+
+
+def report_comparison(args: argparse.Namespace, df: pd.DataFrame, out_path: Path) -> None:
+    """Print the with-retriever-vs-without-retriever comparison table (see module docstring).
+
+    No-ops (with a note) if --input-csv lacks gold entities_json, or --id-col isn't "row_id"
+    (evaluate.py's scoring keys on that column name specifically).
+    """
+    if args.id_col != "row_id" or "entities_json" not in df.columns:
+        if args.compare_with and "entities_json" not in df.columns:
+            print("\nNote: --input-csv has no gold entities_json column; skipping --compare-with scoring.")
+        return
+
+    gold = load_gold(args.input_csv)
+    own_name = condition_label(str(out_path), k_used=args.k)
+    own_result = score(gold, load_pred(str(out_path)))
+    print_report(own_name, own_result)
+
+    if args.compare_with:
+        other_name = condition_label(args.compare_with)
+        other_result = score(gold, load_pred(args.compare_with))
+        print_report(other_name, other_result)
+
+        print("\n=== WITH RETRIEVER vs WITHOUT RETRIEVER (micro-avg) ===")
+        width = max(len(own_name), len(other_name))
+        for name, result in [(own_name, own_result), (other_name, other_result)]:
+            m = result["micro"]
+            print(f"  {name:<{width}}  P={m['precision']:.3f}  R={m['recall']:.3f}  F1={m['f1']:.3f}")
+
+
+def load_done_ids(out_path: Path, id_col: str) -> set[str]:
+    """Row ids already written to a prior (possibly interrupted) --out-csv run.
+
+    Tolerates a missing, empty, or header-only file (all -> no ids done yet)
+    so a half-written file from a crash mid-flush doesn't break resume.
+    """
+    if not out_path.exists() or out_path.stat().st_size == 0:
+        return set()
+    with out_path.open(newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        if reader.fieldnames is None or id_col not in reader.fieldnames:
+            return set()
+        return {row[id_col] for row in reader}
+
+
+# ---------------------------------------------------------------------------
 # Main driver
 # ---------------------------------------------------------------------------
 
@@ -196,6 +271,13 @@ def main():
     parser.add_argument("--id-col", default="row_id")
     parser.add_argument("--out-csv", required=True)
     parser.add_argument("--limit", type=int, default=None, help="Optional cap on number of rows to process (debugging).")
+    parser.add_argument("--no-resume", action="store_true",
+                         help="Ignore any existing --out-csv and start fresh instead of resuming/appending.")
+    parser.add_argument("--compare-with", default=None,
+                         help="Path to the counterpart condition's --out-csv (e.g. the zero-shot run's "
+                              "output, when this run is retriever-equipped, or vice versa). If given and "
+                              "--input-csv has a gold entities_json column, prints a with-retriever-vs-"
+                              "without-retriever P/R/F1 comparison table when this run terminates.")
     args = parser.parse_args()
 
     guideline_text = (
@@ -208,38 +290,62 @@ def main():
     if args.limit:
         df = df.head(args.limit)
 
+    out_path = Path(args.out_csv)
+    fieldnames = [args.id_col, "raw_text", "predicted_tagged_text", "predicted_entities_json",
+                  "num_predicted_entities", "retrieved_ids", "k_used"]
+
+    done_ids = load_done_ids(out_path, args.id_col) if not args.no_resume else set()
+    if done_ids:
+        print(f"Resuming: {len(done_ids)} row(s) already in {out_path}, skipping.")
+
+    todo_df = df[~df[args.id_col].astype(str).isin(done_ids)].reset_index(drop=True)
+    if todo_df.empty:
+        print(f"Nothing to do -- all {len(df)} row(s) already present in {out_path}.")
+        report_comparison(args, df, out_path)
+        return
+
     encoder = load_encoder(args.embed_model, args.device)
-    query_texts = df[args.text_col].astype(str).tolist()
+    query_texts = todo_df[args.text_col].astype(str).tolist()
     query_embs = embed(encoder, query_texts, batch_size=args.batch_size)
 
-    results = []
-    for i, row in df.iterrows():
-        query_text = query_texts[i]
-        query_id = row[args.id_col]
+    # Append if resuming into an existing file; otherwise start the file fresh.
+    append = bool(done_ids)
+    with out_path.open("a" if append else "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        if not append or out_path.stat().st_size == 0:
+            writer.writeheader()
+            f.flush()
 
-        demos = ds.top_k(query_embs[i], args.k)
+        progress = tqdm(todo_df.iterrows(), total=len(df), initial=len(done_ids),
+                         desc=f"annotating (k={args.k})", unit="row")
+        for i, row in progress:
+            query_text = query_texts[i]
+            query_id = row[args.id_col]
 
-        prompt = build_prompt(guideline_text, demos, query_text)
-        raw_output = generate(prompt, args.gen_model, args.ollama_url, num_ctx=args.num_ctx)
-        cleaned_output = strip_malformed_tags(raw_output)
-        entities = extract_entities(cleaned_output)
+            demos = ds.top_k(query_embs[i], args.k)
 
-        results.append({
-            args.id_col: query_id,
-            "raw_text": query_text,
-            "predicted_tagged_text": cleaned_output,
-            "predicted_entities_json": json.dumps(entities, ensure_ascii=False),
-            "num_predicted_entities": len(entities),
-            "retrieved_ids": ",".join(demos["row_id"].astype(str).tolist()) if len(demos) else "",
-            "k_used": args.k,
-        })
+            prompt = build_prompt(guideline_text, demos, query_text)
+            raw_output = generate(prompt, args.gen_model, args.ollama_url, num_ctx=args.num_ctx)
+            cleaned_output = strip_malformed_tags(raw_output)
+            entities = extract_entities(cleaned_output)
 
-        if (i + 1) % 25 == 0 or (i + 1) == len(df):
-            print(f"  annotated {i + 1}/{len(df)}")
+            writer.writerow({
+                args.id_col: query_id,
+                "raw_text": query_text,
+                "predicted_tagged_text": cleaned_output,
+                "predicted_entities_json": json.dumps(entities, ensure_ascii=False),
+                "num_predicted_entities": len(entities),
+                "retrieved_ids": ",".join(demos["row_id"].astype(str).tolist()) if len(demos) else "",
+                "k_used": args.k,
+            })
+            f.flush()
+            progress.set_postfix(entities=len(entities))
 
-    out_df = pd.DataFrame(results)
-    out_df.to_csv(args.out_csv, index=False)
-    print(f"Wrote predictions for {len(out_df)} rows to {args.out_csv}")
+    total_done = len(done_ids) + len(todo_df)
+    print(f"Wrote predictions for {total_done} row(s) total to {args.out_csv} "
+          f"({len(todo_df)} newly annotated this run).")
+
+    report_comparison(args, df, out_path)
 
 
 if __name__ == "__main__":
