@@ -335,8 +335,10 @@ an interruption skips rows already done instead of starting over. Pass
 Each generation call is retried `--max-retries` times (default 3, with backoff).
 A row that fails every attempt is not fatal: it is written to `--out-csv` with a
 `FAILED` marker and skipped, so one dead row can't abort a multi-hour run. Because
-it's recorded, a plain resume treats it as done and won't retry it — to re-attempt
-failed rows later, delete their rows from `--out-csv` (or use `--no-resume`).
+it's recorded, a plain resume treats it as done and won't retry it. Pass
+`--retry-failed` on a later resume to re-annotate only the `FAILED` rows (it drops
+their stale entries first, so no duplicate ids appear) — useful after a transient
+outage. `--no-resume` still reprocesses everything from scratch.
 
 `evaluate.py` reports per-label and micro-averaged precision/recall/F1 (exact
 span match: label + start + end offset) for each named `--pred` set, plus a

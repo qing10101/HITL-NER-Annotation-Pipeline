@@ -241,19 +241,47 @@ def report_comparison(args: argparse.Namespace, df: pd.DataFrame, out_path: Path
                   f"F1={m['f1']:.3f}{fail_note}")
 
 
-def load_done_ids(out_path: Path, id_col: str) -> set[str]:
+def load_progress(out_path: Path, id_col: str) -> tuple[set[str], set[str]]:
     """Row ids already written to a prior (possibly interrupted) --out-csv run.
 
-    Tolerates a missing, empty, or header-only file (all -> no ids done yet)
-    so a half-written file from a crash mid-flush doesn't break resume.
+    Returns (done_ids, failed_ids): done_ids is every id present in the file;
+    failed_ids is the subset marked FAILED (all retries exhausted). Tolerates a
+    missing, empty, or header-only file (all -> both empty) so a half-written file
+    from a crash mid-flush doesn't break resume.
     """
     if not out_path.exists() or out_path.stat().st_size == 0:
-        return set()
+        return set(), set()
+    done: set[str] = set()
+    failed: set[str] = set()
     with out_path.open(newline="", encoding="utf-8") as f:
         reader = csv.DictReader(f)
         if reader.fieldnames is None or id_col not in reader.fieldnames:
-            return set()
-        return {row[id_col] for row in reader}
+            return set(), set()
+        has_pred = "predicted_entities_json" in reader.fieldnames
+        for row in reader:
+            rid = row[id_col]
+            done.add(rid)
+            if has_pred and row["predicted_entities_json"] == FAILED_MARKER:
+                failed.add(rid)
+    return done, failed
+
+
+def drop_failed_rows(out_path: Path) -> int:
+    """Rewrite --out-csv keeping only non-FAILED rows; return how many were dropped.
+
+    Used when --retry-failed is set so previously-FAILED rows can be re-annotated
+    and re-appended without leaving a duplicate id in the file.
+    """
+    with out_path.open(newline="", encoding="utf-8") as f:
+        reader = csv.DictReader(f)
+        fieldnames = reader.fieldnames
+        rows = list(reader)
+    kept = [r for r in rows if r.get("predicted_entities_json") != FAILED_MARKER]
+    with out_path.open("w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(kept)
+    return len(rows) - len(kept)
 
 
 # ---------------------------------------------------------------------------
@@ -289,6 +317,9 @@ def main():
                               "not fatal to the run.")
     parser.add_argument("--no-resume", action="store_true",
                          help="Ignore any existing --out-csv and start fresh instead of resuming/appending.")
+    parser.add_argument("--retry-failed", action="store_true",
+                         help="On resume, re-annotate rows previously recorded FAILED (drops their stale "
+                              "FAILED entries from --out-csv first). Default: FAILED rows stay skipped.")
     parser.add_argument("--compare-with", default=None,
                          help="Path to the counterpart condition's --out-csv (e.g. the zero-shot run's "
                               "output, when this run is retriever-equipped, or vice versa). If given and "
@@ -310,9 +341,18 @@ def main():
     fieldnames = [args.id_col, "raw_text", "predicted_tagged_text", "predicted_entities_json",
                   "num_predicted_entities", "retrieved_ids", "k_used"]
 
-    done_ids = load_done_ids(out_path, args.id_col) if not args.no_resume else set()
+    done_ids, failed_ids = (load_progress(out_path, args.id_col)
+                            if not args.no_resume else (set(), set()))
+
+    if args.retry_failed and failed_ids:
+        dropped = drop_failed_rows(out_path)
+        done_ids -= failed_ids  # no longer in the file -> eligible for re-annotation
+        print(f"Retrying {dropped} previously-FAILED row(s): removed their stale entries "
+              f"from {out_path}, will re-annotate.")
+
     if done_ids:
-        print(f"Resuming: {len(done_ids)} row(s) already in {out_path}, skipping.")
+        note = f" ({len(failed_ids)} FAILED, left as-is)" if failed_ids and not args.retry_failed else ""
+        print(f"Resuming: {len(done_ids)} row(s) already in {out_path}, skipping{note}.")
 
     todo_df = df[~df[args.id_col].astype(str).isin(done_ids)].reset_index(drop=True)
     if todo_df.empty:
