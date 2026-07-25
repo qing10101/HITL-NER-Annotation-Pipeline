@@ -20,6 +20,13 @@ already exists, re-running the same command resumes -- rows whose id already
 appears in it are skipped and new rows are appended. Pass --no-resume to
 ignore any existing --out-csv and start fresh instead.
 
+Each generation call is retried --max-retries times (default 3, with backoff).
+If all retries fail, the row is NOT allowed to abort the run: it is recorded with
+a FAILED marker in --out-csv and skipped, and (being present in the file) is not
+retried on a later resume. Failed rows are surfaced explicitly in the comparison
+tables below and scored as recall misses (their gold entities become false
+negatives) -- see evaluate.py.
+
 If --input-csv carries a gold entities_json column, a "with retriever vs
 without retriever" comparison table is printed when the run terminates:
 this run's own (accumulated, post-resume) predictions in --out-csv are always
@@ -57,7 +64,7 @@ import requests
 from tqdm import tqdm
 
 from embeddings import DEFAULT_SIMCSE_MODEL, embed, load_encoder
-from evaluate import load_gold, load_pred, print_report, score
+from evaluate import FAILED_MARKER, load_gold, load_pred, print_report, score
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
 from pipeline import TAGSET  # noqa: E402
@@ -214,19 +221,24 @@ def report_comparison(args: argparse.Namespace, df: pd.DataFrame, out_path: Path
 
     gold = load_gold(args.input_csv)
     own_name = condition_label(str(out_path), k_used=args.k)
-    own_result = score(gold, load_pred(str(out_path)))
+    own_pred, own_failed = load_pred(str(out_path))
+    own_result = score(gold, own_pred, own_failed)
     print_report(own_name, own_result)
 
     if args.compare_with:
         other_name = condition_label(args.compare_with)
-        other_result = score(gold, load_pred(args.compare_with))
+        other_pred, other_failed = load_pred(args.compare_with)
+        other_result = score(gold, other_pred, other_failed)
         print_report(other_name, other_result)
 
         print("\n=== WITH RETRIEVER vs WITHOUT RETRIEVER (micro-avg) ===")
         width = max(len(own_name), len(other_name))
         for name, result in [(own_name, own_result), (other_name, other_result)]:
             m = result["micro"]
-            print(f"  {name:<{width}}  P={m['precision']:.3f}  R={m['recall']:.3f}  F1={m['f1']:.3f}")
+            failed = result.get("failed_rows", 0)
+            fail_note = f"  [{failed} failed row(s)]" if failed else ""
+            print(f"  {name:<{width}}  P={m['precision']:.3f}  R={m['recall']:.3f}  "
+                  f"F1={m['f1']:.3f}{fail_note}")
 
 
 def load_done_ids(out_path: Path, id_col: str) -> set[str]:
@@ -271,6 +283,10 @@ def main():
     parser.add_argument("--id-col", default="row_id")
     parser.add_argument("--out-csv", required=True)
     parser.add_argument("--limit", type=int, default=None, help="Optional cap on number of rows to process (debugging).")
+    parser.add_argument("--max-retries", type=int, default=3,
+                         help="Attempts per generation call before giving up on a row (default 3, with "
+                              "backoff). A row that fails all attempts is recorded FAILED and skipped, "
+                              "not fatal to the run.")
     parser.add_argument("--no-resume", action="store_true",
                          help="Ignore any existing --out-csv and start fresh instead of resuming/appending.")
     parser.add_argument("--compare-with", default=None,
@@ -316,6 +332,7 @@ def main():
             writer.writeheader()
             f.flush()
 
+        failed = 0
         progress = tqdm(todo_df.iterrows(), total=len(df), initial=len(done_ids),
                          desc=f"annotating (k={args.k})", unit="row")
         for i, row in progress:
@@ -323,9 +340,31 @@ def main():
             query_id = row[args.id_col]
 
             demos = ds.top_k(query_embs[i], args.k)
-
             prompt = build_prompt(guideline_text, demos, query_text)
-            raw_output = generate(prompt, args.gen_model, args.ollama_url, num_ctx=args.num_ctx)
+            retrieved_ids = ",".join(demos["row_id"].astype(str).tolist()) if len(demos) else ""
+
+            try:
+                raw_output = generate(prompt, args.gen_model, args.ollama_url,
+                                      num_ctx=args.num_ctx, max_retries=args.max_retries)
+            except RuntimeError as exc:
+                # All retries exhausted: record the row as FAILED and skip it rather than
+                # aborting the whole run. It scores as a recall miss in evaluate.py.
+                failed += 1
+                writer.writerow({
+                    args.id_col: query_id,
+                    "raw_text": query_text,
+                    "predicted_tagged_text": "",
+                    "predicted_entities_json": FAILED_MARKER,
+                    "num_predicted_entities": -1,
+                    "retrieved_ids": retrieved_ids,
+                    "k_used": args.k,
+                })
+                f.flush()
+                tqdm.write(f"[FAILED] {query_id}: generation failed after "
+                           f"{args.max_retries} attempt(s); recorded FAILED and skipped ({exc})")
+                progress.set_postfix(failed=failed)
+                continue
+
             cleaned_output = strip_malformed_tags(raw_output)
             entities = extract_entities(cleaned_output)
 
@@ -335,15 +374,17 @@ def main():
                 "predicted_tagged_text": cleaned_output,
                 "predicted_entities_json": json.dumps(entities, ensure_ascii=False),
                 "num_predicted_entities": len(entities),
-                "retrieved_ids": ",".join(demos["row_id"].astype(str).tolist()) if len(demos) else "",
+                "retrieved_ids": retrieved_ids,
                 "k_used": args.k,
             })
             f.flush()
-            progress.set_postfix(entities=len(entities))
+            progress.set_postfix(entities=len(entities), failed=failed)
 
     total_done = len(done_ids) + len(todo_df)
-    print(f"Wrote predictions for {total_done} row(s) total to {args.out_csv} "
-          f"({len(todo_df)} newly annotated this run).")
+    msg = (f"Wrote predictions for {total_done} row(s) total to {args.out_csv} "
+           f"({len(todo_df)} newly annotated this run")
+    msg += f", {failed} FAILED after retries)." if failed else ")."
+    print(msg)
 
     report_comparison(args, df, out_path)
 

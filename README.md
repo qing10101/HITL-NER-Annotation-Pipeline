@@ -332,10 +332,20 @@ incrementally (flushed after every row), so re-running the same command after
 an interruption skips rows already done instead of starting over. Pass
 `--no-resume` to force a fresh run.
 
+Each generation call is retried `--max-retries` times (default 3, with backoff).
+A row that fails every attempt is not fatal: it is written to `--out-csv` with a
+`FAILED` marker and skipped, so one dead row can't abort a multi-hour run. Because
+it's recorded, a plain resume treats it as done and won't retry it — to re-attempt
+failed rows later, delete their rows from `--out-csv` (or use `--no-resume`).
+
 `evaluate.py` reports per-label and micro-averaged precision/recall/F1 (exact
 span match: label + start + end offset) for each named `--pred` set, plus a
 final side-by-side comparison table — this is what actually establishes
 whether the retriever helps, rather than just running `--k 0` in isolation.
+Rows marked `FAILED` are scored as recall misses (every gold entity on a failed
+row becomes a false negative; no false positives are attributed) and their count
+is surfaced explicitly in each report and the comparison table, so retry failures
+are never silently hidden inside the F1.
 
 By default `annotate.py` uses `ANNOTATOR_SYSTEM_PROMPT` from `pipeline/prompts.py`
 as the guideline text (`--guideline-file` overrides it), and both scripts share
