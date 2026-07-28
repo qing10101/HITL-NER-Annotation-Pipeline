@@ -45,8 +45,11 @@ Usage:
         --text-col raw_text \
         --out-csv predictions.csv
 
-By default (no --guideline-file), the guideline text is ANNOTATOR_SYSTEM_PROMPT from
-pipeline/prompts.py, i.e. the same guideline used by the labeling pipeline itself.
+By default (no --guideline-file), the guideline text is ANNOTATOR_SYSTEM_PROMPT_NO_EXAMPLES
+from pipeline/prompts.py -- the labeling pipeline's annotator guideline WITHOUT its trailing
+worked-examples block. Dropping those hardcoded examples keeps the comparison clean: the
+--k 0 condition then carries no demonstrations at all (a true zero-shot baseline), and the
+only thing the retriever adds at --k > 0 is its retrieved demonstrations.
 Pass --guideline-file to override it with a different guideline text file.
 """
 
@@ -69,7 +72,7 @@ from evaluate import FAILED_MARKER, load_gold, load_pred, print_report, score
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
 from pipeline import TAGSET  # noqa: E402
 from pipeline.parser import TagParseError, parse_tagged_text  # noqa: E402
-from pipeline.prompts import ANNOTATOR_SYSTEM_PROMPT  # noqa: E402
+from pipeline.prompts import ANNOTATOR_SYSTEM_PROMPT_NO_EXAMPLES  # noqa: E402
 
 LABELS = list(TAGSET)
 
@@ -292,8 +295,9 @@ def main():
     parser = argparse.ArgumentParser(description="Retriever-equipped (or zero-shot, with --k 0) LLM NER annotation via Ollama.")
     parser.add_argument("--datastore-dir", required=True)
     parser.add_argument("--guideline-file", default=None,
-                         help="Path to a text file containing the annotation guideline. "
-                              "Defaults to ANNOTATOR_SYSTEM_PROMPT from pipeline/prompts.py.")
+                         help="Path to a text file containing the annotation guideline. Defaults to "
+                              "ANNOTATOR_SYSTEM_PROMPT_NO_EXAMPLES from pipeline/prompts.py (the pipeline "
+                              "annotator guideline with its worked-examples block stripped).")
     parser.add_argument("--gen-model", required=True, help="Ollama generation model, e.g. llama3.1:8b, qwen2.5:7b, etc.")
     parser.add_argument("--embed-model", default=DEFAULT_SIMCSE_MODEL,
                          help="Hugging Face model id for a SimCSE checkpoint. Must match the model used "
@@ -329,7 +333,7 @@ def main():
 
     guideline_text = (
         Path(args.guideline_file).read_text(encoding="utf-8")
-        if args.guideline_file else ANNOTATOR_SYSTEM_PROMPT
+        if args.guideline_file else ANNOTATOR_SYSTEM_PROMPT_NO_EXAMPLES
     )
     ds = Datastore(args.datastore_dir)
 

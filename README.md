@@ -349,10 +349,14 @@ row becomes a false negative; no false positives are attributed) and their count
 is surfaced explicitly in each report and the comparison table, so retry failures
 are never silently hidden inside the F1.
 
-By default `annotate.py` uses `ANNOTATOR_SYSTEM_PROMPT` from `pipeline/prompts.py`
-as the guideline text (`--guideline-file` overrides it), and both scripts share
-`pipeline`'s `TAGSET` and deterministic tag parser (`pipeline/parser.py`) rather
-than re-implementing tag parsing — see `benchmark/llm/embeddings.py` for the shared
+By default `annotate.py` uses `ANNOTATOR_SYSTEM_PROMPT_NO_EXAMPLES` from
+`pipeline/prompts.py` as the guideline text (`--guideline-file` overrides it) —
+the pipeline's annotator guideline with its trailing worked-examples block
+stripped. That keeps the comparison honest: with no hardcoded examples in the
+prompt, `--k 0` is a true zero-shot baseline and the retriever's demonstrations
+are the only thing that changes at `--k > 0`. Both scripts share `pipeline`'s
+`TAGSET` and deterministic tag parser (`pipeline/parser.py`) rather than
+re-implementing tag parsing — see `benchmark/llm/embeddings.py` for the shared
 SimCSE encoder.
 
 ## Benchmark: classical/supervised NER comparison (`benchmark/supervised/`)

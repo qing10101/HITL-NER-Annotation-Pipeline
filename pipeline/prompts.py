@@ -238,7 +238,11 @@ Example 11
 # Stage 1 — Primary Extraction & Annotation Engine (gemini-3.5-flash)
 # --------------------------------------------------------------------------- #
 
-ANNOTATOR_SYSTEM_PROMPT = f"""\
+# The annotator prompt WITHOUT the worked examples. The full prompt below is this
+# plus a trailing WORKED EXAMPLES block; splitting it out lets the retrieval
+# benchmark run a truly example-free guideline (so its zero-shot condition carries
+# no demonstrations at all, and the retriever's demos are the only variable).
+ANNOTATOR_SYSTEM_PROMPT_NO_EXAMPLES = f"""\
 Role & Core Persona:
 You are a deterministic, context-aware privacy metadata extraction engine. Your sole task is to \
 rewrite the user's input sequence by injecting explicit, inline structural tags around text segments \
@@ -286,7 +290,10 @@ what to exclude, label selection, span boundaries, and priority rules.
 ================================ ANNOTATION GUIDELINE ================================
 {GUIDELINE}
 ======================================================================================
+"""
 
+ANNOTATOR_SYSTEM_PROMPT = f"""\
+{ANNOTATOR_SYSTEM_PROMPT_NO_EXAMPLES}
 WORKED EXAMPLES (input -> required inline-tagged output):
 {GUIDELINE_EXAMPLES_XML}\
 """
