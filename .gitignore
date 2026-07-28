@@ -13,5 +13,4 @@ benchmark/supervised/models/*
 benchmark/supervised/predictions/*
 predictions_retriever500.csv
 benchmark/gold_standard_merged.csv
-predictions_zeroshot500.csv
-qwen3.5_0.8b_retriever500.csv
+*.csv
