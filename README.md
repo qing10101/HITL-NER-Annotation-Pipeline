@@ -320,9 +320,11 @@ python benchmark/llm/annotate.py \
     --out-csv predictions_zeroshot.csv \
     --compare-with predictions_retriever.csv
 
-# 3. (Optional/standalone) score both conditions against gold and compare them side by side
+# 3. (Optional/standalone) score both conditions against gold and compare them side by side.
+#    --collapse-3dim folds gold's 5 labels onto MINOR/GENDER/KINSHIP to match the predictions.
 python benchmark/llm/evaluate.py \
     --gold validation/general/gold_standard_merged.csv \
+    --collapse-3dim \
     --pred zero_shot=predictions_zeroshot.csv \
     --pred retriever=predictions_retriever.csv
 ```
@@ -340,24 +342,31 @@ it's recorded, a plain resume treats it as done and won't retry it. Pass
 their stale entries first, so no duplicate ids appear) — useful after a transient
 outage. `--no-resume` still reprocesses everything from scratch.
 
-`evaluate.py` reports per-label and micro-averaged precision/recall/F1 (exact
-span match: label + start + end offset) for each named `--pred` set, plus a
-final side-by-side comparison table — this is what actually establishes
-whether the retriever helps, rather than just running `--k 0` in isolation.
-Rows marked `FAILED` are scored as recall misses (every gold entity on a failed
-row becomes a false negative; no false positives are attributed) and their count
-is surfaced explicitly in each report and the comparison table, so retry failures
-are never silently hidden inside the F1.
+**Label scheme (3 dimensions).** The benchmark scores on a collapsed 3-label
+scheme — `MINOR`, `GENDER`, `KINSHIP` — rather than the pipeline's 5 fine labels.
+By default `annotate.py` uses the minimal 3-dimension guideline
+(`benchmark/guidelines/guideline_naive_3dim_minimal.txt`; `--guideline-file`
+overrides it), which carries no worked examples — so `--k 0` is a true zero-shot
+baseline and the retriever's demonstrations are the only thing that changes at
+`--k > 0`. The model emits `MINOR/GENDER/KINSHIP` tags; retrieved demonstrations
+(stored with the gold corpus's 5 fine tags) are remapped to the 3 coarse tags
+before insertion; and predictions are scored against gold with its 5 labels folded
+onto the same 3 dimensions (`MINOR_AGE`/`MINOR_EDU`→`MINOR`,
+`GEN_NOUN`/`GEN_PHYS`→`GENDER`, `FAM_KIN`→`KINSHIP`). When scoring separately with
+`evaluate.py`, pass `--collapse-3dim` to apply the same fold.
 
-By default `annotate.py` uses `ANNOTATOR_SYSTEM_PROMPT_NO_EXAMPLES` from
-`pipeline/prompts.py` as the guideline text (`--guideline-file` overrides it) —
-the pipeline's annotator guideline with its trailing worked-examples block
-stripped. That keeps the comparison honest: with no hardcoded examples in the
-prompt, `--k 0` is a true zero-shot baseline and the retriever's demonstrations
-are the only thing that changes at `--k > 0`. Both scripts share `pipeline`'s
-`TAGSET` and deterministic tag parser (`pipeline/parser.py`) rather than
-re-implementing tag parsing — see `benchmark/llm/embeddings.py` for the shared
-SimCSE encoder.
+`evaluate.py` reports per-label (across the 3 dimensions) and micro-averaged
+precision/recall/F1 (exact span match: label + start + end offset) for each named
+`--pred` set, plus a final side-by-side comparison table — this is what actually
+establishes whether the retriever helps, rather than just running `--k 0` in
+isolation. Rows marked `FAILED` are scored as recall misses (every gold entity on
+a failed row becomes a false negative; no false positives are attributed) and
+their count is surfaced explicitly in each report and the comparison table, so
+retry failures are never silently hidden inside the F1.
+
+Both scripts share `pipeline`'s deterministic tag parser (`pipeline/parser.py`,
+parameterized by label set) rather than re-implementing tag parsing — see
+`benchmark/llm/embeddings.py` for the shared SimCSE encoder.
 
 ## Benchmark: classical/supervised NER comparison (`benchmark/supervised/`)
 
@@ -442,11 +451,12 @@ pipeline/
   schemas.py           pydantic data contracts
 benchmark/
   datastore/           generated SimCSE embeddings + metadata (gitignored, built by build_datastore.py)
+  guidelines/          naive 3-dimension (MINOR/GENDER/KINSHIP) prompt guidelines for the LLM benchmark
   llm/
     build_datastore.py   embed a gold CSV into a retrieval datastore (SimCSE)
-    annotate.py          retrieve demonstrations + generate via local Ollama model
+    annotate.py          retrieve demonstrations + generate via local Ollama model (3-dim labels)
     embeddings.py        shared SimCSE/sentence-transformers encoder
-    evaluate.py          score prediction CSV(s) against gold; compares named conditions (e.g. zero-shot vs retriever)
+    evaluate.py          score prediction CSV(s) against gold; --collapse-3dim folds gold's 5 labels to 3
   supervised/
     prepare_data.py      grouped+stratified 80/10/10 split + per-model formats
     train_spacy.py       spaCy ner (tok2vec or roberta-base with --trf)

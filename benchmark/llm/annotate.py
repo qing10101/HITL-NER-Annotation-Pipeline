@@ -14,6 +14,14 @@ only for the generation call.
 This is the "retriever-equipped" condition. To get the "zero-shot" condition for
 comparison, just run with --k 0 (no demonstrations retrieved/inserted).
 
+LABEL SCHEME: this benchmark uses the collapsed 3-dimension scheme -- MINOR, GENDER,
+KINSHIP -- from the naive guidelines (benchmark/guidelines/guideline_naive_3dim_*.txt),
+not the pipeline's 5 fine labels. Model output is parsed for those 3 labels; retrieved
+demonstrations (which carry the gold corpus's 5 fine tags) are remapped to the 3 coarse
+tags before insertion; and predictions are scored against gold with its 5 labels folded
+onto the same 3 dimensions (MINOR_AGE/MINOR_EDU->MINOR, GEN_NOUN/GEN_PHYS->GENDER,
+FAM_KIN->KINSHIP).
+
 Progress is saved incrementally: each row is written to --out-csv (and flushed)
 as soon as it's annotated, rather than buffered until the end. If --out-csv
 already exists, re-running the same command resumes -- rows whose id already
@@ -45,12 +53,12 @@ Usage:
         --text-col raw_text \
         --out-csv predictions.csv
 
-By default (no --guideline-file), the guideline text is ANNOTATOR_SYSTEM_PROMPT_NO_EXAMPLES
-from pipeline/prompts.py -- the labeling pipeline's annotator guideline WITHOUT its trailing
-worked-examples block. Dropping those hardcoded examples keeps the comparison clean: the
---k 0 condition then carries no demonstrations at all (a true zero-shot baseline), and the
-only thing the retriever adds at --k > 0 is its retrieved demonstrations.
-Pass --guideline-file to override it with a different guideline text file.
+By default the guideline text is the minimal 3-dimension prompt
+(benchmark/guidelines/guideline_naive_3dim_minimal.txt), which carries no worked
+examples -- so the --k 0 condition has no demonstrations at all (a true zero-shot
+baseline) and the retriever's demonstrations are the only thing added at --k > 0.
+Pass --guideline-file to override it with a different guideline text file (keep its
+labels consistent with the 3-dimension scheme, or the parser/scoring won't match).
 """
 
 import argparse
@@ -67,20 +75,28 @@ import requests
 from tqdm import tqdm
 
 from embeddings import DEFAULT_SIMCSE_MODEL, embed, load_encoder
-from evaluate import FAILED_MARKER, load_gold, load_pred, print_report, score
+from evaluate import (COARSE_3DIM, FAILED_MARKER, THREE_DIM_LABELS,
+                      load_gold, load_pred, print_report, score)
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent.parent))
-from pipeline import TAGSET  # noqa: E402
 from pipeline.parser import TagParseError, parse_tagged_text  # noqa: E402
-from pipeline.prompts import ANNOTATOR_SYSTEM_PROMPT_NO_EXAMPLES  # noqa: E402
 
-LABELS = list(TAGSET)
+# This benchmark targets the collapsed 3-dimension scheme (MINOR, GENDER, KINSHIP)
+# used by benchmark/guidelines/guideline_naive_3dim_*.txt. Model output is parsed
+# with these labels; the gold corpus's 5 fine labels are collapsed onto them (via
+# COARSE_3DIM) both to remap retrieved demonstrations and to score against gold.
+LABELS = THREE_DIM_LABELS
+
+# Default guideline: the minimal 3-dimension prompt (overridable with --guideline-file).
+DEFAULT_GUIDELINE_FILE = str(
+    Path(__file__).resolve().parent.parent / "guidelines" / "guideline_naive_3dim_minimal.txt"
+)
 
 DEFAULT_TASK_INSTRUCTIONS = f"""You are an expert annotator. Tag spans in the input text that match one of
 the following entity categories: {', '.join(LABELS)}.
 
 Wrap each tagged span with an inline XML-style tag matching its label, e.g.:
-"My <FAM_KIN>great grandson</FAM_KIN> loves this game."
+"My <KINSHIP>great grandson</KINSHIP> loves this game."
 
 Rules:
 - Only tag spans that clearly match one of the categories above.
@@ -88,6 +104,18 @@ Rules:
 - Do not alter any text other than inserting the tags.
 - Output ONLY the tagged text. No explanation, no preamble, no markdown fences.
 """
+
+
+def remap_tagged_to_coarse(tagged_text: str) -> str:
+    """Rewrite fine gold tags (<FAM_KIN>...) to their coarse 3-dim label (<KINSHIP>...).
+
+    Retrieved demonstrations carry the datastore's 5 fine labels; remapping them keeps
+    the few-shot examples consistent with the 3-dimension guideline the model follows.
+    """
+    def _repl(m: "re.Match") -> str:
+        slash, label = m.group(1), m.group(2)
+        return f"<{slash}{COARSE_3DIM.get(label, label)}>"
+    return re.sub(r"<(/?)(" + "|".join(COARSE_3DIM) + r")>", _repl, tagged_text)
 
 
 # ---------------------------------------------------------------------------
@@ -154,7 +182,7 @@ def build_prompt(guideline_text: str, demos: pd.DataFrame, query_text: str) -> s
         parts.append("Examples:")
         for _, row in demos.iterrows():
             parts.append(f"Input: {row['raw_text']}")
-            parts.append(f"Output: {row['tagged_text']}")
+            parts.append(f"Output: {remap_tagged_to_coarse(row['tagged_text'])}")
             parts.append("")
 
     parts.append("Now tag the following input.")
@@ -177,7 +205,7 @@ def extract_entities(tagged_text: str) -> list[dict]:
     swallowed into zero entities rather than raised.
     """
     try:
-        _, spans = parse_tagged_text(tagged_text)
+        _, spans = parse_tagged_text(tagged_text, tagset=LABELS)
     except TagParseError:
         return []
     return [{"label": s.label, "text": s.text, "start": s.start, "end": s.end} for s in spans]
@@ -223,15 +251,17 @@ def report_comparison(args: argparse.Namespace, df: pd.DataFrame, out_path: Path
         return
 
     gold = load_gold(args.input_csv)
+    print("\nScoring on 3 collapsed dimensions: " + ", ".join(LABELS)
+          + " (gold's 5 fine labels folded via MINOR_AGE/EDU->MINOR, GEN_NOUN/PHYS->GENDER, FAM_KIN->KINSHIP).")
     own_name = condition_label(str(out_path), k_used=args.k)
     own_pred, own_failed = load_pred(str(out_path))
-    own_result = score(gold, own_pred, own_failed)
+    own_result = score(gold, own_pred, own_failed, gold_label_map=COARSE_3DIM)
     print_report(own_name, own_result)
 
     if args.compare_with:
         other_name = condition_label(args.compare_with)
         other_pred, other_failed = load_pred(args.compare_with)
-        other_result = score(gold, other_pred, other_failed)
+        other_result = score(gold, other_pred, other_failed, gold_label_map=COARSE_3DIM)
         print_report(other_name, other_result)
 
         print("\n=== WITH RETRIEVER vs WITHOUT RETRIEVER (micro-avg) ===")
@@ -294,10 +324,10 @@ def drop_failed_rows(out_path: Path) -> int:
 def main():
     parser = argparse.ArgumentParser(description="Retriever-equipped (or zero-shot, with --k 0) LLM NER annotation via Ollama.")
     parser.add_argument("--datastore-dir", required=True)
-    parser.add_argument("--guideline-file", default=None,
-                         help="Path to a text file containing the annotation guideline. Defaults to "
-                              "ANNOTATOR_SYSTEM_PROMPT_NO_EXAMPLES from pipeline/prompts.py (the pipeline "
-                              "annotator guideline with its worked-examples block stripped).")
+    parser.add_argument("--guideline-file", default=DEFAULT_GUIDELINE_FILE,
+                         help="Path to a text file containing the annotation guideline. Defaults to the "
+                              "minimal 3-dimension guideline (benchmark/guidelines/guideline_naive_3dim_"
+                              "minimal.txt), whose labels are MINOR, GENDER, KINSHIP.")
     parser.add_argument("--gen-model", required=True, help="Ollama generation model, e.g. llama3.1:8b, qwen2.5:7b, etc.")
     parser.add_argument("--embed-model", default=DEFAULT_SIMCSE_MODEL,
                          help="Hugging Face model id for a SimCSE checkpoint. Must match the model used "
@@ -331,10 +361,7 @@ def main():
                               "without-retriever P/R/F1 comparison table when this run terminates.")
     args = parser.parse_args()
 
-    guideline_text = (
-        Path(args.guideline_file).read_text(encoding="utf-8")
-        if args.guideline_file else ANNOTATOR_SYSTEM_PROMPT_NO_EXAMPLES
-    )
+    guideline_text = Path(args.guideline_file).read_text(encoding="utf-8")
     ds = Datastore(args.datastore_dir)
 
     df = pd.read_csv(args.input_csv)

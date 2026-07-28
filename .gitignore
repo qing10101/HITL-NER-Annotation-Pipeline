@@ -12,5 +12,4 @@ benchmark/supervised/data/*
 benchmark/supervised/models/*
 benchmark/supervised/predictions/*
 benchmark/*.csv
-benchmark/guidelines/*
 *.csv

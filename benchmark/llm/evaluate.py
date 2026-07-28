@@ -23,6 +23,11 @@ Usage:
     python evaluate.py --gold validation/general/gold_standard_merged.csv \
         --pred zero_shot=predictions_k0.csv \
         --pred retriever=predictions_k8.csv
+
+    # Predictions made with a 3-dimension guideline: collapse gold's 5 labels to
+    # the 3 coarse dimensions (MINOR, GENDER, KINSHIP) before scoring.
+    python evaluate.py --gold validation/general/gold_standard_merged.csv \
+        --collapse-3dim --pred zero_shot=predictions_k0.csv --pred retriever=predictions_k8.csv
 """
 from __future__ import annotations
 
@@ -37,6 +42,22 @@ from pathlib import Path
 # empty prediction ("[]", model correctly found no entities). Not valid JSON on
 # purpose, so it can never collide with a real prediction.
 FAILED_MARKER = "FAILED"
+
+# The 3-dimension coarse scheme the naive benchmark guidelines use
+# (benchmark/guidelines/guideline_naive_3dim_*.txt), and the map that collapses the
+# gold corpus's 5 fine labels onto it. Predictions from those guidelines are already
+# coarse; gold is collapsed with COARSE_3DIM before scoring so the two are comparable.
+THREE_DIM_LABELS = ["MINOR", "GENDER", "KINSHIP"]
+COARSE_3DIM = {
+    "MINOR_AGE": "MINOR", "MINOR_EDU": "MINOR",
+    "GEN_NOUN": "GENDER", "GEN_PHYS": "GENDER",
+    "FAM_KIN": "KINSHIP",
+}
+
+
+def remap_labels(entities: list[dict], mapping: dict[str, str]) -> list[dict]:
+    """Return entities with each label rewritten via ``mapping`` (unknown labels kept as-is)."""
+    return [{**e, "label": mapping.get(e["label"], e["label"])} for e in entities]
 
 
 def load_gold(path: str) -> dict[str, list[dict]]:
@@ -73,15 +94,22 @@ def _span_key(ent: dict) -> tuple[str, int, int]:
 
 
 def score(gold_by_id: dict[str, list[dict]], pred_by_id: dict[str, list[dict]],
-          failed_ids: set[str] | None = None) -> dict:
+          failed_ids: set[str] | None = None,
+          gold_label_map: dict[str, str] | None = None) -> dict:
     """Entity-level exact-span (label, start, end) precision/recall/F1, per label + micro.
 
     ``failed_ids`` are rows annotate.py could not produce output for (all retries
     exhausted). They must already be present in ``pred_by_id`` as [] so their gold
     spans count as false negatives; this argument is only for explicit reporting of
     how many scored rows were failures (and the gold entities lost with them).
+
+    ``gold_label_map`` optionally collapses gold labels before comparison (e.g.
+    COARSE_3DIM to score 3-dimension predictions against the 5-label gold corpus).
+    Predictions are compared as-is, so they must already be in the target scheme.
     """
     failed_ids = failed_ids or set()
+    if gold_label_map:
+        gold_by_id = {rid: remap_labels(ents, gold_label_map) for rid, ents in gold_by_id.items()}
     shared_ids = sorted(set(gold_by_id) & set(pred_by_id))
     tp: Counter = Counter()
     fp: Counter = Counter()
@@ -172,15 +200,24 @@ def main() -> None:
         help="Predictions CSV to score, optionally 'name=path.csv' to label it in the "
              "report (default label: the filename stem). Repeatable to compare conditions.",
     )
+    ap.add_argument(
+        "--collapse-3dim", action="store_true",
+        help="Collapse the gold corpus's 5 fine labels onto the 3 coarse dimensions "
+             "(MINOR, GENDER, KINSHIP) before scoring. Use when the predictions were "
+             "produced with a 3-dimension guideline (benchmark/guidelines/guideline_naive_3dim_*).",
+    )
     args = ap.parse_args()
 
     gold = load_gold(args.gold)
+    gold_map = COARSE_3DIM if args.collapse_3dim else None
+    if args.collapse_3dim:
+        print("Scoring on 3 collapsed dimensions: " + ", ".join(THREE_DIM_LABELS))
 
     results = {}
     for raw in args.pred:
         name, path = parse_pred_arg(raw)
         pred, failed = load_pred(path)
-        results[name] = score(gold, pred, failed)
+        results[name] = score(gold, pred, failed, gold_label_map=gold_map)
         print_report(name, results[name])
 
     if len(results) > 1:

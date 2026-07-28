@@ -17,32 +17,45 @@ from typing import List, Tuple
 from . import TAGSET
 from .schemas import Span
 
-# Matches an opening <LABEL> or closing </LABEL> tag for any known label.
-_TAG_RE = re.compile(r"<(/?)(" + "|".join(TAGSET) + r")>")
+
+def _build_tag_re(tagset) -> re.Pattern:
+    """Compile a regex matching an opening <LABEL> or closing </LABEL> for the tagset."""
+    return re.compile(r"<(/?)(" + "|".join(tagset) + r")>")
+
+
+# Default pattern for the pipeline's own 5-label TAGSET. Callers with a different
+# label set (e.g. the 3-dimension benchmark) pass ``tagset=`` to override it.
+_TAG_RE = _build_tag_re(TAGSET)
 
 
 class TagParseError(ValueError):
     """Raised when tag structure is malformed (unbalanced / mismatched / nested)."""
 
 
-def strip_tags(tagged_text: str) -> str:
+def strip_tags(tagged_text: str, tagset=None) -> str:
     """Return the clean text with all known tags removed (no offset tracking)."""
-    return _TAG_RE.sub("", tagged_text)
+    tag_re = _TAG_RE if tagset is None else _build_tag_re(tagset)
+    return tag_re.sub("", tagged_text)
 
 
-def parse_tagged_text(tagged_text: str) -> Tuple[str, List[Span]]:
+def parse_tagged_text(tagged_text: str, tagset=None) -> Tuple[str, List[Span]]:
     """Parse inline-tagged text into ``(clean_text, spans)``.
+
+    ``tagset`` overrides which labels are recognized (default: the pipeline's
+    5-label ``TAGSET``); pass a different iterable to parse another label scheme,
+    e.g. the benchmark's collapsed 3-dimension labels.
 
     Raises ``TagParseError`` on unbalanced or mismatched tags so the orchestrator
     can route the row to human review instead of committing bad coordinates.
     """
+    tag_re = _TAG_RE if tagset is None else _build_tag_re(tagset)
     clean_parts: List[str] = []
     clean_len = 0
     spans: List[Span] = []
     stack: List[Tuple[str, int]] = []  # (label, start_offset)
     cursor = 0
 
-    for m in _TAG_RE.finditer(tagged_text):
+    for m in tag_re.finditer(tagged_text):
         # Literal text since the previous tag boundary contributes to clean text.
         chunk = tagged_text[cursor:m.start()]
         if chunk:
@@ -87,14 +100,14 @@ def parse_tagged_text(tagged_text: str) -> Tuple[str, List[Span]]:
     return clean_text, spans
 
 
-def parse_and_verify(tagged_text: str, raw_text: str) -> List[Span]:
+def parse_and_verify(tagged_text: str, raw_text: str, tagset=None) -> List[Span]:
     """Parse tags and enforce the character-preservation invariant.
 
     Raises ``TagParseError`` if the stripped tagged text does not match the
     pristine raw text exactly (a defensive backstop even when the auditor
     returned PASS — see PRD §3 decision-fork).
     """
-    clean_text, spans = parse_tagged_text(tagged_text)
+    clean_text, spans = parse_tagged_text(tagged_text, tagset=tagset)
     if clean_text != raw_text:
         raise TagParseError(
             "Character-preservation invariant violated: "
