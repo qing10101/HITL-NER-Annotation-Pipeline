@@ -1,0 +1,14 @@
+# Requirements for the local Hugging Face generation backend (annotate_hf.py).
+# This is requirements-llm.txt plus the transformers/torch stack used to download
+# and run generation models locally instead of via Ollama.
+numpy>=1.26.0
+pandas>=2.2.0
+pyarrow>=15.0.0
+sentence-transformers>=3.0.0
+tqdm>=4.66.0
+pydantic>=2.13.4
+torch>=2.2.0
+transformers>=4.44.0
+accelerate>=0.33.0
+# Optional: only needed for --load-in-4bit / --load-in-8bit (CUDA GPUs only).
+# bitsandbytes>=0.43.0
