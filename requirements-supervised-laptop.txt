@@ -1,0 +1,19 @@
+# Minimal deps for the two laptop-trainable supervised NER models:
+#   - train_bilstm_crf.py  (torch + pytorch-crf)
+#   - train_spacy.py        (base spaCy tok2vec; NOT the --trf variant)
+#
+# Deliberately excludes transformers / tokenizers / spacy-transformers /
+# span_marker / gliner (all pull the Rust-built `tokenizers` wheel, which has
+# no cp314 build). Use a Python 3.11-3.13 venv:
+#
+#   python3.12 -m venv .venv-supervised
+#   source .venv-supervised/bin/activate
+#   pip install -r requirements-supervised-laptop.txt
+#
+# On Apple Silicon these run on CPU (BiLSTM-CRF) / CPU tok2vec (spaCy) — no
+# CUDA index needed.
+
+torch>=2.2.0
+spacy>=3.7.0,<4.0
+pytorch-crf>=0.7.2
+click>=8.0        # spaCy 3.8 imports click directly; typer>=0.27 no longer pulls it

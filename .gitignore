@@ -1,4 +1,5 @@
 .env
+.venv-supervised
 output/
 __pycache__/
 *.pyc
