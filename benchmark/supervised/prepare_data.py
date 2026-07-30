@@ -124,12 +124,25 @@ def prepare(
     out_dir: str | Path,
     seed: int = 13,
     neg_ratio: float | None = None,
+    test_gold: str | Path | None = None,
+    dev_frac: float = 0.1,
 ) -> dict[str, list[common.Example]]:
     out_dir = Path(out_dir)
     examples = common.load_examples(gold_path)
     print(f"Loaded {len(examples)} rows from {gold_path}")
 
-    splits = common.split_examples(examples, seed=seed)
+    if test_gold is not None:
+        # Fixed held-out test set (e.g. the 500 human-labeled rows). The --gold
+        # pool is split into train/dev only; test comes verbatim from test_gold.
+        splits = common.split_examples(
+            examples, train_frac=1.0 - dev_frac, dev_frac=dev_frac, seed=seed,
+        )
+        assert not splits["test"], "test slice should be empty when test_gold is given"
+        splits["test"] = common.load_examples(test_gold)
+        print(f"Loaded {len(splits['test'])} held-out test rows from {test_gold}")
+    else:
+        splits = common.split_examples(examples, seed=seed)
+
     if neg_ratio is not None:
         before = len(splits["train"])
         splits["train"] = downsample_negatives(splits["train"], neg_ratio, seed)
@@ -167,8 +180,20 @@ def main() -> None:
         help="If set, keep at most this many no-entity rows per entity-bearing "
              "row in TRAIN (dev/test always keep everything).",
     )
+    ap.add_argument(
+        "--test-gold", default=None,
+        help="Path to a fixed held-out test CSV (e.g. the 500 human-labeled rows). "
+             "When given, --gold is split into train/dev only and this file becomes "
+             "the test split.",
+    )
+    ap.add_argument(
+        "--dev-frac", type=float, default=0.1,
+        help="Fraction of the --gold pool held out for dev early-stopping when "
+             "--test-gold is used (default 0.1).",
+    )
     args = ap.parse_args()
-    prepare(args.gold, args.out_dir, seed=args.seed, neg_ratio=args.neg_ratio)
+    prepare(args.gold, args.out_dir, seed=args.seed, neg_ratio=args.neg_ratio,
+            test_gold=args.test_gold, dev_frac=args.dev_frac)
 
 
 if __name__ == "__main__":
