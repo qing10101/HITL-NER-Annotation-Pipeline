@@ -4,7 +4,7 @@ Self-contained PyTorch BiLSTM-CRF sequence tagger trained on the BIO files
 from prepare_data.py. No pretrained weights — word embeddings are learned
 from scratch, with a char-CNN so unseen words ("3yo", "kindergartner") still
 get a signature from their spelling. A CRF output layer (pytorch-crf) scores
-whole tag sequences, ruling out incoherent transitions like O -> I-FAM_KIN.
+whole tag sequences, ruling out incoherent transitions like O -> I-KINSHIP.
 
 Early-stops on dev micro span-F1 (exact label+offset match, same criterion
 as the final evaluate.py scoring). The checkpoint bundles the vocabularies

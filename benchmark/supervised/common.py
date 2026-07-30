@@ -18,25 +18,48 @@ from collections import defaultdict
 from dataclasses import dataclass
 from pathlib import Path
 
-# Canonical label set (most frequent first, per gold_standard_merged.csv).
-LABELS = ["FAM_KIN", "MINOR_AGE", "GEN_NOUN", "GEN_PHYS", "MINOR_EDU"]
+# The supervised benchmark scores on the same collapsed 3-dimension scheme as
+# the LLM benchmark (MINOR / GENDER / KINSHIP). The gold corpus's 5 fine labels
+# are folded onto these 3 the moment they are loaded (see load_examples), so
+# every downstream artifact -- BIO tags, GLiNER phrases, the split CSVs that
+# serve as gold, and the model predictions -- lives in 3-dimension space and
+# benchmark/llm/evaluate.py scores it directly (no --collapse-3dim needed).
+#
+# COARSE_3DIM must stay in sync with the identically-named map in
+# benchmark/llm/evaluate.py.
+COARSE_3DIM = {
+    "MINOR_AGE": "MINOR", "MINOR_EDU": "MINOR",
+    "GEN_NOUN": "GENDER", "GEN_PHYS": "GENDER",
+    "FAM_KIN": "KINSHIP",
+}
+
+# Canonical (collapsed) label set, ordered as in evaluate.py's THREE_DIM_LABELS.
+LABELS = ["MINOR", "GENDER", "KINSHIP"]
 
 # Rarest-first order used to pick a stratum for each product group when
-# splitting, so thin labels (MINOR_EDU: ~97, GEN_PHYS: ~164) are spread
-# proportionally across train/dev/test.
-RARITY_ORDER = ["MINOR_EDU", "GEN_PHYS", "GEN_NOUN", "MINOR_AGE", "FAM_KIN"]
+# splitting, so thin labels are spread proportionally across train/dev/test.
+# After the fold, KINSHIP (=FAM_KIN) is the most frequent dimension and GENDER
+# (=GEN_NOUN+GEN_PHYS) the least, so it is stratified first.
+RARITY_ORDER = ["GENDER", "MINOR", "KINSHIP"]
 
 # GLiNER matches spans against natural-language label names, so the label
-# codes are exposed to it as short definitional phrases (from README.md).
-# The exact same phrases must be used at train and predict time.
+# codes are exposed to it as short definitional phrases. The exact same
+# phrases must be used at train and predict time.
 GLINER_LABEL_PHRASES = {
-    "FAM_KIN": "kinship term for the reviewer's family member",
-    "MINOR_AGE": "age or developmental stage of a child under 18",
-    "GEN_NOUN": "gendered noun for the reviewer or their romantic partner",
-    "GEN_PHYS": "sex-specific physiological condition or milestone",
-    "MINOR_EDU": "educational tier exclusive to minors",
+    "MINOR": "a person under 18: their age, developmental stage, or school grade",
+    "GENDER": "a gendered noun or physiological fact revealing the reviewer's or their partner's gender",
+    "KINSHIP": "a kinship term for a member of the reviewer's family",
 }
 PHRASE_TO_LABEL = {v: k for k, v in GLINER_LABEL_PHRASES.items()}
+
+
+def fold_entities(entities: list[dict]) -> list[dict]:
+    """Collapse the gold corpus's 5 fine labels onto the 3 coarse dimensions.
+
+    Labels already in the 3-dimension scheme (or otherwise unknown) are kept
+    as-is, so re-folding an already-folded file is a no-op.
+    """
+    return [{**e, "label": COARSE_3DIM.get(e["label"], e["label"])} for e in entities]
 
 # BIO tagset shared by the BiLSTM-CRF and SpanMarker trainers.
 BIO_TAGS = ["O"] + [f"{p}-{lbl}" for lbl in LABELS for p in ("B", "I")]
@@ -58,15 +81,24 @@ class Example:
 # ---------------------------------------------------------------------------
 
 def load_examples(csv_path: str | Path) -> list[Example]:
-    """Load a gold-format CSV (row_id, raw_text, ..., entities_json)."""
+    """Load a gold-format CSV (row_id, raw_text, ..., entities_json).
+
+    The gold corpus's 5 fine labels are folded onto the 3 coarse dimensions
+    (see fold_entities) at load time -- in both the parsed ``entities`` and the
+    ``entities_json`` carried in ``raw_row`` -- so split CSVs written back out
+    (and used as gold by evaluate.py) are already in 3-dimension space.
+    """
     examples = []
     with open(csv_path, newline="", encoding="utf-8") as f:
         for row in csv.DictReader(f):
+            entities = fold_entities(json.loads(row["entities_json"] or "[]"))
+            raw_row = dict(row)
+            raw_row["entities_json"] = json.dumps(entities, ensure_ascii=False)
             examples.append(Example(
                 row_id=row["row_id"],
                 text=row["raw_text"],
-                entities=json.loads(row["entities_json"] or "[]"),
-                raw_row=dict(row),
+                entities=entities,
+                raw_row=raw_row,
             ))
     return examples
 

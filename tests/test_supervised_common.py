@@ -109,10 +109,10 @@ def make_examples(n_products=40, rows_per_product=5):
             row_id = f"B{i:09d}_{j:05d}"
             if (i + j) % 3 == 0:
                 text = "my son loves this"
-                entities = [ent("FAM_KIN", "son", 3, 6)]
+                entities = [ent("KINSHIP", "son", 3, 6)]
             elif (i + j) % 7 == 0:
                 text = "my 3rd grader uses it"
-                entities = [ent("MINOR_EDU", "3rd grader", 3, 13)]
+                entities = [ent("MINOR", "3rd grader", 3, 13)]
             else:
                 text = "works fine"
                 entities = []
@@ -162,20 +162,20 @@ class TestSplit(unittest.TestCase):
         splits = common.split_examples(make_examples(n_products=100))
         for name, split in splits.items():
             labels = {e["label"] for ex in split for e in ex.entities}
-            self.assertIn("MINOR_EDU", labels, f"MINOR_EDU missing from {name}")
+            self.assertIn("MINOR", labels, f"MINOR missing from {name}")
 
 
 class TestGlinerFormat(unittest.TestCase):
     def test_record_uses_inclusive_token_indices_and_phrases(self):
         ex = common.Example(
             row_id="X_1", text="My great grandson loves this game.",
-            entities=[ent("FAM_KIN", "great grandson", 3, 17)], raw_row={},
+            entities=[ent("KINSHIP", "great grandson", 3, 17)], raw_row={},
         )
         record, truncated = prepare_data.to_gliner_record(ex)
         self.assertEqual(truncated, 0)
         self.assertEqual(record["tokenized_text"][:3], ["My", "great", "grandson"])
         self.assertEqual(record["ner"], [
-            [1, 2, common.GLINER_LABEL_PHRASES["FAM_KIN"]],
+            [1, 2, common.GLINER_LABEL_PHRASES["KINSHIP"]],
         ])
 
     def test_phrase_mapping_round_trips(self):
