@@ -381,7 +381,7 @@ both `requirements-pipeline.txt` and `requirements-llm.txt`.
 |---|---|---|
 | `train_spacy.py` | spaCy `ner` (tok2vec, or roberta-base with `--trf`) | transition-based token tagging |
 | `train_bilstm_crf.py` | word emb + char-CNN + BiLSTM + CRF (PyTorch, no pretraining) | BIO sequence labeling |
-| `train_spanmarker.py` | SpanMarker + `microsoft/deberta-v3-base` | span enumeration + classification |
+| `train_spanmarker.py` | SpanMarker + `roberta-base` | span enumeration + classification |
 | `train_gliner.py` | fine-tuned `urchade/gliner_medium-v2.1` | span ↔ label-phrase matching |
 
 ```bash
@@ -461,7 +461,7 @@ benchmark/
     prepare_data.py      grouped+stratified 80/10/10 split + per-model formats
     train_spacy.py       spaCy ner (tok2vec or roberta-base with --trf)
     train_bilstm_crf.py  word emb + char-CNN + BiLSTM + CRF (no pretraining)
-    train_spanmarker.py  SpanMarker + microsoft/deberta-v3-base
+    train_spanmarker.py  SpanMarker + roberta-base (BERT-style encoders only)
     train_gliner.py      fine-tuned urchade/gliner_medium-v2.1
     predict.py           run a trained model over the held-out test split
     common.py            shared tokenization/label-phrase utilities

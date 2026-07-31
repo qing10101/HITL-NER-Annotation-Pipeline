@@ -14,5 +14,5 @@ gliner>=0.2.13
 transformers>=4.41.0,<4.46
 datasets>=2.19.0
 accelerate>=0.30.0
-sentencepiece>=0.1.99          # DeBERTa-v3 tokenizer
+sentencepiece>=0.1.99          # XLM-R / T5-style tokenizers (optional encoders)
 protobuf>=3.20

@@ -1,6 +1,9 @@
 """train_spanmarker.py
 
-Fine-tunes SpanMarker with a DeBERTa-v3-base encoder on the shared split.
+Fine-tunes SpanMarker with a RoBERTa-base encoder on the shared split.
+
+The encoder must be BERT/RoBERTa/ELECTRA-style: SpanMarker passes a 3D
+(seq, seq) attention mask, which DeBERTa-v2/v3 cannot consume.
 
 SpanMarker reframes NER as span classification: it enumerates candidate
 spans (up to --entity-max-length words), wraps each in marker tokens, and
@@ -48,7 +51,7 @@ def load_split(path: Path) -> Dataset:
 
 def main() -> None:
     here = Path(__file__).resolve().parent
-    ap = argparse.ArgumentParser(description="Fine-tune SpanMarker (DeBERTa-v3).")
+    ap = argparse.ArgumentParser(description="Fine-tune SpanMarker (RoBERTa-base).")
     ap.add_argument("--data-dir", default=str(here / "data"))
     ap.add_argument("--out-dir", default=str(here / "models" / "spanmarker"))
     ap.add_argument(
@@ -57,7 +60,10 @@ def main() -> None:
              "Point this at local disk when --out-dir is a network/Drive mount — "
              "each checkpoint is ~750 MB and FUSE writes stall training.",
     )
-    ap.add_argument("--encoder", default="microsoft/deberta-v3-base")
+    # Must be a BERT/RoBERTa/ELECTRA-style encoder. SpanMarker feeds the encoder a
+    # 3D (seq, seq) attention mask encoding one-directional marker attention; DeBERTa-v2
+    # /v3 multiply the embeddings by that mask directly and crash on the shape mismatch.
+    ap.add_argument("--encoder", default="roberta-base")
     ap.add_argument("--epochs", type=float, default=3.0)
     ap.add_argument("--lr", type=float, default=3e-5)
     ap.add_argument("--batch-size", type=int, default=8)
