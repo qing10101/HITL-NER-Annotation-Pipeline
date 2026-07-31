@@ -9,9 +9,22 @@ torch>=2.2.0
 spacy>=3.7.0,<4.0
 spacy-transformers>=1.3.0      # only needed for train_spacy.py --trf
 pytorch-crf>=0.7.2             # CRF layer for train_bilstm_crf.py
-span_marker>=1.5.0
-gliner>=0.2.13
-transformers>=4.41.0,<4.46
+# Verified: the roberta-base run that produced models/spanmarker/model-best.
+# (DeBERTa-v3 encoders cannot be used here — see train_spanmarker.py.)
+span_marker==1.8.1
+# Exact pin, not a floor: GLiNER's collator/processor API changed incompatibly
+# at least three times across 0.2.x. train_gliner.py has to hand the collator a
+# fixed label set (see make_collator) or ~10% of batches die on a zero-class
+# reshape, and where that list goes differs per release —
+#   <=0.2.21  no per-example class_to_ids list in create_labels
+#    0.2.22   DataCollator.entity_types, must be List[List[str]]   <- written against this
+#    0.2.28   class renamed to SpanDataCollator, moved to __call__
+# Bump only alongside a re-read of gliner/data_processing/{collator,processor}.py.
+gliner==0.2.22
+# What the <4.46 cap resolved to for the successful SpanMarker run. The cap is
+# required (4.46 changed the Trainer.training_step signature); the exact pin
+# just stops a silent drift between runs. gliner 0.2.22 allows <=4.51.0.
+transformers==4.45.2
 datasets>=2.19.0
 accelerate>=0.30.0
 sentencepiece>=0.1.99          # GLiNER v2.1's DeBERTa-v3 backbone tokenizer

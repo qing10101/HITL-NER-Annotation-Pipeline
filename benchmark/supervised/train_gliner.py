@@ -49,18 +49,27 @@ def make_collator(model, entity_types: list[str]):
     KINSHIP otherwise teaches the model nothing about MINOR or GENDER being
     absent from it, because those phrases are never shown as candidates.
 
-    Where the fixed list is accepted moved between releases — <=0.2.2x takes
-    entity_types in DataCollator.__init__, 0.2.28 renamed the class and moved
-    it to __call__ — so detect it rather than pinning a version.
-    """
-    kwargs = dict(data_processor=model.data_processor, prepare_labels=True)
-    if "entity_types" in inspect.signature(DataCollator.__init__).parameters:
-        return DataCollator(model.config, entity_types=entity_types, **kwargs)
+    The list must be per-example, not a single flat list: with a flat list the
+    processor builds one shared class_to_ids dict, but create_labels indexes it
+    as batch['classes_to_id'][i] and dies with KeyError: 0. Batch size varies
+    (final batch of an epoch), so it has to be rebuilt per call.
 
-    collator = DataCollator(model.config, **kwargs)
+    Written against gliner 0.2.22, which requirements-supervised.txt pins
+    exactly. The __call__ branch below is a hedge for the 0.2.28 shape, but
+    that release also renames DataCollator to SpanDataCollator, so the import
+    above would need updating too — the pin is the real contract here.
+    """
+    collator = DataCollator(
+        model.config, data_processor=model.data_processor, prepare_labels=True,
+    )
+    call_takes_types = "entity_types" in inspect.signature(collator.__call__).parameters
 
     def collate(input_x, **call_kwargs):
-        call_kwargs.setdefault("entity_types", entity_types)
+        per_example = [entity_types] * len(input_x)
+        if call_takes_types:
+            call_kwargs.setdefault("entity_types", per_example)
+            return collator(input_x, **call_kwargs)
+        collator.entity_types = per_example
         return collator(input_x, **call_kwargs)
 
     return collate
