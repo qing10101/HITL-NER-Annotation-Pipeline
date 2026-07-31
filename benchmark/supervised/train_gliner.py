@@ -34,6 +34,11 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="Fine-tune GLiNER.")
     ap.add_argument("--data-dir", default=str(here / "data"))
     ap.add_argument("--out-dir", default=str(here / "models" / "gliner"))
+    ap.add_argument(
+        "--checkpoint-dir", default=None,
+        help="Where to write per-epoch checkpoints (default: <out-dir>/checkpoints). "
+             "Point this at local disk when --out-dir is a network/Drive mount.",
+    )
     ap.add_argument("--base-model", default="urchade/gliner_medium-v2.1")
     ap.add_argument("--epochs", type=float, default=3.0)
     ap.add_argument("--lr", type=float, default=5e-6,
@@ -45,6 +50,8 @@ def main() -> None:
     args = ap.parse_args()
 
     data_dir, out_dir = Path(args.data_dir), Path(args.out_dir)
+    ckpt_dir = Path(args.checkpoint_dir) if args.checkpoint_dir else out_dir / "checkpoints"
+    out_dir.mkdir(parents=True, exist_ok=True)
     with open(data_dir / "gliner" / "train.json", encoding="utf-8") as f:
         train_data = json.load(f)
     with open(data_dir / "gliner" / "dev.json", encoding="utf-8") as f:
@@ -62,7 +69,7 @@ def main() -> None:
     )
 
     training_args = TrainingArguments(
-        output_dir=str(out_dir / "checkpoints"),
+        output_dir=str(ckpt_dir),
         learning_rate=args.lr,
         weight_decay=0.01,
         others_lr=args.others_lr,
