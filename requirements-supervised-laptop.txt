@@ -3,7 +3,7 @@
 #   - train_spacy.py        (base spaCy tok2vec; NOT the --trf variant)
 #
 # Deliberately excludes transformers / tokenizers / spacy-transformers /
-# span_marker / gliner (all pull the Rust-built `tokenizers` wheel, which has
+# span_marker (all pull the Rust-built `tokenizers` wheel, which has
 # no cp314 build). Use a Python 3.11-3.13 venv:
 #
 #   python3.12 -m venv .venv-supervised

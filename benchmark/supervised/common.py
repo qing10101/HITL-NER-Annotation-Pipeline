@@ -21,8 +21,8 @@ from pathlib import Path
 # The supervised benchmark scores on the same collapsed 3-dimension scheme as
 # the LLM benchmark (MINOR / GENDER / KINSHIP). The gold corpus's 5 fine labels
 # are folded onto these 3 the moment they are loaded (see load_examples), so
-# every downstream artifact -- BIO tags, GLiNER phrases, the split CSVs that
-# serve as gold, and the model predictions -- lives in 3-dimension space and
+# every downstream artifact -- BIO tags, the split CSVs that serve as gold,
+# and the model predictions -- lives in 3-dimension space and
 # benchmark/llm/evaluate.py scores it directly (no --collapse-3dim needed).
 #
 # COARSE_3DIM must stay in sync with the identically-named map in
@@ -41,16 +41,6 @@ LABELS = ["MINOR", "GENDER", "KINSHIP"]
 # After the fold, KINSHIP (=FAM_KIN) is the most frequent dimension and GENDER
 # (=GEN_NOUN+GEN_PHYS) the least, so it is stratified first.
 RARITY_ORDER = ["GENDER", "MINOR", "KINSHIP"]
-
-# GLiNER matches spans against natural-language label names, so the label
-# codes are exposed to it as short definitional phrases. The exact same
-# phrases must be used at train and predict time.
-GLINER_LABEL_PHRASES = {
-    "MINOR": "a person under 18: their age, developmental stage, or school grade",
-    "GENDER": "a gendered noun or physiological fact revealing the reviewer's or their partner's gender",
-    "KINSHIP": "a kinship term for a member of the reviewer's family",
-}
-PHRASE_TO_LABEL = {v: k for k, v in GLINER_LABEL_PHRASES.items()}
 
 
 def fold_entities(entities: list[dict]) -> list[dict]:

@@ -165,37 +165,6 @@ class TestSplit(unittest.TestCase):
             self.assertIn("MINOR", labels, f"MINOR missing from {name}")
 
 
-class TestGlinerFormat(unittest.TestCase):
-    def test_record_uses_inclusive_token_indices_and_phrases(self):
-        ex = common.Example(
-            row_id="X_1", text="My great grandson loves this game.",
-            entities=[ent("KINSHIP", "great grandson", 3, 17)], raw_row={},
-        )
-        record, truncated = prepare_data.to_gliner_record(ex)
-        self.assertEqual(truncated, 0)
-        self.assertEqual(record["tokenized_text"][:3], ["My", "great", "grandson"])
-        self.assertEqual(record["ner"], [
-            [1, 2, common.GLINER_LABEL_PHRASES["KINSHIP"]],
-        ])
-
-    def test_phrase_mapping_round_trips(self):
-        for code, phrase in common.GLINER_LABEL_PHRASES.items():
-            self.assertEqual(common.PHRASE_TO_LABEL[phrase], code)
-        self.assertEqual(set(common.GLINER_LABEL_PHRASES), set(common.LABELS))
-
-    def test_span_beyond_truncation_is_dropped(self):
-        n = prepare_data.GLINER_MAX_TOKENS
-        text = "w " * n + "son"
-        ex = common.Example(
-            row_id="X_2", text=text,
-            entities=[ent("FAM_KIN", "son", 2 * n, 2 * n + 3)], raw_row={},
-        )
-        record, truncated = prepare_data.to_gliner_record(ex)
-        self.assertEqual(truncated, 1)
-        self.assertEqual(record["ner"], [])
-        self.assertEqual(len(record["tokenized_text"]), n)
-
-
 class TestPrepareDataEndToEnd(unittest.TestCase):
     def test_full_pipeline_on_tiny_csv(self):
         examples = make_examples(n_products=30, rows_per_product=4)
@@ -229,15 +198,6 @@ class TestPrepareDataEndToEnd(unittest.TestCase):
                 spans = common.bio_to_spans(r["text"], tokens, r["tags"])
                 self.assertEqual(spans, gold_by_id[r["row_id"]].entities)
 
-            # GLiNER files parse and only contain known phrases
-            with open(tmp / "data" / "gliner" / "train.json", encoding="utf-8") as f:
-                records = json.load(f)
-            self.assertEqual(len(records), len(splits["train"]))
-            for rec in records:
-                for start_tok, end_tok, phrase in rec["ner"]:
-                    self.assertIn(phrase, common.PHRASE_TO_LABEL)
-                    self.assertLessEqual(start_tok, end_tok)
-                    self.assertLess(end_tok, len(rec["tokenized_text"]))
 
             # split CSVs reload cleanly through the same loader
             reloaded = common.load_examples(tmp / "data" / "splits" / "dev.csv")
