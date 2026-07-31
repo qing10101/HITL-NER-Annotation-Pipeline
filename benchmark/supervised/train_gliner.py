@@ -21,6 +21,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import inspect
 import json
 from pathlib import Path
 
@@ -32,29 +33,37 @@ from gliner.training import Trainer, TrainingArguments
 import common  # noqa: F401  (keeps the label-phrase contract in one place)
 
 
-def pin_label_set(*datasets: list[dict]) -> None:
-    """Give every example the full 3-phrase label set, in place.
+def make_collator(model, entity_types: list[str]):
+    """Build a DataCollator pinned to a fixed label set.
 
-    GLiNER derives each batch's class list from the labels actually present in
-    that batch (data_processing/processor.py: `types = set(el[-1] for el in
-    b["ner"]) | negatives`). Three quarters of our rows have no entities, so
-    ~10% of batches (0.75 ** batch_size) come out with zero classes and die on
-    a `[batch, -1, 0]` reshape; GLiNER's Trainer catches that and skips the
-    step, silently dropping those gradients.
+    By default GLiNER derives each batch's class list from the labels actually
+    present in that batch (processor.collate_raw_batch -> if entity_types is
+    None: batch_generate_class_mappings). Three quarters of our rows have no
+    entities, so ~10% of batches (0.75 ** batch_size) come out with zero
+    classes and die on a `[batch, -1, 0]` reshape; GLiNER's Trainer catches
+    that and skips the step, silently dropping those gradients.
 
-    Setting "ner_labels" takes the `if f"{key}_labels" in b` branch, which uses
-    a predefined class list instead. Beyond stopping the skips, this is the
-    better training signal: a row containing only KINSHIP currently teaches the
-    model nothing about MINOR or GENDER being absent from it, because those
-    phrases are never even shown as candidates.
+    Passing entity_types takes the predefined-mapping branch instead, so the
+    same three phrases are the candidate set for every batch. Beyond stopping
+    the skips this is the better training signal: a row containing only
+    KINSHIP otherwise teaches the model nothing about MINOR or GENDER being
+    absent from it, because those phrases are never shown as candidates.
 
-    Note this is the uni-encoder key. Bi-encoder GLiNER variants read
-    "ner_label" (singular) instead — gliner_medium-v2.1 is a uni-encoder.
+    Where the fixed list is accepted moved between releases — <=0.2.2x takes
+    entity_types in DataCollator.__init__, 0.2.28 renamed the class and moved
+    it to __call__ — so detect it rather than pinning a version.
     """
-    phrases = list(common.PHRASE_TO_LABEL)
-    for dataset in datasets:
-        for example in dataset:
-            example["ner_labels"] = phrases
+    kwargs = dict(data_processor=model.data_processor, prepare_labels=True)
+    if "entity_types" in inspect.signature(DataCollator.__init__).parameters:
+        return DataCollator(model.config, entity_types=entity_types, **kwargs)
+
+    collator = DataCollator(model.config, **kwargs)
+
+    def collate(input_x, **call_kwargs):
+        call_kwargs.setdefault("entity_types", entity_types)
+        return collator(input_x, **call_kwargs)
+
+    return collate
 
 
 class F1Trainer(Trainer):
@@ -138,17 +147,12 @@ def main() -> None:
     n_empty = sum(1 for ex in train_data if not ex["ner"])
     print(f"train={len(train_data)} ({n_empty} with no entities) dev={len(dev_data)}")
 
-    pin_label_set(train_data, dev_data)
-
     device = "cuda" if torch.cuda.is_available() else "cpu"
     model = GLiNER.from_pretrained(args.base_model)
     model.to(device)
 
-    data_collator = DataCollator(
-        model.config,
-        data_processor=model.data_processor,
-        prepare_labels=True,
-    )
+    phrases = list(common.PHRASE_TO_LABEL)
+    data_collator = make_collator(model, phrases)
 
     training_args = TrainingArguments(
         output_dir=str(ckpt_dir),
@@ -183,7 +187,7 @@ def main() -> None:
         data_collator=data_collator,
         gliner_model=model,
         dev_data=dev_data,
-        entity_types=list(common.PHRASE_TO_LABEL),
+        entity_types=phrases,
         best_dir=best_dir,
         eval_threshold=args.eval_threshold,
         eval_batch_size=args.batch_size,
