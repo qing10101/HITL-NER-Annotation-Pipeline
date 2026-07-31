@@ -12,6 +12,11 @@ Defaults are sized for a 12 GB GPU (batch 8 x grad-accum 2, fp16).
 
 Usage:
     python benchmark/supervised/train_spanmarker.py --epochs 3
+
+    # Colab: final model to Drive, checkpoints on the local disk.
+    python benchmark/supervised/train_spanmarker.py --epochs 3 \
+        --out-dir /content/drive/MyDrive/ner-spanmarker \
+        --checkpoint-dir /content/ckpt
 """
 from __future__ import annotations
 
@@ -46,6 +51,12 @@ def main() -> None:
     ap = argparse.ArgumentParser(description="Fine-tune SpanMarker (DeBERTa-v3).")
     ap.add_argument("--data-dir", default=str(here / "data"))
     ap.add_argument("--out-dir", default=str(here / "models" / "spanmarker"))
+    ap.add_argument(
+        "--checkpoint-dir", default=None,
+        help="Where to write per-epoch checkpoints (default: <out-dir>/checkpoints). "
+             "Point this at local disk when --out-dir is a network/Drive mount — "
+             "each checkpoint is ~750 MB and FUSE writes stall training.",
+    )
     ap.add_argument("--encoder", default="microsoft/deberta-v3-base")
     ap.add_argument("--epochs", type=float, default=3.0)
     ap.add_argument("--lr", type=float, default=3e-5)
@@ -57,6 +68,8 @@ def main() -> None:
     args = ap.parse_args()
 
     data_dir, out_dir = Path(args.data_dir), Path(args.out_dir)
+    ckpt_dir = Path(args.checkpoint_dir) if args.checkpoint_dir else out_dir / "checkpoints"
+    out_dir.mkdir(parents=True, exist_ok=True)
     train_ds = load_split(data_dir / "bio" / "train.jsonl")
     dev_ds = load_split(data_dir / "bio" / "dev.jsonl")
     print(f"train={len(train_ds)} dev={len(dev_ds)}")
@@ -70,7 +83,7 @@ def main() -> None:
     )
 
     training_args = TrainingArguments(
-        output_dir=str(out_dir / "checkpoints"),
+        output_dir=str(ckpt_dir),
         learning_rate=args.lr,
         per_device_train_batch_size=args.batch_size,
         per_device_eval_batch_size=args.batch_size,
