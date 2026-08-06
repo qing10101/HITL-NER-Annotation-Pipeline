@@ -14,3 +14,4 @@ benchmark/supervised/models/*
 benchmark/supervised/predictions/*
 benchmark/*.csv
 *.csv
+benchmark/supervised/test_pretrained_spacy.py
