@@ -4,12 +4,12 @@ A **Cascading Multi-Agent Inline Boundary Tagging & Audit Engine** for building 
 large-scale (20,000+) privacy-NER dataset from noisy e-commerce reviews — without
 index-drift or over-annotation errors.
 
-The design is taken from `Proposed Pipeline.pdf`.
-The annotation rules themselves — what to tag, what to exclude, span boundaries, label
-selection — are sourced verbatim from `Final Guideline.docx` ("NER Annotation Guidelines:
-Implicit Privacy Risks in Reviews") and embedded as a single `GUIDELINE` block in
-[prompts.py](pipeline/prompts.py), shared by both the annotator and auditor system prompts
-so the two stages judge against the identical rulebook.
+## License
+
+This repository and pipeline source code are licensed under the **AI Pubs Open RAIL-S v0.1 License**.
+
+- **Open Access:** The code is freely available for research, evaluation, and defensive development.
+- **Behavioral Restrictions:** Any use or downstream derivative is subject to the **Use-based Restrictions** detailed in [LICENSE](LICENSE) (Attachment A), which strictly prohibits non-consensual profiling, surveillance, biometric identification, or malicious deanonymization.
 
 ## How it works
 
