@@ -58,7 +58,8 @@ The benchmark subsystem (`benchmark/`, see below) has its own, heavier dependenc
 set (sentence-transformers/torch) and is installed separately:
 
 ```powershell
-pip install -r requirements-llm.txt
+pip install -r requirements-llm-ollama.txt   # Ollama generation backend
+pip install -r requirements-llm-hf.txt       # or: local transformers backend (adds torch)
 ```
 
 Models are chosen per role as `"<provider>:<model>"` specs. Defaults (current
@@ -285,7 +286,8 @@ local model to tag a query sentence.
 
 Embeddings run locally via sentence-transformers using a SimCSE checkpoint
 (`princeton-nlp/sup-simcse-bert-base-uncased` by default); Ollama is used only
-for the generation call. Install `requirements-llm.txt` first (see Setup).
+for the generation call. Install `requirements-llm-ollama.txt` first (or
+`requirements-llm-hf.txt` for the local transformers backend — see Setup).
 
 ```bash
 # 1. Build the embedding datastore once from a gold-standard CSV. When evaluating
@@ -300,7 +302,7 @@ python benchmark/llm/build_datastore.py \
 # 2. Annotate the same held-out sentences under both conditions, same LLM:
 
 # Retriever-equipped: retrieves k demonstrations per query
-python benchmark/llm/annotate.py \
+python benchmark/llm/ollama/annotate.py \
     --datastore-dir benchmark/datastore \
     --gen-model llama3.1:8b \
     --k 8 \
@@ -312,7 +314,7 @@ python benchmark/llm/annotate.py \
 # carries gold entities_json, this automatically prints a with-retriever-vs-
 # without-retriever P/R/F1 table when the run terminates -- step 3 below is only
 # needed to re-run or rescore a comparison after the fact.
-python benchmark/llm/annotate.py \
+python benchmark/llm/ollama/annotate.py \
     --datastore-dir benchmark/datastore \
     --gen-model llama3.1:8b \
     --k 0 \
@@ -334,13 +336,22 @@ incrementally (flushed after every row), so re-running the same command after
 an interruption skips rows already done instead of starting over. Pass
 `--no-resume` to force a fresh run.
 
-Each generation call is retried `--max-retries` times (default 3, with backoff).
+Each generation call is retried `--max-retries` times (default 3, with backoff),
+each attempt bounded by `--request-timeout` seconds (default 180, Ollama backend).
 A row that fails every attempt is not fatal: it is written to `--out-csv` with a
 `FAILED` marker and skipped, so one dead row can't abort a multi-hour run. Because
 it's recorded, a plain resume treats it as done and won't retry it. Pass
 `--retry-failed` on a later resume to re-annotate only the `FAILED` rows (it drops
 their stale entries first, so no duplicate ids appear) — useful after a transient
 outage. `--no-resume` still reprocesses everything from scratch.
+
+**Timeouts.** No `num_predict` is sent, so a model that never emits a stop token
+generates until `--num-ctx` fills — which on a long guideline at a large `--num-ctx`
+can exceed 180s and land the row as `FAILED`. Raise `--request-timeout` for those.
+Note a timeout is deterministic for a given prompt, so all `--max-retries` attempts
+time out identically: pair a raised timeout with `--max-retries 1` rather than paying
+the wait three times. Zero-shot (`--k 0`) runs are the most exposed, since without
+demonstrations nothing anchors the expected output format.
 
 **Label scheme (3 dimensions).** The benchmark scores on a collapsed 3-label
 scheme — `MINOR`, `GENDER`, `KINSHIP` — rather than the pipeline's 5 fine labels.
@@ -364,7 +375,48 @@ a failed row becomes a false negative; no false positives are attributed) and
 their count is surfaced explicitly in each report and the comparison table, so
 retry failures are never silently hidden inside the F1.
 
-Both scripts share `pipeline`'s deterministic tag parser (`pipeline/parser.py`,
+**Parse errors and verbatim-copy drift (`check_parse_errors.py`).** `evaluate.py`
+scores only exact `(label, start, end)` matches, and `annotate.py`'s
+`extract_entities` swallows a `TagParseError` into zero entities, so two failure
+modes are invisible in the F1 table. First, unbalanced/mismatched tags are stored as
+`[]`, indistinguishable from a model that correctly found nothing. Second — and far
+more common — the benchmark never enforces the character-preservation invariant:
+`parse_and_verify` is used by the pipeline but not here, so when the model's output
+doesn't reproduce `raw_text` (a smart quote normalized to ASCII, collapsed
+whitespace, a dropped `<br />`), offsets are computed against the model's own text
+and compared to gold offsets computed against `raw_text`. Every span after the first
+edit is shifted, contributing false positives *and* false negatives at once.
+
+```bash
+# drift/parse rates across any number of runs
+python benchmark/llm/check_parse_errors.py predictions_*.csv
+
+# ... plus P/R/F1 under three scoring conventions, and example divergence offsets
+python benchmark/llm/check_parse_errors.py predictions_*.csv \
+    --gold output/test_balanced_400.csv --examples 3
+```
+
+Drift is classified by position, since not all of it corrupts offsets: `trailing`
+(commentary appended after the review — spans inside `raw_text` stay valid),
+`leading` (preamble prepended — every offset shifted by a constant), and `mutated`
+(the review text itself altered — unrecoverable after the first edit). With `--gold`
+it reports three conventions side by side, because no single one is honest when
+models differ in drift rate:
+
+| Convention | Violation rows | Answers |
+|---|---|---|
+| `strict` | scored as-is (what `evaluate.py` does today) | what naive end-to-end use gets you |
+| `invariant` | mapped to `[]`, like `FAILED` | how the model would behave inside `pipeline/` |
+| `clean` | excluded from both sides | labeling quality, isolated from text fidelity |
+
+Read `clean` against its printed row count — the clean subset is not a random
+sample, since longer and punctuation-heavy rows drift more. In practice the gap
+between `strict` and `clean` is large and precision-driven (a majority of false
+positives can be offset artifacts rather than mislabeled spans), so the drift rate
+belongs in any results table alongside P/R/F1, and model rankings can invert
+depending on which convention is reported.
+
+All three scripts share `pipeline`'s deterministic tag parser (`pipeline/parser.py`,
 parameterized by label set) rather than re-implementing tag parsing — see
 `benchmark/llm/embeddings.py` for the shared SimCSE encoder.
 
@@ -375,7 +427,7 @@ NER models on the gold-standard corpus, so the LLM approach above has a
 supervised baseline to compare against (scored with the same exact-span
 evaluator, `benchmark/llm/evaluate.py`). Install `requirements-supervised.txt`
 first — it has its own PyTorch-heavy dependency set, installed separately from
-both `requirements-pipeline.txt` and `requirements-llm.txt`.
+both `requirements-pipeline.txt` and the `requirements-llm-*.txt` files.
 
 | Trainer | Model | Approach |
 |---|---|---|
@@ -428,7 +480,8 @@ Design notes:
 
 ```
 requirements-pipeline.txt    core pipeline deps (google-genai, openai, pydantic, tenacity, ...)
-requirements-llm.txt         benchmark/llm/ deps (numpy, pandas, sentence-transformers, ...)
+requirements-llm-ollama.txt  benchmark/llm/ollama/ deps (numpy, pandas, sentence-transformers, ...)
+requirements-llm-hf.txt      benchmark/llm/hf/ deps (the above plus torch, transformers, accelerate)
 requirements-supervised.txt  benchmark/supervised/ deps (torch, spacy, span_marker, ...)
 pipeline/
   __main__.py          CLI entrypoint — run as `python -m pipeline`
