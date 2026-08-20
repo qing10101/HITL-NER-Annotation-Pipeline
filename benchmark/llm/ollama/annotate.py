@@ -27,10 +27,13 @@ already exists, re-running the same command resumes -- rows whose id already
 appears in it are skipped and new rows are appended. Pass --no-resume to
 ignore any existing --out-csv and start fresh instead.
 
-Each generation call is retried --max-retries times (default 3, with backoff).
-If all retries fail, the row is NOT allowed to abort the run: it is recorded with
-a FAILED marker in --out-csv and skipped, and (being present in the file) is not
-retried on a later resume. Failed rows are scored as recall misses -- see evaluate.py.
+Each generation call is retried --max-retries times (default 3, with backoff), each
+attempt bounded by --request-timeout seconds. If all retries fail, the row is NOT
+allowed to abort the run: it is recorded with a FAILED marker in --out-csv and skipped,
+and (being present in the file) is not retried on a later resume. Failed rows are scored
+as recall misses -- see evaluate.py. Note a timeout is deterministic given the same
+prompt, so all --max-retries attempts will time out identically: raising
+--request-timeout (or shortening the prompt) is the fix, not more retries.
 
 If --input-csv carries a gold entities_json column, a "with retriever vs without
 retriever" comparison table is printed when the run terminates (pass --compare-with
@@ -81,12 +84,17 @@ from common import (DEFAULT_GUIDELINE_FILE, Datastore, build_prompt,  # noqa: E4
 # ---------------------------------------------------------------------------
 
 def generate(prompt: str, model: str, ollama_url: str, temperature: float = 0.0,
-             num_ctx: int = 32768, max_retries: int = 3) -> str:
+             num_ctx: int = 32768, max_retries: int = 3, timeout: int = 180) -> str:
     """Call Ollama's local generate endpoint. temperature=0.0 for deterministic tagging.
 
     num_ctx must be passed explicitly: Ollama's runtime default context window is 4096
     tokens regardless of what the model supports, and a guideline + demos + query prompt
     routinely exceeds that, so omitting it silently truncates the prompt.
+
+    timeout is the per-attempt HTTP read timeout in seconds. Nothing caps the model's
+    output length (no num_predict is sent), so a model that never emits a stop token
+    generates until num_ctx fills -- which on a long guideline at a large --num-ctx can
+    exceed the default 180s. Such a row exhausts its retries and is recorded FAILED.
     """
     url = f"{ollama_url.rstrip('/')}/api/generate"
     payload = {
@@ -98,7 +106,7 @@ def generate(prompt: str, model: str, ollama_url: str, temperature: float = 0.0,
     last_err = None
     for attempt in range(max_retries):
         try:
-            resp = requests.post(url, json=payload, timeout=180)
+            resp = requests.post(url, json=payload, timeout=timeout)
             resp.raise_for_status()
             return resp.json()["response"].strip()
         except Exception as e:  # noqa: BLE001
@@ -130,6 +138,12 @@ def main():
                          help="Ollama context window (tokens) for generation. Ollama's runtime default "
                               "is only 4096 regardless of what the model supports, which a guideline + "
                               "demos + query prompt routinely exceeds, so this must be set explicitly.")
+    parser.add_argument("--request-timeout", type=int, default=180,
+                         help="Per-attempt HTTP read timeout (seconds) for the Ollama generate call "
+                              "(default 180). Nothing caps output length, so a model that fails to stop "
+                              "generates until --num-ctx fills; with a long guideline and a large "
+                              "--num-ctx that can exceed 180s and the row is recorded FAILED after "
+                              "--max-retries attempts. Raise this if FAILED rows show a read timeout.")
     parser.add_argument("--input-csv", required=True, help="CSV of new sentences to annotate.")
     parser.add_argument("--text-col", default="raw_text")
     parser.add_argument("--id-col", default="row_id")
@@ -206,7 +220,8 @@ def main():
 
             try:
                 raw_output = generate(prompt, args.gen_model, args.ollama_url,
-                                      num_ctx=args.num_ctx, max_retries=args.max_retries)
+                                      num_ctx=args.num_ctx, max_retries=args.max_retries,
+                                      timeout=args.request_timeout)
             except RuntimeError as exc:
                 # All retries exhausted: record the row as FAILED and skip it rather than
                 # aborting the whole run. It scores as a recall miss in evaluate.py.
