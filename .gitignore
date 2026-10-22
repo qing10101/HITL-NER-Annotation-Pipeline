@@ -1,6 +1,7 @@
 .env
 .venv-supervised
-output/
+output/*.csv
+output/*.bak
 __pycache__/
 *.pyc
 .venv/
