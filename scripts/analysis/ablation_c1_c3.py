@@ -70,7 +70,9 @@ def parse_args() -> argparse.Namespace:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     p.add_argument("--run-dir", type=Path, default=RUN_DIR)
     p.add_argument("--human-csv", type=Path, default=RUN_DIR / "sample_500_human.csv",
-                   help="Ground-truth CSV with row_id/text/annotated_text columns")
+                   help="Ground-truth CSV with row_id, raw text and tagged text columns")
+    p.add_argument("--raw-col", default="text", help="Raw text column in --human-csv")
+    p.add_argument("--gold-col", default="annotated_text", help="Tagged text column in --human-csv")
     return p.parse_args()
 
 
@@ -82,8 +84,8 @@ def main() -> None:
     reviewed = {r["row_id"]: r["human_annotation"] for r in _read(args.run_dir / "human_reviewed.csv")}
 
     ids = sorted(truth)
-    gold = {rid: _spans(truth[rid]["annotated_text"]) for rid in ids}
-    raw = {rid: truth[rid]["text"] for rid in ids}
+    gold = {rid: _spans(truth[rid][args.gold_col]) for rid in ids}
+    raw = {rid: truth[rid][args.raw_col] for rid in ids}
     y = {rid: gemini.get(rid, "") for rid in ids}
 
     auditor_fail = {rid for rid in ids if log[rid]["status"] == "FAIL"}

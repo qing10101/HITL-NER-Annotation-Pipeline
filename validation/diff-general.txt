@@ -1,0 +1,51 @@
+=== ROW-LEVEL DIFF ===
+
+Rows in human CSV       : 500
+Rows in gold standard   : 500
+Rows in both (shared)   : 500
+
+  MATCH                 : 495
+  DIFF                  : 5
+  PARSE_ERROR           : 0
+  ONLY_IN_HUMAN         : 0
+  ONLY_IN_GOLD          : 0
+
+Differing rows:
+  1582381291_93797
+    - human only  [FAM_KIN] "girl"
+    - human only  [MINOR_AGE] "5 year old"
+    + gold only   [MINOR_AGE] "5 year old little girl"
+  B00U770P24_133077
+    + gold only   [MINOR_AGE] "2"
+  B01N4PRY4K_178795
+    + gold only   [MINOR_AGE] "baby"
+  B0BQYKF4CB_40065
+    + gold only   [MINOR_AGE] "baby"
+  B0BWBL4HFT_108077
+    + gold only   [MINOR_AGE] "baby"
+
+Written: /Users/scottwang/NER_Dataset_Labeling_Pipeline/validation/diff_human_vs_gold.csv
+
+=== SPAN-LEVEL DIFF ===
+
+Shared rows compared    : 500  (0 skipped — parse error)
+Total human spans       : 156
+Total gold spans        : 160
+
+Exact matches           : 154
+Boundary shifts         : 0  (same label+text, diff offsets)
+Label conflicts         : 0  (same position, diff label)
+Human-only spans        : 2
+Gold-only spans         : 6
+Agreement (human basis) : 98.7%
+Agreement (gold basis)  : 96.2%
+
+Label           Human   Gold  Match  BndSft  H-Only  G-Only
+----------------------------------------------------------
+MINOR_AGE          53     58     52       0       1       6
+MINOR_EDU           2      2      2       0       0       0
+GEN_NOUN            9      9      9       0       0       0
+GEN_PHYS            8      8      8       0       0       0
+FAM_KIN            84     83     83       0       1       0
+
+Written: /Users/scottwang/NER_Dataset_Labeling_Pipeline/validation/span_level_diff.csv

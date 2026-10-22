@@ -1,0 +1,48 @@
+=== ROW-LEVEL DIFF ===
+
+Rows in human CSV       : 32
+Rows in gold standard   : 32
+Rows in both (shared)   : 32
+
+  MATCH                 : 28
+  DIFF                  : 4
+  PARSE_ERROR           : 0
+  ONLY_IN_HUMAN         : 0
+  ONLY_IN_GOLD          : 0
+
+Differing rows:
+  B000II0TBY_168242
+    + gold only   [MINOR_EDU] "pre-k"
+  B088JL5QJQ_39761
+    - human only  [FAM_KIN] "kids"
+  B08DQZR25F_70543
+    + gold only   [MINOR_AGE] "5"
+  B0B3DGGKMK_140517
+    - human only  [MINOR_EDU] "first year in elementary school"
+    + gold only   [MINOR_EDU] "elementary school"
+
+Written: output/diff_human_vs_gold.csv
+
+=== SPAN-LEVEL DIFF ===
+
+Shared rows compared    : 32  (0 skipped — parse error)
+Total human spans       : 113
+Total gold spans        : 114
+
+Exact matches           : 111
+Boundary shifts         : 0  (same label+text, diff offsets)
+Label conflicts         : 0  (same position, diff label)
+Human-only spans        : 2
+Gold-only spans         : 3
+Agreement (human basis) : 98.2%
+Agreement (gold basis)  : 97.4%
+
+Label           Human   Gold  Match  BndSft  H-Only  G-Only
+----------------------------------------------------------
+MINOR_AGE          22     23     22       0       0       1
+MINOR_EDU          50     51     49       0       1       2
+GEN_NOUN            3      3      3       0       0       0
+GEN_PHYS            0      0      0       0       0       0
+FAM_KIN            38     37     37       0       1       0
+
+Written: output/span_level_diff.csv

@@ -7,7 +7,9 @@ __pycache__/
 .pytest_cache/
 data/*
 scripts/archives/*
-validation/*
+validation/general
+validation/minor-edu
+validation/*.csv
 benchmark/datastore/*
 benchmark/supervised/data/*
 benchmark/supervised/models/*
