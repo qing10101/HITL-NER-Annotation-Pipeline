@@ -61,8 +61,9 @@ OUT_DIR = ROOT / "validation" / "test_balanced_400_c4_same_family"
 AUDIT_FILE = "audit_results.csv"
 NEEDS_REVIEW_FILE = "needs_review.csv"
 BLOCKED_PREFIX = "ContentBlocked:"
+UNPARSEABLE_PREFIX = "Auditor returned no parseable structured output"
 # Gemini blocks on structured calls return no parsed output instead of raising.
-_FINAL_ERRORS = (BLOCKED_PREFIX, "Auditor returned no parseable structured output")
+_FINAL_ERRORS = (BLOCKED_PREFIX, UNPARSEABLE_PREFIX)
 
 _AUDIT_HEADER = ["row_id", "status", "error_type", "auditor_reason"]
 _REVIEW_HEADER = ["row_id", "raw_text", "tagged_text", "error_type", "auditor_reason", "human_annotation"]
@@ -108,7 +109,9 @@ async def _run(args: argparse.Namespace) -> None:
     if not audit_path.exists():
         with audit_path.open("w", newline="", encoding="utf-8") as f:
             csv.writer(f).writerow(_AUDIT_HEADER)
-    done = {rid for rid, r in _load_audits(audit_path).items() if not _retryable(r)}
+    done = {rid for rid, r in _load_audits(audit_path).items()
+            if not _retryable(r)
+            and not (args.retry_unparseable and r["auditor_reason"].startswith(UNPARSEABLE_PREFIX))}
 
     # Rows without annotator output never reach the auditor in the pipeline.
     todo = [rid for rid in ids if rid in gemini and rid not in done]
@@ -258,6 +261,8 @@ def parse_args() -> argparse.Namespace:
     run.add_argument("--temperature", type=float, default=None,
                      help="Auditor temperature (default: $AUDITOR_TEMPERATURE, as in the pipeline)")
     run.add_argument("--concurrency", type=int, default=8)
+    run.add_argument("--retry-unparseable", action="store_true",
+                     help="Re-audit rows whose auditor returned no parseable output")
     sub.choices["score"].add_argument(
         "--reviewed-csv", type=Path, default=None,
         help="needs_review.csv with the human_annotation column filled in")

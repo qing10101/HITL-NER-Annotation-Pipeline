@@ -29,7 +29,7 @@ The two sets share 10 rows.
 | Annotator + parser | C2 | rows where `parse_and_verify(ỹ, x)` fails |
 | Annotator + auditor | C3 | rows the auditor FAILs; offsets as in C1 |
 | Full pipeline | reference | auditor FAIL or parser failure |
-| Same-family audit | C4 | rows a Gemini auditor FAILs (needs a new run, see section 3) |
+| Same-family audit | C4 | rows a Gemini auditor FAILs, in place of GPT-5.5 (see section 3) |
 
 In every configuration except annotator only, rows with no Gemini output (content-blocked) go to human
 review, because the pipeline sends hard errors to review before any audit runs. Under annotator only, they
@@ -48,17 +48,21 @@ count as all misses.
 | C2: annotator + parser | 2 | 0.4% | 150 | 6 | 6 | 0.9615 | 0.9615 | 0.9615 |
 | C3: annotator + auditor | 6 | 1.2% | 153 | 6 | 3 | 0.9623 | 0.9808 | 0.9714 |
 | Full pipeline | 6 | 1.2% | 153 | 6 | 3 | 0.9623 | 0.9808 | 0.9714 |
-| C4: same-family audit | — | — | — | — | — | — | — | — (not run yet) |
+| C4: same-family audit | 10 | 2.0% | 151 | 5 | 5 | 0.9679 | 0.9679 | 0.9679 |
 
 ### Per-label F1
 
-| Label | C1 | C2 | C3 | Full pipeline |
-|---|---|---|---|---|
-| MINOR_AGE | 0.9259 | 0.9358 | 0.9550 | 0.9550 |
-| MINOR_EDU | 1.0000 | 1.0000 | 1.0000 | 1.0000 |
-| GEN_NOUN | 0.9412 | 0.9412 | 0.9412 | 0.9412 |
-| GEN_PHYS | 0.9333 | 0.9333 | 1.0000 | 1.0000 |
-| FAM_KIN | 0.9759 | 0.9820 | 0.9820 | 0.9820 |
+| Label | C1 | C2 | C3 | Full pipeline | C4 |
+|---|---|---|---|---|---|
+| MINOR_AGE | 0.9259 | 0.9358 | 0.9550 | 0.9550 | 0.9358 |
+| MINOR_EDU | 1.0000 | 1.0000 | 1.0000 | 1.0000 | 1.0000 |
+| GEN_NOUN | 0.9412 | 0.9412 | 0.9412 | 0.9412 | 1.0000 |
+| GEN_PHYS | 0.9333 | 0.9333 | 1.0000 | 1.0000 | 0.9333 |
+| FAM_KIN | 0.9759 | 0.9820 | 0.9820 | 0.9820 | 0.9880 |
+
+C4 is higher than the full pipeline on GEN_NOUN and FAM_KIN only because of `B093CZ17JS_97886` (`grandmas`),
+which Gemini flagged and GPT passed. That row has no reviewer annotation and is scored with the ground truth
+(see section 3, Assumptions).
 
 ### Findings
 
@@ -107,19 +111,19 @@ vs 0.975).
 | C2: annotator + parser | 10 | 2.5% | 484 | 10 | 17 | 0.9798 | 0.9661 | 0.9729 |
 | C3: annotator + auditor | 30 | 7.5% | 498 | 3 | 3 | 0.9940 | 0.9940 | 0.9940 |
 | Full pipeline | 30 | 7.5% | 498 | 3 | 3 | 0.9940 | 0.9940 | 0.9940 |
-| C4: same-family audit | — | — | — | — | — | — | — | — (not run yet) |
+| C4: same-family audit | 34 | 8.5% | 491 | 7 | 10 | 0.9859 | 0.9800 | 0.9830 |
 
 ### Per-label F1
 
-| Label | C1 | C2 | C3 | Full pipeline |
-|---|---|---|---|---|
-| MINOR_AGE | 0.9467 | 0.9755 | 0.9970 | 0.9970 |
-| MINOR_EDU | 1.0000 | 1.0000 | 1.0000 | 1.0000 |
-| GEN_NOUN | 0.9789 | 0.9843 | 0.9948 | 0.9948 |
-| GEN_PHYS | 0.8444 | 0.9091 | 1.0000 | 1.0000 |
-| FAM_KIN | 0.9484 | 0.9710 | 0.9903 | 0.9903 |
+| Label | C1 | C2 | C3 | Full pipeline | C4 |
+|---|---|---|---|---|---|
+| MINOR_AGE | 0.9467 | 0.9755 | 0.9970 | 0.9970 | 0.9878 |
+| MINOR_EDU | 1.0000 | 1.0000 | 1.0000 | 1.0000 | 1.0000 |
+| GEN_NOUN | 0.9789 | 0.9843 | 0.9948 | 0.9948 | 0.9843 |
+| GEN_PHYS | 0.8444 | 0.9091 | 1.0000 | 1.0000 | 0.9778 |
+| FAM_KIN | 0.9484 | 0.9710 | 0.9903 | 0.9903 | 0.9783 |
 
-Entity counts: FAM_KIN 207, MINOR_AGE 166, GEN_NOUN 96, GEN_PHYS 22, MINOR_EDU 10. With only 22 and 10
+Entity counts: FAM_KIN 207, MINOR_AGE 165, GEN_NOUN 97, GEN_PHYS 22, MINOR_EDU 10. With only 22 and 10
 entities, the per-label F1 for GEN_PHYS and MINOR_EDU moves several points per span.
 
 ### Findings
@@ -149,9 +153,82 @@ entities, the per-label F1 for GEN_PHYS and MINOR_EDU moves several points per s
 ## 3. C4: same-family audit (Gemini auditing Gemini)
 
 C4 is the only ablation that needs new API calls, because the corpus run's auditor was GPT-5.5.
-`scripts/analysis/ablation_c4.py` re-audits the cached Gemini output ỹ (unchanged from C1–C3) with a Gemini
-auditor, using the pipeline's own Auditor and prompt. It then scores three configurations: cross-family
-auditor only (equal to C3), same-family auditor only, and same-family auditor plus parser. Results: pending.
+`scripts/analysis/ablation_c4.py` re-audits the cached Gemini output ỹ (unchanged from C1–C3) with
+`gemini-3.5-flash`. It uses the pipeline's own Auditor, prompt and auditor temperature (1.0, the same as
+the GPT audit), so only the auditor model changes.
+
+```
+# Balanced 400
+.venv/bin/python scripts/analysis/ablation_c4.py run
+.venv/bin/python scripts/analysis/ablation_c4.py score
+
+# Random 500
+.venv/bin/python scripts/analysis/ablation_c4.py run \
+    --human-csv validation/general/sample_500_human.csv --gold-col annotated_text \
+    --out-dir validation/general/c4_same_family
+.venv/bin/python scripts/analysis/ablation_c4.py score \
+    --human-csv validation/general/sample_500_human.csv --gold-col annotated_text \
+    --out-dir validation/general/c4_same_family
+```
+
+Verdicts are in `audit_results.csv` in `validation/test_balanced_400_c4_same_family/` and
+`validation/general/c4_same_family/`.
+
+### Results
+
+| Set | Configuration | Rows escalated | Esc. rate | TP | FP | FN | Precision | Recall | F1 |
+|---|---|---|---|---|---|---|---|---|---|
+| Random 500 | C3: GPT-5.5 auditor (cross-family) | 6 | 1.2% | 153 | 6 | 3 | 0.9623 | 0.9808 | 0.9714 |
+| Random 500 | C4: Gemini auditor (same-family) | 10 | 2.0% | 151 | 5 | 5 | 0.9679 | 0.9679 | 0.9679 |
+| Balanced 400 | C3: GPT-5.5 auditor (cross-family) | 30 | 7.5% | 498 | 3 | 3 | 0.9940 | 0.9940 | 0.9940 |
+| Balanced 400 | C4: Gemini auditor (same-family) | 34 | 8.5% | 491 | 7 | 10 | 0.9859 | 0.9800 | 0.9830 |
+
+Adding the parser to C4 changes nothing on either set, because Gemini failed every row the parser rejects.
+
+**Rows flagged** (excluding content-blocked annotator output):
+
+| Set | Gemini FAIL | GPT FAIL | Both | Gemini only | GPT only |
+|---|---|---|---|---|---|
+| Random 500 | 9 | 5 | 1 | 8 | 4 |
+| Balanced 400 | 30 | 26 | 15 | 15 | 11 |
+
+**Catching wrong rows** (rows where raw Gemini spans differ from the ground truth):
+
+| Set | Wrong rows | Gemini catches | Gemini false alarms | GPT catches | GPT false alarms |
+|---|---|---|---|---|---|
+| Random 500 | 9 | 1 | 8 | 2 | 3 |
+| Balanced 400 | 22 | 12 | 18 | 19 | 7 |
+
+On the 400 set, every wrong row Gemini caught, GPT also caught. On the 500 set, Gemini's single catch
+(`B093CZ17JS_97886`, `grandmas` FAM_KIN → GEN_NOUN) was one GPT missed, while GPT's two catches (`bust` as
+GEN_PHYS, `potty training` as MINOR_AGE) were ones Gemini missed.
+
+### Findings
+
+- **The same-family auditor misses its own annotator's omissions.** Gemini filed 1 OMITTED_VALID_TAG on
+  the 400 set, where GPT filed 12. The errors it passed are the annotator's blind spots: `potty training`
+  and `pull up` as MINOR_AGE, `kids` as FAM_KIN, `girl` as GEN_NOUN, `bust` as GEN_PHYS, and kinship-versus-
+  gender mislabels (`Gramma`, `grandmother`). This is the confirmation bias that cross-family auditing is
+  meant to avoid.
+- **It flags more correct rows.** Gemini sent 18 already-correct rows to review on the 400 set (GPT: 7)
+  and 8 on the 500 set (GPT: 3). So it costs more review and catches fewer errors.
+- **It is better at noticing changed text.** Gemini labelled all 6 parser-rejected rows on the 400 set and
+  the 1 on the 500 set as RAW_TEXT_MUTATION; GPT labelled none of the 6 that way (section 4). The parser
+  check remains the safeguard for the cross-family auditor.
+- **Content blocks.** Gemini refused 7 audit prompts outright (`PROHIBITED_CONTENT`): 4 on the 400 set
+  and 3 on the 500 set. They were retried and blocked again every time. Like any hard error, they count
+  as FAIL and go to review: 4 of the 34 and 3 of the 10 escalations. Six of the 7 rows were already
+  correct. The seventh (`B07CCG2VSY_134423`) was wrong and also flagged by GPT, so one of Gemini's 12 catches
+  on the 400 set comes from a block, not an audit judgment.
+
+### Assumptions
+
+- **Escalated rows with no reviewer annotation** (flagged by Gemini but never by GPT, so never reviewed)
+  are scored with the ground truth, as a perfect reviewer. Those rows are in each folder's
+  `needs_review.csv` (15 on the 400 set, 8 on the 500 set).
+  - On the 400 set all 15 were already correct, so the stand-in doesn't change the score.
+  - On the 500 set, one was wrong: `B093CZ17JS_97886`, where Gemini's reason matches the gold. If a
+    reviewer didn't make that fix, C4 on the 500 set would be 150 TP, 6 FP, 6 FN (F1 0.9615).
 
 ## 4. Auditor vs parser rejections
 
