@@ -1,0 +1,502 @@
+row_id,span_idx,label,gold,gold_norm,pred1,pred2,pred3,pred4,pred5,exact1,exact5,cat1,anycat1,gold_prob
+B013EI5J4G_100036,0,MINOR_AGE,LO,lo,daughter,baby,granddaughter,toddler,little one,0,0,0,1,0.01648351706052801
+B0797KXTW7_30029,0,MINOR_AGE,baby,baby,daughter,baby,3 month old,granddaughter,little one,0,1,0,1,0.07834039610474362
+B0797KXTW7_30029,1,MINOR_AGE,10 month old,months:10,baby,daughter,4 month old,3 month old,2 year old,0,0,1,1,0.1772974427511114
+B09Q67FVS6_176074,0,FAM_KIN,daughter,daughter,son,grandson,kids,daughter,kid,0,1,1,1,0.0664531128564983
+B006NWICTK_106705,0,FAM_KIN,girls’,girl,kids,sons,toddlers,boys,daughters,0,0,1,1,0.012124921999162598
+B006NWICTK_106705,1,MINOR_AGE,little ones,little one,little ones,kid,kids,little one,baby,1,1,1,1,0.4031307638185985
+B07MBGJRKT_172322,0,MINOR_AGE,preemie,preemie,daughter,baby,son,little girl,newborn,0,0,0,1,0.0148774686066237
+B07MBGJRKT_172322,1,FAM_KIN,daughter,daughter,daughter,baby,little one,little girl,newborn,1,1,1,1,0.522590889835495
+B07MBGJRKT_172322,2,MINOR_AGE,6 months,months:6,3 months old,5 months old,6 months old,2 months old,3 months,0,1,1,1,0.22544558594455927
+B07MBGJRKT_172322,3,FAM_KIN,daughter,daughter,baby,daughter,little one,little girl,toddler,0,1,0,1,0.2712727146010283
+B07G4CGQ57_107925,0,FAM_KIN,boys,boy,grandson,granddaughter,daughter,son,niece,0,0,1,1,0.0011976669788142172
+B01CGM3MCM_86051,0,MINOR_AGE,1 year old,age:1,niece's,son's,grandson's,nieces,2 year old,0,0,0,1,0.22965188453562835
+B01CGM3MCM_86051,1,FAM_KIN,nephew,nephew,grandson,son,nephew,brother,grand son,0,1,1,1,0.1828656229956497
+B09BMCYQYX_46810,0,FAM_KIN,boys,boy,kids,grandkids,boys,girls,daughters,0,1,1,1,0.1638314627719749
+B09BMCYQYX_46810,1,MINOR_AGE,7,age:7,3,2,ages 3,ages 2,age 3,0,0,1,1,0.014371332496917981
+B09BMCYQYX_46810,2,MINOR_AGE,4,age:4,7,6,8,9,5,0,0,1,1,0.07702007076006376
+B06XFPQJ6L_50556,0,FAM_KIN,girls,girl,kids,grandkids,grandchildren,sons,boys,0,0,1,1,0.03478377652428608
+B079YCYRNS_69084,0,FAM_KIN,grandsons,grandson,daughter,daughters,girls,wife,girlfriend,0,0,1,1,0.003994794053093449
+B079YCYRNS_69084,1,GEN_PHYS,38DDD,38ddd,four,one,two,34DD,a woman,0,0,0,1,0.043791201406912075
+B00GHY57UG_29337,0,GEN_NOUN,Hubby,hubby,Hubby,Granddaughter,Husband,Son,Grandson,1,1,1,1,0.5152197340926595
+B0891H4V9W_152183,0,FAM_KIN,son,son,son,grandson,2 year old,nephew,baby,1,1,1,1,0.5278184708533419
+B0C6F2GJZL_28145,0,MINOR_AGE,one year old,age:1,grandson's,my son's,grandsons,brother's,nephew's,0,0,0,1,0.05304264463809454
+B0C6F2GJZL_28145,1,FAM_KIN,grandson,grandson,grandson,son,nephew,Grandson,grandson,1,1,1,1,0.7064221206079662
+B0001CTZ8K_87700,0,GEN_PHYS,pumping,pumping,a pump,pumping,the pump,your pump,pumps,0,1,0,0,0.450089958217114
+B08HL6SNB6_135497,0,GEN_NOUN,husband,husband,husband,boyfriend,son,hubby,brother,1,1,1,1,0.5055320965864027
+B0BMS82KYD_155647,0,MINOR_AGE,two year old,age:2,daughter’s,2 year old,5 year old,3 year old,8 year old,0,1,0,1,0.21597772346341096
+B0BMS82KYD_155647,1,FAM_KIN,granddaughter,granddaughter,granddaughter,daughter,niece,grand daughter,grandson,1,1,1,1,0.5241182896104244
+B0BMS82KYD_155647,2,FAM_KIN,daughter,daughter,daughter,granddaughter,niece,grand daughter,sister,1,1,1,1,0.38666088608995036
+B07Z65TM3L_156883,0,GEN_PHYS,34G,34g,34DD,34D,38DD,34C,36DD,0,0,1,1,0.1383410694289361
+B0BT1DXWCH_47718,0,MINOR_AGE,baby,baby,baby,little one,toddler,child,newborn,1,1,1,1,0.8574903759220269
+B001492T5U_73148,0,FAM_KIN,brother,brother,daughter,son,husband,wife,brother,0,1,1,1,0.04938379551709358
+B001492T5U_73148,1,GEN_NOUN,wife,wife,daughter,sister,son,wife,brother,0,1,0,1,0.08496396858843072
+1593596383_53516,0,FAM_KIN,daughter,daughter,son,daughter,baby,husband,toddler,0,1,1,1,0.1578831716279886
+B01IT3WNQI_142219,0,FAM_KIN,Grandson,grandson,Granddaughter,Grandson,Daughter,Granddaughters,Grand daughter,0,1,1,1,0.3887542947862517
+B084L1DGZ3_23761,0,MINOR_AGE,5 year old,age:5,daughter's,Granddaughter's,granddaughter's,sister's,Granddaughter’s,0,0,0,1,0.2237010017962189
+B084L1DGZ3_23761,1,FAM_KIN,daughter,daughter,daughter,granddaughter,niece,grandson,son,1,1,1,1,0.5442633639627155
+1847380239_65762,0,FAM_KIN,Granddaughter,granddaughter,Granddaughter,Grandson,Grandaughter,Daughter,Son,1,1,1,1,0.7374827376115493
+B08YR29CW9_54461,0,MINOR_AGE,2-year-old,age:2,son's,wife's,2 year old,9 year old,teenage,0,1,0,1,0.3610761293073567
+B08YR29CW9_54461,1,FAM_KIN,daughter,daughter,son,daughter,grandson,granddaughter,niece,0,1,1,1,0.17910713246660281
+B07VQPZJK6_45815,0,GEN_NOUN,woman,woman,16,36DDD,16 DD,16-17,36D,0,0,0,1,4.433817674515259e-05
+B0009WSPRO_166998,0,GEN_NOUN,GF,gf,daughter,son,grandson,niece,grand daughter,0,0,0,1,0.002603896510762436
+B07B1LQKHM_145718,0,FAM_KIN,daughter,daughter,daughter,granddaughter,niece,sister,mom,1,1,1,1,0.5816568630355738
+B00YGJJTMQ_45373,0,GEN_NOUN,wife,wife,grandson,son,husband,daughter,brother,0,0,0,1,0.013486237114580362
+B0C3TZLWHX_157171,0,GEN_NOUN,husband,husband,husband,son,two year old,wife,baby,1,1,1,1,0.6937931049094639
+B0C3TZLWHX_157171,1,GEN_NOUN,husband,husband,husband,son,hubby,baby,man,1,1,1,1,0.7170619405792084
+B00A88EV5Y_41741,0,FAM_KIN,grandson's,grandson,grandson's,son's,sons,nephew's,nephews,1,1,1,1,0.8354934901560397
+B00A88EV5Y_41741,1,MINOR_AGE,third birthday,third birthday,3rd birthday,4th birthday,1st birthday,2nd birthday,8th birthday,0,0,1,1,0.084834065723899
+B00A88EV5Y_41741,2,GEN_NOUN,Grandma,grandma,me,mom,my husband,you,them,0,0,0,0,0.0991142078582697
+B073S41S9Y_108016,0,MINOR_AGE,20-30 teenagers,20-30 teenager,grandkids,baby,toddlers,kids,toddler,0,0,0,1,0.00029113874117442037
+B07FYP6QJV_138648,0,GEN_NOUN,hubby,hubby,mechanic,driver,guy,technician,owner,0,0,0,0,0.046006983093629016
+B07TBD5KNS_35460,0,FAM_KIN,kids,kid,kids,toddlers,boys,children,girls,1,1,1,1,0.5327499168392038
+B07TBD5KNS_35460,1,MINOR_AGE,8 year old,age:8,husband,daughter,son,wife,mom,0,0,0,1,0.1392805169411409
+B084FFZ98T_09622,0,GEN_NOUN,woman,woman,female,woman,male,women,lady,0,1,1,1,0.4011799425834485
+B09BJDB53M_147653,0,MINOR_AGE,teens,teen,grandkids,little ones,toddlers,2 year olds,2 year old,0,0,0,1,0.0020427183861992672
+B01GAT24AI_58959,0,FAM_KIN,son,son,son,daughter,granddaughter,grandson,niece,1,1,1,1,0.30926255433262034
+B07XL99Q6C_90580,0,FAM_KIN,daughter,daughter,daughter,granddaughter,niece,7yr old,3yr old,1,1,1,1,0.5144578974012538
+B07XL99Q6C_90580,1,MINOR_AGE,7yr old,age:7,daughter,2 year old,6 year old,9 year old,little girl,0,0,0,1,0.10632245971081487
+B08FHDDB9Z_23674,0,FAM_KIN,son,son,son,husband,hubby,brother,nephew,1,1,1,1,0.4668213541449121
+B0C7LNHF2R_36756,0,MINOR_AGE,4m old,months:4,son,daughter,grandson,baby,toddler,0,0,0,1,0.0028632914405810825
+B009LL61LG_11890,0,MINOR_AGE,16 months,months:16,one point,6 months,3 months,2 months,1 year,0,0,0,0,0.0756839020032152
+B009LL61LG_11890,1,FAM_KIN,daughter,daughter,16 month old,16 months old,16 months,16 months pregnant,16months old,0,0,0,1,0.00021631062822294688
+B07LBXYCNB_139932,0,GEN_NOUN,gf,gf,granddaughter,niece,daughter,grand daughter,sister,0,0,0,1,0.01411266157154607
+B09MVHH3LG_04975,0,MINOR_AGE,baby,baby,baby,daughter,little one,newborn,toddler,1,1,1,1,0.35985676971101055
+B0BQV3785S_161843,0,FAM_KIN,daughters,daughter,son's,sons,daughter's,kids,kid's,0,1,1,1,0.012641943192984567
+B002F9NH68_129838,0,MINOR_AGE,3.5 yr old,age:3.5,3 year old,2 year old,5 year old,4 year old,8 year old,0,0,1,1,0.24232551539319647
+B002F9NH68_129838,1,FAM_KIN,son,son,son,grandson,nephew,Grandson,grandchild,1,1,1,1,0.4352623345759171
+B00UAX6SPI_160605,0,MINOR_AGE,baby's,baby,baby's,daughter's,kid's,sons,kids,1,1,1,1,0.4915450500438427
+B07D13JY1P_35123,0,FAM_KIN,nephew's,nephew,daughter's,daughter’s,daughters,granddaughter's,sister's,0,0,1,1,0.08951987275426553
+B07D13JY1P_35123,1,GEN_NOUN,hostess,hostess,bride,mom,college student,mother,girl,0,0,0,0,0.07989502522628816
+B075N16ZNB_100558,0,FAM_KIN,Daughter,daughter,Granddaughter,Grandson,Daughter,Grand daughter,Granddaughters,0,1,1,1,0.17838074585989072
+B00R5GVI58_121726,0,MINOR_AGE,2yo,age:2,daughter,daughter-in-law,granddaughter,niece,child,0,0,0,1,0.07316836221722135
+0768877385_100081,0,FAM_KIN,daughter,daughter,daughter,granddaughter,son,grandson,niece,1,1,1,1,0.4189547685804083
+0768877385_100081,1,MINOR_AGE,5,age:5,14 months old,eight,8,11,14,0,0,1,1,0.02189639416446627
+B07SZ37D7P_44238,0,GEN_NOUN,wife,wife,wife,husband,daughter,son,sister,1,1,1,1,0.5601249211843805
+B0C4ZLKDNL_78820,0,FAM_KIN,daughter,daughter,daughter,daughters,wife,granddaughter,girls,1,1,1,1,0.8389030000488632
+B0C4ZLKDNL_78820,1,GEN_NOUN,wife,wife,husband,wife,mother,mom,daughter,0,1,1,1,0.14712986417396487
+B0C4ZLKDNL_78820,2,FAM_KIN,daughter,daughter,daughter,husband,wife,son,mom,1,1,1,1,0.8493970563172429
+B0C4ZLKDNL_78820,3,FAM_KIN,daughter,daughter,wife,daughter,mother,mom,husband,0,1,1,1,0.21942386172226264
+B00FU0UZM8_176908,0,MINOR_AGE,6 year old,age:6,son,daughter,wife,husband,child,0,0,0,1,0.060447226839507845
+B084DV3VTN_130115,0,GEN_NOUN,wife,wife,mom,sister,daughter,husband,mother,0,0,1,1,0.048057136710659795
+B0098RKCBS_141320,0,GEN_NOUN,female,female,woman,baby,pregnant woman,man,mom,0,0,1,1,0.01218573468176131
+B0876MT85B_26930,0,GEN_NOUN,husband,husband,husband,son,wife,daughter,kids,1,1,1,1,0.4324942428457587
+B09LYS4G29_108210,0,FAM_KIN,son,son,baby,little one,son,neice,newborn,0,1,0,1,0.0618250713228433
+B09LYS4G29_108210,1,MINOR_AGE,9 months,months:9,2 months old,3 months,2 months,6 months,4 months,0,0,1,1,0.14101444998770665
+B07YY7BHMH_00178,0,FAM_KIN,granddaughter,granddaughter,wife,daughter,granddaughter,mother,sister,0,1,1,1,0.13531902192488646
+B0BJ7FGB1B_02120,0,GEN_NOUN,husband,husband,husband,wife,son,daughter,hubby,1,1,1,1,0.57793743700781
+B001Q3KUA0_101703,0,MINOR_AGE,3yo,age:3,2 year old,two year old,5 year old,3 year old,five year old,0,1,1,1,0.06660051648088638
+B001Q3KUA0_101703,1,FAM_KIN,son,son,son,grandson,daughter,nephew,grandchild,1,1,1,1,0.6728944668586069
+B001Q3KUA0_101703,2,FAM_KIN,daughters,daughter,son's,daughter's,son’s,daughter’s,kids,0,1,1,1,0.018392419046449636
+B001Q3KUA0_101703,3,FAM_KIN,kiddo,kiddo,son,3yo,grandson,little one,daughter,0,0,1,1,0.13948625307411064
+B07GZSWR75_30504,0,FAM_KIN,son,son,daughter,son,niece,granddaughter,grandson,0,1,1,1,0.15502200656921317
+B07GZSWR75_30504,1,MINOR_EDU,pre k,pre k,kindergarten,school,Kindergarten,high school,preschool,0,0,1,1,0.022254134698742507
+B01F7OO66W_103673,0,GEN_NOUN,husband's,husband,grandson's,son's,grandson’s,son’s,sons,0,0,0,1,0.3398434638139701
+B0019RW36W_82572,0,FAM_KIN,first two children,first 2 children,daughter,first baby,baby,newborn,first child,0,0,1,1,0.024551588591106274
+B0019RW36W_82572,1,MINOR_AGE,newest little one,newest little 1,daughter,granddaughter,baby,niece,grand daughter,0,0,0,1,0.03501098225565475
+B0C318N58S_26669,0,FAM_KIN,grandkids,grandkid,grandkids,kids,little ones,grand kids,grandchildren,1,1,1,1,0.700555044888274
+B09BNX78XR_87053,0,MINOR_AGE,18 month old,months:18,son,grandson,baby,2 year old,toddler,0,0,0,1,0.11638340810456399
+B007A2ZP6K_102033,0,FAM_KIN,son,son,son,daughter,grandson,nephew,kid,1,1,1,1,0.4759136247504654
+B007A2ZP6K_102033,1,MINOR_AGE,2,age:2,5,3,4,6,8,0,0,1,1,0.0654534008950991
+B009YSYD20_135773,0,GEN_NOUN,wife,wife,son,wife,daughter,husband,kid,0,1,0,1,0.16576437538012612
+B008C4S23I_42998,0,MINOR_EDU,first graders,first grader,4th grade,6th grade,5th grade,2nd grade,kindergarten,0,0,0,0,0.12469999253251339
+B000SNSJYI_37660,0,GEN_PHYS,heavy leaking,heavy leaking,small children,small kids,small hands,limited space,little problem with them,0,0,0,0,0.001273622523805592
+B00FPUVEVO_128858,0,GEN_NOUN,husband,husband,son,daughter,grandson,granddaughter,husband,0,1,0,1,0.03068949873974269
+B003153SCI_160710,0,FAM_KIN,daughter,daughter,2 year old,two year old,son,kids,kid,0,0,0,1,0.06361422955944145
+B000U66YBI_07572,0,FAM_KIN,son,son,son,nephew,grandson,child,kid,1,1,1,1,0.8862419506106609
+B000U66YBI_07572,1,MINOR_AGE,a year old,a year old,3,2,4,5,6,0,0,1,1,0.06954967899100106
+B00W4USFCO_19685,0,MINOR_AGE,9 year old,age:9,kids,kiddos,boys,twins,son,0,0,1,1,0.046767179707470366
+B0BBTZ29PW_49307,0,GEN_NOUN,boyfriend,boyfriend,husband,son,grandson,hubby,brother,0,0,1,1,0.007869663978733218
+B07TW2FYNV_82207,0,FAM_KIN,kids,kid,kids,grandkids,boys,girls,daughters,1,1,1,1,0.5122347241434215
+B0C47FPQC2_51653,0,GEN_NOUN,guy,guy,woman,man,female,person,male,0,0,1,1,0.0023779833658887795
+B0BZHVZQ3J_146707,0,MINOR_AGE,4 year old,age:4,daughter,4-6 year old,granddaughter,4 year old,4-6 month old,0,1,0,1,0.3073835660553739
+B00S7ZPB8Q_176992,0,FAM_KIN,moms,mom,daughter,wife,mom,sister,mother,0,1,1,1,0.004148423254519335
+B00FWM9VMY_158256,0,GEN_NOUN,wife,wife,husband,son,wife,hubby,daughter,0,1,1,1,0.05889827286302754
+B003NT6PMW_170144,0,FAM_KIN,sons,son,daughter's,daughters,son's,wife's,sister's,0,1,1,1,0.13270826445849934
+B003NT6PMW_170144,1,GEN_PHYS,small busted,small busted,a 16,a woman,a big girl,a big woman,a DD,0,0,0,0,0.00021830107591697855
+B003NT6PMW_170144,2,GEN_PHYS,breasts,breast,s,s to fix it,s to make it fit,s to make it,s to get it,0,0,0,0,0.002079353593699095
+B0BQ29SS97_37526,0,FAM_KIN,grandson,grandson,son,grandson,toddler,little one,child,0,1,1,1,0.3111219217883065
+B000OWDVYG_173402,0,FAM_KIN,daughters,daughter,daughter's,granddaughter's,granddaughters,daughter’s,granddaughter’s,1,1,1,1,0.02487392048947764
+B000OWDVYG_173402,1,MINOR_AGE,2nd birthday,2nd birthday,4th birthday,3rd birthday,2nd birthday,5th birthday,first birthday,0,1,1,1,0.42300201980882235
+B0072FRENC_04352,0,MINOR_AGE,LO,lo,baby,little one,toddler,child,newborn,0,0,1,1,0.019955873315566933
+B01739XZMA_66923,0,MINOR_AGE,5 year old,age:5,baby,little girl,little one,3 year old,toddler,0,0,1,1,0.1904717403874982
+B00B909ZNS_157277,0,MINOR_AGE,two year old,age:2,daughter,granddaughter,niece,9 year old,little girl,0,0,0,1,0.1186839987448426
+B00B909ZNS_157277,1,FAM_KIN,grandmother,grandmother,mother,grandmother,sister,mom,cousin,0,1,1,1,0.17728506174204953
+B08WBJSYKH_104668,0,GEN_PHYS,pregnancy,pregnancy,diapering,diaper change,diaper changing,changing,breastfeeding,0,0,0,0,0.002692903663701695
+B01DPBXGO2_102297,0,MINOR_AGE,3 week old,3 week old,baby's,daughter's,5 year old,2 year old,daughter’s,0,0,1,1,0.026392311376374728
+B01DPBXGO2_102297,1,FAM_KIN,niece,niece,daughter,granddaughter,baby,niece,girl,0,1,1,1,0.04082264707447429
+B001VSCCY2_83000,0,MINOR_AGE,one year old,age:1,2 year old,3 year old,5 year old,4 year old,8 year old,0,0,1,1,0.15590800297544918
+B001VSCCY2_83000,1,FAM_KIN,daughter,daughter,daughter,granddaughter,grand daughter,niece,girl,1,1,1,1,0.45275379623844214
+B0B2CBQGSS_60097,0,FAM_KIN,great grandson,great grandson,son,daughter,grandson,baby,granddaughter,0,0,1,1,0.045269482968868964
+B08GQRFL4R_34484,0,MINOR_AGE,9,age:9,6,5,4,8,3,0,0,1,1,0.01599189822199014
+B08GQRFL4R_34484,1,MINOR_AGE,7  year old,age:7,9 year old,8 year old,7 year old,11 year old,10 year old,0,1,1,1,0.5109195610303827
+B08GQRFL4R_34484,2,FAM_KIN,nephew,nephew,nephew,daughter,nephews,son,sister,1,1,1,1,0.8928452596535397
+B08GQRFL4R_34484,3,FAM_KIN,niece,niece,niece,nieces,grandson,cousin,nephew,1,1,1,1,0.9621622810588141
+B0063G5H12_121916,0,MINOR_AGE,month one,month 1,grandma,nieces,mom,sister,niece,0,0,0,1,0.0020911972006389325
+B084K4K5JT_102492,0,FAM_KIN,nephew,nephew,grandson,son,nephew,brother,Grandson,0,1,1,1,0.2341288501119199
+B084K4K5JT_102492,1,MINOR_AGE,4th birthday,4th birthday,3rd birthday,2nd birthday,1st birthday,4th birthday,first birthday,0,1,1,1,0.44494693470736235
+B084K4K5JT_102492,2,FAM_KIN,sister,sister,nephew,son,niece,grandson,brother,0,0,1,1,0.03128734941307877
+B00GXTTPKI_68309,0,MINOR_AGE,autistic preschooler,autistic preschooler,son,3 year old,grandson,kid,baby,0,0,0,1,0.013654589230315593
+B00GXTTPKI_68309,1,FAM_KIN,kid,kid,son,baby,child,kid,toddler,0,1,1,1,0.04319449769418809
+B00GXTTPKI_68309,2,GEN_NOUN,Mum,mum,Granddaughter,Grandson,Mom,Daughter,Mum,0,1,0,1,0.04203404962383293
+B00GXTTPKI_68309,3,MINOR_AGE,16 years,age:16,two,2 boys,3,2,4,0,0,1,1,0.004469362637889759
+B00BD61AOU_118316,0,GEN_NOUN,Hubby,hubby,husband,son,father in law,father,dad,0,0,1,1,0.005647013995843908
+B01BSP1AGI_92523,0,MINOR_AGE,little boy,little boy,customer,recipient,buyer,with it,with this gift,0,0,0,0,0.011133552240517737
+B002UD65S6_150600,0,MINOR_AGE,baby,baby,daughter,baby,little one,little girl,granddaughter,0,1,0,1,0.09909972822385624
+B0821C6P1P_70963,0,MINOR_AGE,15,age:15,50,60,18,55,40,0,0,0,0,0.006020829542026408
+B0C54TZMSL_161176,0,FAM_KIN,son,son,son,daughter,husband,kid,child,1,1,1,1,0.55648831723667
+B08473HXNH_169839,0,FAM_KIN,kids,kid,grandkids,kids,boys,grand kids,grandchildren,0,1,1,1,0.2011506569432541
+B08473HXNH_169839,1,MINOR_AGE,3,age:3,ages 4,3,4,age 4,ages 3,0,1,0,0,0.19814053930617676
+B08473HXNH_169839,2,MINOR_AGE,5,age:5,2,4,3,5,6,0,1,1,1,0.09234272040061381
+B0193YZSNW_160898,0,GEN_PHYS,beard,beard,beard,bf,bday,comb,wife,1,1,1,1,0.9435432038089324
+B0B8P8P8GH_81384,0,FAM_KIN,daughter,daughter,son,husband,daughter,kid,baby,0,1,1,1,0.13043882588885597
+B0BNZXNTCS_104120,0,FAM_KIN,kids,kid,kids,grandkids,daughters,2 year olds,grand kids,1,1,1,1,0.4364512668824873
+B00J0ALHCQ_00222,0,FAM_KIN,mom,mom,daughter,sister,niece,granddaughter,mom,0,1,1,1,0.02647614942431425
+B001R0LBLO_165421,0,MINOR_AGE,4 year old,age:4,daughter,granddaughter,3 year old,niece,baby,0,0,0,1,0.19734673804733857
+B07L5FC123_162821,0,MINOR_AGE,one year old,age:1,toddler,baby,husband,child,kid,0,0,1,1,0.14015039525668405
+B07CJY6ZWX_34326,0,GEN_NOUN,husband,husband,husband,son,grandson,boyfriend,nephew,1,1,1,1,0.41380227540379755
+B0C5LWNGH8_125137,0,FAM_KIN,kids,kid,husband,daughter,wife,kids,son,0,1,0,1,0.0726648360283624
+B0C5LWNGH8_125137,1,MINOR_AGE,"4, 3, and 1 year Olds",4 3 and 1 year old,kids,kiddos,baby,daughter,babies,0,0,1,1,0.008213772700704686
+B00K6RSA8Q_51046,0,FAM_KIN,granddaughter,granddaughter,granddaughter,grandson,grandkids,son,niece,1,1,1,1,0.20224741544810276
+B075J81NL3_80155,0,FAM_KIN,daughter,daughter,daughter,mom,wife,mother,niece,1,1,1,1,0.4783337604382948
+B075J81NL3_80155,1,FAM_KIN,grandson,grandson,baby,grandson,homeschool,son,daughter,0,1,0,1,0.28481762262181093
+B0C3GTR1QL_87530,0,FAM_KIN,grandkids,grandkid,nieces,son,kids,daughter,granddaughter,0,0,1,1,0.42983009442602726
+B0C3GTR1QL_87530,1,GEN_NOUN,husband,husband,husband,wife,daughter,hubby,son,1,1,1,1,0.5191976965909159
+B003IHVHMC_48507,0,MINOR_AGE,little one,little 1,daughter,niece,little one,son,nephew,0,1,0,1,0.22702836670756138
+B003IHVHMC_48507,1,MINOR_AGE,8-month-old,months:8,daughter,son,little one,2 year old,baby,0,0,0,1,0.21093932643102287
+B09J9SH2N8_15380,0,MINOR_AGE,five years,age:5,one,one year old,one of them,one baby,a baby,0,0,1,1,0.04598583987659425
+B09J9SH2N8_15380,1,MINOR_AGE,new babies,new baby,baby,little girl,grand daughter,little one,granddaughter,0,0,1,1,0.0048294205216206035
+B00007L12O_93594,0,FAM_KIN,son,son,four-year-old,son,three-year-old,4-year-old,four-year old,0,1,0,1,0.3832053890239997
+B00007L12O_93594,1,MINOR_AGE,four-year-old,four-year-old,kid,toddler,18 month old,man,child,0,0,1,1,0.3511489705119483
+B07THLTLQF_80115,0,GEN_NOUN,husband,husband,daughter,sister,husband,wife,mom,0,1,0,1,0.1891453610750859
+B01IT3UNO2_51622,0,MINOR_AGE,4 year old,age:4,daughter,kids,son,husband,mom,0,0,0,1,0.21629979785515574
+B01IT3UNO2_51622,1,FAM_KIN,kids,kid,girls,kids,granddaughters,boys,daughters,0,1,1,1,0.2809085025430912
+B07T93ZZJJ_63582,0,FAM_KIN,daughter,daughter,daughter,granddaughter,niece,wife,mom,1,1,1,1,0.7615015408052069
+B07ZHZPXZ7_61228,0,MINOR_AGE,six-year-old,six-year-old,great-grandson's,great grandson's,son's,grandson's,sons,0,0,0,1,0.159515309318401
+B07ZHZPXZ7_61228,1,FAM_KIN,grandson,grandson,grandson,son,nephew,Grandson,grandchild,1,1,1,1,0.6438889355670048
+B075YWTSRP_24908,0,GEN_NOUN,husband,husband,grandson,son,nephew,husband,brother,0,1,0,1,0.03283887587754819
+B07Q7MXGRC_39428,0,GEN_NOUN,husband,husband,husband,son,brother,grandson,boyfriend,1,1,1,1,0.5065185267890058
+B002L2TVJG_153402,0,MINOR_AGE,10 year old,age:10,grandson's,great-grandson's,son's,great-granddaughter's,daughter's,0,0,0,1,0.17134755867543333
+B002L2TVJG_153402,1,FAM_KIN,grandson,grandson,grandson,granddaughter,grand daughter,daughter,son,1,1,1,1,0.544354464881579
+B00AJSIVWW_33603,0,FAM_KIN,son,son,son,baby,2 year old,4 year old,toddler,1,1,1,1,0.41491077593510817
+B00AJSIVWW_33603,1,GEN_NOUN,husband's,husband,son's,sons,husband's,husbands,dad's,0,1,0,1,0.40179889795971985
+B00AJSIVWW_33603,2,FAM_KIN,son,son,son,husband,hubs,wife,father,1,1,1,1,0.5432720389234508
+B00AJSIVWW_33603,3,FAM_KIN,son,son,son,baby,husband,child,kid,1,1,1,1,0.609666977091817
+1400235472_50164,0,GEN_NOUN,wife,wife,husband,son,daughter,wife,brother,0,1,1,1,0.08061179701185064
+B096ZWR38B_63571,0,FAM_KIN,kids,kid,kids,son,nieces,daughter,grandchildren,1,1,1,1,0.33330551238214823
+B093BKMK4X_165713,0,MINOR_EDU,5th graders,5th grader,son,kids,daughter,daughters,teenage daughter,0,0,0,1,0.10013075936676488
+B07T46TTYX_127856,0,FAM_KIN,Dad,dad,grandfather,father,father in law,husband,dad,0,1,0,0,0.03090588109799863
+B077BMCDHG_95080,0,FAM_KIN,kids,kid,kids,grandkids,boys,nieces,son,1,1,1,1,0.5302312898005399
+B0000AZ8JB_80020,0,GEN_NOUN,wife,wife,son,grandson,baby,daughter,husband,0,0,0,1,0.027436311673255838
+B009F7OUQE_78348,0,MINOR_AGE,3yr old,age:3,daughter's,grand daughter's,sister's,granddaughter's,granddaughters,0,0,0,1,0.19404891436049823
+B009F7OUQE_78348,1,FAM_KIN,niece,niece,granddaughter,niece,daughter,grand daughter,Granddaughter,0,1,1,1,0.2808519823376364
+B0C5YTVW9R_89125,0,GEN_NOUN,husband,husband,wife,daughter,sister,husband,daughters,0,1,1,1,0.017409175485803355
+B0C5YTVW9R_89125,1,FAM_KIN,son,son,daughter,son,wife,sister,2 year old,0,1,1,1,0.1909283890337189
+B0C5YTVW9R_89125,2,GEN_NOUN,Hubby,hubby,Son,Husband,Hubby,Wife,Daughter,0,1,0,1,0.1782287833865747
+B009M8P2CW_148683,0,GEN_NOUN,husband,husband,son,kiddo,daughter,2 year old,4 year old,0,0,0,1,0.025487440123343693
+B009M8P2CW_148683,1,FAM_KIN,other kiddo,other kiddo,son,2 year old,3 year old,4 year old,daughter,0,0,1,1,0.10417379817162985
+B078T3YY2G_33428,0,GEN_NOUN,husband,husband,husband,daughter,son,mom,kid,1,1,1,1,0.2419464418974893
+B07H6CSYRK_99195,0,GEN_NOUN,wife,wife,grandson,granddaughter,daughter,son,niece,0,0,0,1,0.0062750150851851256
+B07ZN4QB9J_174677,0,MINOR_AGE,4 year old,age:4,daughter's,5 year old,2 year old,two year old,11 year old,0,0,0,1,0.2701007346181294
+B07ZN4QB9J_174677,1,FAM_KIN,granddaughter,granddaughter,granddaughter,daughter,niece,Granddaughter,grand daughter,1,1,1,1,0.6469662217610604
+B07ZN4QB9J_174677,2,FAM_KIN,granddaughter,granddaughter,granddaughter,daughter,niece,wife,sister,1,1,1,1,0.5173750233887525
+B00PQBF1JS_04903,0,GEN_NOUN,man,man,woman,guy,man,person,girl,0,1,1,1,0.1628618938129805
+B08KRXDKBR_06111,0,GEN_NOUN,husband,husband,grandson,son,nephew,brother,husband,0,1,0,1,0.04482879270727981
+B08NLM1W2M_161528,0,MINOR_AGE,16 month old,months:16,son's,sons,grandson's,2 year old,5 year old,0,0,0,1,0.12489740368911019
+B08NLM1W2M_161528,1,FAM_KIN,grandson,grandson,son,grandson,nephew,baby,boy,0,1,1,1,0.3513693072034505
+B087CBJ465_40549,0,FAM_KIN,kids,kid,kids,sons,grandkids,boys,children,1,1,1,1,0.2580081503928675
+B087CBJ465_40549,1,MINOR_AGE,14,age:14,11,9,10,8,7,0,0,1,1,0.0035009821928458696
+B087CBJ465_40549,2,MINOR_AGE,12,age:12,7,8,9,6,"7, 8",0,0,1,1,0.025875455332884722
+B087CBJ465_40549,3,MINOR_AGE,8,age:8,3,4,8,2,6,0,1,1,1,0.09307465100755385
+0375864547_02217,0,FAM_KIN,granddaughter,granddaughter,daughter,granddaughter,niece,little girl,grand daughter,0,1,1,1,0.2862553078758033
+0375864547_02217,1,MINOR_AGE,two,age:2,3,2,two,three,4,0,1,1,1,0.09050905621499951
+0375864547_02217,2,FAM_KIN,uncle,uncle,uncle,mother,cousin,mom,grandmother,1,1,1,1,0.5869849198028296
+0375864547_02217,3,FAM_KIN,aunt,aunt,aunt,grandmother,cousin,grandfather,grandma,1,1,1,1,0.4882051278189099
+B07SDP8VS1_72137,0,FAM_KIN,son,son,son,grandson,husband,nephew,brother,1,1,1,1,0.4379686460819385
+B0BW2H9XDR_112550,0,FAM_KIN,sister,sister,daughter,wife,sister,mom,mother,0,1,1,1,0.055385582928289254
+B0B984DM66_116889,0,FAM_KIN,son in law,son in law,daughter,wife,son,husband,sister,0,0,1,1,0.029962295723130573
+B0B984DM66_116889,1,GEN_NOUN,husband,husband,wife,husband,daughter,sister,mom,0,1,1,1,0.23472868459187096
+B0CF8GC7F6_90156,0,GEN_NOUN,boyfriend,boyfriend,husband,son,boyfriend,father in law,brother,0,1,1,1,0.16474125654626837
+B0CF8GC7F6_90156,1,GEN_NOUN,boyfriend,boyfriend,boyfriend,husband,son,man,brother,1,1,1,1,0.6100586554024016
+B0CF8GC7F6_90156,2,GEN_PHYS,beard,beard,skin,face,hair,facial skin,facial hair,0,0,0,0,0.029584617906855484
+B00AHVR708_110961,0,GEN_NOUN,husband,husband,daughter,granddaughter,grandson,2 year old,son,0,0,0,1,0.008457801767557399
+B00AHVR708_110961,1,FAM_KIN,granddaughter,granddaughter,daughter,wife,granddaughter,mom,baby,0,1,1,1,0.05952113800114459
+B08BBR329W_42673,0,FAM_KIN,daughter,daughter,daughter,granddaughter,grand daughter,little girl,niece,1,1,1,1,0.7411781944444881
+B01MQNOAKZ_144726,0,MINOR_AGE,2 year old,age:2,granddaughter's,daughter's,grandson's,granddaughters,daughters,0,0,0,1,0.13960321451610486
+B01MQNOAKZ_144726,1,FAM_KIN,great granddaughter,great granddaughter,son,grandson,daughter,granddaughter,nephew,0,0,1,1,0.00451135280530415
+B0918W3PQ2_71793,0,GEN_NOUN,boyfriend,boyfriend,husband,son,hubby,hubs,brother,0,0,1,1,0.01277343921526246
+B08DL61832_141016,0,MINOR_AGE,5yr old,age:5,2 year old,3 year old,5 year old,4 year old,6 year old,0,1,1,1,0.2788428758499339
+B08DL61832_141016,1,FAM_KIN,son,son,son,grandson,nephew,daughter,niece,1,1,1,1,0.288856612260522
+B0BL87C2XC_162384,0,FAM_KIN,daughters,daughter,daughter's,son's,daughters,sons,daughter’s,1,1,1,1,0.13390337697339783
+B00O2BEJJ6_27668,0,GEN_NOUN,husband,husband,husband,son,hubby,boyfriend,hubs,1,1,1,1,0.8890413139650449
+B001Y66JU4_139921,0,MINOR_AGE,6 yr old,age:6,son,daughter,3 year old,grandson,granddaughter,0,0,0,1,0.2395854583207623
+B00008BFZH_140945,0,MINOR_AGE,8 year old,age:8,2 year old,3 year old,niece's,grandkids,two year old,0,0,1,1,0.22119922561297228
+B00008BFZH_140945,1,FAM_KIN,daughter,daughter,niece,granddaughter,daughter,grand daughter,grandson,0,1,1,1,0.2500077477715471
+B007Z7PNK8_62595,0,FAM_KIN,sister's,sister,grandson's,grandkids,grand daughter's,daughter's,son's,0,0,1,1,0.1755278336754578
+B073WJ44RY_151526,0,FAM_KIN,Daughter s,daughter ,Baby's,Daughter's,Mother's,Mom's,Daughters,0,0,0,1,0.03636432409481951
+B0032IEEZY_117847,0,MINOR_EDU,first grade,first grade,kindergarten,preschool,Kindergarten,elementary school,English,0,0,1,1,0.056422937013024324
+B003F2636A_126405,0,FAM_KIN,grandson,grandson,husband,son,daughter,wife,brother,0,0,0,1,0.06530965852919413
+B0BZJFF2BF_69970,0,MINOR_AGE,2 year old,age:2,2 year old,3 year old,5 year old,4 year old,8 year old,1,1,1,1,0.5890952019852892
+B0BZJFF2BF_69970,1,FAM_KIN,daughter,daughter,daughter,son,grandson,granddaughter,nephew,1,1,1,1,0.8396273740323951
+B0BZJFF2BF_69970,2,MINOR_AGE,4 year old,age:4,2 year old,3 year old,1 year old,4 year old,5 year old,0,1,1,1,0.44290900322723387
+B0BZJFF2BF_69970,3,FAM_KIN,son,son,granddaughter,son,grandson,grand daughter,daughter,0,1,1,1,0.22504686394509396
+B0C6YXFX2G_122718,0,FAM_KIN,daughter,daughter,granddaughter,daughter,niece,grand daughter,2 year old,0,1,1,1,0.2533896907961576
+B0009O1J0C_141503,0,MINOR_AGE,5-year-old,age:5,3 yr old,3 year old,2 year old,7 year old,4 year old,0,0,1,1,0.2901615099305666
+B0009O1J0C_141503,1,FAM_KIN,grandson,grandson,son,grandson,nephew,boy,grandchild,0,1,1,1,0.3503363370934546
+B0C4H8M1SX_64419,0,FAM_KIN,son,son,daughter,son,wife,husband,grandson,0,1,1,1,0.228993894035352
+B08FGP7PPM_79591,0,GEN_NOUN,mom,mom,mom,mother,Mom,wife,woman,1,1,1,1,0.6873369644423485
+B08FGP7PPM_79591,1,MINOR_AGE,3 littles,3 little,twin boys,two kids,kids,3 kids,2 kids,0,0,0,1,0.037084218757055275
+B000WUUEJA_134000,0,MINOR_AGE,9 month,months:9,baby,baby's,twins',little,babies',0,0,1,1,0.023187549559871717
+B000WUUEJA_134000,1,FAM_KIN,twins,twin,babies,twins,twin girls,boys,girls,0,1,0,1,0.4115560531722443
+B012VOGZYM_79042,0,GEN_NOUN,Hubby,hubby,Son,Grandson,Hubby,Husband,Baby,0,1,0,1,0.2539996884640032
+B0971R1RGY_19552,0,FAM_KIN,grandson,grandson,son,daughter,grandson,niece,granddaughter,0,1,1,1,0.21962996260079046
+1524764426_132021,0,FAM_KIN,child,child,daughter,granddaughter,3 year old,4 year old,2 year old,0,0,1,1,0.007673947960529735
+B0BZHVZQ3J_135382,0,MINOR_AGE,5 year old,age:5,four year old,two year old,kids,children,teen,0,0,1,1,0.2669287389839933
+B088KSQ8YZ_139080,0,FAM_KIN,daughter,daughter,daughter,granddaughter,child,grand daughter,niece,1,1,1,1,0.844830200627913
+B09LMD19X2_78697,0,FAM_KIN,kid,kid,daughter,wife,sister,niece,girlfriend,0,0,1,1,0.00047062769476887426
+B0030BSAR6_69291,0,GEN_PHYS,breastfeeding,breastfeeding,breastfeeding moms,moms,breastfeeding,breastfeeding mothers,mom,0,1,0,0,0.5016222621158594
+B09LQVRM2M_158965,0,GEN_NOUN,husband,husband,wife,husband,9yo,8yo,daughter,0,1,1,1,0.1576411480602099
+B09LQVRM2M_158965,1,MINOR_AGE,10yo,age:10,wife's,daughter's,son's,husband's,husbands,0,0,0,1,0.012836794990670366
+B09LQVRM2M_158965,2,FAM_KIN,son,son,son,grandson,daughter,granddaughter,nephew,1,1,1,1,0.6595447033657974
+B09LQVRM2M_158965,3,MINOR_AGE,10 year old,age:10,son,grandson,grandkids,nephew,grand son,0,0,0,1,0.11027976709957434
+B08CSCX9GK_53612,0,FAM_KIN,girls,girl,daughter,granddaughter,baby,little one,toddler,0,0,1,1,0.0032533384419520055
+B00JWNPKX8_64485,0,GEN_NOUN,husband,husband,son,grandson,daughter,3 year old,granddaughter,0,0,0,1,0.0040762365945540184
+B09QPXVW35_74108,0,GEN_NOUN,husband,husband,daughter,niece,granddaughter,mother,sister,0,0,0,1,0.0007368444016960466
+B09QPXVW35_74108,1,FAM_KIN,granddaughter,granddaughter,daughter,wife,sister,son,granddaughter,0,1,1,1,0.0135850001596346
+B09QPXVW35_74108,2,MINOR_AGE,4,age:4,3,3 and,now,5,4,0,1,1,1,0.06562365736955186
+B09QPXVW35_74108,3,MINOR_AGE,5,age:5,3,5,4,2,6,0,1,1,1,0.17985639417269453
+0312521456_139967,0,MINOR_AGE,4 year old,age:4,baby,grandson,little one,grand daughter,son,0,0,1,1,0.21182780501408996
+B071K88GRM_03280,0,FAM_KIN,daughter’s,daughter,daughter's,granddaughter's,grandson's,nieces,granddaughters,1,1,1,1,0.24879602124357322
+B0BG94QRLZ_12627,0,MINOR_AGE,1st birthday,1st birthday,2nd birthday,4th birthday,3rd birthday,1st birthday,5th birthday,0,1,1,1,0.5455949917244853
+B00U6YP00K_82489,0,GEN_NOUN,husband's,husband,kids,daughter's,kids',mom's,daughters,0,0,0,1,0.23908767097935538
+B075W8NHK5_63584,0,GEN_NOUN,Hubby,hubby,Hubby,Husband,Hubby,Dad,Mom,1,1,1,1,0.8394121879357632
+B075W8NHK5_63584,1,GEN_NOUN,Hubby,hubby,Hubby,Husband,But hubby,My husband,Hubs,1,1,1,1,0.9556349779986089
+B0BWLFX3F1_134763,0,MINOR_AGE,toddler,toddler,son,grandson,2 year old,4 year old,baby,0,0,0,1,0.01959055363034456
+B077X7J7R1_122342,0,GEN_NOUN,wife's,wife,daughter's,sister's,girlfriend's,wife's,daughters,0,1,0,1,0.3361642950227194
+B004V76BII_104351,0,MINOR_AGE,13 year old,age:13,daughter's,granddaughter's,grand daughter's,granddaughters,nieces,0,0,0,1,0.08554951901108003
+B004V76BII_104351,1,FAM_KIN,grand daughter,grand daughter,granddaughter,daughter,niece,Granddaughter,grand daughter,0,1,1,1,0.1526830933352454
+B07WTV6DQ5_30293,0,MINOR_AGE,toddler,toddler,son,3 year old,2 year old,4 year old,husband,0,0,0,1,0.023286921695582313
+B06XBR976N_130168,0,MINOR_AGE,two,age:2,five,four,three,two,5,0,1,1,1,0.10254335081757647
+B06XBR976N_130168,1,MINOR_AGE,six year old,age:6,a half year old,two year old,three year old,four year old,one half year old,0,0,0,0,0.2602825338706832
+B06XBR976N_130168,2,FAM_KIN,boys,boy,grandkids,sons,granddaughters,boys,kids,0,1,1,1,0.1315928550029712
+B0BZ6PX8N6_161078,0,FAM_KIN,granddaughter,granddaughter,daughter,son,sister,grandson,brother,0,0,1,1,0.01614571579815801
+B0BZ6PX8N6_161078,1,FAM_KIN,granddaughter,granddaughter,granddaughter,grand daughter,grandson,grandchild,daughter,1,1,1,1,0.6919391544247792
+B0BZ6PX8N6_161078,2,FAM_KIN,granddaughter,granddaughter,grandchildren,granddaughters,grand daughters,daughters,children,0,1,1,1,0.1674813171407352
+B0C5BQBK4P_53511,0,MINOR_AGE,4-year-old,age:4,woman,little girl,man,baby,little one,0,0,0,1,0.09740788549621979
+B09CTDHXMM_82098,0,GEN_NOUN,husband,husband,son,daughter,husband,wife,kid,0,1,0,1,0.1152128735603867
+B017EY9LZE_53694,0,FAM_KIN,kids,kid,daughter,son,husband,wife,kid,0,1,1,1,0.028353231515268196
+B002SZT35S_179265,0,FAM_KIN,twins,twin,kids,children,grandkids,daughters,girls,0,0,1,1,0.0486413070243872
+B01BOYCMJM_96471,0,FAM_KIN,niece,niece,niece,daughter,sister,granddaughter,mom,1,1,1,1,0.29396847609864907
+B01BY3EPX4_113333,0,FAM_KIN,Granddaughter,granddaughter,Granddaughter,Daughter,Grand daughter,Baby,Granddaughters,1,1,1,1,0.7238857250820722
+B0B9MCPM8K_64162,0,MINOR_AGE,2,age:2,7,6,5,4,3,0,0,1,1,0.05839066204180693
+B0B9MCPM8K_64162,1,MINOR_AGE,8 year old,age:8,4 year olds,3 year olds,2 year olds,5 year olds,4 year old,0,0,1,1,0.31737212067558057
+B07S31FD9D_88554,0,MINOR_AGE,5 year old,age:5,daughter,granddaughter,son,kids,niece,0,0,0,1,0.18616327802410898
+B07S31FD9D_88554,1,GEN_NOUN,husband,husband,3 year old,2 year old,4 year old,5 year old,daughter,0,0,0,1,0.004589016858455663
+B07S31FD9D_88554,2,FAM_KIN,nephers,nepher,son,nieces,kids,daughter,nephew,0,0,1,1,0.006741020661193445
+B0037YJT80_165823,0,GEN_NOUN,husband,husband,husband,son,brother,boyfriend,father,1,1,1,1,0.7043383613831429
+B0914W43X3_136336,0,GEN_PHYS,34/36DD,34/36dd,34DD,34DD bust,34D bust,36D bust,34DD bust size,0,0,1,1,0.09109044631298914
+B004LU3YQC_171393,0,FAM_KIN,children,children,newborn,baby,newborn baby,babies,daughter,0,0,0,1,0.009010747616527544
+B0B79WK8GN_103384,0,GEN_NOUN,husband,husband,wife,husband,son,daughter,mother,0,1,1,1,0.2972009648306688
+B0B79WK8GN_103384,1,FAM_KIN,daughter,daughter,daughter,wife,son,daughters,sister,1,1,1,1,0.4242858375852276
+B00XZ9OPCM_72300,0,GEN_NOUN,wife,wife,son,kid,2 year old,little one,daughter,0,0,0,1,0.012507834033063747
+B00IX6PEB8_96293,0,FAM_KIN,daughter,daughter,daughter,baby,granddaughter,little girl,newborn,1,1,1,1,0.7753342517457258
+B00IX6PEB8_96293,1,MINOR_AGE,10 months old,months:10,3 months,6 months,5 months,4 months,2 months,0,0,1,1,0.09985752408559344
+B00IX6PEB8_96293,2,FAM_KIN,daughter,daughter,daughter,granddaughter,grand daughter,baby,little girl,1,1,1,1,0.5025543618202036
+B08GZPH6JH_128781,0,MINOR_AGE,3 year old,age:3,daughter,son,grandson,granddaughter,baby,0,0,0,1,0.21891091661784337
+B001UF8BL4_149502,0,FAM_KIN,son,son,son,baby,little one,3 month old,grandson,1,1,1,1,0.4530663236301026
+B001UF8BL4_149502,1,MINOR_AGE,3 months,months:3,8 months,6 months,3 months,7 months,2 months,0,1,1,1,0.29326176468944
+B001UF8BL4_149502,2,MINOR_AGE,baby,baby,baby,toddler,little one,little ones,2 year old,1,1,1,1,0.3231580112884811
+B00005N9EE_132424,0,FAM_KIN,daughter,daughter,daughter,granddaughter,niece,baby,"daughter,",1,1,1,1,0.62285729607219
+B00005N9EE_132424,1,MINOR_AGE,2,age:2,2 years old,3 years old,3,2,4,1,1,1,1,0.10680392349326598
+B003U6N1UW_30323,0,FAM_KIN,son,son,son,4 year old,little one,grandson,kid,1,1,1,1,0.5861822369446669
+B0BZJ6PFBB_27508,0,GEN_NOUN,wife,wife,Granddaughter,daughter,granddaughter,wife,grand daughter,0,1,0,1,0.09772035040649482
+B083PX54LQ_114768,0,MINOR_AGE,baby,baby,son,daughter,2 year old,3 year old,baby,0,1,0,1,0.04204352119576577
+B0C6YYX312_156921,0,MINOR_AGE,1 year old,age:1,5 year old,2 year old,3 year old,4 year old,8 year old,0,0,1,1,0.3431036699795262
+B0C6YYX312_156921,1,FAM_KIN,son,son,son,grandson,granddaughter,daughter,nephew,1,1,1,1,0.2720455328035126
+B0C6YYX312_156921,2,MINOR_AGE,4 year old,age:4,2 year old,daughter's,3 year old,grandkids,granddaughters,0,0,1,1,0.3096220696534246
+B0C6YYX312_156921,3,FAM_KIN,twins,twin,granddaughter,daughter,grandson,grand daughter,son,0,0,1,1,0.0063707108582384455
+B07X9VHQJ3_135351,0,FAM_KIN,kiddo,kiddo,daughter,kiddo,granddaughter,baby,girl,0,1,1,1,0.35013242215250223
+B07FDR9DPG_09358,0,FAM_KIN,granddaughter,granddaughter,daughter,granddaughter,son,niece,child,0,1,1,1,0.08720250107829919
+B09DD96Z1H_20711,0,MINOR_AGE,5 year old,age:5,2 year old,3 year old,5 year old,4 year old,son’s,0,1,1,1,0.4073240570446718
+B09DD96Z1H_20711,1,FAM_KIN,grandson,grandson,son,grandson,nephew,brother,boy,0,1,1,1,0.3736239923457412
+B08L5JC35Q_121573,0,MINOR_AGE,three year old,age:3,daughter,grandkids,son,mom,kids,0,0,0,1,0.07903659360664549
+B08L5JC35Q_121573,1,GEN_NOUN,daddy,daddy,mom,Mom,baby,grandchild,kid,0,0,1,1,0.0205590182217334
+B01EHSLOP0_172761,0,GEN_NOUN,crazy cat lady,crazy cat lady,girl,cat,woman,mom,guy,0,0,1,1,0.006893481865844145
+B08WBJSYKH_98665,0,MINOR_AGE,baby,baby,baby,daughter,son,child,newborn,1,1,1,1,0.33918829463035727
+B07MPRX14B_07630,0,GEN_PHYS,38DD bust area,38dd bust area,body,boobs,bust,belly,figure,0,0,0,0,0.016433495722027344
+B07MPRX14B_07630,1,GEN_PHYS,2 C-sections,2 c-section,due,a little,which I will post,which I'll post,a month,0,0,0,0,0.010200340632522403
+B07MPRX14B_07630,2,GEN_NOUN,grandmother,grandmother,a woman,woman,petite,female,women,0,0,0,0,1.2625465742437814e-05
+B07T9P4VK9_170767,0,GEN_NOUN,husband,husband,son,daughter,husband,grandson,kid,0,1,0,1,0.07561400642172755
+B019K8L3IK_37325,0,FAM_KIN,granddaughter,granddaughter,son,daughter,grandson,granddaughter,husband,0,1,1,1,0.04017313886905466
+B0C52ZVWPD_19476,0,MINOR_AGE,11 year-old,age:11,daughter,sister,wife,mother,mom,0,0,0,1,0.07895014317558961
+B07GF6ZH31_54270,0,GEN_NOUN,husband,husband,son,grandson,husband,father in law,brother,0,1,0,1,0.18768375653781508
+B0B58JG1FS_107046,0,FAM_KIN,daughters,daughter,kids,sons,grandkids,children,boys,0,0,1,1,0.037493526824760794
+B004QDT58K_150105,0,GEN_NOUN,boyfriends,boyfriend,sons,daughter's,son's,husbands,wifes,0,0,0,1,0.1124071586835914
+B07X5ZRXTB_85579,0,FAM_KIN,kids,kid,son,daughter,grandson,kids,kid,0,1,1,1,0.03783925958299352
+B000141EVO_59479,0,GEN_NOUN,husband,husband,husband,wife,daughter,hubby,son,1,1,1,1,0.6364095734181223
+B07J6TYT2S_157475,0,FAM_KIN,daughter,daughter,daughter,baby,newborn,little one,little girl,1,1,1,1,0.2439168496888718
+B012OJ4J6K_175328,0,GEN_NOUN,boyfriend,boyfriend,son,daughter,grandson,granddaughter,husband,0,0,0,1,0.0005174607103672428
+B07QVXSQ5Y_07456,0,FAM_KIN,niece,niece,daughter,granddaughter,grandson,son,baby,0,0,1,1,0.0389362130023968
+B09P23842N_120042,0,GEN_NOUN,husband,husband,son,grandson,husband,nephew,brother,0,1,0,1,0.09101509144716699
+B00JCA7ZLQ_101284,0,FAM_KIN,son,son,son,little one,baby,little guy,boy,1,1,1,1,0.2202267625433387
+B011WY2ULY_130682,0,GEN_NOUN,husband,husband,daughter,8 year old,grandson,son,husband,0,1,0,1,0.05680764139539215
+B0016KV73W_67775,0,FAM_KIN,parent,parent,grandparent's,grandparent,parent's,grandchild's,parent,0,1,1,1,0.2439205425154295
+B0016KV73W_67775,1,FAM_KIN,grandparent's,grandparent,used both,used it in both,parked our,used it in our,used it for both,0,0,0,0,0.09452164821244478
+B01MQX6IYU_106275,0,GEN_PHYS,busty,busty,short,medium,thigh high,thigh,tummy,0,0,0,0,0.010216742158244014
+B00IWCQQNI_46878,0,MINOR_AGE,2 1/2 year old,2 1/2 year old,3 year old,toddler,2 year old,4 year old,baby,0,0,1,1,0.23504674371562603
+B01MSCAEIK_149525,0,FAM_KIN,dad,dad,son,grandson,husband,brother,nephew,0,0,1,1,0.021626974894866213
+0425229777_147925,0,FAM_KIN,grandchildren,grandchildren,granddaughters,grandkids,grand daughters,grandsons,grandchildren,0,1,1,1,0.11521746095627637
+0425229777_147925,1,MINOR_AGE,8,age:8,ages 9,9,8,ages 8,ages 7,0,1,0,0,0.1785512846989472
+0425229777_147925,2,MINOR_AGE,10,age:10,9,7,4,6,8,0,0,1,1,0.057932629578275247
+0425229777_147925,3,FAM_KIN,daughter,daughter,mother,husband,wife,daughter,grandmother,0,1,1,1,0.10807856011636342
+0425229777_147925,4,GEN_NOUN,lady,lady,friend,lady,woman,man,friend of mine,0,1,0,0,0.14593126504772183
+B087BTBFLQ_160448,0,FAM_KIN,grandson,grandson,grandson,son,nephew,husband,brother,1,1,1,1,0.6028898047844033
+B087P214X1_68779,0,FAM_KIN,kid,kid,son,toddler,2 year old,3 year old,daughter,0,0,1,1,0.0283305407306905
+B087P214X1_68779,1,FAM_KIN,kid,kid,daughter,son,kids,kid,granddaughter,0,1,1,1,0.06514034483114502
+B087P214X1_68779,2,MINOR_AGE,toddler,toddler,son's,daughter's,grandson's,sons,kid's,0,0,0,1,0.01617623986802361
+B002PISFF2_158133,0,GEN_PHYS,DD,dd,34DD,38DD,34D,34C,36DD,0,0,1,1,0.02287055537295518
+B09ZLCGFRZ_149630,0,MINOR_EDU,kinder students,kinder student,kids,grandkids,grandchildren,sons,children,0,0,0,1,0.0015740070506233045
+B087WHJFC3_51104,0,FAM_KIN,kids,kid,kids,kiddos,children,boys,girls,1,1,1,1,0.8665276427367375
+B00MWU37BA_07856,0,FAM_KIN,kids,kid,toddlers,kids,husbands,moms,girls,0,1,0,1,0.14213126218997857
+B00MWU37BA_07856,1,MINOR_AGE,toddlers,toddler,husbands,grandkids,husband,kids,mom,0,0,0,1,0.15034039264181212
+B00MWU37BA_07856,2,MINOR_AGE,babies,baby,grandkids,grandkids,toddlers,teens,teen girls,0,0,0,1,0.012340751699120668
+B01KOTNFO4_61740,0,MINOR_AGE,little one,little 1,first child,first baby,son,first son,daughter,0,0,0,0,0.07323102621904473
+B01KOTNFO4_61740,1,MINOR_AGE,baby,baby,baby,little one,alarms,babies,infant,1,1,1,1,0.5651000400422005
+B01LO81WEY_85580,0,GEN_NOUN,wife,wife,granddaughter,daughter,niece,grand daughter,mom,0,0,0,1,0.0040271413168005464
+B071WFH72F_129161,0,GEN_NOUN,boyfriend,boyfriend,daughter,son,sister,husband,wife,0,0,0,1,0.016897537341907687
+1119318092_138048,0,GEN_NOUN,husband,husband,husband,wife,daughter,son,brother,1,1,1,1,0.5385132942097087
+B0B8ZJJ16X_17595,0,FAM_KIN,son,son,son,wife,daughter,husband,niece,1,1,1,1,0.559431988729553
+B0B8ZJJ16X_17595,1,FAM_KIN,daughter,daughter,daughter,son,wife,daughters,husband,1,1,1,1,0.8448386226781118
+B0B8ZJJ16X_17595,2,GEN_NOUN,husband,husband,daughter,son,granddaughter,husband,wife,0,1,0,1,0.11059457190506397
+B0B8ZJJ16X_17595,3,GEN_NOUN,husband,husband,daughter,wife,husband,father,son,0,1,0,1,0.09066051661441858
+B0B8ZJJ16X_17595,4,FAM_KIN,son,son,son,wife,daughter,husband,dad,1,1,1,1,0.42768553612784704
+B09K1ZD3SL_166499,0,GEN_NOUN,lady,lady,woman,lady,mom,man,mother,0,1,1,1,0.15410431555477075
+B00DS5RM1Y_137020,0,MINOR_AGE,8 y/o,age:8,son,grandson,nephew,husband,brother,0,0,0,1,0.1041058239908338
+B00DS5RM1Y_137020,1,FAM_KIN,nephew,nephew,son,daughter,grandson,niece,nephew,0,1,1,1,0.05745245994366445
+B08PY4CRDR_140710,0,FAM_KIN,parents,parent,niece,mom,daughter,sister,brother,0,0,1,1,0.004450734220678836
+B01N5HUOFP_13402,0,FAM_KIN,niece,niece,daughter,2 year old,granddaughter,little girl,baby,0,0,1,1,0.03505111490910784
+B00E8NGRUW_148939,0,MINOR_AGE,baby,baby,baby,little one,newborn,daughter,son,1,1,1,1,0.7148698397483583
+B00L88IVD6_125797,0,GEN_NOUN,wife's,wife,grandson's,daughter's,son's,sons,granddaughters,0,0,0,1,0.2689221267315659
+B0C85796QQ_169675,0,GEN_NOUN,husband's,husband,son's,sons,grandson's,nephew's,nephews,0,0,0,1,0.12198496093203676
+B0C85796QQ_169675,1,MINOR_AGE,7 yr old,age:7,son's,son,3 year old,sons,kiddo's,0,0,0,1,0.18423976881524928
+B0C85796QQ_169675,2,FAM_KIN,Daddy,daddy,Granddaughter,2 yr old,Dad,Mom,2 yrs old,0,0,1,1,0.1196250692686873
+B0C85796QQ_169675,3,GEN_NOUN,mom,mom,mom,all the time,baby,now,mommy,1,1,1,1,0.15159040849952823
+B0CC3GYVKV_67087,0,FAM_KIN,son,son,son,grandson,baby,little one,nephew,1,1,1,1,0.6810575800619941
+B0CC3GYVKV_67087,1,MINOR_AGE,8 months,months:8,8 months old,6 months old,2 years old,3,2,1,1,1,1,0.2529392063703078
+B01EEDHYZW_114596,0,FAM_KIN,daughter,daughter,daughter,wife,granddaughter,mother,sister,1,1,1,1,0.5316831820533617
+B01EEDHYZW_114596,1,FAM_KIN,son-in-law,son-in-law,granddaughter,daughter in law,niece,son,sister,0,0,1,1,0.2523556031104836
+B01EEDHYZW_114596,2,MINOR_AGE,babies,baby,babies,boys,kids,girls,baby,1,1,1,1,0.3269127316638827
+B01EEDHYZW_114596,3,MINOR_AGE,babies,baby,babies,boys,kids,girls,baby,1,1,1,1,0.5552457256117996
+B01EV4FWXK_13704,0,GEN_PHYS,36C bust,36c bust,34DD,34D bust,34 DDD,34 DD,34DDD,0,0,1,1,0.10706587551422524
+B00U0NDJKK_159176,0,GEN_NOUN,wife,wife,husband,wife,daughter,son,hubby,0,1,1,1,0.4208677810227589
+B00U0NDJKK_159176,1,MINOR_AGE,baby,baby,baby,grandkids,little ones,newborn,babies,1,1,1,1,0.37321808001641893
+B075BN3Y9W_92167,0,MINOR_AGE,2 year old,age:2,grandson,son,husband,nephew,brother,0,0,0,1,0.21977963210219018
+B000N178E2_133761,0,FAM_KIN,granddaughter,granddaughter,daughter,granddaughter,2 year old,grand daughter,niece,0,1,1,1,0.19347470020235755
+B0759BTH2M_71575,0,GEN_PHYS,bust,bust,bust,hips,bust area,hem,chest,1,1,1,1,0.7143321365056204
+B09KY3JBV6_43362,0,GEN_NOUN,Hubby,hubby,Hubby,Husband,Mom,My wife,Son,1,1,1,1,0.43116263371438646
+B008LQXR9Q_161779,0,FAM_KIN,nephews,nephew,kids,grandkids,grandchildren,daughters,boys,0,0,1,1,0.06522962853096803
+B0043WAPJM_152276,0,FAM_KIN,daughter,daughter,daughter,granddaughter,son,girl,kid,1,1,1,1,0.6501194182083128
+B0043WAPJM_152276,1,FAM_KIN,daughter,daughter,daughter,son,granddaughter,kid,kids,1,1,1,1,0.7412223955142548
+B000II0TBY_168242,0,MINOR_EDU,homeschooling,homeschooling,homeschooling,pre-k with,pre-k for,homeschooling for,home schooling,1,1,1,1,0.9757933952532533
+B000II0TBY_168242,1,FAM_KIN,daughter,daughter,daughter,4 year old,2 year old,first child,daughters,1,1,1,1,0.7492033276272974
+B000II0TBY_168242,2,GEN_NOUN,husband,husband,husband,dad,father,son,father in law,1,1,1,1,0.7312768756470024
+B000II0TBY_168242,3,MINOR_EDU,pre-k,pre-k,schooling,homeschooling,education,school,educational,0,0,0,0,0.05504558321395048
+B000II0TBY_168242,4,MINOR_EDU,homeschooling,homeschooling,addition,fact,addition to homeschooling,my homeschooling,my homeschooling life,0,0,0,0,0.19139966341220777
+B000II0TBY_168242,5,FAM_KIN,kids,kid,kids,daughters,children,girls,daughter,1,1,1,1,0.6518762388749256
+B09M5ZHB76_10232,0,GEN_NOUN,husband,husband,grandson,son,daughter,granddaughter,grand daughter,0,0,0,1,0.03813280893013985
+B01GL98DQ6_87624,0,MINOR_AGE,2 yo,age:2,2 year old,3 year old,two year old,5 year old,wife's,1,1,1,1,0.09906313547728382
+B01GL98DQ6_87624,1,FAM_KIN,son,son,son,grandson,daughter,baby,husband,1,1,1,1,0.8344201816263778
+B07QXGFTGJ_174100,0,GEN_NOUN,husband,husband,husband,son,daughter,hubby,mom,1,1,1,1,0.17045828106606392
+B00AKKDSNG_86076,0,MINOR_AGE,3.5-year-old,age:3.5,son,baby,boy,grandson,toddler,0,0,0,1,0.1058419124122846
+B00AKKDSNG_86076,1,FAM_KIN,son,son,baby,son,3.5-year-old,little one,3.5 year old,0,1,0,1,0.15679757229362512
+B07PHVRMWV_165302,0,GEN_NOUN,husband,husband,son,husband,grandson,nephew,brother,0,1,0,1,0.2619434104778229
+B08GKSQMFP_165370,0,FAM_KIN,daughters,daughter,kids,grandkids,boys,girls,children,0,0,1,1,0.015331950025007618
+B08GKSQMFP_165370,1,MINOR_AGE,ages 4-8,ages 4-8,ages 6-8,ages 4-8,ages 7 and 9,ages 8 and 9,ages 7 and 8,0,1,0,0,0.26766036374203944
+B07W8W6D9R_23323,0,GEN_NOUN,wife,wife,wife,daughter,husband,sister,mother,1,1,1,1,0.4266777248036667
+B013FWDDZI_108266,0,MINOR_AGE,6 year old's,age:6,daughter's,daughter&# 34;s,daughters,daughter’s,daughter&# 34's,0,0,0,1,0.10011884354348204
+B013FWDDZI_108266,1,FAM_KIN,daughter,daughter,daughter,son,3 year old,grandson,granddaughter,1,1,1,1,0.42418567806955176
+B00CYFEUVE_16107,0,FAM_KIN,daughter's,daughter,daughter's,granddaughter's,daughter’s,granddaughters,nieces,1,1,1,1,0.7835391170276393
+B00CYFEUVE_16107,1,MINOR_AGE,11th b-day,11th b-day,2nd birthday,3rd birthday,1st birthday,4th birthday,first birthday,0,0,1,1,0.06019430345252057
+160907324X_158278,0,FAM_KIN,daughter,daughter,mom,sister,wife,husband,daughter,0,1,1,1,0.10170589204725128
+160907324X_158278,1,MINOR_AGE,2 year old,age:2,3 year old,2 year old,4 year old,1 year old,3 yr old,0,1,1,1,0.46787663801386387
+B07GZ5VB4T_63482,0,FAM_KIN,Son,son,Grandson,Granddaughter,Son,Daughter,Hubby,0,1,1,1,0.09143316011283756
+B01J3ODH80_28493,0,MINOR_AGE,5 year old,age:5,2 year old,3 year old,two year old,5 year old,4 year old,0,1,1,1,0.3855475701703008
+B01J3ODH80_28493,1,FAM_KIN,son,son,son,grandson,nephew,kid,grand son,1,1,1,1,0.8363088884825375
+B01J3ODH80_28493,2,FAM_KIN,son,son,son,kid,5 year old,little one,child,1,1,1,1,0.5416121118879201
+B000NQMAFO_38713,0,FAM_KIN,grandson,grandson,grandson,grandkids,granddaughter,daughter,son,1,1,1,1,0.38884207930700065
+B097HGMJFK_114137,0,GEN_NOUN,husband,husband,son,grandson,daughter,baby,toddler,0,0,0,1,0.019042181702661733
+B0096DCG6I_36692,0,FAM_KIN,son,son,son,grandson,daughter,husband,wife,1,1,1,1,0.4668049934956734
+B09MZR5JYR_10444,0,FAM_KIN,kids,kid,kids,grandkids,boys,girls,children,1,1,1,1,0.7911611400054285
+B09MZR5JYR_10444,1,FAM_KIN,kids,kid,kids,boys,kiddos,girls,children,1,1,1,1,0.82901025460582
+B09MZR5JYR_10444,2,MINOR_AGE,three year old,age:3,four year old,five year old,three year old,two year old,son,0,1,1,1,0.44993175310459915
+B09MZR5JYR_10444,3,MINOR_AGE,six year old,age:6,four year old,two year old,six year old,five year old,one year old,0,1,1,1,0.4679200278984179
+B09MZR5JYR_10444,4,FAM_KIN,kids,kid,kids,kiddos,kiddo,two year old,kid,1,1,1,1,0.6693167648324752
+B09MZR5JYR_10444,5,FAM_KIN,kids,kid,younger kids,grandkids,kids,little ones,boys,0,1,0,0,0.2017154350492427
+B01BRVY6TG_46552,0,FAM_KIN,granddaughter,granddaughter,daughter,Granddaughter,grand daughter,granddaughter,mom,0,1,1,1,0.06524554124579383
+B01BRVY6TG_46552,1,MINOR_AGE,10,age:10,3,5,2,4,6,0,0,1,1,0.018242701927070133
+B09VTZ1V5C_179053,0,MINOR_AGE,2 year old,age:2,grandson's,son's,nephew's,sons,nephews,0,0,0,1,0.2923102254752617
+B09VTZ1V5C_179053,1,FAM_KIN,grandbaby,grandbaby,grandson,son,nephew,grand nephew,brother,0,0,1,1,0.051924750542807575
+B07ZBWDDZ3_98867,0,MINOR_AGE,baby,baby,baby,child,toddler,son,kid,1,1,1,1,0.2395675652830521
+B07ZBWDDZ3_98867,1,MINOR_AGE,baby,baby,baby,little one,a baby,the baby,toddler,1,1,1,1,0.8197270625256226
+B07ZBWDDZ3_98867,2,MINOR_AGE,pull up,pull up,crawl,grow up,roll over,roll,grow out,0,0,0,0,0.044170337930200254
+B015QYB526_116576,0,GEN_NOUN,Gramma,gramma,mom,breastfeeding mom,mother,woman,mother of two,0,0,1,1,0.0038359896489907662
+B015QYB526_116576,1,MINOR_AGE,baby,baby,baby,little one,newborn,infant,toddler,1,1,1,1,0.8709115637114139
+B076BBRPYH_151956,0,FAM_KIN,daughter,daughter,daughter,baby,toddler,little one,child,1,1,1,1,0.8276785246380629
+B076BBRPYH_151956,1,MINOR_AGE,training pants/pull ups,training pants/pull up,potty training,the potty,a potty,diapers,potty trained,0,0,1,1,0.0020746653429239616
+B076BBRPYH_151956,2,MINOR_AGE,use the potty,use the potty,change diapers,wear diapers,switch diapers,use diapers,use them,0,0,0,0,0.12558042600251332
+B00270WLAI_158830,0,MINOR_AGE,five,age:5,one,three,two,four,six,0,0,1,1,0.03253786130480715
+B00270WLAI_158830,1,MINOR_AGE,two year old,age:2,a half year old,half year old,four year old,six year old,one half year old,0,0,0,0,0.2220124885805246
+B00270WLAI_158830,2,FAM_KIN,sister,sister,baby,bumblebee,bumble bee,five year old,three year old,0,0,0,1,6.171558346823036e-05
+B08J3QP3JX_113841,0,MINOR_AGE,baby's,baby,daughter's,baby's,newborn's,granddaughter's,daughters,0,1,0,1,0.6210885164426594
+B08J3QP3JX_113841,1,GEN_PHYS,nurse,nurse,put,nurse,just put,snooze,lay,0,1,0,0,0.1247250478750338
+B082T4R8GC_23948,0,MINOR_AGE,baby,baby,baby,daughter,8 month old,6 month old,6month old,1,1,1,1,0.23705555538861406
+B006U32EUK_33241,0,FAM_KIN,child's,child,kids,kids',children's,boys',daughters,0,0,1,1,0.1728288716709088
+B006U32EUK_33241,1,MINOR_EDU,daycare,daycare,4th birthday,2nd birthday,3rd birthday,1st birthday,5th birthday,0,0,0,1,0.01260542979574869
+B0827F5VLB_17527,0,GEN_PHYS,40DD,40dd,L,cm,DD,210,cm,0,0,0,0,0.013112557960455564
+B00FZMDAO6_27853,0,FAM_KIN,children,children,grandkids,daughter,son,sons,granddaughter,0,0,1,1,0.012401990436617504
+B00FZMDAO6_27853,1,FAM_KIN,kids,kid,little one,grandkids,youngest,kid,grandkid,0,1,0,1,0.0037399550069869285
+B004I110D8_70804,0,GEN_PHYS,breastfeeding,breastfeeding,nursing,new,breastfeeding,new baby,traveling,0,1,1,1,0.17271835356620358
+B004I110D8_70804,1,GEN_NOUN,momma,momma,mom,mother,woman,mama,baby,0,0,1,1,0.15554036887322853
+B004I110D8_70804,2,GEN_PHYS,nurse,nurse,breastfeeding,breast milk,breastfeed,breast feeding,nursing,0,0,1,1,0.0005133598675519051
+B004I110D8_70804,3,MINOR_AGE,baby,baby,baby,little one,son,newborn,infant,1,1,1,1,0.9483059256184816
+B004I110D8_70804,4,MINOR_AGE,baby,baby,baby,little one,newborn,infant,babies,1,1,1,1,0.9145855600959661
+B004I110D8_70804,5,GEN_PHYS,nurse,nurse,breastfeed,pump,do so,breastfeed him,do it,0,0,1,1,0.01023700583166338
+B004NCEL4M_40529,0,GEN_NOUN,husband's,husband,baby's,daughter's,little girl's,toddler's,grand daughter's,0,0,0,1,0.041904405262812416
+B004NCEL4M_40529,1,FAM_KIN,niece,niece,grandkids,3 year old,daughter,baby,niece,0,1,1,1,0.04914336861354142
+B004NCEL4M_40529,2,MINOR_AGE,15 months old,months:15,3 months old,2 months old,5 months old,two months old,2,0,0,1,1,0.30796949749209723
+B004NCEL4M_40529,3,FAM_KIN,dad,dad,brother,cousin,sister,mom,mother,0,0,1,1,0.042710345120054144
+B004NCEL4M_40529,4,MINOR_AGE,15 month old,months:15,baby,little one,little girl,toddler,daughter,0,0,1,1,0.0823861909579662
+B07R6NX5VF_36450,0,FAM_KIN,niece,niece,daughter,niece,granddaughter,girl,sister,0,1,1,1,0.25581224305437184
+B07R6NX5VF_36450,1,MINOR_AGE,6,age:6,2 years old,3,2,almost 2 years old,almost 2,0,0,1,1,0.05877679076623558
+B00XFCJYP2_38672,0,MINOR_AGE,four month old,months:4,2 year old,9 month old,3 year old,5 month old,newborn,0,0,1,1,0.21342478638373288
+B00XFCJYP2_38672,1,FAM_KIN,son,son,son,grandson,baby,nephew,little boy,1,1,1,1,0.5931173502488911
+B00XFCJYP2_38672,2,MINOR_AGE,teething,teething,eating,to drool,teething,vomiting,to eat,0,1,0,0,0.22227008826734643
+B003BK96RY_125556,0,GEN_NOUN,girl,girl,woman,girl,person,man,parent,0,1,1,1,0.060125727920258255
+B0B6FDRFC9_173422,0,MINOR_AGE,baby,baby,budding,girl's,girl,teen,bum,0,0,0,0,0.026043926743159647
+B00KLBGUZW_92577,0,MINOR_AGE,three year old,age:3,son,toddler,3 year old,little one,baby,0,1,0,1,0.18385114621662907
+B00KLBGUZW_92577,1,FAM_KIN,father,father,brother,older brother,younger brother,sister,cousin,0,0,1,1,0.0476184417971264
+B00KLBGUZW_92577,2,FAM_KIN,son,son,son,toddler,child,boy,one,1,1,1,1,0.76694176120145
+B00KLBGUZW_92577,3,MINOR_AGE,learning to walk,learning to walk,getting started,two months old,starting to learn about bubbles,starting to learn to walk,starting to get older,0,0,0,0,0.16342671125369068
+B00KLBGUZW_92577,4,FAM_KIN,son,son,son,toddler,child,daughter,kid,1,1,1,1,0.8945279912913617
+B00KLBGUZW_92577,5,FAM_KIN,son,son,son,one,toddler,boy,child,1,1,1,1,0.3897381509002812
+B07CCG2VSY_134423,0,MINOR_AGE,toddler,toddler,baby's,baby,baby’s,my,babies,0,0,1,1,0.007224471746976573
+B07CCG2VSY_134423,1,FAM_KIN,boys,boy,s,'s,babies,baby,twin,0,0,0,0,0.02800958725295451
+B07CCG2VSY_134423,2,FAM_KIN,boys,boy,kids,boys,babies,children,girls,0,1,1,1,0.144777547812073
+B07QV3GWN4_34904,0,FAM_KIN,daughter,daughter,baby,daughter,little one,little girl,toddler,0,1,0,1,0.24057686436218398
+B00R7CK2OI_135127,0,MINOR_AGE,14.5 month old,14.5 month old,a 9 year old,a 5 year old,a 3 year old,a 4 year old,a,0,0,0,0,0.02824415413748004
+B01LYZR3HI_45336,0,MINOR_AGE,baby,baby,baby,grandbaby,little one,daughter,toddler,1,1,1,1,0.9264578506418231
+B01LYZR3HI_45336,1,GEN_NOUN,mommy,mommy,mom,much baby,baby,much she,much that mom,0,0,1,1,0.0997917229138549
+B01LYZR3HI_45336,2,MINOR_AGE,baby,baby,baby,daughter,little one,toddler,little girl,1,1,1,1,0.5627701813419791
+B01LYZR3HI_45336,3,FAM_KIN,sisters,sister,sister’s,brother’s,mother’s,dad’s,brothers,1,1,1,1,0.002082744200266547
+B07RDL3PMJ_31281,0,FAM_KIN,daughter,daughter,daughter,granddaughter,wife,sister,mom,1,1,1,1,0.8137857819375182
+B07RDL3PMJ_31281,1,MINOR_EDU,kindergarten,kindergarten,middle school,high school,2020,kindergarten,chemistry,0,1,1,1,0.07116408923223684
+B00Y286NXY_28237,0,GEN_NOUN,hubby,hubby,husband,hubs,son,hubby,wife,0,1,1,1,0.09567439614336118
+B00Y286NXY_28237,1,MINOR_AGE,little one,little 1,baby,little one,son,daughter,child,0,1,1,1,0.27042732130588926
+B00Y286NXY_28237,2,MINOR_AGE,5 weeks,5 week,almost 2 months old,almost 3 months old,3 months old,2 months old,3 months,0,0,0,0,0.06648078956486568
+B00Y286NXY_28237,3,MINOR_AGE,little one,little 1,,<unk> br />,<unk>br />,husband,baby,0,0,0,0,0.005891976993191688
+B00Y286NXY_28237,4,MINOR_AGE,little one,little 1,,<unk> br />,<unk>br />,husband,baby,0,0,0,0,0.005891976993191688
+B09R78LZD3_62985,0,FAM_KIN,girl,girl,daughter,6 year old,girl,wife,baby,0,1,1,1,0.01387547045416635
+B09R78LZD3_62985,1,MINOR_AGE,5.5,age:5.5,8 months old,6 months old,7 months old,6,5,0,0,1,1,0.032711831906393624
+B0BTFY3V69_89442,0,FAM_KIN,kids,kid,kids,grandkids,boys,girls,twins,1,1,1,1,0.5751930105624103
+B0BTFY3V69_89442,1,MINOR_AGE,6,age:6,11,8,9,6,7,0,1,1,1,0.10221285538563456
+B0BTFY3V69_89442,2,MINOR_AGE,12,age:12,7,3,2,8,5,0,0,1,1,0.023219777987291332

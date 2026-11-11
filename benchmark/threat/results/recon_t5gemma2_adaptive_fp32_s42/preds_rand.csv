@@ -1,0 +1,502 @@
+row_id,span_idx,label,gold,gold_norm,pred1,pred2,pred3,pred4,pred5,exact1,exact5,cat1,anycat1,gold_prob
+B013EI5J4G_100036,0,RANDOM,soft,soft,daughter,granddaughter,daughter's,niece,baby,0,0,,1,0.000873855310943422
+B0797KXTW7_30029,0,RANDOM,my,my,3 year old,4 year old,2 year old,baby,4 year old,0,0,,1,0.024461196029864907
+B0797KXTW7_30029,1,RANDOM,sliding down her,sliding down her,grandson,grandson,grandson,baby,son,0,0,,1,0.0002005815560042647
+B09Q67FVS6_176074,0,RANDOM,But,but,daughter,son,kids,grandson,10 year old,0,0,,1,0.0009991475635560843
+B006NWICTK_106705,0,RANDOM,my,my,3 year old,kids,baby,2 year old,2 year old,0,0,,1,0.020974675711631027
+B006NWICTK_106705,1,RANDOM,a hole,a hole,grandson,kids,baby,grandson,son,0,0,,1,0.0017357801929765836
+B07MBGJRKT_172322,0,RANDOM,due,due,daughter,daughter,4 year old,2 year old,baby,0,0,,1,0.0031832732230593053
+B07MBGJRKT_172322,1,RANDOM,adjust,adjust,daughter,daughter,daughter,daughter,baby,0,0,,1,0.0009317000303293461
+B07MBGJRKT_172322,2,RANDOM,I have,i have,daughter,daughter,daughter,daughter,baby,0,0,,1,0.09182371910127392
+B07MBGJRKT_172322,3,RANDOM,Brown,brown,,daughter,,,baby,0,0,,0,7.458097307732407e-05
+B07G4CGQ57_107925,0,RANDOM,funny,funny,daughter,kids,son,Grandson,10 year old,0,0,,1,0.000601519415009915
+B01CGM3MCM_86051,0,RANDOM,Bought,bought,3 year old,2 year old,2 year old,son,3 year old,0,0,,1,0.001891423726819793
+B01CGM3MCM_86051,1,RANDOM,it and it's,it and it,grandson,grandson,son,son,son,0,0,,1,0.04176588579169383
+B09BMCYQYX_46810,0,RANDOM,these,these,2 year old,kids,3 year old,4 year old,3 year old,0,0,,1,0.024729252507842497
+B09BMCYQYX_46810,1,RANDOM,give,give,grandson,kids,grandson,grandson,grandson,0,0,,1,0.022788240329266636
+B09BMCYQYX_46810,2,RANDOM,more,more,2 year old,kids,4 year old,4 year old,10 year old,0,0,,1,0.011359807302946024
+B06XFPQJ6L_50556,0,RANDOM,really,really,daughter,son,kids,husband,10 year old,0,0,,1,0.003517053749567581
+B079YCYRNS_69084,0,RANDOM,If,if,3 year old,4 year old,baby,4 year old,2 year old,0,0,,1,0.0076103167911864035
+B079YCYRNS_69084,1,RANDOM,I'd,i d,grandson,grandson,baby,son,grandson,0,0,,1,0.0546105951445321
+B00GHY57UG_29337,0,RANDOM,both,both,baby,3 year old,2 year old,kids,grandkids,0,0,,1,0.006298942141193565
+B0891H4V9W_152183,0,RANDOM,a,a,son,grandson,husband,10 year old,baby,0,0,,1,0.013726006830299365
+B0C6F2GJZL_28145,0,RANDOM,for his little,for his little,3 year old,2 year old,4 year old,5 year old,10 year old,0,0,,1,0.003334612876253368
+B0C6F2GJZL_28145,1,RANDOM,gift,gift,grandson,grandson,grandson,grandson,grandson,0,0,,1,0.047947009798649576
+B0001CTZ8K_87700,0,RANDOM,a,a,kids,son,baby,daughter,3 year old,0,0,,1,0.031715542543933606
+B08HL6SNB6_135497,0,RANDOM,after,after,son,husband,grandson,10 year old,daughter,0,0,,1,0.0051588665981380085
+B0BMS82KYD_155647,0,RANDOM,will want an,will want an,daughter,4 year old,2 year old,daughter,4 year old,0,0,,1,0.002515330425394143
+B0BMS82KYD_155647,1,RANDOM,to,to,daughter,daughter,daughter,daughter,daughter,0,0,,1,0.0811468731637065
+B0BMS82KYD_155647,2,RANDOM,to,to,daughter,daughter,daughter,daughter,daughter,0,0,,1,0.0891438684838074
+B07Z65TM3L_156883,0,RANDOM,your,your,kids,baby,woman,son,34DD,0,0,,1,0.011626474285970896
+B0BT1DXWCH_47718,0,RANDOM,as,as,kids,baby,son,woman,34DD,0,0,,1,0.027768522835397734
+B001492T5U_73148,0,RANDOM,is,is,kids,baby,4 year old,baby,4 year old,0,0,,1,0.040050500275013806
+B001492T5U_73148,1,RANDOM,phone,phone,kids,baby,son,baby's,grandson,0,0,,1,0.024501417033225895
+1593596383_53516,0,RANDOM,a,a,son,daughter,kids,husband,10 year old,0,0,,1,0.012315232644751926
+B01IT3WNQI_142219,0,RANDOM,loved,loved,Grandson,3 year old,grandkids,Granddaughter,baby,0,0,,1,0.019261785577135374
+B084L1DGZ3_23761,0,RANDOM,huge,huge,2 year old,2 year old,kids,2 year old,2 year old,0,0,,1,0.0019782207557368626
+B084L1DGZ3_23761,1,RANDOM,and dinos so,and dinos so,grandson,son,kids,daughter,granddaughter,0,0,,1,0.0015781421139269398
+1847380239_65762,0,RANDOM,book,book,daughter,granddaughter,Granddaughter,Grandson,grandson,0,0,,1,0.0011204581187189981
+B08YR29CW9_54461,0,RANDOM,suitable,suitable,3 year old,2 year old,kids,2 year old,3 year old,0,0,,1,0.0006584034009992936
+B08YR29CW9_54461,1,RANDOM,speaking,speaking,grandson,grandson,kids,son,son,0,0,,1,0.001161505079462131
+B07VQPZJK6_45815,0,RANDOM,16,age:16,baby,kids,son,woman,34DD,0,0,,1,0.06987540039281959
+B0009WSPRO_166998,0,RANDOM,The,the,kids,son,daughter,baby,10 year old,0,0,,1,0.006495085354092649
+B07B1LQKHM_145718,0,RANDOM,loves,love,daughter,granddaughter,niece,Granddaughter,10 year old,0,0,,1,0.003194687539903887
+B00YGJJTMQ_45373,0,RANDOM,who,who,daughter,son,grandson,granddaughter,10 year old,0,0,,1,0.0024875558022343335
+B0C3TZLWHX_157171,0,RANDOM,and,and,baby,3 year old,2 year old,2 year old,3 year old,0,0,,1,0.03548520682341791
+B0C3TZLWHX_157171,1,RANDOM,but,but,baby,grandson,son,grandson,son,0,0,,1,0.13217850633807604
+B00A88EV5Y_41741,0,RANDOM,set,set,son,2 year old,son,2 year old,son,0,0,,1,0.004927238235951224
+B00A88EV5Y_41741,1,RANDOM,was,was,son,grandson,son,son,son,0,0,,1,0.02701713411052936
+B00A88EV5Y_41741,2,RANDOM,am and,am and,son,2 year old,son,2 year old,son,0,0,,1,0.0025938492369167103
+B073S41S9Y_108016,0,RANDOM,included zip,included zip,baby,kids,3 year old,2 year old,grandkids,0,0,,1,0.0002875232354832167
+B07FYP6QJV_138648,0,RANDOM,white,white,kids,baby,son,husband,34DD,0,0,,1,0.0024895977230030837
+B07TBD5KNS_35460,0,RANDOM,off road paths,off road path,kids,baby,son,kids,kids,0,0,,1,0.00011103630550839106
+B07TBD5KNS_35460,1,RANDOM,lot,lot,kids,baby,son,kids,10,0,0,,1,0.0019739680336715516
+B084FFZ98T_09622,0,RANDOM,do,do,kids,baby,husband,woman,34DD,0,0,,1,0.01967633358098897
+B09BJDB53M_147653,0,RANDOM,love,love,kids,baby,son,wife,34DD,0,0,,1,0.018660462912285472
+B01GAT24AI_58959,0,RANDOM,Good,good,daughter,son,grandson,granddaughter,1 year old,0,0,,1,0.0035355022704706964
+B07XL99Q6C_90580,0,RANDOM,loves to,loves to,daughter,2 year old,2 year old,2 year old,daughter,0,0,,1,0.0022418901046029477
+B07XL99Q6C_90580,1,RANDOM,Friends,friend,daughter,granddaughter,daughter,niece,1st birthday,0,0,,1,0.0013635270534722538
+B08FHDDB9Z_23674,0,RANDOM,for,for,son,husband,grandson,10 year old,baby,0,0,,1,0.005779974456014789
+B0C7LNHF2R_36756,0,RANDOM,and easy,and easy,daughter,son,grandson,husband,1 year old,0,0,,1,0.004411815299043499
+B009LL61LG_11890,0,RANDOM,to,to,daughter,wife,baby,2 year old,2 year old,0,0,,1,0.008430549454909814
+B009LL61LG_11890,1,RANDOM,a carseat,a carseat,daughter,wife,baby,daughter,granddaughter,0,0,,1,0.0017158174652537326
+B07LBXYCNB_139932,0,RANDOM,perfect,perfect,daughter,granddaughter,niece,Granddaughter,2 year old,0,0,,1,0.005094135862460261
+B09MVHH3LG_04975,0,RANDOM,suck,suck,daughter,granddaughter,niece,wife,10 year old,0,0,,1,0.00021252606200549627
+B0BQV3785S_161843,0,RANDOM,the,the,kids,baby,3 year old,son,daughter,0,0,,1,0.04109047029625353
+B002F9NH68_129838,0,RANDOM,He,he,3 year old,2 year old,2 year old,3 year old,son,0,0,,1,0.004763091189155941
+B002F9NH68_129838,1,RANDOM,with this daily! Very,with this daily very,grandson,grandson,son,son,son,0,0,,1,0.0020687519794233117
+B00UAX6SPI_160605,0,RANDOM,the,the,baby,3 year old,2 year old,grandkids,kids,0,0,,1,0.046803487516047265
+B07D13JY1P_35123,0,RANDOM,dress,dress,3 year old,kids,2 year old,baby,2 year old,0,0,,1,0.00452458526316278
+B07D13JY1P_35123,1,RANDOM,price,price,grandson,kids,grandson,baby,son,0,0,,1,0.01838236732080076
+B075N16ZNB_100558,0,RANDOM,order,order,kids,baby,3 year old,grandkids,10 year old,0,0,,1,0.004083091468568406
+B00R5GVI58_121726,0,RANDOM,started,started,daughter,wife,baby,10 year old,mother,0,0,,1,0.000142363732021255
+0768877385_100081,0,RANDOM,and,and,kids,baby,son,kids,kids,0,0,,1,0.029259933330890678
+0768877385_100081,1,RANDOM,next,next,kids,baby,son,10,3,0,0,,1,0.011181246993164437
+B07SZ37D7P_44238,0,RANDOM,and,and,kids,baby,daughter,son,10 year old,0,0,,1,0.018452419283568163
+B0C4ZLKDNL_78820,0,RANDOM,have,have,daughter,daughter,4 year old,baby,baby,0,0,,1,0.006773873542686052
+B0C4ZLKDNL_78820,1,RANDOM,they,they,daughter,daughter,daughter,baby,baby,0,0,,1,0.022728518868611332
+B0C4ZLKDNL_78820,2,RANDOM,her,her,daughter,daughter,daughter,baby,baby,0,0,,1,0.0029288501301743012
+B0C4ZLKDNL_78820,3,RANDOM,the,the,,daughter,,baby,,0,0,,0,0.0153851810840745
+B00FU0UZM8_176908,0,RANDOM,Toothless in the,toothless in the,kids,son,husband,daughter,10 year old,0,0,,1,0.0013451918252293106
+B084DV3VTN_130115,0,RANDOM,recommend,recommend,kids,baby,husband,son,34DD,0,0,,1,0.012393728752132075
+B0098RKCBS_141320,0,RANDOM,in,in,kids,baby,husband,woman,34DD,0,0,,1,0.02921341700746344
+B0876MT85B_26930,0,RANDOM,There,there,kids,baby,3 year old,son,husband,0,0,,1,0.005667927937569157
+B09LYS4G29_108210,0,RANDOM,just biting,just biting,husband,son,kids,baby,son,0,0,,1,0.00031294267315834626
+B09LYS4G29_108210,1,RANDOM,it,it,husband,son,kids,baby,10 year old,0,0,,1,0.09508150695873371
+B07YY7BHMH_00178,0,RANDOM,My,my,granddaughter,daughter,Granddaughter,niece,2 year old,0,0,,1,0.004146864292571891
+B0BJ7FGB1B_02120,0,RANDOM,when,when,kids,baby,husband,woman,34DD,0,0,,1,0.01227059717199923
+B001Q3KUA0_101703,0,RANDOM,a,a,kids,kids,kids,2 year old,2 year old,0,0,,1,0.030460422914665733
+B001Q3KUA0_101703,1,RANDOM,for,for,kids,kids,kids,son,grandson,0,0,,1,0.030209392971459834
+B001Q3KUA0_101703,2,RANDOM,in,in,kids,kids,kids,2 year old,2 year old,0,0,,1,0.030988812672342103
+B001Q3KUA0_101703,3,RANDOM,store,store,,kids,kids,,,0,0,,0,0.0011246911163251437
+B07GZSWR75_30504,0,RANDOM,packaging and,packaging and,3 year old,4 year old,2 year old,baby,4 year old,0,0,,1,0.04708379343727312
+B07GZSWR75_30504,1,RANDOM,it,it,grandson,grandson,grandson,baby,son,0,0,,1,0.10188275106442242
+B01F7OO66W_103673,0,RANDOM,Star,star,son,grandson,husband,18 month old,baby,0,0,,1,0.0004986237296955694
+B0019RW36W_82572,0,RANDOM,of a piece,of a piece,daughter,wife,baby,2 year old,2 year old,0,0,,1,0.008660438803550182
+B0019RW36W_82572,1,RANDOM,found a way,found a way,daughter,wife,baby,daughter,granddaughter,0,0,,1,0.003664999997100543
+B0C318N58S_26669,0,RANDOM,the,the,baby,kids,3 year old,grandkids,son,0,0,,1,0.043358035675861266
+B09BNX78XR_87053,0,RANDOM,loves these spoons,loves these spoon,son,grandson,husband,nephew,1 year old,0,0,,1,0.0004536536470143991
+B007A2ZP6K_102033,0,RANDOM,is,is,3 year old,2 year old,2 year old,1 year old,3 year old,0,0,,1,0.019580067096774706
+B007A2ZP6K_102033,1,RANDOM,off,off,grandson,grandson,son,grandson,son,0,0,,1,0.009047011827429598
+B009YSYD20_135773,0,RANDOM,to,to,kids,son,daughter,baby,10 year old,0,0,,1,0.017016416092452986
+B008C4S23I_42998,0,RANDOM,activities. Well,activities well,baby,3 year old,2 year old,grandkids,kids,0,0,,1,0.006480554369861933
+B000SNSJYI_37660,0,RANDOM,"house, because",house because,kids,baby,woman,son,34DD,0,0,,1,0.0022663199272429805
+B00FPUVEVO_128858,0,RANDOM,uses,use,daughter,son,grandson,Grandson,Granddaughter,0,0,,1,0.0005982694080135255
+B003153SCI_160710,0,RANDOM,to,to,kids,baby,son,husband,34DD,0,0,,1,0.027677406965428676
+B000U66YBI_07572,0,RANDOM,nice packaged with,nice packaged with,son,husband,2 year old,2 year old,son,0,0,,1,0.0010390676842974042
+B000U66YBI_07572,1,RANDOM,What,what,son,husband,son,grandson,2 year old,0,0,,1,0.0028790023512568525
+B00W4USFCO_19685,0,RANDOM,components.  NO crashes,components no crashe,kids,son,husband,baby,10 year old,0,0,,1,0.0002865114912956671
+B0BBTZ29PW_49307,0,RANDOM,to,to,son,husband,grandson,baby,10 year old,0,0,,1,0.010307190079152106
+B07TW2FYNV_82207,0,RANDOM,love,love,kids,daughter,son,baby,10 year old,0,0,,1,0.009130484088710084
+B0C47FPQC2_51653,0,RANDOM,a,a,baby,kids,son,woman,34DD,0,0,,1,0.06477173848390858
+B0BZHVZQ3J_146707,0,RANDOM,very interactive and,very interactive and,daughter,granddaughter,niece,wife,10 year old,0,0,,1,0.00048735872012046
+B00S7ZPB8Q_176992,0,RANDOM,to,to,daughter,wife,granddaughter,baby,10 year old,0,0,,1,0.006010820032094108
+B00FWM9VMY_158256,0,RANDOM,thinks,think,kids,husband,son,baby,10 year old,0,0,,1,0.0002900946499883309
+B003NT6PMW_170144,0,RANDOM,wedding,wedding,daughter,daughter,4 year old,baby,baby,0,0,,1,0.0010909525947300606
+B003NT6PMW_170144,1,RANDOM,on,on,daughter,daughter,daughter,baby,baby,0,0,,1,0.011287953093448844
+B003NT6PMW_170144,2,RANDOM,great dress,great dress,daughter,daughter,daughter,baby,baby,0,0,,1,0.005946961113610931
+B0BQ29SS97_37526,0,RANDOM,because,because,son,baby,husband,kids,10 year old,0,0,,1,0.001874394268657456
+B000OWDVYG_173402,0,RANDOM,I,i,daughter,2 year old,2 year old,baby,2 year old,0,0,,1,0.007711618975100277
+B000OWDVYG_173402,1,RANDOM,you can,you can,daughter,daughter,granddaughter,baby,niece,0,0,,1,0.07812842103742651
+B0072FRENC_04352,0,RANDOM,works,work,daughter,kids,son,baby,10 year old,0,0,,1,0.0016515480509678466
+B01739XZMA_66923,0,RANDOM,off .Very hard,off very hard,daughter,granddaughter,niece,wife,10 year old,0,0,,1,7.412553340845182e-05
+B00B909ZNS_157277,0,RANDOM,gift from her,gift from her,2 year old,kids,2 year old,2 year old,2 year old,0,0,,1,0.0014661431677178943
+B00B909ZNS_157277,1,RANDOM,this,thi,grandson,kids,son,daughter,granddaughter,0,0,,1,0.04925393141017831
+B08WBJSYKH_104668,0,RANDOM,lol,lol,daughter,granddaughter,wife,baby,10 year old,0,0,,1,0.0002181044050936253
+B01DPBXGO2_102297,0,RANDOM,looked great in,looked great in,daughter,2 year old,2 year old,3 year old,3 year old,0,0,,1,0.00818573766693658
+B01DPBXGO2_102297,1,RANDOM,pics,pic,daughter,granddaughter,daughter,granddaughter,daughter,0,0,,1,0.0027936054692701043
+B001VSCCY2_83000,0,RANDOM,colors,color,daughter,2 year old,2 year old,2 year old,daughter,0,0,,1,0.0017048989134336493
+B001VSCCY2_83000,1,RANDOM,a little big,a little big,daughter,granddaughter,daughter,niece,1st birthday,0,0,,1,0.014655844363706953
+B0B2CBQGSS_60097,0,RANDOM,really nice,really nice,daughter,son,grandson,husband,1 year old,0,0,,1,0.004631612894575537
+B08GQRFL4R_34484,0,RANDOM,little,little,kids,kids,3 year old,kids,3 year old,0,0,,1,0.017577855081664963
+B08GQRFL4R_34484,1,RANDOM,car.  I assembled,car i assembled,kids,kids,grandson,kids,grandson,0,0,,1,0.009064709896776713
+B08GQRFL4R_34484,2,RANDOM,it,it,kids,kids,4 year old,kids,5 year old,0,0,,1,0.1298758687698164
+B08GQRFL4R_34484,3,RANDOM,as,as,,kids,,kids,,0,0,,0,0.011568199870720042
+B0063G5H12_121916,0,RANDOM,late than,late than,baby,kids,3 year old,grandkids,son,0,0,,1,0.0004872977944338739
+B084K4K5JT_102492,0,RANDOM,my,my,2 year old,son,3 year old,3 year old,2 year old,0,0,,1,0.006712744043554797
+B084K4K5JT_102492,1,RANDOM,loved it,loved it,grandson,son,grandson,grandson,son,0,0,,1,0.01718214601005812
+B084K4K5JT_102492,2,RANDOM,playing,playing,2 year old,son,4 year old,5 year old,son,0,0,,1,0.04006659320732178
+B00GXTTPKI_68309,0,RANDOM,afraid to,afraid to,son,4 year old,2 year old,3 year old,4 year old,0,0,,1,0.0013514445641715743
+B00GXTTPKI_68309,1,RANDOM,go,go,son,grandson,son,grandson,son,0,0,,1,0.017708155718764114
+B00GXTTPKI_68309,2,RANDOM,baby,baby,son,4 year old,2 year old,3 year old,4 year old,0,0,,1,0.006232122509354939
+B00GXTTPKI_68309,3,RANDOM,you can,you can,,,,,,0,0,,0,0.018704287644400658
+B00BD61AOU_118316,0,RANDOM,him,him,son,husband,grandson,baby,10 year old,0,0,,1,0.006688592499438321
+B01BSP1AGI_92523,0,RANDOM,Product arrived,product arrived,kids,baby,grandkids,daughter,10 year old,0,0,,1,0.0003035225104653924
+B002UD65S6_150600,0,RANDOM,sleep,sleep,daughter,granddaughter,niece,baby,10 year old,0,0,,1,0.0008739263849560216
+B0821C6P1P_70963,0,RANDOM,this,thi,baby,kids,3 year old,2 year old,grandkids,0,0,,1,0.042267020885796584
+B0C54TZMSL_161176,0,RANDOM,is,is,son,husband,3 year old,baby,10 year old,0,0,,1,0.013228027967440738
+B08473HXNH_169839,0,RANDOM,great,great,kids,3 year old,3 year old,kids,3 year old,0,0,,1,0.015726293282799796
+B08473HXNH_169839,1,RANDOM,supervision,supervision,kids,grandson,grandson,kids,grandson,0,0,,1,0.0012023549448290486
+B08473HXNH_169839,2,RANDOM,able,able,kids,4 year old,5 year old,kids,10 year old,0,0,,1,0.009816356363267196
+B0193YZSNW_160898,0,RANDOM,exactly,exactly,kids,baby,husband,woman,34DD,0,0,,1,0.006817947197817755
+B0B8P8P8GH_81384,0,RANDOM,it,it,son,daughter,husband,grandson,1 year old,0,0,,1,0.00525966816995325
+B0BNZXNTCS_104120,0,RANDOM,perfect,perfect,kids,daughter,son,baby,10 year old,0,0,,1,0.005532310253254621
+B00J0ALHCQ_00222,0,RANDOM,are,are,daughter,granddaughter,daughter's,wife,baby,0,0,,1,0.0038858599972576447
+B001R0LBLO_165421,0,RANDOM,dolls or any,dolls or any,daughter,son,kids,husband,10 year old,0,0,,1,0.0005064989950963571
+B07L5FC123_162821,0,RANDOM,much for this,much for thi,kids,baby,husband,woman,34DD,0,0,,1,0.0032146954182551016
+B07CJY6ZWX_34326,0,RANDOM,for,for,son,grandson,husband,nephew,1 year old,0,0,,1,0.0025043253518040173
+B0C5LWNGH8_125137,0,RANDOM,a,a,kids,2 year old,2 year old,son,2 year old,0,0,,1,0.0394015001003699
+B0C5LWNGH8_125137,1,RANDOM,foam pump so it's super easy,foam pump so it super easy,kids,son,grandson,son,daughter,0,0,,1,0.0017031633027613992
+B00K6RSA8Q_51046,0,RANDOM,dice,dice,grandkids,Grandson,baby,kids,10 year old,0,0,,1,0.0016220317924758843
+B075J81NL3_80155,0,RANDOM,it,it,daughter,2 year old,2 year old,baby,2 year old,0,0,,1,0.009406677837127935
+B075J81NL3_80155,1,RANDOM,of,of,daughter,daughter,granddaughter,baby,niece,0,0,,1,0.023307795592163644
+B0C3GTR1QL_87530,0,RANDOM,as,as,kids,baby,3 year old,2 year old,2 year old,0,0,,1,0.025862631224966896
+B0C3GTR1QL_87530,1,RANDOM,to,to,kids,baby,grandson,grandson,son,0,0,,1,0.04940636704410069
+B003IHVHMC_48507,0,RANDOM,why not,why not,kids,baby,son,kids,kids,0,0,,1,0.0006191322523515166
+B003IHVHMC_48507,1,RANDOM,And,and,kids,baby,son,10,11,0,0,,1,0.00044666711201718636
+B09J9SH2N8_15380,0,RANDOM,sister of,sister of,daughter,3 year old,2 year old,2 year old,3 year old,0,0,,1,0.016761970203400908
+B09J9SH2N8_15380,1,RANDOM,am told,am told,daughter,granddaughter,granddaughter,daughter,daughter,0,0,,1,0.0029829981337212955
+B00007L12O_93594,0,RANDOM,because,because,husband,son,baby,3 year old,3 year old,0,0,,1,0.001381331020602119
+B00007L12O_93594,1,RANDOM,ambitious,ambitiou,husband,son,baby,son,grandson,0,0,,1,0.00021497476266877112
+B07THLTLQF_80115,0,RANDOM,fits,fit,daughter,kids,son,baby,10 year old,0,0,,1,0.0047192383411630906
+B01IT3UNO2_51622,0,RANDOM,I used this,i used thi,son,husband,2 year old,2 year old,son,0,0,,1,0.010314843343387302
+B01IT3UNO2_51622,1,RANDOM,cute,cute,son,husband,son,grandson,2 year old,0,0,,1,0.00247400332697678
+B07T93ZZJJ_63582,0,RANDOM,in,in,daughter,wife,baby,granddaughter,10 year old,0,0,,1,0.004092974546787889
+B07ZHZPXZ7_61228,0,RANDOM,one,age:1,3 year old,2 year old,2 year old,3 year old,son,0,0,,1,0.014759973037416186
+B07ZHZPXZ7_61228,1,RANDOM,making,making,grandson,grandson,son,son,son,0,0,,1,0.0011162190305812193
+B075YWTSRP_24908,0,RANDOM,He,he,daughter,grandson,son,granddaughter,1 year old,0,0,,1,0.002607255123706408
+B07Q7MXGRC_39428,0,RANDOM,it's,it,son,grandson,husband,Grandson,18 month old,0,0,,1,0.07040528167849704
+B002L2TVJG_153402,0,RANDOM,enjoyed putting this,enjoyed putting thi,3 year old,2 year old,2 year old,1 year old,3 year old,0,0,,1,0.0044726060373176365
+B002L2TVJG_153402,1,RANDOM,together,together,grandson,grandson,son,grandson,son,0,0,,1,0.00569207428157775
+B00AJSIVWW_33603,0,RANDOM,he,he,son,son,son,4 year old,4 year old,0,0,,1,0.013395823116519816
+B00AJSIVWW_33603,1,RANDOM,back,back,son,son,son,son,son,0,0,,1,0.028816522947391135
+B00AJSIVWW_33603,2,RANDOM,gets,get,son,son,son,son,4 year old,0,0,,1,0.0012309403111167277
+B00AJSIVWW_33603,3,RANDOM,put,put,son,,son,,,0,0,,1,0.00033212539522199793
+1400235472_50164,0,RANDOM,in,in,kids,baby,husband,son,34DD,0,0,,1,0.021888443470716515
+B096ZWR38B_63571,0,RANDOM,buying,buying,kids,baby,son,woman,34DD,0,0,,1,0.006571954857186032
+B093BKMK4X_165713,0,RANDOM,were many,were many,kids,daughter,son,husband,10 year old,0,0,,1,0.0020807619259996363
+B07T46TTYX_127856,0,RANDOM,puzzles,puzzle,son,grandson,husband,nephew,1 year old,0,0,,1,0.0006955189312487856
+B077BMCDHG_95080,0,RANDOM,recommend,recommend,kids,baby,son,10 year old,daughter,0,0,,1,0.00992944981450134
+B0000AZ8JB_80020,0,RANDOM,corners,corner,baby,kids,3 year old,grandkids,son,0,0,,1,0.0005119829735753569
+B009F7OUQE_78348,0,RANDOM,and she,and she,2 year old,2 year old,1 year old,2 year old,2 year old,0,0,,1,0.0031710953246374294
+B009F7OUQE_78348,1,RANDOM,them,them,grandson,son,grandson,nephew,granddaughter,0,0,,1,0.028096725247496235
+B0C5YTVW9R_89125,0,RANDOM,Gave,gave,2 year old,3 year old,4 year old,10 year old,3 year old,0,0,,1,0.00032355370394922494
+B0C5YTVW9R_89125,1,RANDOM,strap,strap,grandson,grandson,grandson,son,grandson,0,0,,1,0.00044924782680638345
+B0C5YTVW9R_89125,2,RANDOM,like,like,2 year old,4 year old,4 year old,10 year old,10 year old,0,0,,1,0.01662960810838834
+B009M8P2CW_148683,0,RANDOM,is,is,kids,baby,husband,son,kids,0,0,,1,0.017988485300707173
+B009M8P2CW_148683,1,RANDOM,plain sight,plain sight,kids,baby,husband,son,kids,0,0,,1,0.0013665842449942392
+B078T3YY2G_33428,0,RANDOM,My,my,daughter,kids,3 year old,baby,10 year old,0,0,,1,0.0037646964195966843
+B07H6CSYRK_99195,0,RANDOM,gift,gift,daughter,son,granddaughter,Grandson,10 year old,0,0,,1,0.004661598155350575
+B07ZN4QB9J_174677,0,RANDOM,I noticed my,i noticed my,daughter,daughter,4 year old,2 year old,baby,0,0,,1,0.0004318759173379773
+B07ZN4QB9J_174677,1,RANDOM,to,to,daughter,daughter,daughter,daughter,baby,0,0,,1,0.0465831829386896
+B07ZN4QB9J_174677,2,RANDOM,and,and,daughter,daughter,daughter,daughter,baby,0,0,,1,0.03694470992154568
+B00PQBF1JS_04903,0,RANDOM,to,to,son,husband,baby,10 year old,grandson,0,0,,1,0.01717944182184792
+B08KRXDKBR_06111,0,RANDOM,for,for,grandson,son,nephew,husband,1 year old,0,0,,1,0.0026726672754383445
+B08NLM1W2M_161528,0,RANDOM,opening,opening,son,2 year old,2 year old,husband,2 year old,0,0,,1,0.00037683522072900707
+B08NLM1W2M_161528,1,RANDOM,and best of,and best of,son,son,grandson,husband,nephew,0,0,,1,0.002595625834240626
+B087CBJ465_40549,0,RANDOM,games,game,kids,kids,2 year old,4 year old,3 year old,0,0,,1,0.0012895570659341355
+B087CBJ465_40549,1,RANDOM,favorite,favorite,kids,kids,grandson,grandson,grandson,0,0,,1,0.006612950632099955
+B087CBJ465_40549,2,RANDOM,laughed,laughed,kids,kids,2 year old,4 year old,4 year old,0,0,,1,0.0004067086814423605
+0375864547_02217,0,RANDOM,new,new,daughter,2 year old,2 year old,daughter,2 year old,0,0,,1,0.008747529260091166
+0375864547_02217,1,RANDOM,she's,she,daughter,daughter,daughter,daughter,daughter,0,0,,1,0.05234882168544411
+0375864547_02217,2,RANDOM,Her,her,daughter,daughter,2 year old,daughter,daughter,0,0,,1,0.0016324196026346904
+0375864547_02217,3,RANDOM,I,i,,,,daughter,daughter,0,0,,0,0.004474370999750424
+B07SDP8VS1_72137,0,RANDOM,My,my,grandson,Grandson,son,18 month old,nephew,0,0,,1,0.003577396632406712
+B0BW2H9XDR_112550,0,RANDOM,I,i,daughter,granddaughter,niece,wife,10 year old,0,0,,1,0.005829413236784571
+B0B984DM66_116889,0,RANDOM,tried several times,tried several time,kids,baby,3 year old,2 year old,2 year old,0,0,,1,0.0036650446285802635
+B0B984DM66_116889,1,RANDOM,to,to,kids,baby,grandson,grandson,son,0,0,,1,0.06851348781955746
+B0CF8GC7F6_90156,0,RANDOM,nice,nice,son,2 year old,2 year old,3 year old,3 year old,0,0,,1,0.006627617106574463
+B0CF8GC7F6_90156,1,RANDOM,perfumes,perfume,son,grandson,son,grandson,grandson,0,0,,1,0.0005052818632775716
+B0CF8GC7F6_90156,2,RANDOM,needed,needed,son,2 year old,2 year old,3 year old,4 year old,0,0,,1,0.004481477078887959
+B00AHVR708_110961,0,RANDOM,my,my,3 year old,2 year old,4 year old,2 year old,4 year old,0,0,,1,0.0161762659008784
+B00AHVR708_110961,1,RANDOM,her,her,grandson,grandson,grandson,son,son,0,0,,1,0.01185976546030886
+B08BBR329W_42673,0,RANDOM,plays,play,daughter,granddaughter,niece,wife,10 year old,0,0,,1,0.0007141444559837935
+B01MQNOAKZ_144726,0,RANDOM,they were a,they were a,3 year old,2 year old,4 year old,2 year old,4 year old,0,0,,1,0.01945004488050265
+B01MQNOAKZ_144726,1,RANDOM,"firmer, but",firmer but,grandson,grandson,grandson,son,son,0,0,,1,0.005415341688111105
+B0918W3PQ2_71793,0,RANDOM,his,his,son,husband,baby,3 year old,10 year old,0,0,,1,0.011728713384900842
+B08DL61832_141016,0,RANDOM,spray,spray,kids,3 year old,3 year old,son,3 year old,0,0,,1,0.0002000083434667367
+B08DL61832_141016,1,RANDOM,to get,to get,kids,grandson,son,son,daughter,0,0,,1,0.03254320481164249
+B0BL87C2XC_162384,0,RANDOM,for,for,daughter,son,kids,husband,10 year old,0,0,,1,0.004566274128079206
+B00O2BEJJ6_27668,0,RANDOM,the,the,kids,baby,son,husband,34DD,0,0,,1,0.05290493922205981
+B001Y66JU4_139921,0,RANDOM,Very realistic looking,very realistic looking,daughter,son,kids,grandson,10 year old,0,0,,1,0.0015222427379316076
+B00008BFZH_140945,0,RANDOM,I,i,daughter,2 year old,baby,2 year old,2 year old,0,0,,1,0.010819238199433772
+B00008BFZH_140945,1,RANDOM,soon!  it's great,soon it great,daughter,daughter,baby,granddaughter,niece,0,0,,1,0.013829111704886564
+B007Z7PNK8_62595,0,RANDOM,liked,liked,daughter,son,2 year old,grandson,Grandson,0,0,,1,0.0016770928080943547
+B073WJ44RY_151526,0,RANDOM,great,great,daughter,granddaughter,wife,baby,10 year old,0,0,,1,0.005916115468669757
+B0032IEEZY_117847,0,RANDOM,forward. For,forward for,kids,son,husband,baby,3 year old,0,0,,1,0.002198741372254854
+B003F2636A_126405,0,RANDOM,and,and,husband,son,grandson,10 year old,baby,0,0,,1,0.005547882379167757
+B0BZJFF2BF_69970,0,RANDOM,My,my,2 year old,3 year old,3 year old,3 year old,2 year old,0,0,,1,0.018958229576601395
+B0BZJFF2BF_69970,1,RANDOM,and,and,grandson,grandson,grandson,grandson,grandson,0,0,,1,0.02104348115538354
+B0BZJFF2BF_69970,2,RANDOM,hours of fun,hours of fun,2 year old,5 year old,4 year old,10 year old,2 year old,0,0,,1,0.0014448389763416915
+B0BZJFF2BF_69970,3,RANDOM,with this toy,with this toy,,,,,daughter,0,0,,0,0.0016963940915251199
+B0C6YXFX2G_122718,0,RANDOM,Bought,bought,granddaughter,daughter,Granddaughter,niece,1 year old,0,0,,1,0.001749307681151524
+B0009O1J0C_141503,0,RANDOM,by,by,baby,4 year old,4 year old,3 year old,2 year old,0,0,,1,0.004228320164441438
+B0009O1J0C_141503,1,RANDOM,If,if,baby,son,grandson,grandson,son,0,0,,1,0.008136269144312204
+B0C4H8M1SX_64419,0,RANDOM,brand,brand,kids,baby,son,woman,34DD,0,0,,1,0.008228840989761016
+B08FGP7PPM_79591,0,RANDOM,take,take,baby,kids,3 year old,3 year old,baby,0,0,,1,0.0013828158014360986
+B08FGP7PPM_79591,1,RANDOM,of mind,of mind,baby,kids,grandson,son,baby's,0,0,,1,0.00199484180223588
+B000WUUEJA_134000,0,RANDOM,lovely,lovely,3 year old,2 year old,2 year old,3 year old,3 year old,0,0,,1,0.0008317501765952675
+B000WUUEJA_134000,1,RANDOM,and it,and it,grandson,grandson,son,son,granddaughter,0,0,,1,0.12249630124104198
+B012VOGZYM_79042,0,RANDOM,likes,like,Grandson,grandson,10 year old,son,baby,0,0,,1,0.0025306340646970094
+B0971R1RGY_19552,0,RANDOM,he,he,son,husband,daughter,grandson,10 year old,0,0,,1,0.0030316223985551328
+1524764426_132021,0,RANDOM,a,a,daughter,granddaughter,niece,baby,10 year old,0,0,,1,0.011622232563692467
+B0BZHVZQ3J_135382,0,RANDOM,nice to have,nice to have,kids,daughter,son,husband,10 year old,0,0,,1,0.0020308267151709324
+B088KSQ8YZ_139080,0,RANDOM,it,it,daughter,granddaughter,wife,baby,10 year old,0,0,,1,0.00610290379330746
+B09LMD19X2_78697,0,RANDOM,tights,tight,daughter,granddaughter,niece,baby,10 year old,0,0,,1,9.33478327973226e-05
+B0030BSAR6_69291,0,RANDOM,on,on,kids,baby,son,daughter,3 year old,0,0,,1,0.011109348806453027
+B09LQVRM2M_158965,0,RANDOM,play,play,kids,2 year old,kids,2 year old,2 year old,0,0,,1,0.0028906806387416903
+B09LQVRM2M_158965,1,RANDOM,he,he,kids,grandson,kids,2 year old,grandson,0,0,,1,0.00436114867576061
+B09LQVRM2M_158965,2,RANDOM,one,age:1,kids,2 year old,kids,daughter,daughter,0,0,,1,0.01863383574836278
+B09LQVRM2M_158965,3,RANDOM,to the collection,to the collection,,,kids,,,0,0,,0,0.001517576227198918
+B08CSCX9GK_53612,0,RANDOM,to,to,kids,baby,son,husband,3 year old,0,0,,1,0.017773351573371694
+B00JWNPKX8_64485,0,RANDOM,Maybe,maybe,kids,baby,son,daughter,10 year old,0,0,,1,0.0003353682441702479
+B09QPXVW35_74108,0,RANDOM,multiple,multiple,daughter,daughter,2 year old,2 year old,daughter,0,0,,1,0.003311539442967986
+B09QPXVW35_74108,1,RANDOM,times,time,daughter,daughter,daughter,daughter,daughter,0,0,,1,0.00876758153477192
+B09QPXVW35_74108,2,RANDOM,be,be,daughter,daughter,daughter,2 year old,daughter,0,0,,1,0.02123451335020712
+B09QPXVW35_74108,3,RANDOM,nice,nice,,daughter,,,daughter,0,0,,0,0.00289439242324935
+0312521456_139967,0,RANDOM,Would buy again,would buy again,daughter,son,grandson,granddaughter,1 year old,0,0,,1,0.01174823395003322
+B071K88GRM_03280,0,RANDOM,favors for,favors for,daughter,son,kids,grandson,10 year old,0,0,,1,0.00022936555625461993
+B0BG94QRLZ_12627,0,RANDOM,and she,and she,son,grandson,husband,nephew,18 month old,0,0,,1,0.000985589326478443
+B00U6YP00K_82489,0,RANDOM,dishwasher,dishwasher,kids,baby,son,wife,34DD,0,0,,1,0.0012244714815952996
+B075W8NHK5_63584,0,RANDOM,bows,bow,kids,baby,10 year old,baby,10 year old,0,0,,1,0.00018470290514131102
+B075W8NHK5_63584,1,RANDOM,Oh,oh,kids,baby,son,baby's,grandson,0,0,,1,0.0023072727739331155
+B0BWLFX3F1_134763,0,RANDOM,of,of,son,grandson,husband,10 year old,daughter,0,0,,1,0.008135358926375664
+B077X7J7R1_122342,0,RANDOM,of,of,daughter,granddaughter,niece,wife,10 year old,0,0,,1,0.008451475862467212
+B004V76BII_104351,0,RANDOM,christmas gift for,christmas gift for,3 year old,2 year old,4 year old,5 year old,10 year old,0,0,,1,0.02025692774828412
+B004V76BII_104351,1,RANDOM,She loved,she loved,grandson,grandson,grandson,grandson,grandson,0,0,,1,0.00032783290146920973
+B07WTV6DQ5_30293,0,RANDOM,has,has,baby,kids,3 year old,grandkids,10 year old,0,0,,1,0.008401399696470989
+B06XBR976N_130168,0,RANDOM,is an amazing,is an amazing,kids,3 year old,2 year old,3 year old,3 year old,0,0,,1,0.005357302894117954
+B06XBR976N_130168,1,RANDOM,set,set,kids,grandson,grandson,grandson,grandson,0,0,,1,0.029620664348046832
+B06XBR976N_130168,2,RANDOM,and,and,kids,4 year old,2 year old,5 year old,10 year old,0,0,,1,0.06404878026245964
+B0BZ6PX8N6_161078,0,RANDOM,it,it,kids,2 year old,kids,3 year old,4 year old,0,0,,1,0.04376635452453304
+B0BZ6PX8N6_161078,1,RANDOM,as,as,kids,grandson,kids,grandson,grandson,0,0,,1,0.023618784363935063
+B0BZ6PX8N6_161078,2,RANDOM,it,it,kids,2 year old,kids,4 year old,4 year old,0,0,,1,0.2299371483940863
+B0C5BQBK4P_53511,0,RANDOM,It,it,baby,3 year old,kids,10 year old,grandkids,0,0,,1,0.02884416054558337
+B09CTDHXMM_82098,0,RANDOM,now,now,kids,son,3 year old,baby,daughter,0,0,,1,0.0050488111898830245
+B017EY9LZE_53694,0,RANDOM,that,that,daughter,son,kids,husband,10 year old,0,0,,1,0.00623635328829661
+B002SZT35S_179265,0,RANDOM,furniture,furniture,daughter,wife,granddaughter,baby,10 year old,0,0,,1,0.00011873611702976763
+B01BOYCMJM_96471,0,RANDOM,so,so,daughter,granddaughter,niece,wife,10 year old,0,0,,1,0.003343726989359185
+B01BY3EPX4_113333,0,RANDOM,does,doe,daughter,granddaughter,niece,wife,10 year old,0,0,,1,0.0012206832342252709
+B0B9MCPM8K_64162,0,RANDOM,for Christmas presents,for christmas present,3 year old,2 year old,2 year old,3 year old,kids,0,0,,1,0.0025125790419332317
+B0B9MCPM8K_64162,1,RANDOM,them,them,grandson,grandson,son,son,kids,0,0,,1,0.025688756886267854
+B07S31FD9D_88554,0,RANDOM,this,thi,kids,kids,kids,2 year old,2 year old,0,0,,1,0.03564525651473822
+B07S31FD9D_88554,1,RANDOM,for $11. Totally,for $11 totally,kids,kids,kids,grandson,son,0,0,,1,0.0009521490260683419
+B07S31FD9D_88554,2,RANDOM,it's,it,kids,kids,kids,2 year old,2 year old,0,0,,1,0.14932439593974056
+B0037YJT80_165823,0,RANDOM,to,to,son,husband,baby,grandson,10 year old,0,0,,1,0.015650296371043867
+B0914W43X3_136336,0,RANDOM,wear a,wear a,kids,baby,son,woman,34DD,0,0,,1,0.002769678847599669
+B004LU3YQC_171393,0,RANDOM,success,success,baby,3 year old,kids,2 year old,grandkids,0,0,,1,0.000304866015645958
+B0B79WK8GN_103384,0,RANDOM,go,go,3 year old,2 year old,2 year old,kids,3 year old,0,0,,1,0.008829703813481025
+B0B79WK8GN_103384,1,RANDOM,so,so,grandson,grandson,son,kids,son,0,0,,1,0.04934661540885969
+B00XZ9OPCM_72300,0,RANDOM,the,the,baby,kids,3 year old,son,grandkids,0,0,,1,0.05258545185194631
+B00IX6PEB8_96293,0,RANDOM,a full head,a full head,daughter,daughter,2 year old,baby,baby,0,0,,1,0.002530921681100728
+B00IX6PEB8_96293,1,RANDOM,and,and,daughter,daughter,daughter,baby,baby,0,0,,1,0.05527598476804338
+B00IX6PEB8_96293,2,RANDOM,is,is,daughter,daughter,daughter,baby,baby,0,0,,1,0.06888142942731817
+B08GZPH6JH_128781,0,RANDOM,but follow the,but follow the,daughter,son,husband,grandson,1 year old,0,0,,1,0.0005326648561552149
+B001UF8BL4_149502,0,RANDOM,for it,for it,2 year old,4 year old,3 year old,3 year old,3 year old,0,0,,1,0.009011740333773374
+B001UF8BL4_149502,1,RANDOM,to,to,grandson,grandson,grandson,grandson,grandson,0,0,,1,0.039836005878366186
+B001UF8BL4_149502,2,RANDOM,a,a,2 year old,4 year old,4 year old,3 year old,10 year old,0,0,,1,0.04105389334403346
+B00005N9EE_132424,0,RANDOM,with,with,daughter,2 year old,2 year old,baby,2 year old,0,0,,1,0.00878909725666412
+B00005N9EE_132424,1,RANDOM,dropped,dropped,daughter,daughter,granddaughter,baby,niece,0,0,,1,0.0013483941908709624
+B003U6N1UW_30323,0,RANDOM,do,do,kids,baby,son,husband,34DD,0,0,,1,0.018758217371135127
+B0BZJ6PFBB_27508,0,RANDOM,her,her,daughter,granddaughter,niece,Granddaughter,2 year old,0,0,,1,0.0016830259076869736
+B083PX54LQ_114768,0,RANDOM,t,t,kids,baby,3 year old,grandkids,son,0,0,,1,0.004136412208599131
+B0C6YYX312_156921,0,RANDOM,Not only does,not only doe,2 year old,3 year old,3 year old,3 year old,3 year old,0,0,,1,0.0008403319108873365
+B0C6YYX312_156921,1,RANDOM,my,my,grandson,grandson,grandson,grandson,grandson,0,0,,1,0.020883229350484204
+B0C6YYX312_156921,2,RANDOM,but,but,2 year old,4 year old,5 year old,10 year old,1 year old,0,0,,1,0.008670184570198731
+B0C6YYX312_156921,3,RANDOM,this red car,this red car,,,,,,0,0,,0,5.9438998982577964e-05
+B07X9VHQJ3_135351,0,RANDOM,of,of,daughter,wife,baby,granddaughter,10 year old,0,0,,1,0.007774195212932353
+B07FDR9DPG_09358,0,RANDOM,My,my,daughter,kids,baby,Grandson,10 year old,0,0,,1,0.004890064788083934
+B09DD96Z1H_20711,0,RANDOM,a,a,son,husband,2 year old,2 year old,son,0,0,,1,0.009993738065828104
+B09DD96Z1H_20711,1,RANDOM,noise which is,noise which i,son,husband,son,grandson,2 year old,0,0,,1,0.0026063659108129904
+B08L5JC35Q_121573,0,RANDOM,"super cute, perfect",super cute perfect,3 year old,2 year old,4 year old,4 year old,2 year old,0,0,,1,0.010101162357237944
+B08L5JC35Q_121573,1,RANDOM,I,i,grandson,grandson,grandson,son,son,0,0,,1,0.06474168607516809
+B01EHSLOP0_172761,0,RANDOM,disappointed at all,disappointed at all,kids,baby,husband,woman,34DD,0,0,,1,0.008984008707860732
+B08WBJSYKH_98665,0,RANDOM,At,at,kids,baby,3 year old,10 year old,grandkids,0,0,,1,0.0006015916638508726
+B07MPRX14B_07630,0,RANDOM,issues around the,issues around the,kids,kids,kids,kids,kids,0,0,,1,0.00045554605864988224
+B07MPRX14B_07630,1,RANDOM,it's not,it not,kids,kids,kids,kids,kids,0,0,,1,0.07891413816138156
+B07MPRX14B_07630,2,RANDOM,helped,helped,kids,kids,kids,kids,kids,0,0,,1,0.00638037665214156
+B07T9P4VK9_170767,0,RANDOM,with,with,kids,baby,3 year old,son,grandkids,0,0,,1,0.017089738083043093
+B019K8L3IK_37325,0,RANDOM,My,my,Grandson,granddaughter,Granddaughter,daughter,grandkids,0,0,,1,0.004931978776044678
+B0C52ZVWPD_19476,0,RANDOM,obvious color,obvious color,daughter,granddaughter,wife,baby,10 year old,0,0,,1,0.00045896830711632676
+B07GF6ZH31_54270,0,RANDOM,excellent,excellent,son,daughter,husband,grandson,10 year old,0,0,,1,0.0010338361929449328
+B0B58JG1FS_107046,0,RANDOM,more,more,kids,baby,son,3 year old,husband,0,0,,1,0.011014537156003668
+B004QDT58K_150105,0,RANDOM,This,thi,Grandson,3 year old,grandkids,baby,kids,0,0,,1,0.03354688678993448
+B07X5ZRXTB_85579,0,RANDOM,read,read,kids,baby,3 year old,son,grandkids,0,0,,1,0.007473179130692502
+B000141EVO_59479,0,RANDOM,thanks,thank,kids,baby,husband,son,34DD,0,0,,1,0.000503663390457833
+B07J6TYT2S_157475,0,RANDOM,We,we,kids,baby,3 year old,grandkids,son,0,0,,1,0.007258233729166572
+B012OJ4J6K_175328,0,RANDOM,of,of,kids,daughter,son,baby,10 year old,0,0,,1,0.017360801375862777
+B07QVXSQ5Y_07456,0,RANDOM,cute,cute,daughter,son,kids,Grandson,10 year old,0,0,,1,0.002638226688676035
+B09P23842N_120042,0,RANDOM,and,and,son,husband,grandson,18 month old,nephew,0,0,,1,0.0038041936817003043
+B00JCA7ZLQ_101284,0,RANDOM,head,head,son,husband,grandson,baby,10 year old,0,0,,1,0.0009886023094801087
+B011WY2ULY_130682,0,RANDOM,fun,fun,kids,baby,3 year old,son,daughter,0,0,,1,0.01048485431875614
+B0016KV73W_67775,0,RANDOM,this,thi,baby,kids,3 year old,2 year old,2 year old,0,0,,1,0.06298438701635543
+B0016KV73W_67775,1,RANDOM,going,going,baby,kids,grandson,grandson,son,0,0,,1,0.006336731069534899
+B01MQX6IYU_106275,0,RANDOM,br,br,kids,baby,woman,son,34DD,0,0,,1,0.032473135975272654
+B00IWCQQNI_46878,0,RANDOM,love that it can be,love that it can be,son,baby,husband,kids,34DD,0,0,,1,0.0028066469100864627
+B01MSCAEIK_149525,0,RANDOM,likes,like,grandson,son,Grandson,10 year old,baby,0,0,,1,0.0013406820304473974
+0425229777_147925,0,RANDOM,old,old,daughter,daughter,baby,baby,2 year old,0,0,,1,0.01107192396239906
+0425229777_147925,1,RANDOM,picked,picked,daughter,daughter,baby,baby,daughter,0,0,,1,0.0001695826477451515
+0425229777_147925,2,RANDOM,so,so,daughter,daughter,baby,baby,daughter,0,0,,1,0.02184129068629919
+0425229777_147925,3,RANDOM,color,color,,daughter,,baby,,0,0,,0,0.006196836477502515
+0425229777_147925,4,RANDOM,to,to,,,,,,0,0,,0,0.0028898538989221307
+B087BTBFLQ_160448,0,RANDOM,my,my,grandson,son,Grandson,nephew,1 year old,0,0,,1,0.0019286134145172196
+B087P214X1_68779,0,RANDOM,Me,me,kids,kids,2 year old,4 year old,3 year old,0,0,,1,0.0006578038507417353
+B087P214X1_68779,1,RANDOM,and,and,kids,kids,grandson,grandson,grandson,0,0,,1,0.02075128009917257
+B087P214X1_68779,2,RANDOM,my,my,kids,kids,2 year old,4 year old,4 year old,0,0,,1,0.040342181663959746
+B002PISFF2_158133,0,RANDOM,black,black,kids,baby,husband,woman,34DD,0,0,,1,0.002976041189229957
+B09ZLCGFRZ_149630,0,RANDOM,Use these,use these,kids,Grandson,2 year old,daughter,baby,0,0,,1,0.001338580371920101
+B087WHJFC3_51104,0,RANDOM,take,take,kids,baby,husband,son,34DD,0,0,,1,0.0007644563833224537
+B00MWU37BA_07856,0,RANDOM,It's,it,4 year old,10 year old,10 year old,4 year old,10 year old,0,0,,1,0.11943795894780687
+B00MWU37BA_07856,1,RANDOM,body,body,grandson,son,grandson,grandson,son,0,0,,1,0.001795208940370442
+B00MWU37BA_07856,2,RANDOM,so,so,4 year old,10 year old,10 year old,6 year old,4 year old,0,0,,1,0.03708970314433091
+B01KOTNFO4_61740,0,RANDOM,our ears,our ear,kids,baby,baby,10 year old,10 year old,0,0,,1,0.002199097412524966
+B01KOTNFO4_61740,1,RANDOM,just,just,kids,baby,baby's,son,grandson,0,0,,1,0.017081970774719426
+B01LO81WEY_85580,0,RANDOM,ever,ever,daughter,granddaughter,niece,wife,10 year old,0,0,,1,0.002226249882452242
+B071WFH72F_129161,0,RANDOM,on,on,kids,daughter,son,baby,10 year old,0,0,,1,0.007706973789941248
+1119318092_138048,0,RANDOM,web,web,kids,baby,son,husband,3 year old,0,0,,1,0.0002913508202447744
+B0B8ZJJ16X_17595,0,RANDOM,the,the,kids,kids,kids,kids,kids,0,0,,1,0.07654770661255672
+B0B8ZJJ16X_17595,1,RANDOM,repeatedly,repeatedly,kids,kids,kids,kids,kids,0,0,,1,0.0002917046559826257
+B0B8ZJJ16X_17595,2,RANDOM,all,all,kids,kids,kids,kids,kids,0,0,,1,0.011166966008823437
+B0B8ZJJ16X_17595,3,RANDOM,this,thi,,kids,kids,kids,kids,0,0,,0,0.0040476599896874035
+B0B8ZJJ16X_17595,4,RANDOM,we,we,,,kids,kids,kids,0,0,,0,0.0014274540925589684
+B09K1ZD3SL_166499,0,RANDOM,older,older,kids,baby,husband,son,34DD,0,0,,1,0.0022106455096403068
+B00DS5RM1Y_137020,0,RANDOM,really enjoyed this,really enjoyed thi,son,2 year old,2 year old,husband,2 year old,0,0,,1,0.013405664915828279
+B00DS5RM1Y_137020,1,RANDOM,house,house,son,son,grandson,husband,nephew,0,0,,1,0.0018615599218473132
+B08PY4CRDR_140710,0,RANDOM,a,a,daughter,kids,son,baby,10 year old,0,0,,1,0.019399800721632984
+B01N5HUOFP_13402,0,RANDOM,cute,cute,3 year old,grandkids,kids,Grandson,baby,0,0,,1,0.004479441042677209
+B00E8NGRUW_148939,0,RANDOM,for,for,baby,kids,son,woman,34DD,0,0,,1,0.014740075665855607
+B00L88IVD6_125797,0,RANDOM,photos,photo,kids,baby,husband,son,34DD,0,0,,1,0.0005244529252789547
+B0C85796QQ_169675,0,RANDOM,my,my,son,2 year old,2 year old,3 year old,son,0,0,,1,0.007900316168284327
+B0C85796QQ_169675,1,RANDOM,everything,everything,son,grandson,son,grandson,son,0,0,,1,0.020142086190172378
+B0C85796QQ_169675,2,RANDOM,It's a great,it a great,son,2 year old,2 year old,4 year old,son,0,0,,1,0.05036303203931342
+B0C85796QQ_169675,3,RANDOM,how,how,,,,,son,0,0,,0,0.0008770709374242853
+B0CC3GYVKV_67087,0,RANDOM,every single,every single,3 year old,2 year old,2 year old,3 year old,son,0,0,,1,0.0015665028926998453
+B0CC3GYVKV_67087,1,RANDOM,possibilities,possibility,grandson,grandson,son,son,son,0,0,,1,0.001048968499126507
+B01EEDHYZW_114596,0,RANDOM,to,to,daughter,2 year old,2 year old,2 year old,3 year old,0,0,,1,0.017427591369371755
+B01EEDHYZW_114596,1,RANDOM,so,so,daughter,daughter,granddaughter,daughter,granddaughter,0,0,,1,0.0395095904198282
+B01EEDHYZW_114596,2,RANDOM,mo,mo,daughter,daughter,2 year old,2 year old,4 year old,0,0,,1,0.009808954709147529
+B01EEDHYZW_114596,3,RANDOM,and,and,,,,,,0,0,,0,0.003256720120728195
+B01EV4FWXK_13704,0,RANDOM,might be,might be,kids,baby,woman,husband,34DD,0,0,,1,0.008112211995819891
+B00U0NDJKK_159176,0,RANDOM,best,best,3 year old,2 year old,4 year old,2 year old,4 year old,0,0,,1,0.008659673180216633
+B00U0NDJKK_159176,1,RANDOM,personal,personal,grandson,grandson,grandson,son,son,0,0,,1,9.927383868218915e-05
+B075BN3Y9W_92167,0,RANDOM,this for my,this for my,grandson,son,Grandson,18 month old,nephew,0,0,,1,0.00595412688582205
+B000N178E2_133761,0,RANDOM,set,set,daughter,granddaughter,niece,wife,10 year old,0,0,,1,0.002114365931692901
+B0759BTH2M_71575,0,RANDOM,143,age:143,baby,kids,3 year old,grandkids,son,0,0,,1,0.031255751334741226
+B09KY3JBV6_43362,0,RANDOM,wear,wear,kids,baby,3 year old,grandkids,son,0,0,,1,0.005649095946542018
+B008LQXR9Q_161779,0,RANDOM,in,in,kids,son,daughter,baby,10 year old,0,0,,1,0.015579814182679478
+B0043WAPJM_152276,0,RANDOM,are,are,kids,3 year old,baby,2 year old,2 year old,0,0,,1,0.029856396471544137
+B0043WAPJM_152276,1,RANDOM,the,the,kids,grandson,baby,grandson,son,0,0,,1,0.08514162554514572
+B000II0TBY_168242,0,RANDOM,love,love,daughter,baby,daughter,baby,daughter,0,0,,1,0.006726064524968561
+B000II0TBY_168242,1,RANDOM,comes,come,daughter,baby,daughter,baby,daughter,0,0,,1,0.003660704901547432
+B000II0TBY_168242,2,RANDOM,their,their,daughter,baby,daughter,baby,daughter,0,0,,1,0.006937577250552712
+B000II0TBY_168242,3,RANDOM,love,love,,baby,daughter,baby,daughter,0,0,,0,0.024965536379648927
+B000II0TBY_168242,4,RANDOM,and,and,,baby,,,daughter,0,0,,0,0.0065749208393649115
+B000II0TBY_168242,5,RANDOM,their,their,,,,,,0,0,,0,0.007206265410260293
+B09M5ZHB76_10232,0,RANDOM,the,the,grandkids,kids,Grandson,baby,10 year old,0,0,,1,0.02676145143682986
+B01GL98DQ6_87624,0,RANDOM,after 30,after 30,3 year old,2 year old,2 year old,son,3 year old,0,0,,1,0.008257224238735612
+B01GL98DQ6_87624,1,RANDOM,irritated,irritated,grandson,grandson,son,son,son,0,0,,1,0.002654930609208992
+B07QXGFTGJ_174100,0,RANDOM,my,my,daughter,kids,3 year old,baby,10 year old,0,0,,1,0.008481133505533048
+B00AKKDSNG_86076,0,RANDOM,And,and,husband,kids,son,baby,kids,0,0,,1,0.0004250562291234929
+B00AKKDSNG_86076,1,RANDOM,gift ours,gift our,husband,kids,son,baby,kids,0,0,,1,0.00013202504915927322
+B07PHVRMWV_165302,0,RANDOM,fit,fit,son,grandson,husband,nephew,1 year old,0,0,,1,0.0023255239016627444
+B08GKSQMFP_165370,0,RANDOM,"imagine, this",imagine thi,kids,baby,3 year old,2 year old,2 year old,0,0,,1,0.0022376638361641435
+B08GKSQMFP_165370,1,RANDOM,however,however,kids,baby,grandson,son,grandson,0,0,,1,0.0050394001797163706
+B07W8W6D9R_23323,0,RANDOM,when,when,kids,baby,son,husband,34DD,0,0,,1,0.01004822276463776
+B013FWDDZI_108266,0,RANDOM,glow&#34; party,glow&#34 party,3 year old,2 year old,kids,2 year old,3 year old,0,0,,1,0.000221861388545578
+B013FWDDZI_108266,1,RANDOM,on,on,grandson,grandson,kids,son,son,0,0,,1,0.038110416151696254
+B00CYFEUVE_16107,0,RANDOM,for,for,daughter,2 year old,2 year old,2 year old,daughter,0,0,,1,0.013660382978532401
+B00CYFEUVE_16107,1,RANDOM,loves it,loves it,daughter,granddaughter,daughter,niece,1st birthday,0,0,,1,0.0027744639277036604
+160907324X_158278,0,RANDOM,majority,majority,3 year old,4 year old,2 year old,4 year old,baby,0,0,,1,0.0005301099557195238
+160907324X_158278,1,RANDOM,nutritious and very,nutritious and very,grandson,grandson,grandson,son,baby,0,0,,1,0.0008609305048824299
+B07GZ5VB4T_63482,0,RANDOM,very,very,daughter,son,grandson,Grandson,Granddaughter,0,0,,1,0.0044215434961526546
+B01J3ODH80_28493,0,RANDOM,up,up,son,son,son,husband,husband,0,0,,1,0.013869173954689134
+B01J3ODH80_28493,1,RANDOM,but they make,but they make,son,son,son,husband,husband,0,0,,1,0.037547781723232546
+B01J3ODH80_28493,2,RANDOM,in,in,son,son,son,husband,husband,0,0,,1,0.0636851416807201
+B000NQMAFO_38713,0,RANDOM,this,thi,daughter,son,grandson,Grandson,Granddaughter,0,0,,1,0.009763318920019753
+B097HGMJFK_114137,0,RANDOM,it,it,daughter,son,kids,grandson,10 year old,0,0,,1,0.014246877143921784
+B0096DCG6I_36692,0,RANDOM,time,time,son,daughter,kids,Grandson,10 year old,0,0,,1,0.0048856013514004416
+B09MZR5JYR_10444,0,RANDOM,enjoy,enjoy,son,son,son,2 year old,4 year old,0,0,,1,0.001484199293443814
+B09MZR5JYR_10444,1,RANDOM,to,to,son,son,son,son,son,0,0,,1,0.055203795531213795
+B09MZR5JYR_10444,2,RANDOM,it doesn’t,it doesn t,son,son,son,2 year old,4 year old,0,0,,1,0.0781772167369355
+B09MZR5JYR_10444,3,RANDOM,course,course,,son,son,,,0,0,,0,0.00012875014492428304
+B09MZR5JYR_10444,4,RANDOM,will probably continue,will probably continue,,,son,,,0,0,,0,0.0025834708329071127
+B09MZR5JYR_10444,5,RANDOM,add,add,,,,,,0,0,,0,0.0010202018916000816
+B01BRVY6TG_46552,0,RANDOM,it,it,2 year old,3 year old,2 year old,3 year old,daughter,0,0,,1,0.01839372914006303
+B01BRVY6TG_46552,1,RANDOM,Quick,quick,granddaughter,granddaughter,daughter,niece,daughter,0,0,,1,0.00018653893925379744
+B09VTZ1V5C_179053,0,RANDOM,my,my,3 year old,2 year old,5 year old,3 year old,5 year old,0,0,,1,0.023974571575312967
+B09VTZ1V5C_179053,1,RANDOM,he loves it,he loves it,grandson,grandson,grandson,granddaughter,son,0,0,,1,0.005305776030384155
+B07ZBWDDZ3_98867,0,RANDOM,toy,toy,kids,kids,kids,kids,4 year old,0,0,,1,0.008389481998942806
+B07ZBWDDZ3_98867,1,RANDOM,easy to,easy to,kids,kids,kids,kids,son,0,0,,1,0.03446783220870905
+B07ZBWDDZ3_98867,2,RANDOM,the,the,kids,kids,kids,kids,4 year old,0,0,,1,0.04140709955308569
+B015QYB526_116576,0,RANDOM,it,it,kids,baby,baby,10 year old,10 year old,0,0,,1,0.05144431930669544
+B015QYB526_116576,1,RANDOM,wishing,wishing,kids,baby,baby's,son,grandson,0,0,,1,0.00016692479577595657
+B076BBRPYH_151956,0,RANDOM,and are clearly less,and are clearly less,daughter,4 year old,daughter,2 year old,4 year old,0,0,,1,0.0008075113189037579
+B076BBRPYH_151956,1,RANDOM,I could just,i could just,daughter,daughter,daughter,daughter,daughter,0,0,,1,0.010329999993985964
+B076BBRPYH_151956,2,RANDOM,using,using,daughter,daughter,daughter,daughter,daughter,0,0,,1,0.02431842404648592
+B00270WLAI_158830,0,RANDOM,keep it intact,keep it intact,4 year old,5 year old,10 year old,10 year old,10 year old,0,0,,1,0.0015297883129161114
+B00270WLAI_158830,1,RANDOM,in,in,grandson,grandson,son,grandson,son,0,0,,1,0.0433752637258819
+B00270WLAI_158830,2,RANDOM,a,a,4 year old,5 year old,10 year old,10 year old,4 year old,0,0,,1,0.10503675214340541
+B08J3QP3JX_113841,0,RANDOM,I've,i ve,daughter,wife,baby,daughter,daughter,0,0,,1,0.03665397662111939
+B08J3QP3JX_113841,1,RANDOM,side,side,daughter,wife,baby,2,10,0,0,,1,0.0060604764128060745
+B082T4R8GC_23948,0,RANDOM,wrapping,wrapping,son,daughter,kids,husband,10 year old,0,0,,1,0.00014227828283440807
+B006U32EUK_33241,0,RANDOM,can,can,kids,baby,baby,10 year old,10 year old,0,0,,1,0.039542816314593054
+B006U32EUK_33241,1,RANDOM,have,have,kids,baby,baby's,son,grandson,0,0,,1,0.04044860790355287
+B0827F5VLB_17527,0,RANDOM,but,but,kids,baby,woman,34DD,son,0,0,,1,0.015340187902506375
+B00FZMDAO6_27853,0,RANDOM,of,of,kids,3 year old,2 year old,2 year old,3 year old,0,0,,1,0.03163228659781083
+B00FZMDAO6_27853,1,RANDOM,dust,dust,kids,grandson,grandson,son,son,0,0,,1,0.00042402696294724135
+B004I110D8_70804,0,RANDOM,pumped,pumped,kids,kids,kids,kids,kids,0,0,,1,0.008810735493141309
+B004I110D8_70804,1,RANDOM,across,across,kids,kids,kids,kids,kids,0,0,,1,0.0005268453034775155
+B004I110D8_70804,2,RANDOM,car,car,kids,kids,kids,kids,kids,0,0,,1,0.033531596215562606
+B004I110D8_70804,3,RANDOM,as,as,kids,kids,kids,,kids,0,0,,1,0.005403909463109488
+B004I110D8_70804,4,RANDOM,warm,warm,kids,,kids,,kids,0,0,,1,0.00033868412709801415
+B004I110D8_70804,5,RANDOM,to,to,,,kids,,kids,0,0,,0,0.009657073788139682
+B004NCEL4M_40529,0,RANDOM,India,india,daughter,daughter,daughter,baby,2 year old,0,0,,1,0.0001801332586945154
+B004NCEL4M_40529,1,RANDOM,me,me,daughter,daughter,daughter,baby,daughter,0,0,,1,0.025524013006403532
+B004NCEL4M_40529,2,RANDOM,super,super,daughter,daughter,daughter,baby,daughter,0,0,,1,0.010665272306438597
+B004NCEL4M_40529,3,RANDOM,she liked to,she liked to,,daughter,daughter,baby,,0,0,,0,0.00030843247741593304
+B004NCEL4M_40529,4,RANDOM,hit things with,hit things with,,,daughter,baby,,0,0,,0,0.0019198444990168534
+B07R6NX5VF_36450,0,RANDOM,the,the,daughter,2 year old,2 year old,baby,2 year old,0,0,,1,0.015313150759520994
+B07R6NX5VF_36450,1,RANDOM,for,for,daughter,daughter,granddaughter,baby,niece,0,0,,1,0.020214922167507074
+B00XFCJYP2_38672,0,RANDOM,has gotten out,has gotten out,son,son,3 year old,4 year old,2 year old,0,0,,1,0.009504208845289061
+B00XFCJYP2_38672,1,RANDOM,in,in,son,son,grandson,son,son,0,0,,1,0.09045502764022895
+B00XFCJYP2_38672,2,RANDOM,become,become,son,son,3 year old,4 year old,2 year old,0,0,,1,0.005305878084019466
+B003BK96RY_125556,0,RANDOM,feeling,feeling,kids,husband,son,baby,10 year old,0,0,,1,0.00043569885793491684
+B0B6FDRFC9_173422,0,RANDOM,perfect,perfect,Grandson,grandkids,kids,daughter,Granddaughter,0,0,,1,0.013124957555576735
+B00KLBGUZW_92577,0,RANDOM,the,the,son,son,son,son,son,0,0,,1,0.06333865565539147
+B00KLBGUZW_92577,1,RANDOM,safe plastic. I,safe plastic i,son,son,son,son,son,0,0,,1,0.0026543743371671602
+B00KLBGUZW_92577,2,RANDOM,toddler,toddler,son,son,son,son,son,0,0,,1,0.002165703245404454
+B00KLBGUZW_92577,3,RANDOM,a,a,son,,son,son,son,0,0,,1,0.007299630193343292
+B00KLBGUZW_92577,4,RANDOM,will have to,will have to,son,,,son,son,0,0,,1,0.003847066314397312
+B00KLBGUZW_92577,5,RANDOM,to,to,,,,son,son,0,0,,0,0.011557994330706485
+B07CCG2VSY_134423,0,RANDOM,so,so,2 year old,3 year old,4 year old,3 year old,3 year old,0,0,,1,0.050284786643358316
+B07CCG2VSY_134423,1,RANDOM,far,far,grandson,grandson,grandson,grandson,grandson,0,0,,1,0.029854975510804318
+B07CCG2VSY_134423,2,RANDOM,product,product,2 year old,4 year old,4 year old,5 year old,10 year old,0,0,,1,0.002148923945577234
+B07QV3GWN4_34904,0,RANDOM,Bought,bought,kids,baby,3 year old,son,grandkids,0,0,,1,0.0026421539539332457
+B00R7CK2OI_135127,0,RANDOM,in height. His mom,in height his mom,son,husband,baby,grandson,10 year old,0,0,,1,0.00024692335438907865
+B01LYZR3HI_45336,0,RANDOM,easy,easy,daughter,daughter,baby,daughter,baby,0,0,,1,0.0032760526680681024
+B01LYZR3HI_45336,1,RANDOM,have,have,daughter,daughter,baby,daughter,baby,0,0,,1,0.03948711170549517
+B01LYZR3HI_45336,2,RANDOM,which,which,daughter,daughter,baby,daughter,baby,0,0,,1,0.004279822625845325
+B01LYZR3HI_45336,3,RANDOM,highest,highest,,daughter,baby,daughter,baby,0,0,,0,3.1505547750720545e-05
+B07RDL3PMJ_31281,0,RANDOM,desk,desk,daughter,2 year old,baby,daughter,baby,0,0,,1,0.0010132001228443466
+B07RDL3PMJ_31281,1,RANDOM,another,another,daughter,daughter,baby,daughter,baby,0,0,,1,0.016005593818226672
+B07RDL3PMJ_31281,2,RANDOM,hit,hit,daughter,daughter,baby,daughter,baby,0,0,,1,0.0014305965095838028
+B00Y286NXY_28237,0,RANDOM,bit overwhelming,bit overwhelming,kids,kids,kids,kids,kids,0,0,,1,0.0015880745482730922
+B00Y286NXY_28237,1,RANDOM,has many,has many,kids,kids,kids,kids,kids,0,0,,1,0.005033431827609479
+B00Y286NXY_28237,2,RANDOM,favorite,favorite,kids,kids,kids,kids,kids,0,0,,1,0.003060047972261156
+B00Y286NXY_28237,3,RANDOM,first time,first time,kids,kids,kids,kids,,0,0,,1,0.004528787555040919
+B00Y286NXY_28237,4,RANDOM,I’m,i m,kids,,kids,kids,,0,0,,1,0.05619446756996351
+B09R78LZD3_62985,0,RANDOM,ordered 6-7,ordered 6-7,daughter,wife,baby,daughter,daughter,0,0,,1,0.006678864031054696
+B09R78LZD3_62985,1,RANDOM,one,age:1,daughter,wife,baby,2,10,0,0,,1,0.00684805154675349
+B0BTFY3V69_89442,0,RANDOM,are,are,kids,kids,kids,3 year old,3 year old,0,0,,1,0.023988067951304592
+B0BTFY3V69_89442,1,RANDOM,hang,hang,kids,kids,kids,grandson,grandson,0,0,,1,0.00791037430168512
+B0BTFY3V69_89442,2,RANDOM,all,all,kids,kids,kids,4 year old,10 year old,0,0,,1,0.0036324497034773244

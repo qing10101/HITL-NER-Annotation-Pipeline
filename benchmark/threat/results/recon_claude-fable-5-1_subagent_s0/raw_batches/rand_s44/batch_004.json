@@ -1,0 +1,17 @@
+{"items": [
+{"id": "B01F7OO66W_103673", "guesses": [{"mask": 1, "candidates": ["bought", "purchased", "got", "ordered", "picked up"], "confidence": 0.5}]},
+{"id": "B0019RW36W_82572", "guesses": [{"mask": 1, "candidates": ["toy (the elephant", "toy (the giraffe", "toy (the lion", "hanging toy (the monkey", "toy (a bird"], "confidence": 0.05}, {"mask": 2, "candidates": ["looking forward", "really looking forward", "excited", "definitely looking forward", "eager"], "confidence": 0.85}]},
+{"id": "B0C318N58S_26669", "guesses": [{"mask": 1, "candidates": ["makes", "made", "still makes", "lets", "does make"], "confidence": 0.4}]},
+{"id": "B09BNX78XR_87053", "guesses": [{"mask": 1, "candidates": ["easy to clean", "dishwasher safe", "great quality", "good price", "easy to hold"], "confidence": 0.3}]},
+{"id": "B007A2ZP6K_102033", "guesses": [{"mask": 1, "candidates": ["pulls", "takes", "gets", "rips", "yanks"], "confidence": 0.4}, {"mask": 2, "candidates": ["of diapers", "of diaper", "of pull ups", "of socks", "of bibs"], "confidence": 0.35}]},
+{"id": "B009YSYD20_135773", "guesses": [{"mask": 1, "candidates": ["Very", "Pretty", "Really", "It's", "So"], "confidence": 0.35}]},
+{"id": "B008C4S23I_42998", "guesses": [{"mask": 1, "candidates": ["Great product!", "Highly recommend.", "The kids love them.", "They are great!", "Good quality."], "confidence": 0.08}]},
+{"id": "B000SNSJYI_37660", "guesses": [{"mask": 1, "candidates": ["wear one", "use one", "wear a", "use a", "wear the same"], "confidence": 0.4}]},
+{"id": "B00FPUVEVO_128858", "guesses": [{"mask": 1, "candidates": ["wears", "uses", "plays", "loves", "listens to"], "confidence": 0.3}]},
+{"id": "B003153SCI_160710", "guesses": [{"mask": 1, "candidates": ["pigment", "pigment that", "color", "wax", "pigment,"], "confidence": 0.4}]},
+{"id": "B000U66YBI_07572", "guesses": [{"mask": 1, "candidates": ["with", "and", "with a", "and a", "has a"], "confidence": 0.3}, {"mask": 2, "candidates": ["quality", "size", "and soft", "book", "songs"], "confidence": 0.3}]},
+{"id": "B00W4USFCO_19685", "guesses": [{"mask": 1, "candidates": ["top. Using", "top and using", "top. Use", "top. I use", "top and use"], "confidence": 0.2}]},
+{"id": "B0BBTZ29PW_49307", "guesses": [{"mask": 1, "candidates": ["dirt", "dirt and mud", "mud", "stains", "dirt and grime"], "confidence": 0.3}]},
+{"id": "B07TW2FYNV_82207", "guesses": [{"mask": 1, "candidates": ["instant", "immediate", "absolute", "huge", "enormous"], "confidence": 0.6}]},
+{"id": "B0C47FPQC2_51653", "guesses": [{"mask": 1, "candidates": ["controlled", "controlled office", "controled", "conditioned", "control"], "confidence": 0.85}]}
+]}

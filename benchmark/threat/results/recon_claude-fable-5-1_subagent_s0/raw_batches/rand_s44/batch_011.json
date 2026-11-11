@@ -1,0 +1,17 @@
+{"items": [
+{"id": "B09LMD19X2_78697", "guesses": [{"mask": 1, "candidates": ["These are", "They are", "They're", "Definitely", "Theyre"], "confidence": 0.3}]},
+{"id": "B0030BSAR6_69291", "guesses": [{"mask": 1, "candidates": ["brand", "pump", "breast pump", "manual pump", "product"], "confidence": 0.4}]},
+{"id": "B09LQVRM2M_158965", "guesses": [{"mask": 1, "candidates": ["he loved it", "he loves it", "he was thrilled", "he was so excited", "it was a hit"], "confidence": 0.3}, {"mask": 2, "candidates": ["A", "Great", "It's", "Nice", "Perfect"], "confidence": 0.3}, {"mask": 3, "candidates": ["great", "nice", "new", "perfect", "awesome"], "confidence": 0.35}, {"mask": 4, "candidates": ["addition", "add", "edition", "piece", "additon"], "confidence": 0.6}]},
+{"id": "B08CSCX9GK_53612", "guesses": [{"mask": 1, "candidates": ["top", "the front", "front", "the outside", "the top"], "confidence": 0.3}]},
+{"id": "B00JWNPKX8_64485", "guesses": [{"mask": 1, "candidates": ["Nope", "Instead", "NOPE", "Nope,", "Well"], "confidence": 0.25}]},
+{"id": "B09QPXVW35_74108", "guesses": [{"mask": 1, "candidates": ["several", "many", "a few", "multiple", "numerous"], "confidence": 0.4}, {"mask": 2, "candidates": ["late", "early", "mid", "this", "the"], "confidence": 0.25}, {"mask": 3, "candidates": ["liked", "enjoyed", "loved", "like", "enjoy"], "confidence": 0.4}, {"mask": 4, "candidates": ["because", "since", "as", "cause", "so"], "confidence": 0.5}]},
+{"id": "0312521456_139967", "guesses": [{"mask": 1, "candidates": ["it over and over", "reading it over and over", "hearing it over and over", "it again and", "this book over and over"], "confidence": 0.25}]},
+{"id": "B071K88GRM_03280", "guesses": [{"mask": 1, "candidates": ["toys", "games", "as a gift", "cards", "for a gift"], "confidence": 0.12}]},
+{"id": "B0BG94QRLZ_12627", "guesses": [{"mask": 1, "candidates": ["1 year old", "one year old", "toddler", "first birthday", "1st birthday"], "confidence": 0.35}]},
+{"id": "B00U6YP00K_82489", "guesses": [{"mask": 1, "candidates": ["dry", "air dry", "drain", "dry out", "air out"], "confidence": 0.6}]},
+{"id": "B075W8NHK5_63584", "guesses": [{"mask": 1, "candidates": ["are", "look", "were", "looked", "came"], "confidence": 0.4}, {"mask": 2, "candidates": ["put", "installed", "glued", "stuck", "added"], "confidence": 0.5}]},
+{"id": "B0BWLFX3F1_134763", "guesses": [{"mask": 1, "candidates": ["scared", "terrified", "afraid", "so scared", "frightened"], "confidence": 0.4}]},
+{"id": "B077X7J7R1_122342", "guesses": [{"mask": 1, "candidates": ["Very", "Looks", "It's", "Super", "Simple and"], "confidence": 0.25}]},
+{"id": "B004V76BII_104351", "guesses": [{"mask": 1, "candidates": ["Bought this for", "Got this for", "Purchased for", "Gift for", "Christmas gift for"], "confidence": 0.3}, {"mask": 2, "candidates": ["loves it", "loved it", "love it", "was thrilled", "loves them"], "confidence": 0.5}]},
+{"id": "B07WTV6DQ5_30293", "guesses": [{"mask": 1, "candidates": ["installed", "put", "placed", "used", "stuck"], "confidence": 0.3}]}
+]}

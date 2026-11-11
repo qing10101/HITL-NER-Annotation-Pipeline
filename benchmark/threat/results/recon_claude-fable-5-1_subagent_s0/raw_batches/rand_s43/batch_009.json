@@ -1,0 +1,60 @@
+{"items": [
+{"id": "B087CBJ465_40549", "guesses": [
+{"mask": 1, "candidates": ["younger", "young ones", "little ones", "younger kids", "young"], "confidence": 0.35},
+{"mask": 2, "candidates": ["game", "one", "card game", "board game", "set"], "confidence": 0.6},
+{"mask": 3, "candidates": ["playing", "it", "playing it", "the game", "our time"], "confidence": 0.45},
+{"mask": 4, "candidates": ["ages", "aged", "age", "that are", "who are"], "confidence": 0.7}
+]},
+{"id": "0375864547_02217", "guesses": [
+{"mask": 1, "candidates": ["interested", "engaged", "entertained", "attention", "busy"], "confidence": 0.3},
+{"mask": 2, "candidates": ["even though", "although", "though", "and", "since"], "confidence": 0.4},
+{"mask": 3, "candidates": ["interested", "engaged", "entertained", "connected", "excited"], "confidence": 0.3},
+{"mask": 4, "candidates": ["Great", "Wonderful", "Beautiful", "Lovely", "Fun"], "confidence": 0.3}
+]},
+{"id": "B07SDP8VS1_72137", "guesses": [
+{"mask": 1, "candidates": ["loves", "loved", "LOVES", "enjoys", "got"], "confidence": 0.6}
+]},
+{"id": "B0BW2H9XDR_112550", "guesses": [
+{"mask": 1, "candidates": ["saw", "tried", "borrowed", "used", "felt"], "confidence": 0.4}
+]},
+{"id": "B0B984DM66_116889", "guesses": [
+{"mask": 1, "candidates": ["found", "looked up", "used", "tried", "googled"], "confidence": 0.5},
+{"mask": 2, "candidates": ["slime. Save", "slime! Save", "slime. Don't waste", "slime. Keep", "slime. Don't spend"], "confidence": 0.35}
+]},
+{"id": "B0CF8GC7F6_90156", "guesses": [
+{"mask": 1, "candidates": ["light", "subtle", "absorbed", "mild", "soaked"], "confidence": 0.25},
+{"mask": 2, "candidates": ["scent", "smell", "fragrance", "quickly", "fast"], "confidence": 0.25},
+{"mask": 3, "candidates": ["bonus", "plus", "nice touch", "great bonus", "nice bonus"], "confidence": 0.4}
+]},
+{"id": "B00AHVR708_110961", "guesses": [
+{"mask": 1, "candidates": ["beautiful", "great", "perfect", "amazing", "lovely"], "confidence": 0.3},
+{"mask": 2, "candidates": ["figured", "worked", "got", "sorted", "took"], "confidence": 0.5}
+]},
+{"id": "B08BBR329W_42673", "guesses": [
+{"mask": 1, "candidates": ["perfect", "cute", "adorable", "a good option", "a great idea"], "confidence": 0.35}
+]},
+{"id": "B01MQNOAKZ_144726", "guesses": [
+{"mask": 1, "candidates": ["disappointed", "small", "cute", "soft", "nice"], "confidence": 0.3},
+{"mask": 2, "candidates": ["little smaller", "bit smaller", "lot smaller", "little thinner", "bit thinner"], "confidence": 0.3}
+]},
+{"id": "B0918W3PQ2_71793", "guesses": [
+{"mask": 1, "candidates": ["get", "have", "find", "see", "make"], "confidence": 0.8}
+]},
+{"id": "B08DL61832_141016", "guesses": [
+{"mask": 1, "candidates": ["doesn't shoot", "does not shoot", "won't shoot", "doesn't squirt", "doesn't spray"], "confidence": 0.3},
+{"mask": 2, "candidates": ["hard", "difficult", "impossible", "tricky", "a pain"], "confidence": 0.5}
+]},
+{"id": "B0BL87C2XC_162384", "guesses": [
+{"mask": 1, "candidates": ["Bought", "Got", "Used", "Purchased", "Ordered"], "confidence": 0.4}
+]},
+{"id": "B00O2BEJJ6_27668", "guesses": [
+{"mask": 1, "candidates": ["mask", "cover", "cover up", "hide", "worsen"], "confidence": 0.45}
+]},
+{"id": "B001Y66JU4_139921", "guesses": [
+{"mask": 1, "candidates": ["durable", "fun", "sturdy", "well made", "good quality"], "confidence": 0.25}
+]},
+{"id": "B00008BFZH_140945", "guesses": [
+{"mask": 1, "candidates": ["one", "version", "kit", "set", "design"], "confidence": 0.5},
+{"mask": 2, "candidates": ["bigger one", "bigger set", "larger set", "larger one", "more advanced one"], "confidence": 0.3}
+]}
+]}

@@ -1,0 +1,60 @@
+{"items": [
+{"id": "B087CBJ465_40549", "guesses": [
+{"mask": 1, "candidates": ["family", "household", "group", "couple", "whole family"], "confidence": 0.85},
+{"mask": 2, "candidates": ["younger", "young kids", "younger kids", "little ones", "young ones"], "confidence": 0.5},
+{"mask": 3, "candidates": ["really", "all", "thoroughly", "truly", "genuinely"], "confidence": 0.35},
+{"mask": 4, "candidates": ["ages", "aged", "age", "who are", "at ages"], "confidence": 0.8}
+]},
+{"id": "0375864547_02217", "guesses": [
+{"mask": 1, "candidates": ["book", "gift", "present", "story", "picture book"], "confidence": 0.85},
+{"mask": 2, "candidates": ["even though", "although", "though", "and", "since"], "confidence": 0.5},
+{"mask": 3, "candidates": ["peaked", "piqued", "sparked", "captured", "held"], "confidence": 0.4},
+{"mask": 4, "candidates": ["Great", "Wonderful", "Cute", "Beautiful", "Lovely"], "confidence": 0.3}
+]},
+{"id": "B07SDP8VS1_72137", "guesses": [
+{"mask": 1, "candidates": ["wanted", "needed", "loved", "wants", "likes"], "confidence": 0.85}
+]},
+{"id": "B0BW2H9XDR_112550", "guesses": [
+{"mask": 1, "candidates": ["Great", "Good", "Excellent", "Nice", "High"], "confidence": 0.45}
+]},
+{"id": "B0B984DM66_116889", "guesses": [
+{"mask": 1, "candidates": ["conclusion", "result", "answer", "decision", "verdict"], "confidence": 0.85},
+{"mask": 2, "candidates": ["waste", "spend", "waist", "bother wasting", "throw away"], "confidence": 0.85}
+]},
+{"id": "B0CF8GC7F6_90156", "guesses": [
+{"mask": 1, "candidates": ["arrived", "shipped", "came", "was delivered", "was shipped"], "confidence": 0.6},
+{"mask": 2, "candidates": ["scent", "smell", "fragrance", "shine", "greasiness"], "confidence": 0.5},
+{"mask": 3, "candidates": ["love", "like", "really like", "appreciate", "enjoy"], "confidence": 0.55}
+]},
+{"id": "B00AHVR708_110961", "guesses": [
+{"mask": 1, "candidates": ["quality", "cover", "fabric", "material", "color"], "confidence": 0.4},
+{"mask": 2, "candidates": ["figured", "worked", "took", "pulled", "sorted"], "confidence": 0.55}
+]},
+{"id": "B08BBR329W_42673", "guesses": [
+{"mask": 1, "candidates": ["night", "nightlight", "new", "nite", "bedtime"], "confidence": 0.7}
+]},
+{"id": "B01MQNOAKZ_144726", "guesses": [
+{"mask": 1, "candidates": ["cute", "nice", "soft", "pretty", "small"], "confidence": 0.3},
+{"mask": 2, "candidates": ["little bigger", "bit bigger", "little thicker", "bit stiffer", "little smaller"], "confidence": 0.15}
+]},
+{"id": "B0918W3PQ2_71793", "guesses": [
+{"mask": 1, "candidates": ["maker", "builder", "restorer", "refinisher", "designer"], "confidence": 0.5}
+]},
+{"id": "B08DL61832_141016", "guesses": [
+{"mask": 1, "candidates": ["doesn't hold", "won't hold", "does not hold", "doesn't shoot", "won't shoot"], "confidence": 0.3},
+{"mask": 2, "candidates": ["leaks", "runs", "pours", "comes", "spills"], "confidence": 0.5}
+]},
+{"id": "B0BL87C2XC_162384", "guesses": [
+{"mask": 1, "candidates": ["value", "price", "deal", "buy", "gift"], "confidence": 0.5}
+]},
+{"id": "B00O2BEJJ6_27668", "guesses": [
+{"mask": 1, "candidates": ["seems", "tends", "appears", "seemed", "is meant"], "confidence": 0.6}
+]},
+{"id": "B001Y66JU4_139921", "guesses": [
+{"mask": 1, "candidates": ["durable", "sturdy", "well made", "fun", "good quality"], "confidence": 0.3}
+]},
+{"id": "B00008BFZH_140945", "guesses": [
+{"mask": 1, "candidates": ["buttons", "velcro", "zippers", "ties", "laces"], "confidence": 0.4},
+{"mask": 2, "candidates": ["bigger one", "second one", "new one", "better one", "larger one"], "confidence": 0.4}
+]}
+]}
