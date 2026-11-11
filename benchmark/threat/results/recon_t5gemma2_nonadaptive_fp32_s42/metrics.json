@@ -1,0 +1,139 @@
+{
+ "gold": {
+  "all": {
+   "n": 501,
+   "exact1": 0.0,
+   "exact5": 0.0,
+   "cat1": 0.0,
+   "anycat1": 0.0,
+   "gold_prob": 0.008716241636235217
+  },
+  "FAM_KIN": {
+   "n": 207,
+   "exact1": 0.0,
+   "exact5": 0.0,
+   "cat1": 0.0,
+   "anycat1": 0.0,
+   "gold_prob": 0.007013193408448539
+  },
+  "GEN_NOUN": {
+   "n": 96,
+   "exact1": 0.0,
+   "exact5": 0.0,
+   "cat1": 0.0,
+   "anycat1": 0.0,
+   "gold_prob": 0.0024753493780638835
+  },
+  "GEN_PHYS": {
+   "n": 22,
+   "exact1": 0.0,
+   "exact5": 0.0,
+   "cat1": 0.0,
+   "anycat1": 0.0,
+   "gold_prob": 0.003182884534188336
+  },
+  "MINOR_AGE": {
+   "n": 166,
+   "exact1": 0.0,
+   "exact5": 0.0,
+   "cat1": 0.0,
+   "anycat1": 0.0,
+   "gold_prob": 0.015426070581040265
+  },
+  "MINOR_EDU": {
+   "n": 10,
+   "exact1": 0.0,
+   "exact5": 0.0,
+   "cat1": 0.0,
+   "anycat1": 0.0,
+   "gold_prob": 0.004672130770603583
+  }
+ },
+ "loo": {
+  "all": {
+   "n": 501,
+   "exact1": 0.0,
+   "exact5": 0.0,
+   "cat1": 0.0,
+   "anycat1": 0.0,
+   "gold_prob": 0.005691900505205519
+  },
+  "FAM_KIN": {
+   "n": 207,
+   "exact1": 0.0,
+   "exact5": 0.0,
+   "cat1": 0.0,
+   "anycat1": 0.0,
+   "gold_prob": 0.0025996502320786295
+  },
+  "GEN_NOUN": {
+   "n": 96,
+   "exact1": 0.0,
+   "exact5": 0.0,
+   "cat1": 0.0,
+   "anycat1": 0.0,
+   "gold_prob": 0.001763139646429741
+  },
+  "GEN_PHYS": {
+   "n": 22,
+   "exact1": 0.0,
+   "exact5": 0.0,
+   "cat1": 0.0,
+   "anycat1": 0.0,
+   "gold_prob": 0.0030518210103336716
+  },
+  "MINOR_AGE": {
+   "n": 166,
+   "exact1": 0.0,
+   "exact5": 0.0,
+   "cat1": 0.0,
+   "anycat1": 0.0,
+   "gold_prob": 0.012417156129793546
+  },
+  "MINOR_EDU": {
+   "n": 10,
+   "exact1": 0.0,
+   "exact5": 0.0,
+   "cat1": 0.0,
+   "anycat1": 0.0,
+   "gold_prob": 0.0015865169237363704
+  }
+ },
+ "rand": {
+  "all": {
+   "n": 501,
+   "exact1": 0.02594810379241517,
+   "exact5": 0.08782435129740519,
+   "cat1": null,
+   "anycat1": 0.0,
+   "gold_prob": 0.030889995465261375
+  },
+  "RANDOM": {
+   "n": 501,
+   "exact1": 0.02594810379241517,
+   "exact5": 0.08782435129740519,
+   "cat1": null,
+   "anycat1": 0.0,
+   "gold_prob": 0.030889995465261375
+  }
+ },
+ "config": {
+  "model": "t5gemma2",
+  "mode": "nonadaptive",
+  "seed": 42,
+  "epochs": 3.0,
+  "lr": 0.0001,
+  "bs": 2,
+  "accum": 8,
+  "max_in": 384,
+  "max_out": 64,
+  "beams": 5,
+  "gen_bs": 8,
+  "limit": null,
+  "test_limit": null,
+  "eval_only": false,
+  "fp32": true,
+  "optim": "adafactor",
+  "tag": "fp32"
+ }
+}

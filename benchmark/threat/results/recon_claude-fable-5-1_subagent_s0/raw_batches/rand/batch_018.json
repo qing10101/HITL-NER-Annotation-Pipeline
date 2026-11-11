@@ -1,0 +1,56 @@
+{"items": [
+{"id": "B000NQMAFO_38713", "guesses": [{"mask": 1, "candidates": ["Trying", "Hoping", "Tried", "Wanted", "Planning"], "confidence": 0.25}]},
+{"id": "B097HGMJFK_114137", "guesses": [{"mask": 1, "candidates": ["done", "did", "performed", "been doing", "accomplished"], "confidence": 0.7}]},
+{"id": "B0096DCG6I_36692", "guesses": [{"mask": 1, "candidates": ["time", "day", "week", "hour", "night"], "confidence": 0.9}]},
+{"id": "B09MZR5JYR_10444", "guesses": [
+{"mask": 1, "candidates": ["marble run", "toy", "set", "game", "marble set"], "confidence": 0.4},
+{"mask": 2, "candidates": ["hard", "difficult", "tricky", "challenging", "complicated"], "confidence": 0.45},
+{"mask": 3, "candidates": ["build", "put together", "assemble", "construct", "set up"], "confidence": 0.5},
+{"mask": 4, "candidates": ["give", "allow", "leave", "let", "grant"], "confidence": 0.8},
+{"mask": 5, "candidates": ["marbles", "balls", "pieces", "tracks", "marble runs"], "confidence": 0.8},
+{"mask": 6, "candidates": ["love", "like", "enjoy", "don't mind", "think"], "confidence": 0.7}
+]},
+{"id": "B01BRVY6TG_46552", "guesses": [
+{"mask": 1, "candidates": ["loves", "loved", "likes", "adores", "liked"], "confidence": 0.6},
+{"mask": 2, "candidates": ["delivery", "shipping", "service", "arrival", "ship"], "confidence": 0.5}
+]},
+{"id": "B09VTZ1V5C_179053", "guesses": [
+{"mask": 1, "candidates": ["Bought for my", "Got this for my", "Bought this for my", "Gift for my", "For my"], "confidence": 0.3},
+{"mask": 2, "candidates": ["loves", "loved", "likes", "adores", "enjoys"], "confidence": 0.7}
+]},
+{"id": "B07ZBWDDZ3_98867", "guesses": [
+{"mask": 1, "candidates": ["ago", "back", "prior", "earlier", "before"], "confidence": 0.85},
+{"mask": 2, "candidates": ["love", "like", "appreciate", "loved", "enjoy"], "confidence": 0.6},
+{"mask": 3, "candidates": ["ball", "balls", "marble", "bead", "toy"], "confidence": 0.7}
+]},
+{"id": "B015QYB526_116576", "guesses": [
+{"mask": 1, "candidates": ["seat", "chair", "cushion", "padding", "baby"], "confidence": 0.4},
+{"mask": 2, "candidates": ["designed", "go", "put", "made", "thought of"], "confidence": 0.3}
+]},
+{"id": "B076BBRPYH_151956", "guesses": [
+{"mask": 1, "candidates": ["used this brand", "used these", "used Honest diapers", "been using these", "bought these"], "confidence": 0.2},
+{"mask": 2, "candidates": ["bulky", "absorbent", "chemical", "expensive", "noticeable"], "confidence": 0.45},
+{"mask": 3, "candidates": ["price", "cost", "money", "extra cost", "expense"], "confidence": 0.4}
+]},
+{"id": "B00270WLAI_158830", "guesses": [
+{"mask": 1, "candidates": ["tries", "tried", "attempts", "wants", "goes"], "confidence": 0.5},
+{"mask": 2, "candidates": ["works", "worked", "does", "catches them", "did"], "confidence": 0.5},
+{"mask": 3, "candidates": ["traditional net", "transparent net", "standard net", "typical net", "sheer net"], "confidence": 0.2}
+]},
+{"id": "B08J3QP3JX_113841", "guesses": [
+{"mask": 1, "candidates": ["files", "file", "boards", "emery boards", "filers"], "confidence": 0.85},
+{"mask": 2, "candidates": ["can't", "cannot", "couldn't", "can not", "can't really"], "confidence": 0.6}
+]},
+{"id": "B082T4R8GC_23948", "guesses": [
+{"mask": 1, "candidates": ["newborn", "6 month old", "3 month old", "2 month old", "4 month old"], "confidence": 0.3}]},
+{"id": "B006U32EUK_33241", "guesses": [
+{"mask": 1, "candidates": ["trading", "trade", "traders", "toy", "import"], "confidence": 0.85},
+{"mask": 2, "candidates": ["purchased", "bought", "purchased them", "bought them", "ordered"], "confidence": 0.4}
+]},
+{"id": "B0827F5VLB_17527", "guesses": [
+{"mask": 1, "candidates": ["coverup", "as a coverup", "too", "as well", "cover up"], "confidence": 0.3}]},
+{"id": "B00FZMDAO6_27853", "guesses": [
+{"mask": 1, "candidates": ["seen", "known", "met", "gifted", "had"], "confidence": 0.35},
+{"mask": 2, "candidates": ["three", "four", "five", "3", "two"], "confidence": 0.3}
+]}
+]}

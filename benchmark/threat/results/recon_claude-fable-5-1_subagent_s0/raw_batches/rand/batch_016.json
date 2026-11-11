@@ -1,0 +1,17 @@
+{"items": [
+{"id": "B09K1ZD3SL_166499", "guesses": [{"mask": 1, "candidates": ["camper", "customer", "girl", "lady", "woman"], "confidence": 0.6}]},
+{"id": "B00DS5RM1Y_137020", "guesses": [{"mask": 1, "candidates": ["hit", "success", "big hit", "great gift", "good gift"], "confidence": 0.4}, {"mask": 2, "candidates": ["bought one", "ordered one", "got one", "bought another", "ordered another"], "confidence": 0.3}]},
+{"id": "B08PY4CRDR_140710", "guesses": [{"mask": 1, "candidates": ["well", "good", "great", "nicely", "fine"], "confidence": 0.75}]},
+{"id": "B01N5HUOFP_13402", "guesses": [{"mask": 1, "candidates": ["ears stay up", "ears stand up", "ears stay on", "colors go together", "flaps fit"], "confidence": 0.12}]},
+{"id": "B00E8NGRUW_148939", "guesses": [{"mask": 1, "candidates": ["gave", "gives", "brought", "has given", "provided"], "confidence": 0.55}]},
+{"id": "B00L88IVD6_125797", "guesses": [{"mask": 1, "candidates": ["lens", "camera", "zoom lens", "telephoto lens", "lense"], "confidence": 0.5}]},
+{"id": "B0C85796QQ_169675", "guesses": [{"mask": 1, "candidates": ["love", "loved", "enjoy", "like", "enjoyed"], "confidence": 0.5}, {"mask": 2, "candidates": ["great", "fun", "good", "wonderful", "perfect"], "confidence": 0.4}, {"mask": 3, "candidates": ["sportsmanship", "strategy", "patience", "teamwork", "good sportsmanship"], "confidence": 0.2}, {"mask": 4, "candidates": ["teams", "sides", "partners", "players", "parents"], "confidence": 0.4}]},
+{"id": "B0CC3GYVKV_67087", "guesses": [{"mask": 1, "candidates": ["day", "single day", "morning", "night", "chance he gets"], "confidence": 0.65}, {"mask": 2, "candidates": ["play", "learning", "fun", "entertainment", "playing"], "confidence": 0.4}]},
+{"id": "B01EEDHYZW_114596", "guesses": [{"mask": 1, "candidates": ["happy", "glad", "thrilled", "excited", "pleased"], "confidence": 0.3}, {"mask": 2, "candidates": ["6", "3", "9", "12", "6-9"], "confidence": 0.2}, {"mask": 3, "candidates": ["clothes", "size", "outfits", "sizes", "onesies"], "confidence": 0.3}, {"mask": 4, "candidates": ["big", "out big", "large", "off big", "out large"], "confidence": 0.4}]},
+{"id": "B01EV4FWXK_13704", "guesses": [{"mask": 1, "candidates": ["usually wear", "normally wear", "typically wear", "wear", "am usually"], "confidence": 0.35}]},
+{"id": "B00U0NDJKK_159176", "guesses": [{"mask": 1, "candidates": ["wipes", "wet wipes", "diapers", "products", "cloths"], "confidence": 0.85}, {"mask": 2, "candidates": ["use", "hygiene", "needs", "care", "cleaning"], "confidence": 0.5}]},
+{"id": "B075BN3Y9W_92167", "guesses": [{"mask": 1, "candidates": ["for my", "this for my", "it for my", "for our", "for a"], "confidence": 0.5}]},
+{"id": "B000N178E2_133761", "guesses": [{"mask": 1, "candidates": ["magnets", "magnet", "pieces", "set", "figures"], "confidence": 0.8}]},
+{"id": "B0759BTH2M_71575", "guesses": [{"mask": 1, "candidates": ["ordered", "got", "bought", "purchased", "chose"], "confidence": 0.6}]},
+{"id": "B09KY3JBV6_43362", "guesses": [{"mask": 1, "candidates": ["lounge", "pajama", "sleep", "sleeping", "pj"], "confidence": 0.3}]}
+]}

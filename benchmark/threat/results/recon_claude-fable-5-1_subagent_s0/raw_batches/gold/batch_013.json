@@ -1,0 +1,44 @@
+{"items": [
+{"id": "B00IX6PEB8_96293", "guesses": [
+{"mask": 1, "candidates": ["daughter", "little girl", "baby girl", "granddaughter", "baby"], "confidence": 0.7},
+{"mask": 2, "candidates": ["18 months", "2 years old", "15 months", "2", "20 months"], "confidence": 0.2},
+{"mask": 3, "candidates": ["daughter", "little girl", "baby", "toddler", "girl"], "confidence": 0.6}]},
+{"id": "B08GZPH6JH_128781", "guesses": [
+{"mask": 1, "candidates": ["daughter", "granddaughter", "son", "grandson", "niece"], "confidence": 0.45}]},
+{"id": "B001UF8BL4_149502", "guesses": [
+{"mask": 1, "candidates": ["son", "baby", "little guy", "grandson", "little one"], "confidence": 0.65},
+{"mask": 2, "candidates": ["3 months", "2 months", "4 months", "6 months", "3 months old"], "confidence": 0.3},
+{"mask": 3, "candidates": ["him", "baby", "little hands", "small hands", "babies"], "confidence": 0.3}]},
+{"id": "B00005N9EE_132424", "guesses": [
+{"mask": 1, "candidates": ["daughter", "granddaughter", "niece", "little girl", "toddler"], "confidence": 0.6},
+{"mask": 2, "candidates": ["2", "18 months", "two", "2 years old", "20 months"], "confidence": 0.3}]},
+{"id": "B003U6N1UW_30323", "guesses": [
+{"mask": 1, "candidates": ["son", "5 year old", "kindergartner", "grandson", "first grader"], "confidence": 0.6}]},
+{"id": "B0BZJ6PFBB_27508", "guesses": [
+{"mask": 1, "candidates": ["wife", "daughter", "granddaughter", "girlfriend", "Mrs"], "confidence": 0.4}]},
+{"id": "B083PX54LQ_114768", "guesses": [
+{"mask": 1, "candidates": ["baby", "son", "daughter", "little one", "infant"], "confidence": 0.35}]},
+{"id": "B0C6YYX312_156921", "guesses": [
+{"mask": 1, "candidates": ["3 year old", "2 year old", "4 year old", "toddler", "5 year old"], "confidence": 0.2},
+{"mask": 2, "candidates": ["grandson", "son", "love it", "like it", "enjoy it"], "confidence": 0.3},
+{"mask": 3, "candidates": ["6 year old", "5 year old", "4 year old", "7 year old", "8 year old"], "confidence": 0.2},
+{"mask": 4, "candidates": ["granddaughter", "daughter", "grandson", "son", "nephew"], "confidence": 0.3}]},
+{"id": "B07X9VHQJ3_135351", "guesses": [
+{"mask": 1, "candidates": ["daughter", "4 year old", "5 year old", "granddaughter", "3 year old"], "confidence": 0.5}]},
+{"id": "B07FDR9DPG_09358", "guesses": [
+{"mask": 1, "candidates": ["daughter", "granddaughter", "niece", "son", "grandson"], "confidence": 0.5}]},
+{"id": "B09DD96Z1H_20711", "guesses": [
+{"mask": 1, "candidates": ["5 year old", "6 year old", "4 year old", "7 year old", "8 year old"], "confidence": 0.25},
+{"mask": 2, "candidates": ["grandson", "son", "nephew", "great grandson", "godson"], "confidence": 0.45}]},
+{"id": "B08L5JC35Q_121573", "guesses": [
+{"mask": 1, "candidates": ["granddaughter", "daughter", "grandson", "niece", "son"], "confidence": 0.4},
+{"mask": 2, "candidates": ["grandma", "mom", "mommy", "nana", "grandmother"], "confidence": 0.3}]},
+{"id": "B01EHSLOP0_172761", "guesses": [
+{"mask": 1, "candidates": ["cat person", "cat lady", "crazy cat lady", "cat lover", "Ghibli fan"], "confidence": 0.5}]},
+{"id": "B08WBJSYKH_98665", "guesses": [
+{"mask": 1, "candidates": ["baby", "son", "daughter", "little one", "infant"], "confidence": 0.4}]},
+{"id": "B07MPRX14B_07630", "guesses": [
+{"mask": 1, "candidates": ["hips", "thighs", "arms", "bust", "butt"], "confidence": 0.3},
+{"mask": 2, "candidates": ["3 kids", "two kids", "3 babies", "4 kids", "2 babies"], "confidence": 0.25},
+{"mask": 3, "candidates": ["50", "over 50", "60", "55", "a woman of a certain age"], "confidence": 0.2}]}
+]}

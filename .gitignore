@@ -18,3 +18,13 @@ benchmark/supervised/predictions/*
 benchmark/*.csv
 *.csv
 benchmark/supervised/test_pretrained_spacy.py
+.venv-threat
+benchmark/threat/data/
+# threat results: keep metrics, predictions and raw LLM replies; drop checkpoints and scratch runs
+benchmark/threat/results/**/model/
+benchmark/threat/results/**/*.pt
+benchmark/threat/results/invalid_bf16/
+benchmark/threat/results/probes/
+benchmark/threat/results/logs/
+!benchmark/threat/results/**/*.csv
+benchmark/threat/llm/data/

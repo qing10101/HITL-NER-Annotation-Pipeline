@@ -1,0 +1,77 @@
+{"items": [
+{"id": "B004I110D8_70804", "guesses": [
+{"mask": 1, "candidates": ["great", "perfectly", "wonderfully", "well", "perfect"], "confidence": 0.3},
+{"mask": 2, "candidates": ["instead", "in place", "rather than", "in lieu", "in spite"], "confidence": 0.85},
+{"mask": 3, "candidates": ["few", "two", "three", "couple", "2"], "confidence": 0.3},
+{"mask": 4, "candidates": ["go", "road", "way", "drive", "highway"], "confidence": 0.5},
+{"mask": 5, "candidates": ["give", "hand", "feed", "prop", "pass"], "confidence": 0.45},
+{"mask": 6, "candidates": ["make", "mix", "prepare", "warm", "heat"], "confidence": 0.4}
+]},
+{"id": "B004NCEL4M_40529", "guesses": [
+{"mask": 1, "candidates": ["little", "bit", "tad", "little too", "bit too"], "confidence": 0.5},
+{"mask": 2, "candidates": ["don't", "do not", "can't", "didn't", "rarely"], "confidence": 0.6},
+{"mask": 3, "candidates": ["enough", "enuff", "enough yet", "sufficiently", "yet"], "confidence": 0.9},
+{"mask": 4, "candidates": ["be for adults", "be a toy for adults", "be marketed to adults", "be an adult toy", "come with a warning"], "confidence": 0.15},
+{"mask": 5, "candidates": ["him bang", "her dad bang", "us bang", "him", "her dad"], "confidence": 0.2}
+]},
+{"id": "B07R6NX5VF_36450", "guesses": [
+{"mask": 1, "candidates": ["paid", "expected", "spent", "paid for it", "thought"], "confidence": 0.5},
+{"mask": 2, "candidates": ["4", "Four", "3", "Not 5", "Minus"], "confidence": 0.3}
+]},
+{"id": "B00XFCJYP2_38672", "guesses": [
+{"mask": 1, "candidates": ["hours", "minutes", "hrs", "hours or so", "mins"], "confidence": 0.7},
+{"mask": 2, "candidates": ["seems", "looks", "is", "appears", "feels"], "confidence": 0.5},
+{"mask": 3, "candidates": ["nursery", "baby shower gift", "household", "baby", "wardrobe"], "confidence": 0.2}
+]},
+{"id": "B003BK96RY_125556", "guesses": [
+{"mask": 1, "candidates": ["oils", "natural oils", "argan oils", "types of oil", "essential oils"], "confidence": 0.5}
+]},
+{"id": "B0B6FDRFC9_173422", "guesses": [
+{"mask": 1, "candidates": ["perfect", "cute", "so cute", "beautiful", "great"], "confidence": 0.4}
+]},
+{"id": "B00KLBGUZW_92577", "guesses": [
+{"mask": 1, "candidates": ["Bubble", "Fisher-Price Bubble", "Fisher Price Bubble", "Fisher-Price", "bubble lawn"], "confidence": 0.4},
+{"mask": 2, "candidates": ["bubbles", "fan", "gears", "mechanism", "blades"], "confidence": 0.3},
+{"mask": 3, "candidates": ["pushing", "running", "mowing", "rolling", "driving"], "confidence": 0.65},
+{"mask": 4, "candidates": ["want", "wish", "plan", "intend", "hope"], "confidence": 0.7},
+{"mask": 5, "candidates": ["toy", "mower", "machine", "product", "thing"], "confidence": 0.4},
+{"mask": 6, "candidates": ["have no complaints", "can't complain", "cannot complain", "am very happy", "have nothing bad to say"], "confidence": 0.3}
+]},
+{"id": "B07CCG2VSY_134423", "guesses": [
+{"mask": 1, "candidates": ["leak", "pee", "soak", "go", "wet"], "confidence": 0.5},
+{"mask": 2, "candidates": ["think", "believe", "feel", "know", "am sure"], "confidence": 0.4},
+{"mask": 3, "candidates": ["mattress protector", "pad", "cover", "mattress pad", "protector"], "confidence": 0.3}
+]},
+{"id": "B07QV3GWN4_34904", "guesses": [
+{"mask": 1, "candidates": ["store", "organize", "hold", "keep", "line up"], "confidence": 0.4}
+]},
+{"id": "B00R7CK2OI_135127", "guesses": [
+{"mask": 1, "candidates": ["loves it", "loved it", "loved them", "loves them", "was thrilled"], "confidence": 0.25}
+]},
+{"id": "B01LYZR3HI_45336", "guesses": [
+{"mask": 1, "candidates": ["likes", "loves", "enjoys", "liked", "is happy in"], "confidence": 0.5},
+{"mask": 2, "candidates": ["perfect", "5 stars", "a 5 star", "even better", "the best"], "confidence": 0.5},
+{"mask": 3, "candidates": ["position", "setting", "height", "level", "point"], "confidence": 0.5},
+{"mask": 4, "candidates": ["sit", "eat", "be", "play", "sit right"], "confidence": 0.4}
+]},
+{"id": "B07RDL3PMJ_31281", "guesses": [
+{"mask": 1, "candidates": ["erasers", "figurines", "toys", "squishies", "figures"], "confidence": 0.4},
+{"mask": 2, "candidates": ["bought", "ordered", "purchased", "got", "sent"], "confidence": 0.4}
+]},
+{"id": "B00Y286NXY_28237", "guesses": [
+{"mask": 1, "candidates": ["bit", "little", "tad", "little bit", "touch"], "confidence": 0.5},
+{"mask": 2, "candidates": ["timer. 3", "timer 3", "remote. 3", "vibrate option. 3", "timer setting. 3"], "confidence": 0.2},
+{"mask": 3, "candidates": ["sun", "sunlight", "sun coming", "sun shining", "light"], "confidence": 0.5},
+{"mask": 4, "candidates": ["a 3 point", "3 point", "three point", "a three point harness", "plastic"], "confidence": 0.3},
+{"mask": 5, "candidates": ["bit rough", "little rough", "bit scratchy", "little scratchy", "bit too rough"], "confidence": 0.3}
+]},
+{"id": "B09R78LZD3_62985", "guesses": [
+{"mask": 1, "candidates": ["snug", "tight", "fitted", "a bit snug", "small"], "confidence": 0.35},
+{"mask": 2, "candidates": ["bought", "ordered", "purchased", "used", "tried"], "confidence": 0.4}
+]},
+{"id": "B0BTFY3V69_89442", "guesses": [
+{"mask": 1, "candidates": ["cute", "neat", "cool", "fun", "weird"], "confidence": 0.3},
+{"mask": 2, "candidates": ["hang", "stick", "put", "wrap", "keep"], "confidence": 0.3},
+{"mask": 3, "candidates": ["hype", "fuss", "excitement", "rage", "buzz"], "confidence": 0.6}
+]}
+]}

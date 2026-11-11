@@ -1,0 +1,17 @@
+{"items": [
+{"id": "B0C5LWNGH8_125137", "guesses": [{"mask": 1, "candidates": ["husband", "wife", "kids", "daughter", "son"], "confidence": 0.3}, {"mask": 2, "candidates": ["kids", "daughter", "son", "baby", "toddler"], "confidence": 0.25}]},
+{"id": "B00K6RSA8Q_51046", "guesses": [{"mask": 1, "candidates": ["son", "grandson", "daughter", "kids", "husband"], "confidence": 0.25}]},
+{"id": "B075J81NL3_80155", "guesses": [{"mask": 1, "candidates": ["mom", "mother", "grandmother", "mother-in-law", "grandma"], "confidence": 0.4}, {"mask": 2, "candidates": ["baby", "son", "daughter", "puppy", "grandson"], "confidence": 0.35}]},
+{"id": "B0C3GTR1QL_87530", "guesses": [{"mask": 1, "candidates": ["kids", "grandkids", "grandchildren", "children", "daughter"], "confidence": 0.35}, {"mask": 2, "candidates": ["husband", "daughter", "wife", "mom", "sister"], "confidence": 0.3}]},
+{"id": "B003IHVHMC_48507", "guesses": [{"mask": 1, "candidates": ["baby", "daughter", "son", "little one", "newborn"], "confidence": 0.3}, {"mask": 2, "candidates": ["daughter", "baby", "little girl", "girl", "son"], "confidence": 0.3}]},
+{"id": "B09J9SH2N8_15380", "guesses": [{"mask": 1, "candidates": ["3 years", "years", "two years", "4 years", "five years"], "confidence": 0.15}, {"mask": 2, "candidates": ["twins", "babies", "bear", "new babies", "new additions"], "confidence": 0.35}]},
+{"id": "B00007L12O_93594", "guesses": [{"mask": 1, "candidates": ["son", "grandson", "little boy", "toddler", "3 year old"], "confidence": 0.55}, {"mask": 2, "candidates": ["3 year old", "toddler", "4 year old", "2 year old", "preschooler"], "confidence": 0.2}]},
+{"id": "B07THLTLQF_80115", "guesses": [{"mask": 1, "candidates": ["husband", "daughter", "son", "boyfriend", "mom"], "confidence": 0.4}]},
+{"id": "B01IT3UNO2_51622", "guesses": [{"mask": 1, "candidates": ["daughter", "granddaughter", "girls", "kids", "niece"], "confidence": 0.4}, {"mask": 2, "candidates": ["girls", "kids", "daughters", "granddaughters", "children"], "confidence": 0.3}]},
+{"id": "B07T93ZZJJ_63582", "guesses": [{"mask": 1, "candidates": ["daughter", "granddaughter", "niece", "little girl", "3 year old"], "confidence": 0.5}]},
+{"id": "B07ZHZPXZ7_61228", "guesses": [{"mask": 1, "candidates": ["great", "little", "youngest", "3 year old", "5 year old"], "confidence": 0.2}, {"mask": 2, "candidates": ["grandson", "son", "nephew", "godson", "boy"], "confidence": 0.45}]},
+{"id": "B075YWTSRP_24908", "guesses": [{"mask": 1, "candidates": ["son", "husband", "grandson", "dad", "boyfriend"], "confidence": 0.3}]},
+{"id": "B07Q7MXGRC_39428", "guesses": [{"mask": 1, "candidates": ["husband", "hubby", "boyfriend", "fiance", "partner"], "confidence": 0.7}]},
+{"id": "B002L2TVJG_153402", "guesses": [{"mask": 1, "candidates": ["8 year old", "husband and", "son and", "7 year old", "10 year old"], "confidence": 0.15}, {"mask": 2, "candidates": ["son", "I", "grandson", "daughter", "husband"], "confidence": 0.3}]},
+{"id": "B00AJSIVWW_33603", "guesses": [{"mask": 1, "candidates": ["son", "5 year old", "4 year old", "grandson", "little guy"], "confidence": 0.55}, {"mask": 2, "candidates": ["husband's", "husbands", "dad's", "mom's", "boyfriend's"], "confidence": 0.4}, {"mask": 3, "candidates": ["son", "5 year old", "little guy", "kid", "boy"], "confidence": 0.5}, {"mask": 4, "candidates": ["son", "5 year old", "kid", "little guy", "boy"], "confidence": 0.5}]}
+]}

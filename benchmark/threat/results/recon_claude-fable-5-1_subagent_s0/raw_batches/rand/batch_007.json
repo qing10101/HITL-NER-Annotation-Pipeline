@@ -1,0 +1,17 @@
+{"items": [
+{"id": "B0C5LWNGH8_125137", "guesses": [{"mask": 1, "candidates": ["all natural", "natural", "gentle", "organic", "tear free"], "confidence": 0.3}, {"mask": 2, "candidates": ["safe", "gentle", "easy", "nice", "convenient"], "confidence": 0.5}]},
+{"id": "B00K6RSA8Q_51046", "guesses": [{"mask": 1, "candidates": ["purchased", "bought", "needed", "ordered", "wanted"], "confidence": 0.4}]},
+{"id": "B075J81NL3_80155", "guesses": [{"mask": 1, "candidates": ["loves", "likes", "loved", "really likes", "enjoys"], "confidence": 0.6}, {"mask": 2, "candidates": ["good", "nice", "great", "decent", "perfect"], "confidence": 0.4}]},
+{"id": "B0C3GTR1QL_87530", "guesses": [{"mask": 1, "candidates": ["much", "very much", "many", "incredibly much", "darn much"], "confidence": 0.95}, {"mask": 2, "candidates": ["order", "buy", "get", "purchase", "make"], "confidence": 0.45}]},
+{"id": "B003IHVHMC_48507", "guesses": [{"mask": 1, "candidates": ["treat", "gift", "toy", "something", "present"], "confidence": 0.3}, {"mask": 2, "candidates": ["seat", "seats", "stuff", "junk", "mats"], "confidence": 0.3}]},
+{"id": "B09J9SH2N8_15380", "guesses": [{"mask": 1, "candidates": ["five year old", "little girl", "5 year old", "young girl", "friend's daughter"], "confidence": 0.3}, {"mask": 2, "candidates": ["proud", "very proud", "protective", "fond", "jealous"], "confidence": 0.5}]},
+{"id": "B00007L12O_93594", "guesses": [{"mask": 1, "candidates": ["slightly", "somewhat", "very", "rather", "bit"], "confidence": 0.4}, {"mask": 2, "candidates": ["work", "chores", "cleanup", "projects", "maintenance"], "confidence": 0.85}]},
+{"id": "B07THLTLQF_80115", "guesses": [{"mask": 1, "candidates": ["love", "loved", "absolutely love", "adore", "like"], "confidence": 0.8}]},
+{"id": "B01IT3UNO2_51622", "guesses": [{"mask": 1, "candidates": ["doll", "dolls", "figure", "toy", "barbie"], "confidence": 0.7}, {"mask": 2, "candidates": ["outfit", "set", "clothes", "look", "purchase"], "confidence": 0.6}]},
+{"id": "B07T93ZZJJ_63582", "guesses": [{"mask": 1, "candidates": ["great", "fine", "perfectly", "well", "beautifully"], "confidence": 0.4}]},
+{"id": "B07ZHZPXZ7_61228", "guesses": [{"mask": 1, "candidates": ["one", "set", "pack", "kit", "car"], "confidence": 0.5}, {"mask": 2, "candidates": ["making", "keeping", "made", "makes", "going to make"], "confidence": 0.8}]},
+{"id": "B075YWTSRP_24908", "guesses": [{"mask": 1, "candidates": ["loves", "loved", "likes", "really likes", "absolutely loves"], "confidence": 0.8}]},
+{"id": "B07Q7MXGRC_39428", "guesses": [{"mask": 1, "candidates": ["GREAT", "EXCELLENT", "GOOD", "PERFECT", "AWESOME"], "confidence": 0.4}]},
+{"id": "B002L2TVJG_153402", "guesses": [{"mask": 1, "candidates": ["loves", "loved", "really likes", "likes", "enjoys"], "confidence": 0.65}, {"mask": 2, "candidates": ["it", "this", "this game", "them", "this gift"], "confidence": 0.65}]},
+{"id": "B00AJSIVWW_33603", "guesses": [{"mask": 1, "candidates": ["adjusted", "moved", "raised", "lowered", "slid"], "confidence": 0.6}, {"mask": 2, "candidates": ["back", "backseat", "back seat", "car", "rear"], "confidence": 0.3}, {"mask": 3, "candidates": ["car", "vehicle", "truck", "new car", "backseat"], "confidence": 0.6}, {"mask": 4, "candidates": ["extra", "additional", "added", "other", "bonus"], "confidence": 0.7}]}
+]}

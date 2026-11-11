@@ -1,0 +1,502 @@
+row_id,span_idx,label,gold,gold_norm,pred1,pred2,pred3,pred4,pred5,exact1,exact5,cat1,anycat1,gold_prob
+B013EI5J4G_100036,0,RANDOM,washes,washe,plays,holds up,handles,fits her,holds her,0,0,,0,0.05909491048567058
+B0797KXTW7_30029,0,RANDOM,sliding,sliding,rolling,coming,slipping,falling,sliding,0,1,,0,0.04987120386642148
+B0797KXTW7_30029,1,RANDOM,something that fits,something that fit,something,something,something,something,something,0,0,,0,0.18280708267812742
+B09Q67FVS6_176074,0,RANDOM,thought,thought,thought,hoped,imagined,figured,expected,1,1,,0,0.8750093625830108
+B006NWICTK_106705,0,RANDOM,cute! Perfect,cute perfect,cute,cute,cute and perfect,pretty,pretty and perfect,0,0,,0,0.2439398980572301
+B006NWICTK_106705,1,RANDOM,don,don,don,won,don,don,don,1,1,,0,0.8359939215786448
+B07MBGJRKT_172322,0,RANDOM,fan,fan,fan,fan,fan,fan,fan,1,1,,0,0.8617847077222794
+B07MBGJRKT_172322,1,RANDOM,Dr. Brown,dr brown,Dr. Brown plastic,Dr. Brown nipple,Dr. Brown plastic,Dr. Brown plastic,Dr. Brown nipple,0,0,,0,0.9212640727056735
+B07MBGJRKT_172322,2,RANDOM,clean,clean,use,use,use,hold,use,0,0,,0,0.0953722409606749
+B07MBGJRKT_172322,3,RANDOM,work,work,compare,compare,work,compare,work,0,1,,0,0.15042119427347786
+B07G4CGQ57_107925,0,RANDOM,cute,cute,fun,great,perfect,good,are great,0,0,,0,0.02247813926232508
+B01CGM3MCM_86051,0,RANDOM,super,super,easy to use,so cute,easy,a nice,easy to use,0,0,,0,0.04044206638783861
+B01CGM3MCM_86051,1,RANDOM,cute.  Good quality,cute good quality,too,too,to use,size,and clean,0,0,,0,0.07651806002503772
+B09BMCYQYX_46810,0,RANDOM,love,love,love,love,love,love,love,1,1,,0,0.5614990375642525
+B09BMCYQYX_46810,1,RANDOM,add,add,add,add,add them,add them,add,1,1,,0,0.9410262297974723
+B09BMCYQYX_46810,2,RANDOM,options,option,materials,blocks,materials,blocks,supplies,0,0,,0,0.0009458409550155385
+B06XFPQJ6L_50556,0,RANDOM,toys,toy,gifts,decorations,toys,crafty items,items,0,1,,0,0.051682022134583464
+B079YCYRNS_69084,0,RANDOM,size,size,size,size,size,size up,size up,1,1,,0,0.9121652254626575
+B079YCYRNS_69084,1,RANDOM,Love,love,I love,Love,I like,I love,Love,0,1,,0,0.4090203626089578
+B00GHY57UG_29337,0,RANDOM,driving,driving,walking,driving,shopping,running,going,0,1,,0,0.23350081830057717
+B0891H4V9W_152183,0,RANDOM,made,made,made,padded,packaged,packed,shipped,1,1,,0,0.3720035857435841
+B0C6F2GJZL_28145,0,RANDOM,little,little,birthday,birthday,first,Christmas,birthday,0,0,,0,0.005286307721333621
+B0C6F2GJZL_28145,1,RANDOM,hands. The perfect,hands the perfect,party,present or,birthday,Eve,present,0,0,,0,0.023933318428681724
+B0001CTZ8K_87700,0,RANDOM,slits,slit,bubbles,holes,clogs,leaks,bits of dirt,0,0,,0,0.08797407617129106
+B08HL6SNB6_135497,0,RANDOM,myself,myself,him,myself,himself,his birthday,me,0,1,,0,0.319143662782299
+B0BMS82KYD_155647,0,RANDOM,Lots of bright,lots of bright,Love the,Love the,Love the,Love the,Love the,0,0,,0,0.06571676219266417
+B0BMS82KYD_155647,1,RANDOM,textures,texture,the size,the shape,the size,the size,the size,0,0,,0,0.009878397885156225
+B0BMS82KYD_155647,2,RANDOM,pieces,piece,children play,children play,children play with it,children will play,children,0,0,,0,0.08746402359914866
+B07Z65TM3L_156883,0,RANDOM,washes,washe,fits,would fit,works,would work,goes,0,0,,0,0.05819351023611112
+B0BT1DXWCH_47718,0,RANDOM,shrunk,shrunk,shrink,dries,grew,shrunk,sank,0,1,,0,0.32858136694982315
+B001492T5U_73148,0,RANDOM,access,access,external power,access,external,internet,outside,0,1,,0,0.10714997900302851
+B001492T5U_73148,1,RANDOM,single,single,single Skype,single Skype,single Skype,single Skype,single Skype,0,0,,0,0.735997491705557
+1593596383_53516,0,RANDOM,helpful,helpful,handy,useful,helpful,important,nice,0,1,,0,0.21392549259162652
+B01IT3WNQI_142219,0,RANDOM,cute,cute,cute,pretty,cute and cute,cute and fun,fun,1,1,,0,0.6495076284602608
+B084L1DGZ3_23761,0,RANDOM,dolls,doll,dinosaurs,caves,dinosaurs,caves,dinosaurs,0,0,,0,0.02114051725544763
+B084L1DGZ3_23761,1,RANDOM,cute little pets,cute little pet,a play area,a stuffed dinosaur,a stuffed dinosaur,a stuffed animal,a stuffed animal,0,0,,0,0.008322220046852475
+1847380239_65762,0,RANDOM,loves,love,loved,loves,LOVES,love,really enjoyed,0,1,,0,0.3813731074237597
+B08YR29CW9_54461,0,RANDOM,slower,slower,very quiet,very quiet,very quiet,very quiet,easy to use,0,0,,0,1.7567866130930388e-07
+B08YR29CW9_54461,1,RANDOM,durable,durable,strong,good,powerful,reliable,good,0,0,,0,0.014814050596282404
+B07VQPZJK6_45815,0,RANDOM,jeans,jean,pants and a,"pants, and a",and a,"skirt, and a",skirt and a,0,0,,0,0.030576528645353682
+B0009WSPRO_166998,0,RANDOM,played,played,used,re-ordered,re-used,reordered,re-read,0,0,,0,0.00443950882972642
+B07B1LQKHM_145718,0,RANDOM,loves,love,loves,loved,absolutely loved,absolutely loves,LOVED,1,1,,0,0.43599063684320627
+B00YGJJTMQ_45373,0,RANDOM,collects,collect,loves,likes,loves to play with,loves to make,loves to play,0,0,,0,0.03973385748122066
+B0C3TZLWHX_157171,0,RANDOM,lotion,lotion,for me,formula,serum,line,treatment,0,0,,0,0.009297590733517306
+B0C3TZLWHX_157171,1,RANDOM,back,back,dog,dog,dog,dog,dog,0,0,,0,0.00014738869364969953
+B00A88EV5Y_41741,0,RANDOM,reviews,review,reviews,reviews,reviews,reviews,reviews,1,1,,0,0.7772190931277941
+B00A88EV5Y_41741,1,RANDOM,Amazon,amazon,happy,happy,happy,happy,online,0,0,,0,0.005034262840283708
+B00A88EV5Y_41741,2,RANDOM,tip.  Making,tip making,gift. Making,gift. Keeping,review. Making,gift! Making,gift. Making,0,0,,0,0.09548001604680337
+B073S41S9Y_108016,0,RANDOM,better way,better way,way,better way,place,divider,separate compartment,0,1,,0,0.12439830501329416
+B07FYP6QJV_138648,0,RANDOM,snow,snow,snow,snow and ice,snow on the roads,snow on the ground,snow on our roads,1,1,,0,0.8445057323841829
+B07TBD5KNS_35460,0,RANDOM,long double stroller,long double stroller,strollers,strollers,strollers around,strollers around,kids around,0,0,,0,0.008793582933330199
+B07TBD5KNS_35460,1,RANDOM,thing,thing,thing,one,thing,one,thing,1,1,,0,0.5662478942469458
+B084FFZ98T_09622,0,RANDOM,hesitate,hesitate,be afraid,hesitate,be shy,be reluctant,be tempted,0,1,,0,0.22762938041628294
+B09BJDB53M_147653,0,RANDOM,highly,highly,I highly,I would highly,", I highly",I would,", I would",0,0,,0,0.003670698758564742
+B01GAT24AI_58959,0,RANDOM,quality,quality,quality,quality pens and,quality and good,quality and,quality of,1,1,,0,0.8412107218008187
+B07XL99Q6C_90580,0,RANDOM,challenges,challenge,difficulty,supervision,labor,difficulty,supervision,0,0,,0,0.001076067444255673
+B07XL99Q6C_90580,1,RANDOM,Friends sets,friends set,sets,sets,sets,set,set,0,0,,0,0.0007368445773734628
+B08FHDDB9Z_23674,0,RANDOM,hold,hold,play,hold,play with,play on him,use,0,1,,0,0.22615224093415728
+B0C7LNHF2R_36756,0,RANDOM,loves this,loves thi,cat loves this,dog loves this,son loves this,daughter loves this,cat hates this,0,0,,0,0.13019194102753642
+B009LL61LG_11890,0,RANDOM,every straw,every straw,suck,sip it,squirt,drink it,sip,0,0,,0,5.845343399141166e-05
+B009LL61LG_11890,1,RANDOM,note,note,and yes,and yes,and yes,and yes,and yes,0,0,,0,1.9124212436571073e-05
+B07LBXYCNB_139932,0,RANDOM,Came,came,They are,They're,They were,Comes,They arrived,0,0,,0,0.043270667259219776
+B09MVHH3LG_04975,0,RANDOM,easy,easy,perfect,to be perfect,right,too small,to be comfortable,0,0,,0,0.007311988114260583
+B0BQV3785S_161843,0,RANDOM,original,original,luvs,luvs etc,"luvs, etc",luvs.,elmo,0,0,,0,0.0001634745893007633
+B002F9NH68_129838,0,RANDOM,chef,chef,monster,monster,monster,monster,monster,0,0,,0,4.0444820254178356e-05
+B002F9NH68_129838,1,RANDOM,plays with this daily,plays with this daily,he loves it,this is perfect,he loves these,he loves these toys,he loves this one,0,0,,0,0.006037319702805559
+B00UAX6SPI_160605,0,RANDOM,one,age:1,thing I can say about,thing that keeps me,one I can say about,one that is,thing that keeps me from,0,0,,0,0.35876606444753784
+B07D13JY1P_35123,0,RANDOM,pictured,pictured,described,described,described,described,described,0,0,,0,0.08409253234484686
+B07D13JY1P_35123,1,RANDOM,product,product,product,dress,item,quality,service,1,1,,0,0.33550277271640505
+B075N16ZNB_100558,0,RANDOM,journal,journal,one,journal,item,paper,size,0,1,,1,0.14647963453574017
+B00R5GVI58_121726,0,RANDOM,wait,wait,line response,response,was dead. Call,was gone. Call,line,0,0,,0,0.0013422139974408323
+0768877385_100081,0,RANDOM,appears,appear,is,is,is,is,is mostly,0,0,,0,0.07953291937442844
+0768877385_100081,1,RANDOM,next,next,for next,next,for the new,one next,for next,0,1,,0,0.18252280226101272
+B07SZ37D7P_44238,0,RANDOM,hour,hour,hour,hour and a half,hour or two,hour or so,hour and 15 minutes,1,1,,0,0.9995843708050738
+B0C4ZLKDNL_78820,0,RANDOM,Champion,champion,Champion,Champion,Champion,Champion,Champion,1,1,,0,0.9807438335959395
+B0C4ZLKDNL_78820,1,RANDOM,Powerblend,powerblend,Women's,Women's,XBR />Champion,"Jogger, Women's",XBR />Champion,0,0,,0,0.0034349415692102184
+B0C4ZLKDNL_78820,2,RANDOM,home,home,wardrobe,home,wardrobe,wardrobe,home,0,1,,0,0.1509706873873293
+B0C4ZLKDNL_78820,3,RANDOM,another,another,a,a,a,a,a,0,0,,0,0.06763609226237328
+B00FU0UZM8_176908,0,RANDOM,cannot be straightened,cannot be straightened,slightly slender,the wings are set further back,slightly curved,the wings are slightly bent,the wings are angled,0,0,,0,0.013825192810012526
+B084DV3VTN_130115,0,RANDOM,great,great,very dark,beautiful,lovely,pretty,nice,0,0,,0,0.05723260841107807
+B0098RKCBS_141320,0,RANDOM,fit,fit,go,fit,come,pass,run,0,1,,0,0.32718969915305446
+B0876MT85B_26930,0,RANDOM,piece,piece,size,shape,color,length,sizes,0,0,,0,0.0002420402607566864
+B09LYS4G29_108210,0,RANDOM,extremely easy,extremely easy,a little hard,hard,a little difficult,great,so hard,0,0,,0,0.016455359275033044
+B09LYS4G29_108210,1,RANDOM,nipple,nipple,some,some,some,some,some,0,0,,0,0.3353930854625606
+B07YY7BHMH_00178,0,RANDOM,cat,cat,friends,dog,grandkids,grandma,cat,0,1,,0,0.030219638436392315
+B0BJ7FGB1B_02120,0,RANDOM,tight,tight,tight,close,tightly and tight,close and tight,tightly,1,1,,0,0.5625492387182418
+B001Q3KUA0_101703,0,RANDOM,gift,gift,gift,gift,gift,gift,gift,1,1,,0,0.6821113876303521
+B001Q3KUA0_101703,1,RANDOM,24,age:24,29,8,29,29,8,0,0,,0,0.010159060371911187
+B001Q3KUA0_101703,2,RANDOM,amazon,amazon,Target,Target,Target,Amazon,Amazon,0,1,,0,0.12099394565965975
+B001Q3KUA0_101703,3,RANDOM,play,play,play,play,play,play,play,1,1,,0,0.9932095343119153
+B07GZSWR75_30504,0,RANDOM,almost threw,almost threw,received,opened,sent,received,received,0,0,,0,0.04050491062830464
+B07GZSWR75_30504,1,RANDOM,away,away,without even,up,to him,without,immediately,0,0,,0,0.7418216340845588
+B01F7OO66W_103673,0,RANDOM,stocking,stocking,stocking,reindeer stocking,Christmas stocking,cute stocking,reindeer,1,1,,0,0.9960810931300493
+B0019RW36W_82572,0,RANDOM,precious little heels,precious little heel,feet,feet,feet,feet,feet,0,0,,0,0.0030451483323588996
+B0019RW36W_82572,1,RANDOM,annoying tune played,annoying tune played,tangled cord that runs,tangled cord that gets stuck,tangled cord that sticks out,tangled cord that is stuck,squeaky sound that comes,0,0,,0,0.00035657602201947576
+B0C318N58S_26669,0,RANDOM,part,part,s,maker,dispenser,s just,light,0,0,,0,0.00034044380367318834
+B09BNX78XR_87053,0,RANDOM,loves these spoons,loves these spoon,loves these,son loves these,dog loves these,loves them,son loves them,0,0,,0,0.1143857583672922
+B007A2ZP6K_102033,0,RANDOM,brand,brand,and other,one,toy and,toy and,and other,0,0,,0,0.0009211600602927897
+B007A2ZP6K_102033,1,RANDOM,right,right,toys,piece,ripped it,threw it,items,0,0,,0,0.002309234014114578
+B009YSYD20_135773,0,RANDOM,make,make,use,operate,sleep with,sleep on,navigate with,0,0,,0,0.0005368914720475432
+B008C4S23I_42998,0,RANDOM,Well made,well made,They are great,They are fun,They look great,They work great,I love them,0,0,,0,0.024530996620652137
+B000SNSJYI_37660,0,RANDOM,environment). However,environment however,environment). However,"environment), but unfortunately",environment) but unfortunately,environment) but,price). However,1,1,,0,0.4936281192196687
+B00FPUVEVO_128858,0,RANDOM,nonstop,nonstop,all the time,every day,daily,for work,for his hair,0,0,,0,0.0021815818359385243
+B003153SCI_160710,0,RANDOM,improvement,improvement,improvement,win,upgrade,plus,leap,1,1,,0,0.7753942392186255
+B000U66YBI_07572,0,RANDOM,made nice packaged,made nice packaged,made,made,made,that is made,that is made,0,0,,0,0.00013542780438850115
+B000U66YBI_07572,1,RANDOM,quotes,quote,words,tips,instructions,words,tips,0,0,,0,0.05323483584422308
+B00W4USFCO_19685,0,RANDOM,taking baby steps,taking baby step,but,but,and,BUT,especially since,0,0,,0,0.00037181435783010977
+B0BBTZ29PW_49307,0,RANDOM,outdoor,outdoor,of landscaping,of yard,of construction,of lawn,of heavy,0,0,,0,4.4485906695614427e-07
+B07TW2FYNV_82207,0,RANDOM,work,work,work great,work well,can work,also work great,also work well,0,0,,0,0.6209172286005843
+B0C47FPQC2_51653,0,RANDOM,moderately,moderately,very,super,physically,moderately,highly,0,1,,0,0.10466722908179925
+B0BZHVZQ3J_146707,0,RANDOM,interactive and keeps,interactive and keep,interactive and keeps,simple and keeps,engaging and keeps,challenging and keeps,easy to get,1,1,,0,0.5770585972748794
+B00S7ZPB8Q_176992,0,RANDOM,cider,cider,cider,cider vinegar or apple cider,cider vinegar or white,cider vinegar and water,cider vinegar and,1,1,,0,0.9999678145263777
+B00FWM9VMY_158256,0,RANDOM,really,really,not,not even,never,NOT,just,0,0,,0,2.8922435265891416e-06
+B003NT6PMW_170144,0,RANDOM,loved,loved,am very happy with,am very happy with,am very happy with,am very happy with,really like,0,0,,0,0.02921654795233824
+B003NT6PMW_170144,1,RANDOM,looked great,looked great,was fixed,would fit,would be zipped,would fit perfectly,was fixed,0,0,,0,0.006530917763146179
+B003NT6PMW_170144,2,RANDOM,Overall,overall,but,but,but,but,but,0,0,,0,8.030750770497484e-05
+B0BQ29SS97_37526,0,RANDOM,fine,fine,gross,fine,his fine,your gross,his gross,0,1,,0,0.13392163934888357
+B000OWDVYG_173402,0,RANDOM,horse,horse,fur,fur,leather,fur,leather,0,0,,0,0.04278458209635961
+B000OWDVYG_173402,1,RANDOM,volume control,volume control,volume control,volume,volume control,controls,volume,1,1,,0,0.24327771488738423
+B0072FRENC_04352,0,RANDOM,absolutely,absolutely,really,very,so,super,great. looks,0,0,,0,0.0004200415282485939
+B01739XZMA_66923,0,RANDOM,ends up crying,ends up crying,can't open it,has a hard time,can't open the lid,can't close it,can't hold it,0,0,,0,0.027710496931628737
+B00B909ZNS_157277,0,RANDOM,gift,gift,gift,gift,gift,gift,gift,1,1,,0,0.7396724283809478
+B00B909ZNS_157277,1,RANDOM,watching young children,watching young children,that younger children not,that younger children do not,younger children not,younger children not to,older children not,0,0,,0,0.01066437063092362
+B08WBJSYKH_104668,0,RANDOM,die,die,due,down,related,thanks,a reaction,0,0,,0,2.9311152865837556e-06
+B01DPBXGO2_102297,0,RANDOM,adorable. Item arrived,adorable item arrived,perfect,perfect,beautiful. Just,"beautiful, just",beautiful. Just,0,0,,0,0.05602959118344244
+B01DPBXGO2_102297,1,RANDOM,came,came,turned,came,turned,turned,came,0,1,,0,0.394399629210491
+B001VSCCY2_83000,0,RANDOM,"Easy assembly, girly",easy assembly girly,Great,Great,Great,Great,Bright,0,0,,0,0.0040670988842962386
+B001VSCCY2_83000,1,RANDOM,foundation,foundation,construction and easy to assemble,construction and easy to use,"construction, and easy to assemble","construction, and easy to use",construction,0,0,,0,0.00016417984568437466
+B0B2CBQGSS_60097,0,RANDOM,really nice,really nice,so cute,great,a great gift,a great product,perfect,0,0,,0,0.06734886815859857
+B08GQRFL4R_34484,0,RANDOM,stunt,stunt,toy. The,toy. I,toy. The kids,toy. They,toy. The kids,0,0,,0,1.1410710657731928e-06
+B08GQRFL4R_34484,1,RANDOM,car.  I assembled,car i assembled,kids love,received,loved,loved,love,0,0,,0,0.005776650514053543
+B08GQRFL4R_34484,2,RANDOM,went,went,went,went,went,went,went,1,1,,0,0.6704960233805753
+B08GQRFL4R_34484,3,RANDOM,recommend,recommend,recommend,recommend,recommend,recommend,recommend,1,1,,0,0.636975063640978
+B0063G5H12_121916,0,RANDOM,though... :(  Better,though better,but better,. Better,", better",! Better,of pregnancy. Better,0,0,,0,0.0092339549116017
+B084K4K5JT_102492,0,RANDOM,bought,bought,bought,bought,received,bought,bought,1,1,,0,0.5533875663690545
+B084K4K5JT_102492,1,RANDOM,super excited,super excited,very happy,very happy,very happy,very excited,very happy,0,0,,0,0.06623769592536423
+B084K4K5JT_102492,2,RANDOM,said,said,said,also said,said,said,also said that,1,1,,0,0.3434359412712468
+B00GXTTPKI_68309,0,RANDOM,ball,ball,amount,piece,amount,amount,amount,0,0,,0,0.031605175352025346
+B00GXTTPKI_68309,1,RANDOM,removed,removed,wouldn't remove,wouldn't remove,wouldn’t remove,wouldn't remove,wouldn't remove,0,0,,0,0.0001215927210126318
+B00GXTTPKI_68309,2,RANDOM,pricey? Maybe,pricey maybe,expensive? It's,expensive? It's,expensive? It’s,expensive? It's,expensive? It's,0,0,,0,0.06574969165515057
+B00GXTTPKI_68309,3,RANDOM,shower gift,shower gift,wipe,wipe,wipe,wipe,wipe,0,0,,0,0.026063344425107847
+B00BD61AOU_118316,0,RANDOM,acrylic,acrylic,most acrylic,some acrylic,acrylic,many acrylic,petroleum,0,1,,0,0.1304385148988314
+B01BSP1AGI_92523,0,RANDOM,promised.  Intact,promised intact,described in,promised in nice,promised in sturdy,"promised, perfect",promised in,0,0,,0,0.03261212205535235
+B002UD65S6_150600,0,RANDOM,she'd,she d,she could,he could,baby could,she would,it could,0,0,,0,0.05490372100374911
+B0821C6P1P_70963,0,RANDOM,family,family,age group,youth,group,kids',kids,0,0,,0,0.03801909780252704
+B0C54TZMSL_161176,0,RANDOM,broken,broken,broken,damaged,leaking,broke,destroyed,1,1,,0,0.8496207349970003
+B08473HXNH_169839,0,RANDOM,time,time,time,time,time,time,time,1,1,,0,0.9902579748962027
+B08473HXNH_169839,1,RANDOM,require,require,require some,require,require some,require,require some,0,1,,0,0.6855154453106155
+B08473HXNH_169839,2,RANDOM,easy,easy,it is easy,it is easy,it is simple,it is simple,it's easy,0,0,,0,0.0013392354656247608
+B0193YZSNW_160898,0,RANDOM,fine,fine,Longer,2,Smaller,3,1,0,0,,0,8.360508584783256e-05
+B0B8P8P8GH_81384,0,RANDOM,oil,oil,oil,oil. Too much,oil jars,oil. Too much oil,oil. Way too much,1,1,,0,0.9984544598203662
+B0BNZXNTCS_104120,0,RANDOM,one,age:1,one,one they,. One,one who,", one",1,1,,1,0.5292738828149344
+B00J0ALHCQ_00222,0,RANDOM,big,big,just,big,nice,just big,good,0,1,,0,0.024571121865185716
+B001R0LBLO_165421,0,RANDOM,18&#34; dolls,18&#34 doll,bill,billy,billy doll,billies,billie,0,0,,0,0.002254235989972509
+B07L5FC123_162821,0,RANDOM,cleaning straw inserted,cleaning straw inserted,water,boiling water,water that was,water remaining,hot water,0,0,,0,0.00020790196310251758
+B07CJY6ZWX_34326,0,RANDOM,wash,wash,fit,hold up,fit very,fit really,fit so,0,0,,0,0.0034833079619216657
+B0C5LWNGH8_125137,0,RANDOM,amazing. It has a foam pump,amazing it has a foam pump,natural,a little small,super strong,super gentle,really good,0,0,,0,0.011730490726723778
+B0C5LWNGH8_125137,1,RANDOM,easy,easy,easy,easy,easy,easy,easy,1,1,,0,0.6584895316652412
+B00K6RSA8Q_51046,0,RANDOM,bought,bought,used,bought,purchased,ordered,used these for,0,1,,0,0.2080724542421678
+B075J81NL3_80155,0,RANDOM,loves,love,loves,loves,loves,loves,absolutely loves,1,1,,0,0.6355469180932093
+B075J81NL3_80155,1,RANDOM,good,good,nice,good,nice large,nice medium,nice,0,1,,0,0.1967152045134057
+B0C3GTR1QL_87530,0,RANDOM,much,much,much,much,much,much,much,1,1,,0,0.9982265746017434
+B0C3GTR1QL_87530,1,RANDOM,get,get,make,get,order,buy,do,0,1,,0,0.06412190620169278
+B003IHVHMC_48507,0,RANDOM,extra frill,extra frill,treat,treat,scone,gift,treat,0,0,,0,0.002399051322055908
+B003IHVHMC_48507,1,RANDOM,seat,seat,blanket,blankets,blanket,blanket,seat belt,0,0,,0,0.040980868842693224
+B09J9SH2N8_15380,0,RANDOM,friend's granddaughter,friend granddaughter,friend of mine,little girl,little girl who,beautiful girl who,va,0,0,,0,0.0401397166425552
+B09J9SH2N8_15380,1,RANDOM,quite proud,quite proud,now one,now one,now one,now one,now one,0,0,,0,0.015005854373012339
+B00007L12O_93594,0,RANDOM,slightly,slightly,very,slightly,somewhat,relatively,fairly,0,1,,0,0.11719817772895005
+B00007L12O_93594,1,RANDOM,work,work,work,work,work,work,work,1,1,,0,0.951165049284813
+B07THLTLQF_80115,0,RANDOM,love,love,love,absolutely love,just love,LOVE,absolutely LOVE,1,1,,0,0.5408112567982671
+B01IT3UNO2_51622,0,RANDOM,doll,doll,went to,wanted to go to,went on,loves,went to,0,0,,0,2.405053894447812e-07
+B01IT3UNO2_51622,1,RANDOM,outfit! Great quality,outfit great quality,outfit,outfit,outfit,outfit,and comfortable,0,0,,0,0.04165268383002754
+B07T93ZZJJ_63582,0,RANDOM,fine,fine,fine,great,perfectly,well,for me,1,1,,0,0.29993091061016625
+B07ZHZPXZ7_61228,0,RANDOM,one,age:1,one,one,like this,one. Why,one,1,1,,1,0.5123219907997079
+B07ZHZPXZ7_61228,1,RANDOM,making,making,what made,what makes,what made,what made,perfect and makes,0,0,,0,0.005197164325396527
+B075YWTSRP_24908,0,RANDOM,loves,love,loves,loved,really likes,absolutely loved,really liked,1,1,,0,0.4107790677381001
+B07Q7MXGRC_39428,0,RANDOM,GREAT,great,GREAT,IT WAS MY,BEST,IT WAS OUR,IT'S MY,1,1,,0,0.3013464379277744
+B002L2TVJG_153402,0,RANDOM,enjoyed,enjoyed,loves these,loves this,loves,loves this,loves this,0,0,,0,0.006828452925894265
+B002L2TVJG_153402,1,RANDOM,putting this together,putting this together,toys,game,these,product,set,0,0,,0,0.06489582898870086
+B00AJSIVWW_33603,0,RANDOM,adjusted,adjusted,moved,moved,tilted,tilted,flipped,0,0,,0,0.028045277201822937
+B00AJSIVWW_33603,1,RANDOM,backseat,backseat,back,back seat,back seat,back,back,0,0,,0,0.3643983157577492
+B00AJSIVWW_33603,2,RANDOM,car,car,car,car,car,car,car,1,1,,0,0.6361638531768009
+B00AJSIVWW_33603,3,RANDOM,extra,extra,extra,extra,extra,extra,extra,1,1,,0,0.9454652194182706
+1400235472_50164,0,RANDOM,rather,rather,rather,rather,rather,"which is nice, rather",so rather,1,1,,0,0.9981781119156897
+B096ZWR38B_63571,0,RANDOM,everything,everything,how to do it,how to apply the stickers,how to do this,how to use it,how to put it together,0,0,,0,0.04028706786619966
+B093BKMK4X_165713,0,RANDOM,make sure,make sure,had,needed,didn’t have,wanted,was going,0,0,,0,0.0007453786572865945
+B07T46TTYX_127856,0,RANDOM,loves,love,loved,loves,LOVED,really enjoyed,absolutely loved,0,1,,0,0.1976500363862178
+B077BMCDHG_95080,0,RANDOM,Definitely,definitely,Highly,I highly,Would highly,I would highly,I would,0,0,,0,0.06626890682009835
+B0000AZ8JB_80020,0,RANDOM,spy,spy,sit,put it,lay it,rest it,ride,0,0,,0,0.0205476085042842
+B009F7OUQE_78348,0,RANDOM,gift,gift,perfect gift,great gift,gift,nice gift,perfect gift,0,1,,0,0.18212577376081254
+B009F7OUQE_78348,1,RANDOM,and she,and she,who,who,who,who,. She,0,0,,0,0.24997775446644183
+B0C5YTVW9R_89125,0,RANDOM,wears,wear,wears,wears,likes to wear,likes to wear,likes to wear,1,1,,0,0.42265826553368163
+B0C5YTVW9R_89125,1,RANDOM,pulled,pulled,tucked,tucked,tucked,tucked,tucked,0,0,,0,0.04971090836803464
+B0C5YTVW9R_89125,2,RANDOM,bush,bush,straw,baseball,straw,baseball,cowboy,0,0,,0,8.165840744437729e-05
+B009M8P2CW_148683,0,RANDOM,don't shout,don t shout,can point it,don't stare,don't stare,can throw it,don't look,0,0,,0,0.40155309502692355
+B009M8P2CW_148683,1,RANDOM,takes,take,need,need,need to do,need,need,0,0,,0,0.017658447731246817
+B078T3YY2G_33428,0,RANDOM,feel,feel,laugh,smile,do it,feel,play,0,1,,0,0.14352506990397607
+B07H6CSYRK_99195,0,RANDOM,books,book,to read,chocolates,to bake,to play,chocolate,0,0,,0,0.023331791998036592
+B07ZN4QB9J_174677,0,RANDOM,"shoe horns, one",shoe horns 1,two. One,two. One,two. One,", one",two. One,0,0,,0,0.1655371622114776
+B07ZN4QB9J_174677,1,RANDOM,find,find,thinks,thinks,thinks,thinks,thinks,0,0,,0,0.0030059422716819766
+B07ZN4QB9J_174677,2,RANDOM,especially,especially,especially,so she uses it,so she wears it,especially,so she sticks it,1,1,,0,0.3502682276956267
+B00PQBF1JS_04903,0,RANDOM,rather,rather,also,very,also very,expensive and,a little,0,0,,0,0.0012773450988532498
+B08KRXDKBR_06111,0,RANDOM,loves,love,loved,really enjoyed,absolutely loved,really liked,loves,0,1,,0,0.08323982444172422
+B08NLM1W2M_161528,0,RANDOM,variety,variety,number,number,number,number,number,0,0,,0,0.18238066639966982
+B08NLM1W2M_161528,1,RANDOM,opening always faced,opening always faced,cups wouldn't clog up for,cup would fit,cups wouldn't stick to,cups wouldn't fall off,cups wouldn't slide over,0,0,,0,0.0004707674498682711
+B087CBJ465_40549,0,RANDOM,family,family,family,family,family,family,family,1,1,,0,0.9766424956536075
+B087CBJ465_40549,1,RANDOM,laughed,laughed,played it together,played it together,played it together,played it together,played for hours,0,0,,0,0.010086843935116382
+B087CBJ465_40549,2,RANDOM,playing,playing,playing,playing,playing,playing,playing,1,1,,0,0.7571179612950817
+B087CBJ465_40549,3,RANDOM,reference,reference,example,kids,the kids,the family,example,0,0,,0,0.018228145949224173
+0375864547_02217,0,RANDOM,page,page,page,page,page,page,page,1,1,,0,0.7771321906582382
+0375864547_02217,1,RANDOM,keep,keep,keep,keep,keep,keep,keep,1,1,,0,0.8239536693715745
+0375864547_02217,2,RANDOM,interest,interest,entertained,busy,entertained,entertained,entertained,0,0,,0,0.003095516328828563
+0375864547_02217,3,RANDOM,bought,bought,bought,bought,have,will be purchasing,'m using,1,1,,0,0.2801885541493448
+B07SDP8VS1_72137,0,RANDOM,bad,bad,much,badly,many years ago,many times,many years,0,0,,0,0.00426147719441475
+B0BW2H9XDR_112550,0,RANDOM,Well,well,Well,Beautifully,Very well,Nicely,Quality,1,1,,0,0.34091006037606875
+B0B984DM66_116889,0,RANDOM,gave,gave,gave,decided to give,gave,gave,gave,1,1,,0,0.9256847522841395
+B0B984DM66_116889,1,RANDOM,conclusion. Terrible product,conclusion terrible product,conclusion,conclusion,conclusion. Unfortunately,conclusion. However,conclusion. First,0,0,,0,0.03834473491280892
+B0CF8GC7F6_90156,0,RANDOM,softening,softening,elasticity,elasticity,elasticity,strength,elasticity,0,0,,0,0.25061730052985315
+B0CF8GC7F6_90156,1,RANDOM,natural,natural,essential,essential,essential,essential,essential,0,0,,0,0.05513425722126316
+B0CF8GC7F6_90156,2,RANDOM,strong,strong,not overpowering,not strong,not heavy,not strong,light,0,0,,0,0.0028879289719162624
+B00AHVR708_110961,0,RANDOM,pins,pin,back was broken,legs had a problem,legs were broken,legs needed to bend,legs had a problem,0,0,,0,0.004745571085278937
+B00AHVR708_110961,1,RANDOM,Love,love,I love,I love,I love,I love,After using,0,0,,0,0.026354719243647184
+B08BBR329W_42673,0,RANDOM,loves,love,loves,loved,absolutely loves,absolutely loved,LOVED,1,1,,0,0.7028938013559073
+B01MQNOAKZ_144726,0,RANDOM,"cute magnets,  wish",cute magnets wish,happy. Wish,happy with them. Wish,happy. Wish,happy with them. Wish,happy,0,0,,0,0.01767079377502494
+B01MQNOAKZ_144726,1,RANDOM,bit thicker,bit thicker,little firmer,little firmer,little thicker,little thicker,little firmer,0,0,,0,0.4101121983920942
+B0918W3PQ2_71793,0,RANDOM,based,based,depending,based,", depending",with it depending,", based",0,1,,0,0.3045560001198758
+B08DL61832_141016,0,RANDOM,balls,ball,bullets,nozzles,nozzles,nozzles,holes,0,0,,0,0.12335668907704643
+B08DL61832_141016,1,RANDOM,1 comes,1 come,problem is the bullets come,problem is the nozzles come,problem is the nozzle comes,problem is they come,problem is they come,0,0,,0,0.020333984518190865
+B0BL87C2XC_162384,0,RANDOM,Bought,bought,I bought,Purchased,Bought,Used,Got,0,1,,0,0.4325187390195303
+B00O2BEJJ6_27668,0,RANDOM,price,price,price,money,price tag,price alone,cost,1,1,,0,0.9737087512785628
+B001Y66JU4_139921,0,RANDOM,looking and great,looking and great,and perfect,and great,and fun,and a great tool,and good,0,0,,0,0.07636662702458452
+B00008BFZH_140945,0,RANDOM,projects,project,house,house,house,house,house,0,0,,0,2.081970562658859e-05
+B00008BFZH_140945,1,RANDOM,bigger set soon,bigger set soon,new one,new one soon,second one,different one,better one,0,0,,0,0.00915660044624501
+B007Z7PNK8_62595,0,RANDOM,ball,ball,toy,product,treat,collar,stuffed animal,0,0,,0,0.004731018333626687
+B073WJ44RY_151526,0,RANDOM,acne flared,acne flared,nagged it,sensitive skin washed,sensitive skin washes,cleans,woken,0,0,,0,0.05162688207362003
+B0032IEEZY_117847,0,RANDOM,storage option,storage option,way,organizer,storage solution,pocket,solution,0,0,,0,0.09268431586615834
+B003F2636A_126405,0,RANDOM,really,really,is very durable and,is super durable and,is sturdy and,is durable and,is very sturdy and,0,0,,0,0.01648250315771915
+B0BZJFF2BF_69970,0,RANDOM,had,had,love,love these,love,love,love these,0,0,,0,0.015913972756307244
+B0BZJFF2BF_69970,1,RANDOM,hours of fun,hours of fun,these. They,toys. They,these. They,these. They,toys. They,0,0,,0,0.021414869490979836
+B0BZJFF2BF_69970,2,RANDOM,with this,with thi,are so,work great,are so,work great,are so,0,0,,0,0.2895562223164077
+B0BZJFF2BF_69970,3,RANDOM,toy,toy,soft and comfortable,,cute,,cute,0,0,,0,0.13439535571248687
+B0C6YXFX2G_122718,0,RANDOM,loves,love,loves,loved,absolutely loved,really liked,love,1,1,,0,0.6297027683897872
+B0009O1J0C_141503,0,RANDOM,cash,cash,cash,with a cash,called a cash,called the cash,cash,1,1,,0,0.5813574307500857
+B0009O1J0C_141503,1,RANDOM,given,given,given,given,given,given,particular,1,1,,0,0.7805479400557701
+B0C4H8M1SX_64419,0,RANDOM,price,price,expiration,return,warranty or,serial number,age,0,0,,0,0.04689844205500565
+B08FGP7PPM_79591,0,RANDOM,life saver,life saver,life saver,must have,necessity,blessing,miracle,1,1,,0,0.4130655579212685
+B08FGP7PPM_79591,1,RANDOM,needs,need,loves,loves,loves,loves,loves,0,0,,0,0.005900520283097443
+B000WUUEJA_134000,0,RANDOM,lovely,lovely,good,nice,moisturizing,moisturizing and soothing,effective,0,0,,0,0.012316360923701431
+B000WUUEJA_134000,1,RANDOM,boy / girl,boy / girl,old,old,old,old,old,0,0,,0,0.002415338151537606
+B012VOGZYM_79042,0,RANDOM,likes,like,loves,absolutely loves,LOVES,really loves,loved,0,0,,0,0.09456334741420401
+B0971R1RGY_19552,0,RANDOM,Got,got,I bought,I purchased,I just bought,Purchased,I got,0,0,,0,0.00744820170487984
+1524764426_132021,0,RANDOM,words,word,of them,of the stories,of the pages,of the chapters,of the words,0,0,,0,0.0217369118239779
+B0BZHVZQ3J_135382,0,RANDOM,hidden well enough,hidden well enough,challenging. I like,complex. I like,complex. It is nice,fun. I like,fun to collect. I like,0,0,,0,0.00477442967036199
+B088KSQ8YZ_139080,0,RANDOM,looking,looking,using it,using this,buying this,buying it,able to substitute,0,0,,0,0.009319371078941693
+B09LMD19X2_78697,0,RANDOM,See,see,Breaks me,Break,Breaking,Breaks it,Breaks,0,0,,0,0.012099394179082556
+B0030BSAR6_69291,0,RANDOM,paid,paid,paid,have to pay,had to pay,splurge,pay,1,1,,0,0.8749650974670746
+B09LQVRM2M_158965,0,RANDOM,play,play,love the,love the,love the,love the,love the,0,0,,0,0.0006018079602571071
+B09LQVRM2M_158965,1,RANDOM,Another,another,I have,This is,This is,This is,This is,0,0,,0,0.0022486784605014474
+B09LQVRM2M_158965,2,RANDOM,added to the,added to the,for each,of the best toys,of the best toys,of the best toys,of the best,0,0,,0,0.041733673652316214
+B09LQVRM2M_158965,3,RANDOM,collection,collection,age group,I have,we have,ever,toys ever,0,0,,0,0.17694443414949934
+B08CSCX9GK_53612,0,RANDOM,good,good,little,fun,good,playful,much,0,1,,1,0.08506531392628607
+B00JWNPKX8_64485,0,RANDOM,TINY,tiny,smaller,a little smaller,VERY small,bigger,a bit smaller,0,0,,0,0.017423511093095468
+B09QPXVW35_74108,0,RANDOM,play,play,play,play,play,play,play,1,1,,0,0.5294651248259903
+B09QPXVW35_74108,1,RANDOM,visit,visit,preschool year,preschool year,preschool year,school year,preschool year,0,0,,0,0.001224325521919951
+B09QPXVW35_74108,2,RANDOM,continued,continued,did not get,were young,did not have,were young,did not get,0,0,,0,0.00062651276082159
+B09QPXVW35_74108,3,RANDOM,play,play,play it yet,play,play it yet,play,play it,0,1,,0,0.9764357087986293
+0312521456_139967,0,RANDOM,it!  Would buy,it would buy,it. Will order,it and will be ordering,it and will order,it and will buy,it,0,0,,0,0.18700307027881985
+B071K88GRM_03280,0,RANDOM,bday. Very,bday very,birthday party. They were,birthday party. So,birthday party. Super,birthday party! So,party. They were,0,0,,0,0.048078749672557125
+B0BG94QRLZ_12627,0,RANDOM,non stop,non stop,a lot,for years,all week,toy ever since,a ton,0,0,,0,0.0019922512671672063
+B00U6YP00K_82489,0,RANDOM,Better,better,This is better,This is different,This is so much better,This is way better,It's better,0,0,,0,0.009951589202730012
+B075W8NHK5_63584,0,RANDOM,first,first,first,brand,only,very,first,1,1,,0,0.2042526152182758
+B075W8NHK5_63584,1,RANDOM,vehicle,vehicle,car,car,car,car,DREAM,0,0,,0,0.026124592966907733
+B0BWLFX3F1_134763,0,RANDOM,batteries,battery,earplugs,noise,ear plugs,microphone,rattle,0,0,,0,0.006860214541820431
+B077X7J7R1_122342,0,RANDOM,shirt,shirt,dress,hair,hair color,hairstyle,outfit,0,0,,0,0.014270363572451242
+B004V76BII_104351,0,RANDOM,christmas gift for,christmas gift for,Perfect gift for,This is perfect for,Great gift for,I bought this for,I bought this for,0,0,,0,0.002333567413056818
+B004V76BII_104351,1,RANDOM,loved it,loved it,loves it,loves it,loves it,loves it,loved it,0,1,,0,0.5332077931869365
+B07WTV6DQ5_30293,0,RANDOM,fire,fire,play,toddler's play,lap,train,toddlers play,0,0,,0,0.015511302415282778
+B06XBR976N_130168,0,RANDOM,set. The quality,set the quality,toy. Kind,toy. It's kind,product. It's kind,toy. It's kind,toy. It's kind,0,0,,0,0.10740246192534368
+B06XBR976N_130168,1,RANDOM,parts,part,colors,colors,colors,toys,colors,0,0,,0,0.009794996555407477
+B06XBR976N_130168,2,RANDOM,death,death,play with,play with,play with,play with,play,0,0,,0,0.00020662030514679197
+B0BZ6PX8N6_161078,0,RANDOM,lucky,lucky,This was perfect,This was perfect,This is perfect,This was perfect,This was perfect,0,0,,0,2.7869583089871675e-06
+B0BZ6PX8N6_161078,1,RANDOM,5,age:5,my,my youngest,my,my,a,0,0,,0,0.008856534832446377
+B0BZ6PX8N6_161078,2,RANDOM,ages,age,the pieces together,the pieces together,the pieces together,the pieces,the pieces together,0,0,,0,0.04970235788249248
+B0C5BQBK4P_53511,0,RANDOM,Windsor,windsor,tying,length,back,-length,pin,0,0,,0,4.666767097473941e-07
+B09CTDHXMM_82098,0,RANDOM,rebought,rebought,bought,used,to buy,ordered,purchased,0,0,,0,0.055884462798690374
+B017EY9LZE_53694,0,RANDOM,leak,leak,dries,drip,dries out,smudge,dripped,0,0,,0,0.0549810679179406
+B002SZT35S_179265,0,RANDOM,lost,lost,lost,succumbed,lost one of,succumbed with,had lost,1,1,,0,0.9948549519521578
+B01BOYCMJM_96471,0,RANDOM,reportedly,reportedly,absolutely,really,just,genuinely,totally,0,0,,0,0.002427781927539084
+B01BY3EPX4_113333,0,RANDOM,dolls,doll,stars,stars it,pieces,items,parts,0,0,,0,0.018960554876578613
+B0B9MCPM8K_64162,0,RANDOM,love,love,loved,both loved,both loved,love,both love,0,1,,0,0.17194815007242878
+B0B9MCPM8K_64162,1,RANDOM,ready to gift,ready to gift,excited to use,excited to use,excited to receive,excited to use,excited to receive,0,0,,0,0.06138114485293235
+B07S31FD9D_88554,0,RANDOM,11,age:11,79.99,3.99,29.99,8.99,79.99,0,0,,0,0.004025409587101568
+B07S31FD9D_88554,1,RANDOM,smaller,smaller,a little small,a little small,a little small,a little small,a little small,0,0,,0,0.04216024148181356
+B07S31FD9D_88554,2,RANDOM,remote control car,remote control car,gift,gift,gift,gift,little gift,0,0,,0,0.0020177409776928187
+B0037YJT80_165823,0,RANDOM,anniversary,anniversary,amazing,eveyday,awesome,early Christmas,eveything,0,0,,0,0.023771127578169626
+B0914W43X3_136336,0,RANDOM,little dagger,little dagger,nick that was,small hole that was,nick,nick that's,small hole I,0,0,,0,0.0032841273320646618
+B004LU3YQC_171393,0,RANDOM,episode,episode,case,rash or rash,sign,rash or sign,"rash, no sign",0,0,,0,0.024562945162097803
+B0B79WK8GN_103384,0,RANDOM,Burt's,burt,the,the Bees,the Honey,the Honey,the Honey,0,0,,0,0.2851909891261516
+B0B79WK8GN_103384,1,RANDOM,lip,lip,hair,hair,Bees lip,hair,Bees,0,0,,0,0.03047088246634425
+B00XZ9OPCM_72300,0,RANDOM,YouTube,youtube,the screen,the picture,the pictures,the back,the side,0,0,,0,0.0005436080815234632
+B00IX6PEB8_96293,0,RANDOM,difficult,difficult,hard,hard,hard,hard,hard,0,0,,0,0.0857780423564222
+B00IX6PEB8_96293,1,RANDOM,hair without getting,hair without getting,hair with no,hair with no,hair without running,hair and never put,hair with,0,0,,0,0.060994300333576036
+B00IX6PEB8_96293,2,RANDOM,use,use,assemble,use,use,use,use,0,1,,0,0.2718660899970913
+B08GZPH6JH_128781,0,RANDOM,difficult to get,difficult to get,small,small to hang,small for hanging,tricky to hang,small to stick,0,0,,0,0.05981922132263519
+B001UF8BL4_149502,0,RANDOM,nearly 10,nearly 10,3,after 3,after 6,6,after 3,0,0,,1,0.0061896195059769074
+B001UF8BL4_149502,1,RANDOM,later,later,later,of use,of use,and,of use,1,1,,0,0.2240969212186812
+B001UF8BL4_149502,2,RANDOM,grab,grab,open,open,open,open,grasp,0,0,,0,0.05473630174818909
+B00005N9EE_132424,0,RANDOM,play,play,play,play,play,play,play,1,1,,0,0.9769857800905786
+B00005N9EE_132424,1,RANDOM,dropped,dropped,"sanded, sanded","used, abused","used, dropped","used, used","sanded, rolled",0,0,,0,0.04656111995441531
+B003U6N1UW_30323,0,RANDOM,expect,expect,expect,realize,know,realize was it,realize was that it,1,1,,0,0.5917757205291664
+B0BZJ6PFBB_27508,0,RANDOM,helps,help,helps,helped,really helps,has helped,will help,1,1,,0,0.8897911080569513
+B083PX54LQ_114768,0,RANDOM,well,well,long,long.,much,much.,well,0,1,,0,0.03843753300356726
+B0C6YYX312_156921,0,RANDOM,Not only does,not only doe,Great gift for,Great gift for,Perfect for,Great gift for,Perfect for,0,0,,0,0.007956265500168168
+B0C6YYX312_156921,1,RANDOM,but,but,and,and,and,and,and,0,0,,0,0.0009000351118569554
+B0C6YYX312_156921,2,RANDOM,enjoy this red,enjoy this red,. Love,. Great gift,to play,. Love,to play,0,0,,0,0.005764014672624931
+B0C6YYX312_156921,3,RANDOM,car,car,it,,together,them both,with,0,0,,0,0.0022847729858384257
+B07X9VHQJ3_135351,0,RANDOM,wear,wear,take,carry,bring,lug,haul,0,0,,0,0.00043882325188893676
+B07FDR9DPG_09358,0,RANDOM,came,came,arrived,came,product arrived,was delivered,item arrived,0,1,,0,0.0942440872464739
+B09DD96Z1H_20711,0,RANDOM,truly,truly,even,even,even,even,even,0,0,,0,5.469862063663261e-05
+B09DD96Z1H_20711,1,RANDOM,Batman car! Big,batman car big,huge,big,HUGE,real,total,0,0,,0,0.00015435770256443782
+B08L5JC35Q_121573,0,RANDOM,"cute, perfect sized",cute perfect sized,soft,soft,soft,soft,soft,0,0,,0,0.025822868075648295
+B08L5JC35Q_121573,1,RANDOM,Wow,wow,I love these,they were so soft,they were perfect,I was the cutest kid,I was the best,0,0,,0,0.004657575192972154
+B01EHSLOP0_172761,0,RANDOM,body armor protection,body armor protection,a case for an iPad,an iPhone case,a case for an iPhone,an iPad case,a sandbag,0,0,,0,0.0005989606173462006
+B08WBJSYKH_98665,0,RANDOM,best,best,best,BEST,perfect,cheapest,#1,1,1,,0,0.5511440698871886
+B07MPRX14B_07630,0,RANDOM,"bulges. Unfortunately, that's",bulges unfortunately that,"issues, but",issues but,issues - but,issues but that's,"issues, but",0,0,,0,0.12975621340906074
+B07MPRX14B_07630,1,RANDOM,great clothes,great clothe,beautiful dresses,beautiful dresses,beautiful dresses,beautiful dresses,beautiful dresses,0,0,,0,0.20860561967736427
+B07MPRX14B_07630,2,RANDOM,pounds,pound,lbs,lbs,lbs,lbs,lbs,0,0,,0,0.08736319471449672
+B07T9P4VK9_170767,0,RANDOM,regular,regular,regular,daily,weekly,consistent,monthly,1,1,,0,0.6315975122532007
+B019K8L3IK_37325,0,RANDOM,Works,work,It works,It holds up,It fits,It fits so,It fits her,0,0,,0,0.06443118916794352
+B0C52ZVWPD_19476,0,RANDOM,without creating,without creating,in,instead of,rather than,", even in",instead of wearing,0,0,,0,0.009909987863211983
+B07GF6ZH31_54270,0,RANDOM,recommend,recommend,recommend,recommended,reccomend,reccomend it,recommend it,1,1,,0,0.7886176576382962
+B0B58JG1FS_107046,0,RANDOM,gift,gift,long time coming,long way off,while,long post,long haul project,0,0,,0,0.01924007592213764
+B004QDT58K_150105,0,RANDOM,nice,nice,great,good,amazing,nice,wonderful,0,1,,0,0.02993037078138718
+B07X5ZRXTB_85579,0,RANDOM,easy,easy,clear and easy,nice and easy,readable and easy,nice and clear,clear and clear,0,0,,0,0.06602387454697421
+B000141EVO_59479,0,RANDOM,recently,recently,a few days ago,a few weeks ago,about a week ago,a few days later,about a month ago,0,0,,0,0.10261319876886706
+B07J6TYT2S_157475,0,RANDOM,jersey,jersey,as,for,baby,extra large,large,0,0,,0,9.405581146349572e-06
+B012OJ4J6K_175328,0,RANDOM,little,little,little,bit,little bit,lot of it is,little clunky and,1,1,,1,0.8421153209741838
+B07QVXSQ5Y_07456,0,RANDOM,tail,tail,fabric,feathers,blanket,thimble,texture,0,0,,0,0.00873403663105339
+B09P23842N_120042,0,RANDOM,beautiful,beautiful,a piece,beautiful,nice,cute,the piece,0,1,,0,0.14394517479157806
+B00JCA7ZLQ_101284,0,RANDOM,look,look,look,'s head look,look more,feel,'s head feel,1,1,,0,0.7616976239561851
+B011WY2ULY_130682,0,RANDOM,almost,almost,way,a little,a bit,WAY,just,0,0,,0,5.5932035679986003e-05
+B0016KV73W_67775,0,RANDOM,use,use,use,will use,keep,continue to use,still use,1,1,,0,0.6112728548787407
+B0016KV73W_67775,1,RANDOM,well,well,potty,potty,potty,potty,potty,0,0,,0,0.003306607553939907
+B01MQX6IYU_106275,0,RANDOM,thats,that,L,L despite,L as,L as well,while,0,0,,0,0.0017056189407647687
+B00IWCQQNI_46878,0,RANDOM,"almost perfect! Educational, teaching basic",almost perfect educational teaching basic,"got speed,","got power,",all about,got,"so simple,",0,0,,0,0.001245702507509355
+B01MSCAEIK_149525,0,RANDOM,journal,journal,gift,t-shirt,product,mug,little mug,0,0,,0,2.2314375080776195e-05
+0425229777_147925,0,RANDOM,continued,continued,continued,continued,continued,continued,continued,1,1,,0,0.5242382020022438
+0425229777_147925,1,RANDOM,old,old,84 year,84 year,84 year,84 year,84 year,0,0,,0,0.05334406236513373
+0425229777_147925,2,RANDOM,color,color,my daughter's eyes,my daughter's eyes,my daughter's eyes,my daughter's eyes,my daughter's eyes,0,0,,0,0.00015899006919101042
+0425229777_147925,3,RANDOM,forward,forward,forward,forward,forward,forward,forward,1,1,,0,0.9984375846755271
+0425229777_147925,4,RANDOM,writes,write,may have,may have,may have,may have,may have,0,0,,0,0.00034466616534963235
+B087BTBFLQ_160448,0,RANDOM,Bought,bought,These are perfect,These were perfect,Purchased these,Perfect gift,Great gift,0,0,,0,0.26971627584828656
+B087P214X1_68779,0,RANDOM,sturdy,sturdy,easy to use,easy to use,fun,fun,very sturdy,0,0,,0,0.029801864837005067
+B087P214X1_68779,1,RANDOM,game,game,toy,toy,toy,toy,toy,0,0,,0,0.053876890106248715
+B087P214X1_68779,2,RANDOM,Planned,planned,I plan,I decided,I plan,I decided,I decided,0,0,,0,0.11332182163375715
+B002PISFF2_158133,0,RANDOM,black,black,blue,black,green,white,pink,0,1,,0,0.18846354984326952
+B09ZLCGFRZ_149630,0,RANDOM,need behavior,need behavior,need help with homework,need help with time,struggle with time,need help with their homework,need help with their time,0,0,,0,0.017007220277404627
+B087WHJFC3_51104,0,RANDOM,saying,saying,asking me,saying,asking,asking for,playing,0,1,,0,0.20346780640171871
+B00MWU37BA_07856,0,RANDOM,body,body,quick hair,quick,quick hair,quick,quick,0,0,,0,0.012498080406729362
+B00MWU37BA_07856,1,RANDOM,shampoo,shampoo,quick rinse,quick rinse,quick rinse,quick rinse,quick rinse,0,0,,0,0.027021720767169
+B00MWU37BA_07856,2,RANDOM,get,get,get,get,rinse,rinse,squeeze,1,1,,0,0.284783230382712
+B01KOTNFO4_61740,0,RANDOM,baby hasn't,baby hasn t,batteries haven't,batteries haven't,batteries haven't,package hasn't,packages haven't,0,0,,0,0.3882897430055794
+B01KOTNFO4_61740,1,RANDOM,test,test,testing,bit of testing,testing on them,testing,testing,0,0,,0,0.07538662203365196
+B01LO81WEY_85580,0,RANDOM,card,card,gift,watch,necklace,soap,ring,0,0,,0,0.005910147783912151
+B071WFH72F_129161,0,RANDOM,ton,ton,lot,ton,LOT,great deal,bunch,0,1,,0,0.6390703139191588
+1119318092_138048,0,RANDOM,running,running,running things,running it,running our business,running the business,running the company,0,0,,0,0.7140280512242029
+B0B8ZJJ16X_17595,0,RANDOM,burning,burning,burns,burns,burns,burns,burns,0,0,,0,0.0029711543224892763
+B0B8ZJJ16X_17595,1,RANDOM,sea,sea,sun,sun,sun,sun,sun,0,0,,0,2.851748836595756e-06
+B0B8ZJJ16X_17595,2,RANDOM,Texas,texa,the US,the US,the US,the US,the US,0,0,,0,0.009373627500424973
+B0B8ZJJ16X_17595,3,RANDOM,sunburned,sunburned,burned,burned,burned,burned,burned,0,0,,0,0.1976741453678165
+B0B8ZJJ16X_17595,4,RANDOM,sunscreen,sunscreen,product,product,product,product,product,0,0,,0,0.022938936925233418
+B09K1ZD3SL_166499,0,RANDOM,customer,customer,camper,sleeve wearer,camper! A+,girl,camper in no time,0,0,,0,0.0017868746386486335
+B00DS5RM1Y_137020,0,RANDOM,hit,hit,fun gift,joy,great gift,hit,fun present,0,1,,0,0.0712699561543109
+B00DS5RM1Y_137020,1,RANDOM,ordered another one,ordered another 1,bought it,bought it,bought it,bought it,bought it,0,0,,0,0.059971603767800405
+B08PY4CRDR_140710,0,RANDOM,well,well,well,nicely,well for me,nice,well for them,1,1,,0,0.9602264076878194
+B01N5HUOFP_13402,0,RANDOM,fit,fit,ears fit,eyes fit,buttons fit,colors fit,buttons work,0,0,,0,0.0009404689288944861
+B00E8NGRUW_148939,0,RANDOM,gave,gave,gave,really gave,has given,gives,brought,1,1,,0,0.8658713929158749
+B00L88IVD6_125797,0,RANDOM,lens,len,lens,f/2.8,I have found that,lens that,f/1.8,1,1,,0,0.6150306287841916
+B0C85796QQ_169675,0,RANDOM,love,love,love,love,love,love,love,1,1,,0,0.6590903943658964
+B0C85796QQ_169675,1,RANDOM,great,great,great,great,great,great,great,1,1,,0,0.6897648760464
+B0C85796QQ_169675,2,RANDOM,Chess fundamentals without,chess fundamentals without,to play without,son to play without,to play without,son to play without,to play without,0,0,,0,0.017776732231356753
+B0C85796QQ_169675,3,RANDOM,sides,side,sides,sides,off,off,his mind,1,1,,0,0.14840587353927645
+B0CC3GYVKV_67087,0,RANDOM,single day,single day,day,day,day,day,day,0,0,,0,0.04738503797537515
+B0CC3GYVKV_67087,1,RANDOM,learning,learning,color,storage,toy,colors and,design,0,0,,0,0.010853302517857395
+B01EEDHYZW_114596,0,RANDOM,thrilled,thrilled,happy,thrilled,happy,happy,thrilled,0,1,,0,0.22820440198442973
+B01EEDHYZW_114596,1,RANDOM,3,age:3,this,this,this,this,this,0,0,,0,2.3811228156349353e-05
+B01EEDHYZW_114596,2,RANDOM,size,size,p,p,cha,p,cha,0,0,,0,1.2950546152876553e-05
+B01EEDHYZW_114596,3,RANDOM,big,big,small,small,small,out small,small,0,0,,0,0.004322554675650796
+B01EV4FWXK_13704,0,RANDOM,usually wear,usually wear,ordered,wanted,was looking for,bought,I ordered,0,0,,0,0.020155957228943824
+B00U0NDJKK_159176,0,RANDOM,wipes,wipe,wipes,bibs,wipes,wipes,bottles,1,1,,0,0.3780641556207568
+B00U0NDJKK_159176,1,RANDOM,use,use,care,bibs,wipes,use,use,0,1,,0,0.14327596637870862
+B075BN3Y9W_92167,0,RANDOM,this for my,this for my,for my,this for my,it for my,for a,for our,0,1,,0,0.6123781234373661
+B000N178E2_133761,0,RANDOM,magnets,magnet,toys,pictures,stuffed,sets,stuffed animals,0,0,,0,0.06527180317606998
+B0759BTH2M_71575,0,RANDOM,got,got,usually wear,always wear,wore,normally wear,usually get,0,0,,0,0.03444044778164224
+B09KY3JBV6_43362,0,RANDOM,relaxation,relaxation,sleep,a pair of sleep,a pair of,a nice pair of,cheap sleep,0,0,,0,2.1264724210124075e-05
+B008LQXR9Q_161779,0,RANDOM,play,play,play great,play well,are so fun,play,all play,0,1,,0,0.3440182024190966
+B0043WAPJM_152276,0,RANDOM,says,say,says,says,says,says,says,1,1,,0,0.861522368235323
+B0043WAPJM_152276,1,RANDOM,good,good,cute,beautiful,big,much,tall,0,0,,0,0.023605041301778405
+B000II0TBY_168242,0,RANDOM,I've,i ve,I've,I've,I've,I've,I've,1,1,,0,0.9560082644245397
+B000II0TBY_168242,1,RANDOM,ways,way,ways,ways,ways,ways,ways,1,1,,0,0.7359229842030549
+B000II0TBY_168242,2,RANDOM,games,game,learning,learning,learning,learning,learning,0,0,,0,0.013802229678880753
+B000II0TBY_168242,3,RANDOM,comes,come,comes,comes,comes,came,came,1,1,,0,0.5784767959048038
+B000II0TBY_168242,4,RANDOM,products,product,"games,","games,","games,","games,","games,",0,0,,0,0.014480043019760785
+B000II0TBY_168242,5,RANDOM,really,really,very,very,very,very,very,0,0,,0,0.1293862261888982
+B09M5ZHB76_10232,0,RANDOM,forget,forget,leave,have to look for,be able to find,even leave,pick up,0,0,,0,0.015455118075437747
+B01GL98DQ6_87624,0,RANDOM,tore,tore,took,took,took,took,took,0,0,,0,0.04618395108084665
+B01GL98DQ6_87624,1,RANDOM,30 seconds,30 second,a long day,a shower,using them,a bath,a while,0,0,,0,0.008207810744123929
+B07QXGFTGJ_174100,0,RANDOM,work,work,work,home,night,the park,work today,1,1,,0,0.3684969718460337
+B00AKKDSNG_86076,0,RANDOM,years,year,years,years,years,years,years,1,1,,0,0.9690104308817306
+B00AKKDSNG_86076,1,RANDOM,time we're,time we re,time I'm,time we're,time I find myself,time I am,time we are,0,1,,0,0.6184171907740482
+B07PHVRMWV_165302,0,RANDOM,size,size,his needs,his size,his body,his measurements,his wrist,0,0,,0,0.03868259239166016
+B08GKSQMFP_165370,0,RANDOM,love JoJo,love jojo,not only love JoJo,not only love JoJo,not only love JoJo,love JoJo,love JoJo,0,1,,0,0.6890821648558902
+B08GKSQMFP_165370,1,RANDOM,decent,decent,great,good,reasonable,great,good,0,0,,0,0.02794797704837121
+B07W8W6D9R_23323,0,RANDOM,large,large,clogged,loose,short,weak,small,0,0,,0,0.0018544964796216744
+B013FWDDZI_108266,0,RANDOM,skating &#34;glow,skating &#34 glow,skating,skaters,skating rink,skates,coaster,0,0,,0,0.21213548614984853
+B013FWDDZI_108266,1,RANDOM,Monday,monday,a Friday,a Friday,a Friday,a Friday,a Friday,0,0,,0,0.07650433543277237
+B00CYFEUVE_16107,0,RANDOM,hit,hit,gift,great gift,gift,great gift,treat,0,0,,0,0.010042312556757122
+B00CYFEUVE_16107,1,RANDOM,just loves,just love,loved,loved,loves,loves,loved,0,0,,0,0.025152085111019257
+160907324X_158278,0,RANDOM,really,really,love,really like,absolutely,really,really,0,1,,0,0.34200269764803776
+160907324X_158278,1,RANDOM,like the majority,like the majority,all,all,love all,enjoy all,like all,0,0,,0,0.04638428776299627
+B07GZ5VB4T_63482,0,RANDOM,easy,easy,much and easy,much. Easy,"much, easy",much easy,much! Easy,0,0,,0,0.05456844759715235
+B01J3ODH80_28493,0,RANDOM,go,go,go,go,go,go,go,1,1,,0,0.5112924716818872
+B01J3ODH80_28493,1,RANDOM,quality,quality,looking,toy,to look at,and colorful,to look at,0,0,,0,0.005197850832429525
+B01J3ODH80_28493,2,RANDOM,marketing. TMNT limits,marketing tmnt limit,tiles. They limit,tiles. They limit,tiles. They limit,tiles. They limit,tiles. They just limit,0,0,,0,0.011853672306686899
+B000NQMAFO_38713,0,RANDOM,going,going,I was able,I am going,I had,Would love,I wanted,0,0,,0,0.00028935376241526943
+B097HGMJFK_114137,0,RANDOM,done,done,done,been doing,done exactly,really done,exactly,1,1,,0,0.9014008940196457
+B0096DCG6I_36692,0,RANDOM,time,time,time,few times,day,time when,time and,1,1,,0,0.8162185742746692
+B09MZR5JYR_10444,0,RANDOM,Marble Run set,marble run set,set,set,set,set,set,0,0,,0,0.0029355072891368195
+B09MZR5JYR_10444,1,RANDOM,difficult,difficult,a little hard,a little hard,a little difficult,a little tricky,a little hard,0,0,,0,0.012792408012462946
+B09MZR5JYR_10444,2,RANDOM,build without instructions,build without instruction,build,build,build,build,build,0,0,,0,0.0013472194375558873
+B09MZR5JYR_10444,3,RANDOM,give,give,give,give,give,give,give,1,1,,0,0.9853758414098406
+B09MZR5JYR_10444,4,RANDOM,marbles,marble,marbles,marbles,marbles,marbles,marbles,1,1,,0,0.3748244151587553
+B09MZR5JYR_10444,5,RANDOM,love,love,love,love,love,love,love,1,1,,0,0.3511602092756461
+B01BRVY6TG_46552,0,RANDOM,loved,loved,loved,loves,loved,loves,love,1,1,,0,0.37602188622925503
+B01BRVY6TG_46552,1,RANDOM,delivery,delivery,shipping,shipping,delivery,delivery,shipping,0,1,,0,0.3459226351354601
+B09VTZ1V5C_179053,0,RANDOM,Bought for my,bought for my,Bought for my,I bought this for my,I bought this for my,Bought for my,Purchased for my,1,1,,0,0.661942103372943
+B09VTZ1V5C_179053,1,RANDOM,loves,love,loves,loves,loved,loved,loves,1,1,,0,0.4878087527463334
+B07ZBWDDZ3_98867,0,RANDOM,back,back,ago,ago,ago,ago,ago,0,0,,0,0.06185050347601114
+B07ZBWDDZ3_98867,1,RANDOM,like,like,love,like,love,love,love,0,1,,0,0.28833265226119903
+B07ZBWDDZ3_98867,2,RANDOM,repeated ball,repeated ball,potential to,potential to,potential for it to,possibility that it will,possibility that it can,0,0,,0,3.443402388533846e-05
+B015QYB526_116576,0,RANDOM,seat,seat,seat,seat,seat,seat,seat,1,1,,0,0.7414039324938758
+B015QYB526_116576,1,RANDOM,linked,linked,able to work,able to fit,woven,paired,glued,0,0,,0,0.011931405497382308
+B076BBRPYH_151956,0,RANDOM,used Seventh Generation diapers,used seventh generation diaper,used these,been using these,had these,used these,been using these,0,0,,0,0.0430749642708501
+B076BBRPYH_151956,1,RANDOM,chemically,chemically,bulky,bulky,bulky,expensive,bulky,0,0,,0,0.004225103501195475
+B076BBRPYH_151956,2,RANDOM,"price, seems like",price seems like,money or if,money or if,money or if,money or if,price or if,0,0,,0,0.007736152129619473
+B00270WLAI_158830,0,RANDOM,wants,want,tries,tries,tries,tries,tries,0,0,,0,0.06085330016854947
+B00270WLAI_158830,1,RANDOM,works,work,'s fine,'s fine,does catch a butterfly,'s nice and sturdy,does catch a sister,0,0,,0,0.03315268832947613
+B00270WLAI_158830,2,RANDOM,traditional net material,traditional net material,natural setting,crowded area,crowded area,crowded area,crowded area,0,0,,0,0.0016879154509866177
+B08J3QP3JX_113841,0,RANDOM,files,file,files,filing machines,files,files,files,1,1,,0,0.410285637606722
+B08J3QP3JX_113841,1,RANDOM,can't,can t,file them down. If I don't,file them down. If I don't,don't,can't,file them down. When I,0,1,,0,0.4615309089254687
+B082T4R8GC_23948,0,RANDOM,8lb10oz,8lb10oz,new,furry,little,3 month old,fur,0,0,,0,0.0041776514485400845
+B006U32EUK_33241,0,RANDOM,trading,trading,toy,toy,toy,toy,toy,0,0,,0,9.837877051448047e-05
+B006U32EUK_33241,1,RANDOM,purchased,purchased,bought them,purchased them,picked them up,bought these,purchased these,0,0,,0,0.21453189319065216
+B0827F5VLB_17527,0,RANDOM,as-is,as-i,too,for summer,as well,for the summer,for summertime,0,0,,0,0.0042572240013135825
+B00FZMDAO6_27853,0,RANDOM,seen,seen,had,had,ever had,known,had,0,0,,0,0.02780569881242038
+B00FZMDAO6_27853,1,RANDOM,three,age:3,but one,three,but one,but one,four,0,1,,0,0.27056197991874437
+B004I110D8_70804,0,RANDOM,amazing,amazing,wonders,wonders,wonders,wonders,wonders,0,0,,0,0.0005987326989906285
+B004I110D8_70804,1,RANDOM,instead,instead,instead,instead,instead,instead,instead,1,1,,0,0.9953943210131176
+B004I110D8_70804,2,RANDOM,2,age:2,few,few,few,few,few,0,0,,0,0.046610334636624416
+B004I110D8_70804,3,RANDOM,car,car,milk,milk,milk,milk,milk,0,0,,0,0.006682280129806073
+B004I110D8_70804,4,RANDOM,give,give,give,give,give,give,give,1,1,,0,0.32187534469720674
+B004I110D8_70804,5,RANDOM,make,make,warm,warm,warm,warm,warm,0,0,,0,0.007576696199543557
+B004NCEL4M_40529,0,RANDOM,bit,bit,little,little,little,little too,little too,0,0,,1,0.058225939933225106
+B004NCEL4M_40529,1,RANDOM,don't,don t,don't,don't,don't,don't,don't,1,1,,0,0.9842322750049586
+B004NCEL4M_40529,2,RANDOM,enough,enough,enough,enough,enough,enough,enough,1,1,,0,0.9965485661963959
+B004NCEL4M_40529,3,RANDOM,say ages 2-Adult,say ages 2-adult,have been a toy,have been a toy,have been a toy,have been a toy,have been a toy,0,0,,0,0.0020409762530028586
+B004NCEL4M_40529,4,RANDOM,anyone else bang,anyone else bang,you bang,you bang,you bang,you bang,you bang,0,0,,0,0.06952116343941518
+B07R6NX5VF_36450,0,RANDOM,expected,expected,paid,got,was getting,paid,paid,0,0,,0,0.0019210757989667592
+B07R6NX5VF_36450,1,RANDOM,4,age:4,5,5,5,3,2,0,0,,1,0.07421902866370865
+B00XFCJYP2_38672,0,RANDOM,hours,hour,days,days,days,days,days,0,0,,0,0.05558183848673364
+B00XFCJYP2_38672,1,RANDOM,seems,seem,is very,is very,is very,feels very,feels very,0,0,,0,0.10004077469010045
+B00XFCJYP2_38672,2,RANDOM,baby shower gift,baby shower gift,daily,wardrobe,family,daily,wardrobe,0,0,,0,0.0030731825884451475
+B003BK96RY_125556,0,RANDOM,oils,oil,types of oil,types of silicone,types of oils,fragrances,kinds of oil,0,0,,0,0.0778801500891545
+B0B6FDRFC9_173422,0,RANDOM,perfect,perfect,perfect,perfect size,great,a must,good,1,1,,0,0.5206007268925527
+B00KLBGUZW_92577,0,RANDOM,Fisher Price Bubble,fisher price bubble,Fisher-Price Bubble,Fisher-Price Bubble,Fisher-Price Bubble,Fisher-Price Bubble,Fisher-Price Bubble,0,0,,0,0.19961151901359114
+B00KLBGUZW_92577,1,RANDOM,fan,fan,bubbles,bubbles,bubbles,bubbles,bubbles,0,0,,0,6.864808412646478e-05
+B00KLBGUZW_92577,2,RANDOM,pushing,pushing,pushing,pushing,pushing,pushing,pushing,1,1,,0,0.5454474027570126
+B00KLBGUZW_92577,3,RANDOM,want,want,want,want,want,want,want,1,1,,0,0.7688895366227027
+B00KLBGUZW_92577,4,RANDOM,toy,toy,toy,toy,toy,toy,toy,1,1,,0,0.883084742548408
+B00KLBGUZW_92577,5,RANDOM,can't say enough,can t say enough,am very happy,am very happy,am very happy,am very happy,am very happy,0,0,,0,0.07618855259101723
+B07CCG2VSY_134423,0,RANDOM,leak,leak,go,go,go,go,go,0,0,,0,0.00015534691554138584
+B07CCG2VSY_134423,1,RANDOM,feel,feel,think,think,guess,feel like,feel like,0,0,,0,0.07015906275496399
+B07CCG2VSY_134423,2,RANDOM,product,product,stuff,product,stuff,stuff,product,0,1,,0,0.28455532144300344
+B07QV3GWN4_34904,0,RANDOM,store,store,organize the,organize my,keep my,organize my milk,store my,0,0,,0,0.08758142156634964
+B00R7CK2OI_135127,0,RANDOM,recognized George right away,recognized george right away,will enjoy them,can play with them,will love these,will love them,will enjoy these,0,0,,0,0.0004997153128811519
+B01LYZR3HI_45336,0,RANDOM,likes,like,likes,likes,loves,loves,likes,1,1,,0,0.7558032276371316
+B01LYZR3HI_45336,1,RANDOM,perfect,perfect,easier to clean,easier to clean,easier to clean,easier to clean,more durable,0,0,,0,0.008684277321752065
+B01LYZR3HI_45336,2,RANDOM,position,position,position,position,position,position,position,1,1,,0,0.96860796981934
+B01LYZR3HI_45336,3,RANDOM,sit,sit,sit,stand,sit,stand,sit,1,1,,0,0.5717889338202428
+B07RDL3PMJ_31281,0,RANDOM,erasers,eraser,treats,treats,treats,treats,treats,0,0,,0,0.03396887312985839
+B07RDL3PMJ_31281,1,RANDOM,purchased,purchased,bought,made,brought,purchased,gave,0,1,,0,0.05527703908383783
+B00Y286NXY_28237,0,RANDOM,little,little,little,little,little,little,little,1,1,,1,0.8201410806404177
+B00Y286NXY_28237,1,RANDOM,timer 3,timer 3,“shade” 3),“shade” 3),“shade” 3),“shade” 3),“shade” 3),0,0,,0,0.004016387894878273
+B00Y286NXY_28237,2,RANDOM,sun coming,sun coming,glare coming,glare coming,glare coming,glare coming,glare coming,0,0,,0,0.18035377248728057
+B00Y286NXY_28237,3,RANDOM,nylon straps,nylon strap,2 inches long,2 inches long,2 inches long,2 inches long,2 inches long,0,0,,0,0.0018752438508603528
+B00Y286NXY_28237,4,RANDOM,bit rough,bit rough,little brittle,little brittle,little too thick,little too thick,little too thick,0,0,,0,0.06983978293244135
+B09R78LZD3_62985,0,RANDOM,sized smaller,sized smaller,comfortable,comfortable and stretchy,great,perfect,nice,0,0,,0,0.00716403605908125
+B09R78LZD3_62985,1,RANDOM,used,used,used the,used the,used the,used the,used the,0,0,,0,0.5057970267986384
+B0BTFY3V69_89442,0,RANDOM,cool,cool,neat,neat,neat,neat,cool,0,1,,0,0.20804946204751476
+B0BTFY3V69_89442,1,RANDOM,hang,hang,throw,tow,put,haul,tow,0,0,,0,0.00880009179840435
+B0BTFY3V69_89442,2,RANDOM,fuss,fuss,fuss,fuss,fuss,fuss,fuss,1,1,,0,0.9266184201678962

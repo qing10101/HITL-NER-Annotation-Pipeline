@@ -1,0 +1,55 @@
+{"items": [
+{"id": "B0BMS82KYD_155647", "guesses": [
+{"mask": 1, "candidates": ["fun", "play", "entertainment", "enjoyment", "playtime"], "confidence": 0.5},
+{"mask": 2, "candidates": ["learning", "and learning", "educational", "and creativity", "exploring"], "confidence": 0.3},
+{"mask": 3, "candidates": ["expected", "knew", "love", "like", "anticipated"], "confidence": 0.35}
+]},
+{"id": "B07Z65TM3L_156883", "guesses": [
+{"mask": 1, "candidates": ["review", "post", "feedback", "write-up", "comment"], "confidence": 0.9}
+]},
+{"id": "B0BT1DXWCH_47718", "guesses": [
+{"mask": 1, "candidates": ["threads", "strings", "stitching", "thread", "fibers"], "confidence": 0.7}
+]},
+{"id": "B001492T5U_73148", "guesses": [
+{"mask": 1, "candidates": ["sound", "calls", "audio", "voice", "reception"], "confidence": 0.35},
+{"mask": 2, "candidates": ["account", "Skype account", "login", "connection", "router"], "confidence": 0.45}
+]},
+{"id": "1593596383_53516", "guesses": [
+{"mask": 1, "candidates": ["opening", "flipping open", "flapping", "falling open", "coming open"], "confidence": 0.5}
+]},
+{"id": "B01IT3WNQI_142219", "guesses": [
+{"mask": 1, "candidates": ["loves", "loved", "adores", "enjoys", "adored"], "confidence": 0.85}
+]},
+{"id": "B084L1DGZ3_23761", "guesses": [
+{"mask": 1, "candidates": ["Barbie", "dolls", "unicorns", "princesses", "cavemen"], "confidence": 0.3},
+{"mask": 2, "candidates": ["pets", "dinosaurs", "dinosaur pets", "glow in the dark hair", "accessories"], "confidence": 0.3}
+]},
+{"id": "1847380239_65762", "guesses": [
+{"mask": 1, "candidates": ["book", "bible", "puzzle", "game", "set"], "confidence": 0.6}
+]},
+{"id": "B08YR29CW9_54461", "guesses": [
+{"mask": 1, "candidates": ["lightweight", "cute", "very good", "great", "small"], "confidence": 0.2},
+{"mask": 2, "candidates": ["suitable", "safe", "easy", "convenient", "friendly"], "confidence": 0.35}
+]},
+{"id": "B07VQPZJK6_45815", "guesses": [
+{"mask": 1, "candidates": ["Update", "UPDATE", "Edit", "Updated", "ETA"], "confidence": 0.6}
+]},
+{"id": "B0009WSPRO_166998", "guesses": [
+{"mask": 1, "candidates": ["Christmas", "her birthday", "Valentine's Day", "Valentines", "our anniversary"], "confidence": 0.45}
+]},
+{"id": "B07B1LQKHM_145718", "guesses": [
+{"mask": 1, "candidates": ["going", "heading", "who is going", "before going", "moving"], "confidence": 0.45}
+]},
+{"id": "B00YGJJTMQ_45373", "guesses": [
+{"mask": 1, "candidates": ["Very", "Really", "Super", "A", "Pretty"], "confidence": 0.4}
+]},
+{"id": "B0C3TZLWHX_157171", "guesses": [
+{"mask": 1, "candidates": ["desperate", "struggling", "scrambling", "searching", "trying"], "confidence": 0.4},
+{"mask": 2, "candidates": ["several", "a few", "many", "three", "two"], "confidence": 0.4}
+]},
+{"id": "B00A88EV5Y_41741", "guesses": [
+{"mask": 1, "candidates": ["hit", "success", "winner", "big hit", "home run"], "confidence": 0.5},
+{"mask": 2, "candidates": ["made", "brightened", "totally made", "really made", "absolutely made"], "confidence": 0.7},
+{"mask": 3, "candidates": ["grandkids", "kids", "little ones", "grandchildren", "children"], "confidence": 0.35}
+]}
+]}
