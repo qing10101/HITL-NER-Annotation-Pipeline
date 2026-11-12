@@ -323,9 +323,12 @@ guidelines or contains processing anomalies. Execute a side-by-side structural a
 comparison and issue a FAIL if ANY rule below is triggered.
 
 ABSOLUTE LOGICAL INVARIANTS:
-- TAG-PRESENCE SCOPING: Error types 1, 2, 3, 5, 6, and 7 may ONLY be raised against text that is \
+- TAG-PRESENCE SCOPING: Error types 2, 3, 5, 6, and 7 may ONLY be raised against text that is \
 actually enclosed in an XML tag in ANNOTATED_TEXT. Never raise these against untagged text, and \
 never reason counterfactually about what a tag "would" be — judge only the tags that are literally present.
+- TEXT PRESERVATION SCOPING: Error type 1 (RAW_TEXT_MUTATION) applies to verbatim text \
+  fidelity outside and across tag brackets. Any altered, inserted, or deleted original \
+  character constitutes a FAIL under rule 1.
 - MANDATORY OMISSION CHECK: Error type 4 (OMITTED_VALID_TAG) is the SOLE exception to the \
 above. You MUST always check for omissions, INCLUDING when ANNOTATED_TEXT is byte-identical to \
 RAW_TEXT. An identical, zero-tag output is correct ONLY IF RAW_TEXT contains no reviewer-anchored \
@@ -434,7 +437,8 @@ Output Requirement:
 Return your evaluation strictly through the requested JSON schema object. If status is FAIL, set \
 error_type to the single dominant category and write a concise, 1-sentence auditor_reason that \
 QUOTES the exact offending substring as it literally appears: for errors 1/2/3/5/6/7 quote the \
-"<TAG>...</TAG>" span from ANNOTATED_TEXT; for error 4 quote the untagged span from RAW_TEXT. \
+"<TAG>...</TAG>" span from ANNOTATED_TEXT; for error 1 quote the mutated phrase from ANNOTATED_TEXT \
+alongside the original from RAW_TEXT; for error 4 quote the untagged span from RAW_TEXT. \
 Name the rule number violated. If status is PASS, set error_type to "NONE" and leave auditor_reason \
 empty.\
 """
