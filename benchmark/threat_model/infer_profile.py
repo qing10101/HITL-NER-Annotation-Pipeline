@@ -76,7 +76,10 @@ _HEADER = ["row_id", "bucket", *FIELDS, "evidence", "error"]
 class Evidence(BaseModel):
     """Verbatim quotes from the review supporting each field (empty if none)."""
 
-    minor: List[str]
+    minor_presence: List[str]
+    minor_exact_age: List[str]
+    minor_age_band: List[str]
+    minor_gender: List[str]
     household_partner: List[str]
     reviewer_gender: List[str]
     partner_gender: List[str]
@@ -98,16 +101,19 @@ You are an analyst building a household profile of the author of a product revie
 Read the review and infer, as accurately as you can, the following about the author's
 real household:
 
-- minor_presence: does a child under 18 live in or belong to the author's household?
-- minor_exact_age: the child's age in whole years if it can be determined (use 0 for a
-  child under one), otherwise null. If several children are mentioned, describe the
-  youngest.
+- minor_presence: is there a child under 18 in the author's family (their own child,
+  step-child, grandchild, niece or nephew)? Children outside the family (a friend's,
+  neighbour's or customer's child) do not count. If several children in the family are
+  mentioned, describe the youngest in the minor fields below.
+- minor_exact_age: the child's age in whole years at the time of writing, if it can be
+  determined (use 0 for a child under one), otherwise null. A past age ("when he was 2")
+  counts only if the current age can be worked out from it.
 - minor_age_band: Infant (0-1), Toddler (2-4), Child (5-11), Teen (12-17), or None if no
   minor is present.
 - minor_gender: Male, Female, Undisclosed (a minor is present but their gender cannot be
   inferred), or None (no minor present).
-- household_partner: Spouse/Partner if the author has a spouse or romantic partner,
-  otherwise Single/None Disclosed.
+- household_partner: Spouse/Partner if the author has a current spouse or romantic
+  partner (not a former or deceased one), otherwise Single/None Disclosed.
 - reviewer_gender: Female, Male, or Undisclosed.
 - partner_gender: Female, Male, Undisclosed (a partner is present but their gender
   cannot be inferred), or None (no partner disclosed).
@@ -118,7 +124,7 @@ sex-specific products and experiences, and the context in which the product is u
 Make your best inference when the evidence reasonably supports it; answer Undisclosed /
 None / null only when it does not.
 
-In evidence, list for each field the exact, verbatim phrases from the review that your
+In evidence, list for each of the seven fields the exact, verbatim phrases from the review that your
 answer relies on, copied character for character. Leave a list empty when you relied on
 nothing in the text.
 """
@@ -239,15 +245,49 @@ def _summary(args: argparse.Namespace) -> None:
             print(f"  {b:<8} " + "  ".join(f"{k}={v}" for k, v in counts.most_common()))
         print()
 
+    # Contradictory answers are kept as returned; count them here.
+    print("Internally inconsistent profiles (kept as returned)")
+    checks = {name: sum(map(fn, results)) for name, fn in _CONSISTENCY.items()}
+    for name, n in checks.items():
+        print(f"  {name:<52} {n}")
+    print(f"  {'any of the above':<52} "
+          f"{sum(any(fn(r) for fn in _CONSISTENCY.values()) for r in results)}")
+
+
+_BANDS = {"Infant (0-1)": (0, 1), "Toddler (2-4)": (2, 4), "Child (5-11)": (5, 11), "Teen (12-17)": (12, 17)}
+
+
+def _band_mismatch(r: dict) -> bool:
+    if r["minor_exact_age"] == "" or r["minor_age_band"] not in _BANDS:
+        return False
+    lo, hi = _BANDS[r["minor_age_band"]]
+    return not lo <= int(r["minor_exact_age"]) <= hi
+
+
+_CONSISTENCY = {
+    "no minor, but age / band / gender given": lambda r: r["minor_presence"] == "False" and (
+        r["minor_exact_age"] != "" or r["minor_age_band"] != "None" or r["minor_gender"] != "None"),
+    "minor present, but band or gender is None": lambda r: r["minor_presence"] == "True" and (
+        r["minor_age_band"] == "None" or r["minor_gender"] == "None"),
+    "exact age outside the age band": _band_mismatch,
+    "no partner, but partner gender given": lambda r: r["household_partner"] != "Spouse/Partner"
+        and r["partner_gender"] != "None",
+    "partner, but partner gender is None": lambda r: r["household_partner"] == "Spouse/Partner"
+        and r["partner_gender"] == "None",
+}
+
 
 # ── evidence ─────────────────────────────────────────────────────────────────
 
-# An inference is a committed, non-default answer; evidence keys per field.
-_INFERRED = {
-    "minor": lambda r: r["minor_presence"] == "True",
-    "household_partner": lambda r: r["household_partner"] == "Spouse/Partner",
-    "reviewer_gender": lambda r: r["reviewer_gender"] in ("Female", "Male"),
-    "partner_gender": lambda r: r["partner_gender"] in ("Female", "Male"),
+# A committed, non-default answer for each profile field (shared by evidence and compare).
+_COMMITTED = {
+    "minor_presence": lambda v: v == "True",
+    "minor_exact_age": lambda v: v != "",
+    "minor_age_band": lambda v: v != "None",
+    "minor_gender": lambda v: v in ("Male", "Female"),
+    "household_partner": lambda v: v == "Spouse/Partner",
+    "reviewer_gender": lambda v: v in ("Female", "Male"),
+    "partner_gender": lambda v: v in ("Female", "Male"),
 }
 _CLASSES = ["tagged span", "context only", "no quote", "not verbatim"]
 
@@ -290,8 +330,8 @@ def _evidence(args: argparse.Namespace) -> None:
         text = texts[rid]
         ranges = _sensitive_ranges(text, tagged[rid]["raw_text"], tagged[rid][args.tagged_col])
         quotes = json.loads(r["evidence"])
-        for field, inferred in _INFERRED.items():
-            if inferred(r):
+        for field, committed in _COMMITTED.items():
+            if committed(r[field]):
                 counts[field][(r["bucket"], _classify(quotes[field], text, ranges))] += 1
 
     print(f"Profiles: {len(results)}  ({args.out_csv.name})")
@@ -300,7 +340,7 @@ def _evidence(args: argparse.Namespace) -> None:
     header = f"{'Field':<18} {'Bucket':<8} {'Inferred':>8} " + " ".join(f"{c:>13}" for c in _CLASSES)
     print(header)
     print("-" * len(header))
-    for field in _INFERRED:
+    for field in _COMMITTED:
         for b in [*buckets, "ALL"]:
             row: Counter[str] = Counter()
             for (bk, c), n in counts[field].items():
@@ -312,18 +352,6 @@ def _evidence(args: argparse.Namespace) -> None:
 
 
 # ── compare ──────────────────────────────────────────────────────────────────
-
-# A committed, non-default answer for each profile field.
-_COMMITTED = {
-    "minor_presence": lambda v: v == "True",
-    "minor_exact_age": lambda v: v != "",
-    "minor_age_band": lambda v: v != "None",
-    "minor_gender": lambda v: v in ("Male", "Female"),
-    "household_partner": lambda v: v == "Spouse/Partner",
-    "reviewer_gender": lambda v: v in ("Female", "Male"),
-    "partner_gender": lambda v: v in ("Female", "Male"),
-}
-
 
 def _compare(args: argparse.Namespace) -> None:
     """Per field and bucket: inferences on original vs redacted text, and how many survive."""
